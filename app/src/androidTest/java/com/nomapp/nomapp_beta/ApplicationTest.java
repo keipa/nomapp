@@ -1,4 +1,4 @@
-package com.nomapp.nom_nombeta;
+package com.nomapp.nomapp_beta;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
