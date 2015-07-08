@@ -30,8 +30,8 @@ public class AddIngridientsActivity extends ListActivity {
     private static final String DB_NAME = "database.db";
     //Хорошей практикой является задание имен полей БД константами
     private static final String TABLE_NAME = "Ingridients";
-    private static final String FRIEND_ID = "_id";
-    private static final String FRIEND_NAME = "name";
+    private static final String INGRIDIENT_ID = "_id";
+    private static final String INGRIDIENT_NAME = "name";
 
     private SQLiteDatabase database;
     private ListView listView;
@@ -59,8 +59,8 @@ public class AddIngridientsActivity extends ListActivity {
         //Подарим себе тост, для души
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
-                                    int position,long id) {
-                    view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                                    int position, long id) {
+                view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
             }
         });
     }
@@ -68,22 +68,22 @@ public class AddIngridientsActivity extends ListActivity {
     //Извлечение элментов из базы данных
     private void fillFreinds() {
         friends = new ArrayList<String>();
-        Cursor friendCursor = database.query(TABLE_NAME,
+        Cursor cursor = database.query(TABLE_NAME,
                 new String[]
-                        {FRIEND_ID, FRIEND_NAME},
+                        {INGRIDIENT_ID, INGRIDIENT_NAME},
                 null, null, null, null
-                , FRIEND_NAME);
-        friendCursor.moveToFirst();
-        if(!friendCursor.isAfterLast()) {
+                , null);
+
+        
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
             do {
-                String name = friendCursor.getString(1);
+                String name = cursor.getString(1);
                 friends.add(name);
-            } while (friendCursor.moveToNext());
+            } while (cursor.moveToNext());
         }
-        friendCursor.close();
+        cursor.close();
     }
-
-
 
 
     public class ExternalDbOpenHelper extends SQLiteOpenHelper {
@@ -111,7 +111,7 @@ public class AddIngridientsActivity extends ListActivity {
 
         //Создаст базу, если она не создана
         public void createDataBase() {
-            boolean dbExist = checkDataBase();
+            boolean dbExist = /*checkDataBase()*/ false;
             if (!dbExist) {
                 this.getReadableDatabase();
                 try {
@@ -124,6 +124,7 @@ public class AddIngridientsActivity extends ListActivity {
                 Log.i(this.getClass().toString(), "Database already exists");
             }
         }
+
         //Проверка существования базы данных
         private boolean checkDataBase() {
             SQLiteDatabase checkDb = null;
@@ -140,6 +141,7 @@ public class AddIngridientsActivity extends ListActivity {
             }
             return checkDb != null;
         }
+
         //Метод копирования базы
         private void copyDataBase() throws IOException {
             // Открываем поток для чтения из уже созданной нами БД
@@ -173,6 +175,7 @@ public class AddIngridientsActivity extends ListActivity {
             }
             return database;
         }
+
         @Override
         public synchronized void close() {
             if (database != null) {
@@ -180,10 +183,14 @@ public class AddIngridientsActivity extends ListActivity {
             }
             super.close();
         }
+
         @Override
-        public void onCreate(SQLiteDatabase db) {}
+        public void onCreate(SQLiteDatabase db) {
+        }
+
         @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        }
     }
 
 }
