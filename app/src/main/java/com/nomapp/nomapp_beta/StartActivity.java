@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
     Button addIngridients;
 
+    Database global;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         addIngridients = (Button) findViewById(R.id.addIngBtn);
         addIngridients.setOnClickListener(this);
+
+        global = Database.getDatabase(this);
 
     }
 
