@@ -21,7 +21,7 @@ public class Database {
         }
     }
 
-    public static Database getDatabase(Context context) {
+    public static Database getDatabase() {
         Log.w("MY_TAG", "Database::getDatabase");
         return database;
     }

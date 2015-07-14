@@ -43,15 +43,12 @@ public class AddIngridientsActivity extends ListActivity {
     private ArrayList<String> forIngridients;
     private  SQLiteDatabase database;
     private String newChecked;
-    private Database global;
     //private Cursor cursor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ingridients);
 
-        global = Database.getDatabase(this);
-       // database = global.getIngridients();
 
 
         fillIngridients();
@@ -67,7 +64,7 @@ public class AddIngridientsActivity extends ListActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Cursor cursor =  global.getIngridients().query(TABLE_NAME,
+                Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
                         new String[]
                                 {INGRIDIENT_ID, INGRIDIENT_NAME, IS_CHECKED},
                         null, null, null, null
@@ -78,11 +75,11 @@ public class AddIngridientsActivity extends ListActivity {
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0){
                     isChecked = 1;
-                    global.getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + (position + 1) + ";");
+                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + (position + 1) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
                 } else {
                     isChecked = 0;
-                    global.getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + (position + 1) + ";");
+                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + (position + 1) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.white));
                 }
 
@@ -93,7 +90,7 @@ public class AddIngridientsActivity extends ListActivity {
     //Извлечение элментов из базы данных
     private void fillIngridients() {
         forIngridients = new ArrayList<String>();
-        Cursor cursor =  global.getIngridients().query(TABLE_NAME,
+        Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
                         {INGRIDIENT_ID, INGRIDIENT_NAME, IS_CHECKED},
                 null, null, null, null

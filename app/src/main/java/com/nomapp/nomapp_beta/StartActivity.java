@@ -24,7 +24,6 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
     Button addIngridients;
 
-    Database global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class StartActivity extends Activity implements View.OnClickListener {
         addIngridients = (Button) findViewById(R.id.addIngBtn);
         addIngridients.setOnClickListener(this);
 
-        global = Database.getDatabase(this);
 
     }
 
