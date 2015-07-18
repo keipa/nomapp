@@ -2,7 +2,7 @@
 <resources>
     <color name="docPanelsColors">#EF6C00</color>
     <color name="chosenElement">#EF6C00</color>
-    <color name="white">#ffe7eaef</color>
+    <color name="white">#ffffff</color>
 
 
         <color name="primary">#FF9800</color>

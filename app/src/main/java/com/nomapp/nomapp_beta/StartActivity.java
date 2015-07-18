@@ -25,7 +25,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
 
     Button addIngridients;
-
+ //   FloatingActionButton addIng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 .create();
        /*ниже пробую привязать все методы addingredients к fab*/
         //fabButton.findViewById(R.id.addIngBtn);
-
-       // fabButton.setOnClickListener(this);
+        fabButton.setOnClickListener(onCircleButtonCliclListener);
     }
 
     @Override
@@ -78,7 +77,15 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
             default:
 
-                break;
+                  break;
         }
     }
+
+    View.OnClickListener onCircleButtonCliclListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
+            startActivity(intent);
+        }
+    };
 }
