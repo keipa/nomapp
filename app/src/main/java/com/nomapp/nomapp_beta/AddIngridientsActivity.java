@@ -77,6 +77,7 @@ public class AddIngridientsActivity extends ListActivity {
                     isChecked = 1;
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + (position + 1) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
+
                 } else {
                     isChecked = 0;
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + (position + 1) + ";");

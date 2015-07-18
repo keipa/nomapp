@@ -5,7 +5,9 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,11 +31,18 @@ public class StartActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
         addIngridients = (Button) findViewById(R.id.addIngBtn);
         addIngridients.setOnClickListener(this);
+        FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ieon))
+                .withButtonColor(Color.WHITE)
+                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withMargins(0, 0, 16, 16)
+                .create();
+       /*ниже пробую привязать все методы addingredients к fab*/
+        //fabButton.findViewById(R.id.addIngBtn);
 
-
+       // fabButton.setOnClickListener(this);
     }
 
     @Override

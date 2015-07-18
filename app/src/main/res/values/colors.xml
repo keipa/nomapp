@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="docPanelsColors">#EF6C00</color>
-    <color name="chosenElement">#ff265fef</color>
+    <color name="chosenElement">#EF6C00</color>
     <color name="white">#ffe7eaef</color>
+
+
+        <color name="primary">#FF9800</color>
+        <color name="primaryDark">#E65100</color>
+
+        <color name="ripple">#ff80ab</color>
+        <color name="accent">#ff4081</color>
+        <color name="accent_pressed">#f50057</color>
+
 </resources>
