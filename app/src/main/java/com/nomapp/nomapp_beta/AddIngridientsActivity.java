@@ -28,22 +28,16 @@ import java.util.ArrayList;
  */
 
 public class AddIngridientsActivity extends ListActivity {
-  //  private static final String DB_NAME = "database.db";
-    //Хорошей практикой является задание имен полей БД константами
     private static final String TABLE_NAME = "Ingridients";
     private static final String INGRIDIENT_ID = "_id";
     private static final String INGRIDIENT_NAME = "name";
     private static final String IS_CHECKED = "checked";
-  /*  private static final String UPDATE_CHECHED = "UPDATE" + TABLE_NAME + "SET " +
-            IS_CHECKED +  +"WHERE _id=1;";*/
 
 
-    //private SQLiteDatabase database;
     private ListView listView;
     private ArrayList<String> forIngridients;
     private  SQLiteDatabase database;
     private String newChecked;
-    //private Cursor cursor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,12 +72,13 @@ public class AddIngridientsActivity extends ListActivity {
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + (position + 1) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
 
+
                 } else {
                     isChecked = 0;
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + (position + 1) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.white));
                 }
-
+                cursor.close();
             }
         });
     }

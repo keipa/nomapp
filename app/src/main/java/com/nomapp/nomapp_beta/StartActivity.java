@@ -21,26 +21,36 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class StartActivity extends Activity implements View.OnClickListener {
+public class StartActivity extends ListActivity implements View.OnClickListener {
 
+    private static final String TABLE_NAME = "Ingridients";
+    private static final String INGRIDIENT_ID = "_id";
+    private static final String INGRIDIENT_NAME = "name";
+    private static final String IS_CHECKED = "checked";
 
     Button addIngridients;
- //   FloatingActionButton addIng;
+    Button showSelectedIngridients;
+
+    ArrayList<String> forSelectedIngridients;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_start);
+
         addIngridients = (Button) findViewById(R.id.addIngBtn);
         addIngridients.setOnClickListener(this);
+        showSelectedIngridients = (Button) findViewById(R.id.show);
+        showSelectedIngridients.setOnClickListener(this);
+
         FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.drawable.ieon))
                 .withButtonColor(Color.WHITE)
                 .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
                 .withMargins(0, 0, 16, 16)
                 .create();
-       /*ниже пробую привязать все методы addingredients к fab*/
-        //fabButton.findViewById(R.id.addIngBtn);
         fabButton.setOnClickListener(onCircleButtonCliclListener);
     }
 
@@ -74,7 +84,10 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.show:
+                fillSelectedIngridients();
+                setUoList();
+                break;
             default:
 
                   break;
@@ -88,4 +101,30 @@ public class StartActivity extends Activity implements View.OnClickListener {
             startActivity(intent);
         }
     };
+
+    void setUoList(){
+        //String[] values = {"one", "two", "three"};
+        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, forSelectedIngridients));
+    }
+
+    private void fillSelectedIngridients() {
+        forSelectedIngridients = new ArrayList<String>();
+        Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
+                new String[]
+                        {INGRIDIENT_ID, INGRIDIENT_NAME, IS_CHECKED},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
+            do {
+                if(cursor.getInt(2) != 0) {
+                    String name = cursor.getString(1);
+                    forSelectedIngridients.add(name);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+    }
+
 }
