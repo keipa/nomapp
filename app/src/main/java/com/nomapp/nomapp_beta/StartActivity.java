@@ -86,7 +86,7 @@ public class StartActivity extends ListActivity implements View.OnClickListener 
                 break;
             case R.id.show:
                 fillSelectedIngridients();
-                setUoList();
+                setUpList();
                 break;
             default:
 
@@ -102,7 +102,7 @@ public class StartActivity extends ListActivity implements View.OnClickListener 
         }
     };
 
-    void setUoList(){
+    void setUpList(){
         //String[] values = {"one", "two", "three"};
         setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, forSelectedIngridients));
     }
