@@ -24,9 +24,6 @@ import java.util.ArrayList;
 public class StartActivity extends ListActivity implements View.OnClickListener {
 
     private static final String TABLE_NAME = "Ingridients";
-    private static final String INGRIDIENT_ID = "_id";
-    private static final String INGRIDIENT_NAME = "name";
-    private static final String IS_CHECKED = "checked";
 
     Button addIngridients;
     Button showSelectedIngridients;
@@ -111,7 +108,9 @@ public class StartActivity extends ListActivity implements View.OnClickListener 
         forSelectedIngridients = new ArrayList<String>();
         Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
-                        {INGRIDIENT_ID, INGRIDIENT_NAME, IS_CHECKED},
+                        {Database.getIngridientId(), Database.getIngridientId(),
+                                Database.getIngridientIsChecked()},
+
                 null, null, null, null
                 , null);
 

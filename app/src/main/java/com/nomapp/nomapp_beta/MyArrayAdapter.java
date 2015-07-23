@@ -4,6 +4,7 @@ package com.nomapp.nomapp_beta;
  * Created by antonid on 20.07.2015.
  */import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,6 @@ import java.util.ArrayList;
 public class MyArrayAdapter extends ArrayAdapter<String> {
 
     private static final String TABLE_NAME = "Ingridients";
-    private static final String INGRIDIENT_ID = "_id";
-    private static final String INGRIDIENT_NAME = "name";
-    private static final String IS_CHECKED = "checked";
 
     private final Context context;
   ///  private final String[] values;
@@ -43,7 +41,8 @@ public class MyArrayAdapter extends ArrayAdapter<String> {
 
         Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
-                        {INGRIDIENT_ID, INGRIDIENT_NAME, IS_CHECKED},
+                        {Database.getIngridientId(), Database.getIngridientName(),
+                                                Database.getIngridientIsChecked()},
                 null, null, null, null
                 , null);
 

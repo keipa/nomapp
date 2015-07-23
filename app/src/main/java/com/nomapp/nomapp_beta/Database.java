@@ -12,7 +12,14 @@ public class Database {
     private static Database database;
 
     private SQLiteDatabase ingridients;
-    private static final String DB_NAME = "database.db";
+    private SQLiteDatabase recipes;
+
+    private static final String INGRIDIENTS_DB_NAME = "database.db";
+    private static final String RECIPES_DB_NAME = "reciepes.db";
+
+    private static final String INGRIDIENT_ID = "_id";
+    private static final String INGRIDIENT_NAME = "name";
+    private static final String IS_CHECKED = "checked";
 
     public static void initDatabase(Context context) {
         Log.d("MY_TAG", "MySingleton::InitInstance()");
@@ -28,16 +35,30 @@ public class Database {
 
     private Database(Context context) {
         Log.w("MY_TAG", "MySingleton::MySingleton()");
-        StartActivity act = new StartActivity();
-        ExternalDbOpenHelper dbOpenHelper = new ExternalDbOpenHelper(context, DB_NAME);
+//        StartActivity act = new StartActivity();
+        ExternalDbOpenHelper dbOpenHelper = new ExternalDbOpenHelper(context, INGRIDIENTS_DB_NAME);
         ingridients = dbOpenHelper.openDataBase();
+
+        ExternalDbOpenHelper reciepesOpenHelper = new ExternalDbOpenHelper(context, RECIPES_DB_NAME);
+        recipes = reciepesOpenHelper.openDataBase();
     }
 
-    public SQLiteDatabase getIngridients() {
+    public SQLiteDatabase getIngridients(){
         return ingridients;
     }
-
-    public void setIngridients(SQLiteDatabase newIngridients) {
-        ingridients = newIngridients;
+    public SQLiteDatabase getRecipes(){
+        return recipes;
     }
+
+    public static String getIngridientId(){
+        return INGRIDIENT_ID;
+    }
+    public static String getIngridientName(){
+        return INGRIDIENT_NAME;
+    }
+    public static String getIngridientIsChecked(){
+        return IS_CHECKED;
+    }
+
+
 }
