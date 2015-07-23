@@ -4,38 +4,37 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class StartActivity extends ListActivity implements View.OnClickListener {
+public class StartActivity extends Activity implements View.OnClickListener {
 
     private static final String TABLE_NAME = "Ingridients";
+
+    ListView selectedIngridients;
 
     Button addIngridients;
     Button showSelectedIngridients;
 
     ArrayList<String> forSelectedIngridients;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_start);
+
+        selectedIngridients = (ListView) findViewById(R.id.selectedList);
 
         addIngridients = (Button) findViewById(R.id.addIngBtn);
         addIngridients.setOnClickListener(this);
@@ -100,17 +99,15 @@ public class StartActivity extends ListActivity implements View.OnClickListener 
     };
 
     void setUpList(){
-        //String[] values = {"one", "two", "three"};
-        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, forSelectedIngridients));
+        selectedIngridients.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, forSelectedIngridients));
     }
 
     private void fillSelectedIngridients() {
         forSelectedIngridients = new ArrayList<String>();
         Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientId(),
+                        {Database.getIngridientId(), Database.getIngridientName(),
                                 Database.getIngridientIsChecked()},
-
                 null, null, null, null
                 , null);
 

@@ -38,7 +38,7 @@ public class AddIngridientsActivity extends ListActivity {
     protected void onListItemClick(ListView l, View view, int position, long id) {
         Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientId(),
+                        {Database.getIngridientId(), Database.getIngridientName(),
                                 Database.getIngridientIsChecked()},
                 null, null, null, null
                 , null);
@@ -64,7 +64,7 @@ public class AddIngridientsActivity extends ListActivity {
         forIngridients = new ArrayList<String>();
         Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientId(),
+                        {Database.getIngridientId(), Database.getIngridientName(),
                                 Database.getIngridientIsChecked()},
                 null, null, null, null
                 , null);
