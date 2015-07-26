@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,20 +14,27 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
 public class StartActivity extends Activity implements View.OnClickListener {
 
     private static final String TABLE_NAME = "Ingridients";
+    private static final String RECIPES_TABLE_NAME = "Recipes";
 
     ListView selectedIngridients;
 
-    Button addIngridients;
     Button showSelectedIngridients;
 
+    TextView recipesAvailable;
+
     ArrayList<String> forSelectedIngridients;
+    ArrayList<String> ingridientsForRecipe;
+
+    ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +44,11 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         selectedIngridients = (ListView) findViewById(R.id.selectedList);
 
-        addIngridients = (Button) findViewById(R.id.addIngBtn);
-        addIngridients.setOnClickListener(this);
         showSelectedIngridients = (Button) findViewById(R.id.show);
         showSelectedIngridients.setOnClickListener(this);
 
+        recipesAvailable = (TextView) findViewById(R.id.recipesAvailable);
+        recipesAvailable.setText("0 recipes available");
         FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.drawable.ieon))
                 .withButtonColor(Color.WHITE)
@@ -48,6 +56,14 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 .withMargins(0, 0, 16, 16)
                 .create();
         fabButton.setOnClickListener(onCircleButtonCliclListener);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        showNumberOfAvailableRecipes();
+        fillSelectedIngridients();
+        setUpList();
     }
 
     @Override
@@ -76,11 +92,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.addIngBtn:
-                Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
-                startActivity(intent);
-                break;
             case R.id.show:
+                showNumberOfAvailableRecipes();
                 fillSelectedIngridients();
                 setUpList();
                 break;
@@ -114,13 +127,71 @@ public class StartActivity extends Activity implements View.OnClickListener {
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             do {
-                if(cursor.getInt(2) != 0) {
-                    String name = cursor.getString(1);
-                    forSelectedIngridients.add(name);
+                if (cursor.getInt(2) != 0) {
+                    forSelectedIngridients.add(cursor.getString(1));
                 }
             } while (cursor.moveToNext());
         }
         cursor.close();
+    }
+
+    private void showNumberOfAvailableRecipes(){
+        fillIngridientsForRecipe();
+
+        int size = ingridientsForRecipe.size();
+
+        convertedIngrodientsForRecipe = new ArrayList<ArrayList<Integer>>();
+        for (int counter = 0; counter < size; counter++){
+            convertedIngrodientsForRecipe.add(convertIngridientsToArrayList(ingridientsForRecipe.get(counter)));
+        }
+        Log.w("MY_TAG", Integer.toString(/*convertedIngrodientsForRecipe.size()*/ convertedIngrodientsForRecipe.get(1).get(1)));
+    }
+
+    private void fillIngridientsForRecipe(){
+        ingridientsForRecipe = new ArrayList<String>();
+        Cursor cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
+                new String[]
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                        Database.getRecipesHowToCook(),Database.getRecipesIsAvailable()},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
+            do {
+                if (cursor.getInt(2) != 0) {
+                    ingridientsForRecipe.add(cursor.getString(2));
+                    Log.w("MY_TAG", ingridientsForRecipe.get(cursor.getPosition()));
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+    }
+
+    private ArrayList<Integer> convertIngridientsToArrayList(String toConvert){
+        ArrayList<Integer> converted = new ArrayList<Integer>();
+
+        int counter = 0;
+        int factor = 1;
+        int currentIngridient = 0;
+        int size = toConvert.length();
+       // while (toConvert.charAt(counter) != '.'){
+        for (counter = 0; counter < size; counter ++){
+        while(toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.'){//TODO
+                currentIngridient += (toConvert.charAt(counter) - '0') * factor;
+                factor *= 10;
+              /*  if(toConvert.charAt(counter + 1) == '.'){
+                    break;
+                }*/
+                counter++;
+            }
+            factor = 1;
+            //counter++;
+            converted.add(currentIngridient);
+            currentIngridient = 0;
+            //counter++;
+        }
+        return converted;
     }
 
 }

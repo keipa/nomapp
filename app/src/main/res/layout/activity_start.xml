@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:id="@+id/selectedList"
-        android:layout_below="@+id/addIngBtn"></ListView>
+        android:layout_below="@+id/show"></ListView>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -23,24 +23,23 @@
         app:theme="@style/ToolbarTheme" />
 
     <Button
-        android:id="@+id/addIngBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.65"
-        android:text="@string/add_ingridients"
-        android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SHOW SELECTED ITEMS"
         android:id="@+id/show"
         android:layout_below="@+id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/recipesAvailable"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/selectedList" />
 
     <!--<android.support.v4.widget.DrawerLayout-->
         <!--android:id="@+id/drawer"-->

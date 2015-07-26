@@ -21,21 +21,24 @@ public class Database {
     private static final String INGRIDIENT_NAME = "name";
     private static final String IS_CHECKED = "checked";
 
+    private static final String RECIPES_ID = "_id";
+    private static final String RECIPES_NAME = "Name";
+    private static final String RECIPES_INGRIDIENTS = "ingridients";
+    private static final String RECIPES_HOW_TO_COOK = "howToCook";
+    private static final String RECIPES_IS_AVAILABLE = "isAvailable";
+
+
     public static void initDatabase(Context context) {
-        Log.d("MY_TAG", "MySingleton::InitInstance()");
         if (database == null) {
             database = new Database(context);
         }
     }
 
     public static Database getDatabase() {
-        Log.w("MY_TAG", "Database::getDatabase");
         return database;
     }
 
     private Database(Context context) {
-        Log.w("MY_TAG", "MySingleton::MySingleton()");
-//        StartActivity act = new StartActivity();
         ExternalDbOpenHelper dbOpenHelper = new ExternalDbOpenHelper(context, INGRIDIENTS_DB_NAME);
         ingridients = dbOpenHelper.openDataBase();
 
@@ -43,20 +46,36 @@ public class Database {
         recipes = reciepesOpenHelper.openDataBase();
     }
 
-    public SQLiteDatabase getIngridients(){
+    public SQLiteDatabase getIngridients() {
         return ingridients;
     }
-    public SQLiteDatabase getRecipes(){
+    public SQLiteDatabase getRecipes() {
         return recipes;
     }
 
-    public static String getIngridientId(){
+    public static String getRecipesId() {
+        return RECIPES_ID;
+    }
+    public static String getRecipesName() {
+        return RECIPES_NAME;
+    }
+    public static String getRecipesIngridients() {
+        return RECIPES_INGRIDIENTS;
+    }
+    public static String getRecipesHowToCook() {
+        return RECIPES_HOW_TO_COOK;
+    }
+    public static String getRecipesIsAvailable() {
+        return RECIPES_IS_AVAILABLE;
+    }
+
+    public static String getIngridientId() {
         return INGRIDIENT_ID;
     }
-    public static String getIngridientName(){
+    public static String getIngridientName() {
         return INGRIDIENT_NAME;
     }
-    public static String getIngridientIsChecked(){
+    public static String getIngridientIsChecked() {
         return IS_CHECKED;
     }
 
