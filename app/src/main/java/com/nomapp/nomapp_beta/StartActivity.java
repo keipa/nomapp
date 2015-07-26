@@ -27,28 +27,27 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
     ListView selectedIngridients;
 
-    Button showSelectedIngridients;
-
-    TextView recipesAvailable;
+    Button showAvailableRecipes;
 
     ArrayList<String> forSelectedIngridients;
     ArrayList<String> ingridientsForRecipe;
 
     ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
 
+    int nubmerOfAvailableRecipes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_start);
+
+        nubmerOfAvailableRecipes = 0;
 
         selectedIngridients = (ListView) findViewById(R.id.selectedList);
 
-        showSelectedIngridients = (Button) findViewById(R.id.show);
-        showSelectedIngridients.setOnClickListener(this);
+        showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
+        showAvailableRecipes.setOnClickListener(this);
 
-        recipesAvailable = (TextView) findViewById(R.id.recipesAvailable);
-        recipesAvailable.setText("0 recipes available");
         FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.drawable.ieon))
                 .withButtonColor(Color.WHITE)
@@ -61,9 +60,14 @@ public class StartActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onStart(){
         super.onStart();
+        nubmerOfAvailableRecipes = 0;
+
         showNumberOfAvailableRecipes();
         fillSelectedIngridients();
         setUpList();
+        checking();
+
+        showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
     }
 
     @Override
@@ -92,10 +96,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.show:
-                showNumberOfAvailableRecipes();
-                fillSelectedIngridients();
-                setUpList();
+            case R.id.showAvailableRecipes:
+
                 break;
             default:
 
@@ -144,7 +146,40 @@ public class StartActivity extends Activity implements View.OnClickListener {
         for (int counter = 0; counter < size; counter++){
             convertedIngrodientsForRecipe.add(convertIngridientsToArrayList(ingridientsForRecipe.get(counter)));
         }
-        Log.w("MY_TAG", Integer.toString(/*convertedIngrodientsForRecipe.size()*/ convertedIngrodientsForRecipe.get(1).get(1)));
+
+        Log.w("MY_TAG", Integer.toString(convertedIngrodientsForRecipe.get(1).get(1)));
+    }
+
+    private void checking(){
+        boolean isRecipeAvailable = true;
+
+        Cursor cursor =  Database.getDatabase().getIngridients().query(TABLE_NAME,
+                new String[]
+                        {Database.getIngridientId(), Database.getIngridientName(),
+                                Database.getIngridientIsChecked()},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+
+        int size = convertedIngrodientsForRecipe.size();
+        for (int counter = 0; counter < size; counter++){
+            int numberOfRepipes = convertedIngrodientsForRecipe.get(counter).size();
+            for (int recipeNumber = 0; recipeNumber < numberOfRepipes; recipeNumber++) {
+                cursor.moveToPosition(convertedIngrodientsForRecipe.get(counter).get(recipeNumber) - 1);
+                if (cursor.getInt(2) != 1){
+                    isRecipeAvailable = false;
+                }
+            }
+
+            if (isRecipeAvailable == true){
+                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (counter + 1) + ";");
+                nubmerOfAvailableRecipes++;
+            }
+            isRecipeAvailable = true;
+        }
+        cursor.close();
+
     }
 
     private void fillIngridientsForRecipe(){
