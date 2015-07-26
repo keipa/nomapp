@@ -97,7 +97,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.showAvailableRecipes:
-
+                Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
+                startActivity(intent);
                 break;
             default:
 

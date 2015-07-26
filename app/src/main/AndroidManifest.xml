@@ -20,6 +20,9 @@
         <activity
             android:name=".AddIngridientsActivity"
             android:label="Add Ingridient"></activity>
+        <activity
+            android:name=".ListOfAvaliableRecipesActivity"
+            android:label="Available recipes"></activity>
     </application>
 
 
