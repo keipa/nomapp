@@ -7,12 +7,12 @@
     android:weightSum="1"
     tools:context=".MyActivity">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/selectedList"
-        android:layout_below="@+id/showAvailableRecipes"></ListView>
+    <!--<ListView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="1"-->
+        <!--android:id="@+id/selectedList"-->
+        <!--android:layout_below="@+id/showAvailableRecipes"></ListView>-->
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -29,6 +29,15 @@
         android:id="@+id/showAvailableRecipes"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/showAvailableRecipes">
+
+    </android.support.v7.widget.RecyclerView>
 
     <!--<android.support.v4.widget.DrawerLayout-->
         <!--android:id="@+id/drawer"-->

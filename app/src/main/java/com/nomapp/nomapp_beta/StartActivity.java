@@ -25,6 +25,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -39,6 +42,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
     private static final String RECIPES_TABLE_NAME = "Recipes";
 
     ListView selectedIngridients;
+    RecyclerView recyclerView;
 
     Button showAvailableRecipes;
 
@@ -50,7 +54,6 @@ public class StartActivity extends Activity implements View.OnClickListener {
     int nubmerOfAvailableRecipes;
 
     private CardViewAdapter mAdapter;
-
     private ArrayList<String> mItems;
 
     @Override
@@ -61,7 +64,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         nubmerOfAvailableRecipes = 0;
 
-        selectedIngridients = (ListView) findViewById(R.id.selectedList);
+       // selectedIngridients = (ListView) findViewById(R.id.selectedList);
 
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         showAvailableRecipes.setOnClickListener(this);
@@ -75,66 +78,67 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 .create();
         fabButton.setOnClickListener(onCircleButtonCliclListener);
 
-//        mItems = new ArrayList<>(30);
-//        for (int i = 0; i < 30; i++) {
-//            mItems.add(String.format("Card number %02d", i));
-//        }
-//
-//        OnItemTouchListener itemTouchListener = new OnItemTouchListener() {
-//            @Override
-//            public void onCardViewTap(View view, int position) {
-//                Toast.makeText(MainActivity.this, "Tapped " + mItems.get(position), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onButton1Click(View view, int position) {
-//                Toast.makeText(MainActivity.this, "Clicked Button1 in " + mItems.get(position), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onButton2Click(View view, int position) {
-//                Toast.makeText(MainActivity.this, "Clicked Button2 in " + mItems.get(position), Toast.LENGTH_SHORT).show();
-//            }
-//        };
-//
-//        mAdapter = new CardViewAdapter(mItems, itemTouchListener);
-//
-//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-//
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(mAdapter);
-//
-//        SwipeableRecyclerViewTouchListener swipeTouchListener =
-//                new SwipeableRecyclerViewTouchListener(recyclerView,
-//                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
-//                            @Override
-//                            public boolean canSwipe(int position) {
-//                                return true;
-//                            }
-//
-//                            @Override
-//                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
-//                                for (int position : reverseSortedPositions) {
-////                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped left", Toast.LENGTH_SHORT).show();
-//                                    mItems.remove(position);
-//                                    mAdapter.notifyItemRemoved(position);
-//                                }
-//                                mAdapter.notifyDataSetChanged();
-//                            }
-//
-//                            @Override
-//                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
-//                                for (int position : reverseSortedPositions) {
-////                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped right", Toast.LENGTH_SHORT).show();
-//                                    mItems.remove(position);
-//                                    mAdapter.notifyItemRemoved(position);
-//                                }
-//                                mAdapter.notifyDataSetChanged();
-//                            }
-//                        });
-//
-//        recyclerView.addOnItemTouchListener(swipeTouchListener);
+        mItems = new ArrayList<>(30);
+        for (int i = 0; i < 30; i++) {
+            mItems.add(String.format("Card number %02d", i));
+        }
+
+        OnItemTouchListener itemTouchListener = new OnItemTouchListener() {
+            @Override
+            public void onCardViewTap(View view, int position) {
+                Toast.makeText(StartActivity.this, "Tapped " + mItems.get(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onButton1Click(View view, int position) {
+                Toast.makeText(StartActivity.this, "Clicked Button1 in " + mItems.get(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onButton2Click(View view, int position) {
+                Toast.makeText(StartActivity.this, "Clicked Button2 in " + mItems.get(position), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        mAdapter = new CardViewAdapter(mItems, itemTouchListener);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(mAdapter);
+
+        SwipeableRecyclerViewTouchListener swipeTouchListener =
+                new SwipeableRecyclerViewTouchListener(recyclerView,
+                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
+                            @Override
+                            public boolean canSwipe(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped left", Toast.LENGTH_SHORT).show();
+                                    mItems.remove(position);
+                                    mAdapter.notifyItemRemoved(position);
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped right", Toast.LENGTH_SHORT).show();
+                                    mItems.remove(position);
+                                    mAdapter.notifyItemRemoved(position);
+                                }
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+
+        recyclerView.addOnItemTouchListener(swipeTouchListener);
     }
+
 
     @Override
     protected void onStart() {
@@ -194,7 +198,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
     };
 
     void setUpList() {
-        selectedIngridients.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, forSelectedIngridients));
+  //      selectedIngridients.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, forSelectedIngridients));
     }
 
     private void fillSelectedIngridients() {
