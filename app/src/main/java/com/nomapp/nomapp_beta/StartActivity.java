@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
-
+import com.melnykov.fab.FloatingActionButton;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -70,17 +70,18 @@ public class StartActivity extends Activity implements View.OnClickListener {
         showAvailableRecipes.setOnClickListener(this);
 
         //активация кнопки FAB (сделано програмно)
-        FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.ieon))
-                .withButtonColor(Color.WHITE)
-                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
-                .withMargins(0, 0, 16, 16)
-                .create();
-        fabButton.setOnClickListener(onCircleButtonCliclListener);
+//        FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
+//                .withDrawable(getResources().getDrawable(R.drawable.ieon))
+//                .withButtonColor(Color.WHITE)
+//                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+//                .withMargins(0, 0, 16, 16)
+//                .create();
+//        fabButton.setOnClickListener(onCircleButtonCliclListener);
 
-        mItems = new ArrayList<>(30);
+
+                mItems = new ArrayList<>(30);
         for (int i = 0; i < 30; i++) {
-            mItems.add(String.format("Card number %02d", i));
+            mItems.add(String.format("Ingredient %02d", i));
         }
 
         OnItemTouchListener itemTouchListener = new OnItemTouchListener() {
@@ -137,6 +138,14 @@ public class StartActivity extends Activity implements View.OnClickListener {
                         });
 
         recyclerView.addOnItemTouchListener(swipeTouchListener);
+
+       // RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.attachToRecyclerView(recyclerView);
+        fab.setColorNormal(getResources().getColor(R.color.primaryDark));
+        fab.setColorPressed(getResources().getColor(R.color.primary));
+        fab.setColorRipple(getResources().getColor(R.color.primaryDark));
+        fab.setOnClickListener(onCircleButtonCliclListener);
     }
 
 
@@ -383,22 +392,21 @@ public class StartActivity extends Activity implements View.OnClickListener {
             public ViewHolder(View itemView) {
                 super(itemView);
                 title = (TextView) itemView.findViewById(R.id.card_view_title);
-                button1 = (Button) itemView.findViewById(R.id.card_view_button1);
-                button2 = (Button) itemView.findViewById(R.id.card_view_button2);
-
-                button1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onItemTouchListener.onButton1Click(v, getPosition());
-                    }
-                });
-
-                button2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        onItemTouchListener.onButton2Click(v, getPosition());
-                    }
-                });
+              //  button1 = (Button) itemView.findViewById(R.id.card_view_button1);
+                //button2 = (Button) itemView.findViewById(R.id.card_view_button2);
+//                button1.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        onItemTouchListener.onButton1Click(v, getPosition());
+//                    }
+//                });
+//
+//                button2.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        onItemTouchListener.onButton2Click(v, getPosition());
+//                    }
+//                });
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
