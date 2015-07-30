@@ -69,7 +69,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         showAvailableRecipes.setOnClickListener(this);
 
-        setUpFAB();
+    //    setUpFAB();
     }
 
 
@@ -82,6 +82,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
         fillSelectedIngridients();
         setUpList();
         checking();
+        setUpFAB();
         showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
     }
 
