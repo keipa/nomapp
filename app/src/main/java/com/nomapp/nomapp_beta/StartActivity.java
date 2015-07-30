@@ -49,6 +49,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
     ArrayList<String> forSelectedIngridients;
     ArrayList<String> ingridientsForRecipe;
+    ArrayList<Integer> IDs;
 
     ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
 
@@ -69,21 +70,19 @@ public class StartActivity extends Activity implements View.OnClickListener {
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         showAvailableRecipes.setOnClickListener(this);
 
-    //    setUpFAB();
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //    setUpFAB();
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        nubmerOfAvailableRecipes = 0;
-
         showNumberOfAvailableRecipes();
         fillSelectedIngridients();
         setUpList();
-        checking();
         setUpFAB();
-        showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
     }
 
     @Override
@@ -131,7 +130,6 @@ public class StartActivity extends Activity implements View.OnClickListener {
     };
 
     void setUpFAB(){
-        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.attachToRecyclerView(selectedIngridients);
         fab.setColorNormal(getResources().getColor(R.color.primaryDark));
         fab.setColorPressed(getResources().getColor(R.color.primary));
@@ -155,7 +153,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
     }
 
     private void fillSelectedIngridients() {
-        forSelectedIngridients = new ArrayList<String>();
+        forSelectedIngridients = new ArrayList<>();
+        IDs = new ArrayList<>();
         Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,
                 new String[]
                         {Database.getIngridientId(), Database.getIngridientName(),
@@ -168,6 +167,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
             do {
                 if (cursor.getInt(2) != 0) {
                     forSelectedIngridients.add(cursor.getString(1));
+                    IDs.add(cursor.getInt(0));
                 }
             } while (cursor.moveToNext());
         }
@@ -175,6 +175,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
     }
 
     private void showNumberOfAvailableRecipes() {
+        nubmerOfAvailableRecipes = 0;
         fillIngridientsForRecipe();
 
         int size = ingridientsForRecipe.size();
@@ -184,7 +185,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
             convertedIngrodientsForRecipe.add(convertIngridientsToArrayList(ingridientsForRecipe.get(counter)));
         }
 
-        Log.w("MY_TAG", Integer.toString(convertedIngrodientsForRecipe.get(1).get(1)));
+        checking();
+        showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
     }
 
     private void checking() {
@@ -216,7 +218,6 @@ public class StartActivity extends Activity implements View.OnClickListener {
             isRecipeAvailable = true;
         }
         cursor.close();
-
     }
 
     private void fillIngridientsForRecipe() {
@@ -278,8 +279,10 @@ public class StartActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped left", Toast.LENGTH_SHORT).show();
+                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
+                                    IDs.remove(position);
+                                    showNumberOfAvailableRecipes();
                                     mAdapter.notifyItemRemoved(position);
                                 }
                                 mAdapter.notifyDataSetChanged();
@@ -288,8 +291,10 @@ public class StartActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
                                 for (int position : reverseSortedPositions) {
-//                                    Toast.makeText(MainActivity.this, mItems.get(position) + " swiped right", Toast.LENGTH_SHORT).show();
+                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
+                                    IDs.remove(position);
+                                    showNumberOfAvailableRecipes();
                                     mAdapter.notifyItemRemoved(position);
                                 }
                                 mAdapter.notifyDataSetChanged();
