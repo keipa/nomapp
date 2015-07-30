@@ -201,18 +201,19 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         cursor.moveToFirst();
 
-        int size = convertedIngrodientsForRecipe.size();
-        for (int counter = 0; counter < size; counter++) {
-            int numberOfRepipes = convertedIngrodientsForRecipe.get(counter).size();
-            for (int recipeNumber = 0; recipeNumber < numberOfRepipes; recipeNumber++) {
-                cursor.moveToPosition(convertedIngrodientsForRecipe.get(counter).get(recipeNumber) - 1);
+        int numberOfRecipes = convertedIngrodientsForRecipe.size();
+        for (int currentRecipe = 0; currentRecipe < numberOfRecipes; currentRecipe++) {
+            int numberOfIngridientsInRecipe = convertedIngrodientsForRecipe.get(currentRecipe).size();
+            for (int ingridientNumber = 0; ingridientNumber < numberOfIngridientsInRecipe; ingridientNumber++) {
+                cursor.moveToPosition(convertedIngrodientsForRecipe.get(currentRecipe).get(ingridientNumber) - 1);
                 if (cursor.getInt(2) != 1) {
                     isRecipeAvailable = false;
+                    break;
                 }
             }
 
             if (isRecipeAvailable == true) {
-                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (counter + 1) + ";");
+                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (currentRecipe + 1) + ";");
                 nubmerOfAvailableRecipes++;
             }
             isRecipeAvailable = true;
@@ -248,21 +249,15 @@ public class StartActivity extends Activity implements View.OnClickListener {
         int factor = 1;
         int currentIngridient = 0;
         int size = toConvert.length();
-        // while (toConvert.charAt(counter) != '.'){
         for (counter = 0; counter < size; counter++) {
             while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
                 currentIngridient += (toConvert.charAt(counter) - '0') * factor;
                 factor *= 10;
-              /*  if(toConvert.charAt(counter + 1) == '.'){
-                    break;
-                }*/
                 counter++;
             }
             factor = 1;
-            //counter++;
             converted.add(currentIngridient);
             currentIngridient = 0;
-            //counter++;
         }
         return converted;
     }
