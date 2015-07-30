@@ -215,6 +215,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
             if (isRecipeAvailable == true) {
                 Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (currentRecipe + 1) + ";");
                 nubmerOfAvailableRecipes++;
+            } else {
+                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (currentRecipe + 1) + ";");
             }
             isRecipeAvailable = true;
         }

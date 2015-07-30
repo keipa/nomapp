@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,15 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
     private void setUpRecipesList(){
         availableRecipes.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, recipesForList));
+    //----------------------------------------------------Œ¡–¿¡Œ“◊»  Õ¿∆¿“»ﬂ Õ¿ ›À≈Ã≈Õ“ —œ»— ¿-----------------------------------//
+        availableRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(ListOfAvaliableRecipesActivity.this, "Tapped " + position, Toast.LENGTH_SHORT).show();
+                // «ƒ≈—‹ œ»ÿ≈Ã ◊“Œ ƒ≈À¿“‹
+                //POSITION ›“Œ ÕŒÃ≈– Õ¿∆¿“Œ√Œ ›À≈Ã≈Õ“¿. Õ¿◊»Õ¿≈“—ﬂ — Õ”Àﬂ
+            }
+        });
     }
 
     private void fillAvailableRecipes() {
