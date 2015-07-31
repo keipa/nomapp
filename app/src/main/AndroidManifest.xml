@@ -23,6 +23,9 @@
         <activity
             android:name=".ListOfAvaliableRecipesActivity"
             android:label="Available recipes"></activity>
+        <activity
+            android:name=".RecipeActivity"
+            android:label="Steps"></activity>
     </application>
 
 
