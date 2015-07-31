@@ -41,19 +41,19 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
     private void setUpRecipesList(){
         availableRecipes.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, recipesForList));
-    //----------------------------------------------------Œ¡–¿¡Œ“◊»  Õ¿∆¿“»ﬂ Õ¿ ›À≈Ã≈Õ“ —œ»— ¿-----------------------------------//
+    //----------------------------------------------------?????????? ??????? ?? ??????? ??????-----------------------------------//
         availableRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Toast.makeText(ListOfAvaliableRecipesActivity.this, "Tapped " + position, Toast.LENGTH_SHORT).show();
-                // «ƒ≈—‹ œ»ÿ≈Ã ◊“Œ ƒ≈À¿“‹
-                //POSITION ›“Œ ÕŒÃ≈– Õ¿∆¿“Œ√Œ ›À≈Ã≈Õ“¿. Õ¿◊»Õ¿≈“—ﬂ — Õ”Àﬂ
+                // ????? ????? ??? ??????
+                //POSITION ??? ????? ???????? ????????. ?????????? ? ????
             }
         });
     }
 
     private void fillAvailableRecipes() {
-        recipesForList = new ArrayList<String>();
+        recipesForList = new ArrayList<>();
         Cursor cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),

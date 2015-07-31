@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -135,6 +137,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
         fab.setColorPressed(getResources().getColor(R.color.primary));
         fab.setColorRipple(getResources().getColor(R.color.primaryDark));
         fab.setOnClickListener(onCircleButtonCliclListener);
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);
+        fab.startAnimation(hyperspaceJumpAnimation);
     }
 
     void setUpList() {
