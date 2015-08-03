@@ -153,7 +153,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         // Click events for Navigation Drawer
-        LinearLayout navButton = (LinearLayout) findViewById(R.id.txtNavButton);
+        LinearLayout navButton = (LinearLayout) findViewById(R.id.txtFridgeButton);
         navButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -72,7 +72,7 @@
             <!-- Button -->
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/txtNavButtonBackground"
+                android:id="@+id/txtFridgeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -80,7 +80,7 @@
                 android:layout_marginTop="5dp">
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/txtNavButton"
+                    android:id="@+id/txtFridge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
@@ -89,10 +89,10 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
-                        android:id="@+id/txtNavButtonImage"
+                        android:id="@+id/txtFridgeIcon"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="15dp"
-                        android:src="@drawable/ic_nav_home"
+                        android:src="@drawable/ic_fridge_dr"
                         android:layout_marginRight="0dp" />
 
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -101,7 +101,7 @@
                         android:textColor="@android:color/black"
                         android:minHeight="?android:attr/listPreferredItemHeightSmall"
                         android:background="@android:color/transparent"
-                        android:text="Add ingridients"
+                        android:text="Холодильник"
                         android:textStyle="bold"
                         android:singleLine="false"
                         android:focusableInTouchMode="true"
@@ -113,7 +113,241 @@
                         android:paddingRight="16dp"
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
-                        android:id="@+id/addIngridientsDrawerButton" />
+                        android:id="@+id/addFridge" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/txtDish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/txtDishOfADay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/txtDishOfADayIcon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_recepies_dr"
+                        android:layout_marginRight="0dp" />
+
+                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                        android:background="@android:color/transparent"
+                        android:text="Блюдо дня"
+                        android:textStyle="bold"
+                        android:singleLine="false"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="sans-serif"
+                        android:focusable="false"
+                        android:elegantTextHeight="false"
+                        android:editable="false"
+                        android:paddingTop="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingLeft="25dp"
+                        android:id="@+id/addDishOfADay" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/txtAllRecepies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/AllRecepies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/txtAllRecepiesIcon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_allrec_dr"
+                        android:layout_marginRight="0dp" />
+
+                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                        android:background="@android:color/transparent"
+                        android:text="Все рецепты"
+                        android:textStyle="bold"
+                        android:singleLine="false"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="sans-serif"
+                        android:focusable="false"
+                        android:elegantTextHeight="false"
+                        android:editable="false"
+                        android:paddingTop="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingLeft="25dp"
+                        android:id="@+id/addAllRecepies" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/txtSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/txtSettingstxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/txtSettingsIcon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_settings_dr"
+                        android:layout_marginRight="0dp" />
+
+                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                        android:background="@android:color/transparent"
+                        android:text="Настройки"
+                        android:textStyle="bold"
+                        android:singleLine="false"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="sans-serif"
+                        android:focusable="false"
+                        android:elegantTextHeight="false"
+                        android:editable="false"
+                        android:paddingTop="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingLeft="25dp"
+                        android:id="@+id/addSettings" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/txtReply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/txtreplytxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/txtReplyIcon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_reply_dr"
+                        android:layout_marginRight="0dp" />
+
+                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                        android:background="@android:color/transparent"
+                        android:text="Оставить отзыв"
+                        android:textStyle="bold"
+                        android:singleLine="false"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="sans-serif"
+                        android:focusable="false"
+                        android:elegantTextHeight="false"
+                        android:editable="false"
+                        android:paddingTop="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingLeft="25dp"
+                        android:id="@+id/addReply" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/txtHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/txtHelptxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/txtHelpIcon"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/ic_help_dr"
+                        android:layout_marginRight="0dp" />
+
+                    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                        android:background="@android:color/transparent"
+                        android:text="Справка"
+                        android:textStyle="bold"
+                        android:singleLine="false"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="sans-serif"
+                        android:focusable="false"
+                        android:elegantTextHeight="false"
+                        android:editable="false"
+                        android:paddingTop="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="16dp"
+                        android:paddingLeft="25dp"
+                        android:id="@+id/addHelp" />
 
                 </LinearLayout>
             </LinearLayout>
