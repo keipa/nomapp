@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -15,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.os.Bundle;
@@ -38,10 +43,14 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartActivity extends Activity implements View.OnClickListener {
+public class StartActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TABLE_NAME = "Ingridients";
     private static final String RECIPES_TABLE_NAME = "Recipes";
+
+    ActionBarDrawerToggle mDrawerToggle;
+    DrawerLayout mDrawerLayout;
+    Toolbar mToolbar;
 
     RecyclerView selectedIngridients;
     SwipeableRecyclerViewTouchListener swipeTouchListener;
@@ -74,6 +83,8 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        setUpNavigationDraver();
+
         //    setUpFAB();
     }
 
@@ -81,10 +92,10 @@ public class StartActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
-        showNumberOfAvailableRecipes();
-        fillSelectedIngridients();
-        setUpList();
-        setUpFAB();
+          showNumberOfAvailableRecipes();
+          fillSelectedIngridients();
+          setUpList();
+          setUpFAB();
     }
 
     @Override
@@ -117,6 +128,7 @@ public class StartActivity extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
                 startActivity(intent);
                 break;
+
             default:
 
                 break;
@@ -131,6 +143,34 @@ public class StartActivity extends Activity implements View.OnClickListener {
         }
     };
 
+    void setUpNavigationDraver(){
+        mToolbar= (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        // Click events for Navigation Drawer
+        LinearLayout navButton = (LinearLayout) findViewById(R.id.txtNavButton);
+        navButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // close drawer if you want
+                /*if (mDrawerLayout.isDrawerOpen(Gravity.START | Gravity.LEFT)) {
+                    mDrawerLayout.closeDrawers();
+                }*/
+                Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
+                startActivity(intent);
+
+                // update loaded Views if you want
+                //mViewPager.getAdapter().notifyDataSetChanged();
+            }
+        });
+    }
     void setUpFAB(){
         fab.attachToRecyclerView(selectedIngridients);
         fab.setColorNormal(getResources().getColor(R.color.primaryDark));
@@ -151,7 +191,9 @@ public class StartActivity extends Activity implements View.OnClickListener {
 
         mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);
 
-        selectedIngridients.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        selectedIngridients.setLayoutManager(layoutManager);
         selectedIngridients.setAdapter(mAdapter);
         setSwipeTouchListener();
     }
