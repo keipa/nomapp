@@ -51,21 +51,16 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
-
     RecyclerView selectedIngridients;
     SwipeableRecyclerViewTouchListener swipeTouchListener;
-
     Button showAvailableRecipes;
     FloatingActionButton fab;
-
     ArrayList<String> forSelectedIngridients;
     ArrayList<String> ingridientsForRecipe;
     ArrayList<Integer> IDs;
-
     ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
 
     int nubmerOfAvailableRecipes;
-
     private CardViewAdapter mAdapter;
 
     @Override
@@ -75,19 +70,15 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_start);
 
         nubmerOfAvailableRecipes = 0;
-
-        selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);
-
+        selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //    setUpFAB();
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         showAvailableRecipes.setOnClickListener(this);
-
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         setUpNavigationDraver();
 
-        //    setUpFAB();
-    }
 
+    }
 
     @Override
     protected void onStart() {
@@ -111,7 +102,6 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -158,16 +148,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onClick(View v) {
-
-                // close drawer if you want
-                /*if (mDrawerLayout.isDrawerOpen(Gravity.START | Gravity.LEFT)) {
-                    mDrawerLayout.closeDrawers();
-                }*/
                 Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
                 startActivity(intent);
-
-                // update loaded Views if you want
-                //mViewPager.getAdapter().notifyDataSetChanged();
             }
         });
     }
@@ -223,14 +205,11 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     private void showNumberOfAvailableRecipes() {
         nubmerOfAvailableRecipes = 0;
         fillIngridientsForRecipe();
-
         int size = ingridientsForRecipe.size();
-
         convertedIngrodientsForRecipe = new ArrayList<ArrayList<Integer>>();
         for (int counter = 0; counter < size; counter++) {
             convertedIngrodientsForRecipe.add(convertIngridientsToArrayList(ingridientsForRecipe.get(counter)));
         }
-
         checking();
         showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
     }

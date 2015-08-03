@@ -53,10 +53,7 @@ public class MyArrayAdapter extends ArrayAdapter<String> {
             textView.setBackgroundColor(context.getResources().getColor(R.color.chosenElement)); // второй вариант
           //  textView.setTextColor(context.getResources().getColor(R.color.white));
             Log.d("MY_TAG", "in arrayAdapter");
-        }/* else{
-            textView.setBackgroundColor(context.getResources().getColor(R.color.white)); // второй вариант
-            Log.d("MY_TAG", "in arrayAdapter");
-        }*/
+        }
         return rowView;
     }
 

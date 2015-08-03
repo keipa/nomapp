@@ -11,20 +11,16 @@
     android:weightSum="1"
     android:elevation="10dp"
     app:insetForeground="#4000">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/navDrawerScrollView">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/navDrawerLayout">
-
             <!-- Image Header-->
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -32,7 +28,6 @@
                 android:background="@drawable/img_navdrawerheader"
                 android:gravity="left|bottom"
                 android:id="@+id/ltDrawerHeader">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +41,6 @@
                     android:paddingLeft="16dp"
                     android:fontFamily="sans-serif"
                     android:layout_marginBottom="5dp" />
-
                 <!-- Slogan -->
                 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/txtNavSlogan"
@@ -59,18 +53,12 @@
                     android:layout_marginBottom="5dp"
                     android:textSize="15dp"
                     android:ellipsize="end" />
-
-
-
             </LinearLayout>
-
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="#888" />
-
             <!-- Button -->
-
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/txtFridgeButton"
                 android:layout_width="match_parent"
@@ -78,14 +66,12 @@
                 android:background="@android:color/transparent"
                 android:orientation="vertical"
                 android:layout_marginTop="5dp">
-
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/txtFridge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
@@ -94,7 +80,6 @@
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_fridge_dr"
                         android:layout_marginRight="0dp" />
-
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -114,7 +99,6 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
                         android:id="@+id/addFridge" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -125,14 +109,12 @@
                 android:background="@android:color/transparent"
                 android:orientation="vertical"
                 android:layout_marginTop="5dp">
-
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/txtDishOfADay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
@@ -141,7 +123,6 @@
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_recepies_dr"
                         android:layout_marginRight="0dp" />
-
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -161,7 +142,6 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
                         android:id="@+id/addDishOfADay" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -172,14 +152,12 @@
                 android:background="@android:color/transparent"
                 android:orientation="vertical"
                 android:layout_marginTop="5dp">
-
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/AllRecepies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
@@ -188,7 +166,6 @@
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_allrec_dr"
                         android:layout_marginRight="0dp" />
-
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -208,10 +185,8 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
                         android:id="@+id/addAllRecepies" />
-
                 </LinearLayout>
             </LinearLayout>
-
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/txtSettings"
                 android:layout_width="match_parent"
@@ -219,14 +194,12 @@
                 android:background="@android:color/transparent"
                 android:orientation="vertical"
                 android:layout_marginTop="5dp">
-
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/txtSettingstxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
@@ -235,7 +208,6 @@
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_settings_dr"
                         android:layout_marginRight="0dp" />
-
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -255,7 +227,6 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
                         android:id="@+id/addSettings" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -266,14 +237,12 @@
                 android:background="@android:color/transparent"
                 android:orientation="vertical"
                 android:layout_marginTop="5dp">
-
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/txtreplytxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
@@ -282,7 +251,6 @@
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_reply_dr"
                         android:layout_marginRight="0dp" />
-
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -302,7 +270,6 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
                         android:id="@+id/addReply" />
-
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -312,14 +279,12 @@
                 android:background="@android:color/transparent"
                 android:orientation="vertical"
                 android:layout_marginTop="5dp">
-
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/txtHelptxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="20dp"
@@ -328,7 +293,6 @@
                         android:layout_marginLeft="15dp"
                         android:src="@drawable/ic_help_dr"
                         android:layout_marginRight="0dp" />
-
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -348,10 +312,8 @@
                         android:paddingBottom="16dp"
                         android:paddingLeft="25dp"
                         android:id="@+id/addHelp" />
-
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
@@ -360,5 +322,4 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
         android:layout_gravity="right" />
-
 </com.nomapp.nomapp_beta.ScrimInsetsFrameLayout>
