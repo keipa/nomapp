@@ -26,6 +26,9 @@
         <activity
             android:name=".RecipeActivity"
             android:label="Steps"></activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="Steps"></activity>
     </application>
 
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/localization_en">
+        <ListPreference
+            android:title="@string/language_en"
+            android:summary="@string/chooseLanguage_en"
+            android:key="language"
+            android:defaultValue="digiGreen"
+            android:entries="@array/variants_of_language"
+            android:entryValues="@array/values_of_language" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

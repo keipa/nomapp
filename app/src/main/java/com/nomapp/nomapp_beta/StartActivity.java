@@ -3,9 +3,11 @@ package com.nomapp.nomapp_beta;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -35,6 +38,9 @@ import android.widget.Toast;
 
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 import com.melnykov.fab.FloatingActionButton;
+
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -83,10 +89,12 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
-          showNumberOfAvailableRecipes();
-          fillSelectedIngridients();
-          setUpList();
-          setUpFAB();
+        showNumberOfAvailableRecipes();
+        fillSelectedIngridients();
+        setUpList();
+        setUpFAB();
+        setUpUserSettings();
+
     }
 
     @Override
@@ -133,6 +141,46 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         }
     };
 
+    void setUpUserSettings(){
+        setUpLocalization();
+    }
+
+    void setUpLocalization() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        String lang = settings.getString("language", "");
+
+        TextView fridgeText = (TextView) findViewById(R.id.addFridge);
+        TextView dishOfADayText = (TextView) findViewById(R.id.addDishOfADay);
+        TextView allRecipesText = (TextView) findViewById(R.id.addAllRecepies);
+        TextView settingsText = (TextView) findViewById(R.id.addSettings);
+        TextView leaveFeedbackText = (TextView) findViewById(R.id.addReply);
+        TextView aboutText = (TextView) findViewById(R.id.addHelp);
+
+        switch (lang){
+            case "1":
+                fridgeText.setText(getString(R.string.fridge_en));
+                dishOfADayText.setText(getString(R.string.dish_of_a_day_en));
+                allRecipesText.setText(getString(R.string.all_recipes_en));
+                settingsText.setText(getString(R.string.settings_en));
+                leaveFeedbackText.setText(getString(R.string.leave_feedback_en));
+                aboutText.setText(getString(R.string.about_en));
+                break;
+
+            case "2":
+                fridgeText.setText(getString(R.string.fridge_ru));
+                dishOfADayText.setText(getString(R.string.dish_of_a_day_ru));
+                allRecipesText.setText(getString(R.string.all_recipes_ru));
+                settingsText.setText(getString(R.string.settings_ru));
+                leaveFeedbackText.setText(getString(R.string.leave_feedback_ru));
+                aboutText.setText(getString(R.string.about_ru));
+                break;
+
+            default:
+                break;
+        }
+        Log.w("MY_TAG", lang);
+    }
+
     void setUpNavigationDraver(){
         mToolbar= (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);
@@ -152,6 +200,19 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
             }
         });
+
+        LinearLayout settingsButton = (LinearLayout) findViewById(R.id.txtSettings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // close drawer if you want
+                mDrawerLayout.closeDrawers();
+                Intent intent = new Intent(StartActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     void setUpFAB(){
         fab.attachToRecyclerView(selectedIngridients);
