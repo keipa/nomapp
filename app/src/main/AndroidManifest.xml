@@ -29,6 +29,8 @@
         <activity
             android:name=".SettingsActivity"
             android:label="Steps"></activity>
+        <activity android:name=".TabsActivity"
+            android:label="Steps"></activity>
     </application>
 
 

@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">NomApp_beta</string>
 
+
+    <string name="font_fontFamily_medium">sans-serif</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Menuitem</string>
 
 
     //Settings activity----------------------------
