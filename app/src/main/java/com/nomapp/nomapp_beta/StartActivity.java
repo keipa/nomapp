@@ -216,9 +216,9 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     }
     void setUpFAB(){
         fab.attachToRecyclerView(selectedIngridients);
-        fab.setColorNormal(getResources().getColor(R.color.primaryDark));
+        fab.setColorNormal(getResources().getColor(R.color.chosenElement));
         fab.setColorPressed(getResources().getColor(R.color.primary));
-        fab.setColorRipple(getResources().getColor(R.color.primaryDark));
+        fab.setColorRipple(getResources().getColor(R.color.chosenElement));
         fab.setOnClickListener(onCircleButtonCliclListener);
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);
         fab.startAnimation(hyperspaceJumpAnimation);
