@@ -37,6 +37,13 @@
     <string name="about_en">About</string>
     <string name="about_ru">Справка</string>
 
-
     //--------------------------------------
+
+    <string name="bk_s1">На хлеб намажем масла</string>
+    <string name="bk_s2">Ама хасла</string>
+    <string name="bk_s3">Ама ама хасла. (еще колбасу сверху)</string>
+
+    <string name="bs_s1">Возьмите хлеб </string>
+    <string name="bs_s2">Положите сыр </string>
+
 </resources>

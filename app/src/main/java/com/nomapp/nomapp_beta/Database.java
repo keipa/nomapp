@@ -21,12 +21,13 @@ public class Database {
     private static final String INGRIDIENT_NAME = "name";
     private static final String IS_CHECKED = "checked";
 
+    private static final String RECIPES_TABLE_NAME = "Recipes";
     private static final String RECIPES_ID = "_id";
     private static final String RECIPES_NAME = "Name";
     private static final String RECIPES_INGRIDIENTS = "ingridients";
     private static final String RECIPES_HOW_TO_COOK = "howToCook";
     private static final String RECIPES_IS_AVAILABLE = "isAvailable";
-
+    private static final String RECIPES_NUMBER_OF_STEPS = "numberOfSteps";
 
     public static void initDatabase(Context context) {
         if (database == null) {
@@ -67,6 +68,12 @@ public class Database {
     }
     public static String getRecipesIsAvailable() {
         return RECIPES_IS_AVAILABLE;
+    }
+    public static String getRecipesNumberOfSteps() {
+        return RECIPES_NUMBER_OF_STEPS;
+    }
+    public static String getRecipesTableName() {
+        return RECIPES_TABLE_NAME;
     }
 
     public static String getIngridientId() {

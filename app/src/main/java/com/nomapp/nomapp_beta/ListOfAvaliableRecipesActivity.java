@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,9 @@ public class ListOfAvaliableRecipesActivity extends Activity {
     ListView availableRecipes;
 
     ArrayList<String> recipesForList;
+    ArrayList<Integer> IDs;
+
+    Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +46,30 @@ public class ListOfAvaliableRecipesActivity extends Activity {
     private void setUpRecipesList(){
         availableRecipes.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, recipesForList));
 
+
         availableRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(ListOfAvaliableRecipesActivity.this, "Tapped " + position, Toast.LENGTH_SHORT).show();
 
+                cursor.moveToPosition(IDs.get(position) - 1);
+                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+                intent.putExtra("cooking", cursor.getString(3));
+                intent.putExtra("numberOfSteps", cursor.getInt(5));
+                startActivity(intent);
+                cursor.close();
             }
         });
     }
 
     private void fillAvailableRecipes() {
         recipesForList = new ArrayList<>();
-        Cursor cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
+        IDs = new ArrayList<>();
+
+        cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
-                                Database.getRecipesHowToCook(),Database.getRecipesIsAvailable()},
+                                Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
+                                Database.getRecipesNumberOfSteps()},
                 null, null, null, null
                 , null);
 
@@ -65,9 +78,9 @@ public class ListOfAvaliableRecipesActivity extends Activity {
             do {
                 if (cursor.getInt(4) != 0) {
                     recipesForList.add(cursor.getString(1));
+                    IDs.add(cursor.getInt(0));
                 }
             } while (cursor.moveToNext());
         }
-        cursor.close();
     }
 }

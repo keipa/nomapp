@@ -1,5 +1,7 @@
 package com.nomapp.nomapp_beta;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -82,7 +84,8 @@ public class TabsActivity extends ActionBarActivity {SlidingTabLayout mSlidingTa
          */
         @Override
         public int getCount() {
-            return 7;
+            Intent intent = getIntent();
+            return intent.getIntExtra("numberOfSteps", 0);
         }
 
         /**
@@ -103,7 +106,7 @@ public class TabsActivity extends ActionBarActivity {SlidingTabLayout mSlidingTa
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Page " + (position + 1);
+            return "Step " + (position + 1);
         }
 
         /**
@@ -116,7 +119,12 @@ public class TabsActivity extends ActionBarActivity {SlidingTabLayout mSlidingTa
             View view = getLayoutInflater().inflate(R.layout.pager_item,
                     container, false);
             TextView txt = (TextView) view.findViewById(R.id.item_subtitle);
-            txt.setText("Content: " + (position + 1));
+
+            Intent intent = getIntent();
+            String nameOfSteps = intent.getStringExtra("cooking");
+
+            int id = getResources().getIdentifier(nameOfSteps + (position + 1), "string", getPackageName());
+            txt.setText(getResources().getText(id));
             // Add the newly created View to the ViewPager
             container.addView(view);
 

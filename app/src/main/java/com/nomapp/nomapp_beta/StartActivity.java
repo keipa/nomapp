@@ -314,7 +314,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         Cursor cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
-                                Database.getRecipesHowToCook(), Database.getRecipesIsAvailable()},
+                                Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
+                                Database.getRecipesNumberOfSteps()},
                 null, null, null, null
                 , null);
 
