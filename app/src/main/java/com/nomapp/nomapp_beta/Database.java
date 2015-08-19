@@ -14,8 +14,8 @@ public class Database {
     private SQLiteDatabase ingridients;
     private SQLiteDatabase recipes;
 
-    private static final String INGRIDIENTS_DB_NAME = "database.db";
-    private static final String RECIPES_DB_NAME = "reciepes.db";
+    private static final String INGRIDIENTS_DB_NAME = "IngBase.db";
+    private static final String RECIPES_DB_NAME = "RecBase.db";
 
     private static final String INGRIDIENT_ID = "_id";
     private static final String INGRIDIENT_NAME = "name";
