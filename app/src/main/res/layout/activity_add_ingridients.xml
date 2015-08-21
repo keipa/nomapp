@@ -3,8 +3,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/nameOfCategory"
+        android:layout_gravity="center_horizontal" />
+
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></ListView>
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="meat_ru">Мясо</string>
+    <string name="bird_ru">Птица</string>
+    <string name="fish_ru">Рыба</string>
+    <string name="sea_ru">Морепродукты</string>
+    <string name="vegetables_ru">Овощи</string>
+    <string name="fruit_ru">Фрукты и ягоды</string>
+    <string name="bakaly_ru">Бакалея</string>
+    <string name="grain_ru">Крупы</string>
+    <string name="milk_ru">Молочные продукты</string>
+    <string name="mushrooms_ru">Грибы</string>
+    <string name="green_ru">Зелень</string>
+    <string name="nuts_ru">Орехи</string>
+    <string name="products_ru">Готовые продукты</string>
+</resources>

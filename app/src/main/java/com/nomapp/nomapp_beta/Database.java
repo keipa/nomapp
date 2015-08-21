@@ -13,9 +13,11 @@ public class Database {
 
     private SQLiteDatabase ingridients;
     private SQLiteDatabase recipes;
+    private SQLiteDatabase categories;
 
     private static final String INGRIDIENTS_DB_NAME = "IngBase.db";
     private static final String RECIPES_DB_NAME = "RecBase.db";
+    private static final String CATEGORIES_DB_NAME = "categories.db";
 
     private static final String INGRIDIENT_ID = "_id";
     private static final String INGRIDIENT_NAME = "name";
@@ -28,6 +30,13 @@ public class Database {
     private static final String RECIPES_HOW_TO_COOK = "howToCook";
     private static final String RECIPES_IS_AVAILABLE = "isAvailable";
     private static final String RECIPES_NUMBER_OF_STEPS = "numberOfSteps";
+
+
+    private static final String CATEGORIES_TABLE_NAME = "categories";
+    private static final String CATEGORIES_ID = "_id";
+    private static final String CATEGORY_NAME= "name";
+    private static final String CATEGORY_INGREDIENTS= "ingredients";
+
 
     public static void initDatabase(Context context) {
         if (database == null) {
@@ -45,6 +54,11 @@ public class Database {
 
         ExternalDbOpenHelper reciepesOpenHelper = new ExternalDbOpenHelper(context, RECIPES_DB_NAME);
         recipes = reciepesOpenHelper.openDataBase();
+
+        ExternalDbOpenHelper categoriesOpenHelper = new ExternalDbOpenHelper(context, CATEGORIES_DB_NAME);
+        categories = categoriesOpenHelper.openDataBase();
+
+
     }
 
     public SQLiteDatabase getIngridients() {
@@ -52,6 +66,9 @@ public class Database {
     }
     public SQLiteDatabase getRecipes() {
         return recipes;
+    }
+    public SQLiteDatabase getCategories(){
+        return  categories;
     }
 
     public static String getRecipesId() {
@@ -84,6 +101,19 @@ public class Database {
     }
     public static String getIngridientIsChecked() {
         return IS_CHECKED;
+    }
+
+    public static String getCategoriesId() {
+        return CATEGORIES_ID;
+    }
+    public static String getCategoryName() {
+        return CATEGORY_NAME;
+    }
+    public static String getCategoryIngredients() {
+        return CATEGORY_INGREDIENTS;
+    }
+    public static String getCategoriesTableName() {
+        return CATEGORIES_TABLE_NAME;
     }
 
 

@@ -136,7 +136,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     View.OnClickListener onCircleButtonCliclListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
+            Intent intent = new Intent(StartActivity.this, CategoriesActivity.class);
             startActivity(intent);
         }
     };
