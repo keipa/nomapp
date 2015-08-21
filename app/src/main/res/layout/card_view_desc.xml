@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/Rel">
+
+        <TextView
+            android:id="@+id/card_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FF9800"
+            android:textSize="24sp"
+            android:text="Sample_Text"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Джордж сказал, что класть в баранье рагу всего четыре картофелины просто нелепо, поэтому мы вымыли еще с полдесятка и сунули их в кастрюлю нечищеными. Мы добавили кочан капусты и фунтов десять гороха. Джордж все это перемешал и сказал, что остается еще пропасть места, и тогда мы обыскали обе корзины и высыпали в рагу."
+            android:id="@+id/textView"
+            android:paddingLeft="12dp"
+            android:paddingTop="20dp"
+            android:gravity="left"
+            android:layout_alignBottom="@+id/card_view_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
