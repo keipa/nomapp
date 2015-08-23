@@ -1,7 +1,9 @@
-package com.nomapp.nomapp_beta;
+package com.nomapp.nomapp_beta.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.nomapp.nomapp_beta.R;
 
 /**
  * Created by antonid on 31.07.2015.

@@ -1,15 +1,16 @@
-package com.nomapp.nomapp_beta;
+package com.nomapp.nomapp_beta.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.nomapp.nomapp_beta.Database;
+import com.nomapp.nomapp_beta.R;
 
 import java.util.ArrayList;
 
@@ -52,7 +53,8 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                                     int position, long id) {
 
                 cursor.moveToPosition(IDs.get(position) - 1);
-                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+              //  Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
                 intent.putExtra("cooking", cursor.getString(3));
                 intent.putExtra("numberOfSteps", cursor.getInt(5));
                 startActivity(intent);

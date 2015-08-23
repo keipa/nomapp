@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta;
+package com.nomapp.nomapp_beta.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.nomapp.nomapp_beta.R;
 
 /**
  * Created by antonid on 20.08.2015.
