@@ -29,17 +29,19 @@
         android:id="@+id/list_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white" />
+        android:background="@color/grey" />
 
     <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+         />
 
     <FrameLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/grey"
         android:clipChildren="false">
 
         <View
