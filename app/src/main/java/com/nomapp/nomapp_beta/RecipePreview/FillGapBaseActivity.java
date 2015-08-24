@@ -16,6 +16,7 @@
 
 package com.nomapp.nomapp_beta.RecipePreview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -32,6 +33,8 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
+import com.nomapp.nomapp_beta.Activities.CategoriesActivity;
+import com.nomapp.nomapp_beta.Activities.TabsActivity;
 import com.nomapp.nomapp_beta.R;
 
 /**
@@ -39,7 +42,7 @@ import com.nomapp.nomapp_beta.R;
  *
  * @param <S> Scrollable
  */
-public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActivity implements ObservableScrollViewCallbacks {
+public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActivity implements ObservableScrollViewCallbacks{
 
     protected View mHeader;
     protected int mFlexibleSpaceImageHeight;
@@ -96,10 +99,23 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         fab.setColorNormal(getResources().getColor(R.color.chosenElement));
         fab.setColorPressed(getResources().getColor(R.color.primary));
         fab.setColorRipple(getResources().getColor(R.color.chosenElement));
-       // fab.setOnClickListener(onCircleButtonCliclListener);
+        fab.setOnClickListener(onCircleButtonCliclListener);
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);
         fab.startAnimation(hyperspaceJumpAnimation);
     }
+
+
+    View.OnClickListener onCircleButtonCliclListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent data = getIntent();
+            Intent intent = new Intent(FillGapBaseActivity.this, TabsActivity.class);
+            intent.putExtra("cooking", data.getStringExtra("cooking"));
+            intent.putExtra("numberOfSteps", data.getIntExtra("numberOfSteps", 0));
+            startActivity(intent);
+        }
+    };
+
     protected abstract int getLayoutResId();
     protected abstract S createScrollable();
 

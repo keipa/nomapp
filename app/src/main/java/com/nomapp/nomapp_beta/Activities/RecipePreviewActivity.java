@@ -16,7 +16,11 @@
 
 package com.nomapp.nomapp_beta.Activities;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -29,8 +33,6 @@ import com.melnykov.fab.FloatingActionButton;
  */
 public class RecipePreviewActivity extends FillGapBaseActivity<ObservableRecyclerView> implements ObservableScrollViewCallbacks {
 
-
-    @Override
     protected ObservableRecyclerView createScrollable() {
         ObservableRecyclerView recyclerView = (ObservableRecyclerView) findViewById(R.id.scroll);
         recyclerView.setScrollViewCallbacks(this);
@@ -53,4 +55,6 @@ public class RecipePreviewActivity extends FillGapBaseActivity<ObservableRecycle
         // Translate list background
         ViewHelper.setTranslationY(mListBackgroundView, ViewHelper.getTranslationY(mHeader));
     }
+
+
 }

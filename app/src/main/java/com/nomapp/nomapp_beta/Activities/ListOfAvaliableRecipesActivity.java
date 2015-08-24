@@ -53,7 +53,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                                     int position, long id) {
 
                 cursor.moveToPosition(IDs.get(position) - 1);
-              //  Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+              // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
                 Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
                 intent.putExtra("cooking", cursor.getString(3));
                 intent.putExtra("numberOfSteps", cursor.getInt(5));
