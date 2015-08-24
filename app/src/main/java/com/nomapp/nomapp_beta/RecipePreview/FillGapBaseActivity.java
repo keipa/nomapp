@@ -19,6 +19,8 @@ package com.nomapp.nomapp_beta.RecipePreview;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCal
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.github.ksoichiro.android.observablescrollview.Scrollable;
+import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
@@ -52,6 +55,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
     private boolean mGapHidden;
     private boolean mReady;
 
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,10 +84,22 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
             public void run() {
                 mReady = true;
                 updateViews(scrollable.getCurrentScrollY(), false);
+
+                fab = (FloatingActionButton) findViewById(R.id.fab2);
+                setUpFAB();
             }
         });
     }
 
+    void setUpFAB(){
+       // fab.attachToRecyclerView(selectedIngridients);
+        fab.setColorNormal(getResources().getColor(R.color.chosenElement));
+        fab.setColorPressed(getResources().getColor(R.color.primary));
+        fab.setColorRipple(getResources().getColor(R.color.chosenElement));
+       // fab.setOnClickListener(onCircleButtonCliclListener);
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);
+        fab.startAnimation(hyperspaceJumpAnimation);
+    }
     protected abstract int getLayoutResId();
     protected abstract S createScrollable();
 

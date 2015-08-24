@@ -23,11 +23,12 @@ import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCal
 import com.nineoldandroids.view.ViewHelper;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.RecipePreview.FillGapBaseActivity;
-
+import com.melnykov.fab.FloatingActionButton;
 /**
  * Warning: This example does not work on Android 2.3.
  */
 public class RecipePreviewActivity extends FillGapBaseActivity<ObservableRecyclerView> implements ObservableScrollViewCallbacks {
+
 
     @Override
     protected ObservableRecyclerView createScrollable() {
