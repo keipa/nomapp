@@ -24,15 +24,9 @@
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="110dp"
-        android:layout_marginTop="60dp"/>
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="460dp"
-        android:layout_marginTop="110dp"
-        android:scrollbars="vertical"
-        android:layout_below="@+id/showAvailableRecipes">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="60dp"
+        android:visibility="invisible" />
+
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -40,6 +34,41 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_white_24dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@drawable/example"
+        android:layout_marginBottom="320dp"
+        android:layout_marginTop="56dp" />
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginTop="110dp"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/showAvailableRecipes"
+        android:layout_gravity="right|bottom">
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="17"
+        android:id="@+id/bigNum"
+        android:textColor="@color/white"
+
+        android:textSize="130dp"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:visibility="visible" />
+
 </FrameLayout>
     <!-- Nav drawer -->
     <include layout="@layout/navdrawer" />

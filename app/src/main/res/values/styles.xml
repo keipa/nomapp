@@ -45,7 +45,7 @@
     <color name="colorMainAccent">#e8eaf6</color>
     <color name="colorMainText">#ffffff</color>
     <color name="colorMainBg">#FAFAFA</color>
-
+    <color name="shadowcolor">#424242</color>
     <color name="colorText">#000000</color>
     <color name="colorTextLight">#FFFFFF</color>
 

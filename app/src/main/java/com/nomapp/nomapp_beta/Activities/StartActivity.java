@@ -49,6 +49,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     ArrayList<String> ingridientsForRecipe;
     ArrayList<Integer> IDs;
     ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
+    TextView bigNumberOfAvailableRecipes;
 
     int nubmerOfAvailableRecipes;
     private CardViewAdapter mAdapter;
@@ -63,8 +64,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //    setUpFAB();
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         showAvailableRecipes.setOnClickListener(this);
+        bigNumberOfAvailableRecipes = (TextView) findViewById(R.id.bigNum);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
         setUpNavigationDraver();
 
 
@@ -248,6 +249,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void showNumberOfAvailableRecipes() {
+
         nubmerOfAvailableRecipes = 0;
         fillIngridientsForRecipe();
         int size = ingridientsForRecipe.size();
@@ -257,6 +259,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         }
         checking();
         showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
+        bigNumberOfAvailableRecipes.setText(String.valueOf(nubmerOfAvailableRecipes));
     }
 
     private void checking() {
