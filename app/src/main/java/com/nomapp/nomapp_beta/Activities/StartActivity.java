@@ -3,6 +3,7 @@ package com.nomapp.nomapp_beta.Activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,6 +46,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     RecyclerView selectedIngridients;
     SwipeableRecyclerViewTouchListener swipeTouchListener;
     Button showAvailableRecipes;
+    ImageButton availableRecipesButton;
     FloatingActionButton fab;
     ArrayList<String> forSelectedIngridients;
     ArrayList<String> ingridientsForRecipe;
@@ -63,6 +66,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         nubmerOfAvailableRecipes = 0;
         selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //    setUpFAB();
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
+        availableRecipesButton = (ImageButton) findViewById(R.id.imageButton);
+        availableRecipesButton.setOnClickListener(this);
         showAvailableRecipes.setOnClickListener(this);
         bigNumberOfAvailableRecipes = (TextView) findViewById(R.id.bigNum);
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -107,11 +112,14 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.showAvailableRecipes:
+      /*      case R.id.showAvailableRecipes:
                 Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
                 startActivity(intent);
                 break;
-
+       */    case R.id.imageButton:
+                Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
+                startActivity(intent);
+                break;
             default:
 
                 break;
