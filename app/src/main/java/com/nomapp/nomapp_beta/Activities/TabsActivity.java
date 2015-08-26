@@ -147,14 +147,14 @@ public class TabsActivity extends ActionBarActivity {SlidingTabLayout mSlidingTa
 
         @Override
         public void notifyDataSetChanged() {
-            int position = 0;
+           /* int position = 0;
             for (int i = 0; i < views.size(); i++) {
                 position = views.keyAt(i);
                 View view = views.get(position);
                 // Change the content of this view
                 TextView txt = (TextView) view.findViewById(R.id.item_subtitle);
                 txt.setText("This Page " + (position + 1) + " has been refreshed");
-            }
+            }*/
             super.notifyDataSetChanged();
         }
 

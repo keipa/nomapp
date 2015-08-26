@@ -17,6 +17,7 @@
 package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -57,6 +58,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
     private boolean mGapIsChanging;
     private boolean mGapHidden;
     private boolean mReady;
+
 
     FloatingActionButton fab;
     @Override

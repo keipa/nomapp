@@ -68,6 +68,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         availableRecipesButton = (ImageButton) findViewById(R.id.imageButton);
         availableRecipesButton.setOnClickListener(this);
+        //availableRecipesButton.setImageResource(R.drawable.interior_croped);
         showAvailableRecipes.setOnClickListener(this);
         bigNumberOfAvailableRecipes = (TextView) findViewById(R.id.bigNum);
         fab = (FloatingActionButton) findViewById(R.id.fab);

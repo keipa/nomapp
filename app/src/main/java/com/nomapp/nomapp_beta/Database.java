@@ -30,6 +30,11 @@ public class Database {
     private static final String RECIPES_HOW_TO_COOK = "howToCook";
     private static final String RECIPES_IS_AVAILABLE = "isAvailable";
     private static final String RECIPES_NUMBER_OF_STEPS = "numberOfSteps";
+    private static final String RECIPES_TIME_FOR_COOKING = "timeForCooking";
+    private static final String RECIPES_DESCRIPTION = "description";
+    private static final String RECIPES_NUMBER_OF_PERSONS = "numberOfPersons";
+    private static final String RECIPES_NUMBER_OF_INGRIDIENTS = "numberOfIngridients";
+
 
 
     private static final String CATEGORIES_TABLE_NAME = "categories";
@@ -89,9 +94,11 @@ public class Database {
     public static String getRecipesNumberOfSteps() {
         return RECIPES_NUMBER_OF_STEPS;
     }
-    public static String getRecipesTableName() {
-        return RECIPES_TABLE_NAME;
-    }
+    public static String getRecipesTableName() { return RECIPES_TABLE_NAME; }
+    public static String getRecipesTimeForCooking() { return RECIPES_TIME_FOR_COOKING; }
+    public static String getRecipesDescription() { return RECIPES_DESCRIPTION; }
+    public static String getRecipesNumberOfPersons() { return RECIPES_NUMBER_OF_PERSONS; }
+    public static String getRecipesNumberOfIngridients() { return RECIPES_NUMBER_OF_INGRIDIENTS; }
 
     public static String getIngridientId() {
         return INGRIDIENT_ID;

@@ -16,6 +16,7 @@
 
 package com.nomapp.nomapp_beta.RecipePreview;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +32,7 @@ import com.nomapp.nomapp_beta.R;
 import java.util.ArrayList;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private static final int NUM_OF_ITEMS = 2;
+    private static final int NUM_OF_ITEMS = 3;
     private static final int NUM_OF_ITEMS_FEW = 3;
 
     protected int getActionBarSize() {
@@ -116,6 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, getDummyData(), headerView));
+        Intent data = getIntent();
+        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, getDummyData(), headerView, data.getIntExtra("numberOfRecipe", 0)));
     }
 }

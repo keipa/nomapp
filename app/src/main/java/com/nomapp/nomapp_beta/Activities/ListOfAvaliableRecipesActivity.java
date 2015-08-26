@@ -55,6 +55,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                 cursor.moveToPosition(IDs.get(position) - 1);
               // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
                 Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
+                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
                 intent.putExtra("cooking", cursor.getString(3));
                 intent.putExtra("numberOfSteps", cursor.getInt(5));
                 startActivity(intent);
@@ -70,8 +71,10 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
-                                Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
-                                Database.getRecipesNumberOfSteps()},
+                        Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
+                        Database.getRecipesNumberOfSteps(), Database.getRecipesTimeForCooking(),
+                        Database.getRecipesDescription(), Database.getRecipesNumberOfPersons(),
+                        Database.getRecipesNumberOfIngridients()},
                 null, null, null, null
                 , null);
 
