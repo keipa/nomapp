@@ -65,12 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="personsText"
+            android:gravity="center"
             android:id="@+id/personsText"
             android:layout_alignTop="@+id/timeText"
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignStart="@+id/textView3"
-            android:textColor="#FF9800" />
+            android:textColor="#FF9800"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -44,11 +44,14 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private int numberOfRecipe;
 
-    public SimpleHeaderRecyclerAdapter(Context context, ArrayList<String> items, View headerView, int numberOfRecipe) {
+    private Context ctx;
+
+    public SimpleHeaderRecyclerAdapter(Context context, ArrayList<String> items, View headerView, int numberOfRecipe, Context ctx) {
         mInflater = LayoutInflater.from(context);
         mItems = items;
         mHeaderView = headerView;
         this.numberOfRecipe = numberOfRecipe;
+        this.ctx = ctx;
     }
 
     @Override
@@ -109,7 +112,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));
 
             case VIEW_TYPE_INGREDIENTS:
-                return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));
+                return new IngredientsViewHolder(mInflater.inflate(R.layout.card_recipe_preview_ingridients, parent, false),
+                        cursor.getString(9), ctx);
 
             default:
                 return new HeaderViewHolder(mHeaderView);
@@ -118,7 +122,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        if (viewHolder instanceof ItemViewHolder) {
+        if (viewHolder instanceof IngredientsViewHolder) {
           //  ((ItemViewHolder) viewHolder).textView.setText(mItems.get(position - 1));
         }
     }
@@ -142,12 +146,14 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    static class ItemViewHolder extends RecyclerView.ViewHolder {
-     //   TextView textView;
+    static class IngredientsViewHolder extends RecyclerView.ViewHolder {
+     TextView ingredientsTextView;
 
-        public ItemViewHolder(View view) {
+        public IngredientsViewHolder(View view ,String path, Context ctx) {
             super(view);
-           // textView = (TextView) view.findViewById(android.R.id.text1);
+            ingredientsTextView= (TextView) view.findViewById(R.id.numberOfIngridientsTextView);
+            int id = ctx.getResources().getIdentifier(path, "string", ctx.getPackageName());
+            ingredientsTextView.setText(ctx.getResources().getText(id));
         }
     }
 
