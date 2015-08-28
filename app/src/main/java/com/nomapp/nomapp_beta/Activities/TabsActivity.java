@@ -1,162 +1,125 @@
+
 package com.nomapp.nomapp_beta.Activities;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.SparseArray;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.nomapp.nomapp_beta.R;
-import com.nomapp.nomapp_beta.SlidingTabs.SlidingTabLayout;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v4.app.Fragment;
+        import android.support.v4.app.FragmentStatePagerAdapter;
+        import android.support.v4.widget.DrawerLayout;
+        import android.support.v7.app.ActionBar;
+        import android.support.v7.app.ActionBarDrawerToggle;
+        import android.support.v7.app.AppCompatActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.view.MenuItem;
+        import android.view.View;
+        import android.widget.Toast;
 
-public class TabsActivity extends ActionBarActivity {SlidingTabLayout mSlidingTabLayout;
-    ViewPager mViewPager;
+        import com.github.florent37.materialviewpager.MaterialViewPager;
+        import com.github.florent37.materialviewpager.header.HeaderDesign;
+        import com.nomapp.nomapp_beta.R;
+        import com.nomapp.nomapp_beta.SlidingTabs.CookingStepsRecyclerViewFragment;
+
+public class TabsActivity extends AppCompatActivity {
+
+    private MaterialViewPager mViewPager;
+
+    private DrawerLayout mDrawer;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
 
-        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
 
-        // use own style rules for tab layout
-        mSlidingTabLayout.setCustomTabView(R.layout.tab_indicator, android.R.id.text1);
 
-        Resources res = getResources();
-        mSlidingTabLayout.setSelectedIndicatorColors(res.getColor(R.color.tab_indicator_color));
-        mSlidingTabLayout.setDistributeEvenly(true);
+        setTitle("");
 
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setOffscreenPageLimit(7); // tabcachesize (=
-        mViewPager.setAdapter(new MainTabs());
+        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
-        mSlidingTabLayout.setViewPager(mViewPager);
+        toolbar = mViewPager.getToolbar();
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        // Tab events
-        if (mSlidingTabLayout != null) {
-            mSlidingTabLayout.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                @Override
-                public void onPageScrolled(int position, float positionOffset,
-                                           int positionOffsetPixels) {
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
 
+            final ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(true);
+                actionBar.setDisplayUseLogoEnabled(false);
+                actionBar.setHomeButtonEnabled(true);
+            }
+        }
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
+        mDrawer.setDrawerListener(mDrawerToggle);
+
+        mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+
+            @Override
+            public Fragment getItem(int position) {
+
+                        return CookingStepsRecyclerViewFragment.newInstance();
+            }
+
+            @Override
+            public int getCount(){
+                Intent intent = getIntent();
+                return intent.getIntExtra("numberOfSteps", 0);
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return "Step " + position;
+            }
+        });
+
+        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
+            @Override
+            public HeaderDesign getHeaderDesign(int page) {
+                switch (page % 2) {
+                    case 0:
+                        return HeaderDesign.fromColorAndDrawable(
+                                R.color.green,
+                                getResources().getDrawable(R.drawable.example));
+                    case 1:
+                        return HeaderDesign.fromColorAndDrawable(
+                                R.color.blue,
+                               getResources().getDrawable(R.drawable.interiorpng));
                 }
 
+                //execute others actions if needed (ex : modify your header logo)
+                return null;
+            }
+        });
+
+        mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
+        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
+/*
+        View logo = findViewById(R.id.logo_white);
+        if (logo != null)
+            logo.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onPageSelected(int position) {
-
-                }
-
-                @Override
-                public void onPageScrollStateChanged(int state) {
-
+                public void onClick(View v) {
+                    mViewPager.notifyHeaderChanged();
+                    Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
                 }
             });
-        }
+*/
     }
 
-
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    class MainTabs extends PagerAdapter {
-
-        SparseArray<View> views = new SparseArray<View>();
-
-        /**
-         * @return the number of pages to display
-         */
-        @Override
-        public int getCount() {
-            Intent intent = getIntent();
-            return intent.getIntExtra("numberOfSteps", 0);
-        }
-
-        /**
-         * @return true if the value returned from {@link #instantiateItem(ViewGroup, int)} is the
-         * same object as the {@link View} added to the {@link ViewPager}.
-         */
-        @Override
-        public boolean isViewFromObject(View view, Object o) {
-            return o == view;
-        }
-
-        /**
-         * Return the title of the item at {@code position}. This is important as what this method
-         * returns is what is displayed in the {@link SlidingTabLayout}.
-         * <p/>
-         * Here we construct one using the position value, but for real application the title should
-         * refer to the item's contents.
-         */
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "Step " + (position + 1);
-        }
-
-        /**
-         * Instantiate the {@link View} which should be displayed at {@code position}. Here we
-         * inflate a layout from the apps resources and then change the text view to signify the position.
-         */
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            // Inflate a new layout from our resources
-            View view = getLayoutInflater().inflate(R.layout.pager_item,
-                    container, false);
-            TextView txt = (TextView) view.findViewById(R.id.item_subtitle);
-
-            Intent intent = getIntent();
-            String nameOfSteps = intent.getStringExtra("cooking");
-
-            int id = getResources().getIdentifier(nameOfSteps + (position + 1), "string", getPackageName());
-            txt.setText(getResources().getText(id));
-            // Add the newly created View to the ViewPager
-            container.addView(view);
-
-            views.put(position, view);
-
-            // Return the View
-            return view;
-        }
-
-        /**
-         * Destroy the item from the {@link ViewPager}. In our case this is simply removing the
-         * {@link View}.
-         */
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-            views.remove(position);
-        }
-
-        @Override
-        public void notifyDataSetChanged() {
-           /* int position = 0;
-            for (int i = 0; i < views.size(); i++) {
-                position = views.keyAt(i);
-                View view = views.get(position);
-                // Change the content of this view
-                TextView txt = (TextView) view.findViewById(R.id.item_subtitle);
-                txt.setText("This Page " + (position + 1) + " has been refreshed");
-            }*/
-            super.notifyDataSetChanged();
-        }
-
+        return mDrawerToggle.onOptionsItemSelected(item) ||
+                super.onOptionsItemSelected(item);
     }
 }
