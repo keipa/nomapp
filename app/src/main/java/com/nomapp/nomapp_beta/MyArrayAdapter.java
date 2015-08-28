@@ -4,13 +4,11 @@ package com.nomapp.nomapp_beta;
  * Created by antonid on 20.07.2015.
  */import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,11 +21,13 @@ public class MyArrayAdapter extends ArrayAdapter<String> {
     private final Context context;
   ///  private final String[] values;
     private final ArrayList<String> forIngridients;
+    private final ArrayList<Integer> IDs;
 
-    public MyArrayAdapter(Context context, ArrayList<String> forIngridients) {
+    public MyArrayAdapter(Context context, ArrayList<String> forIngridients,ArrayList<Integer> IDs) {
         super(context, R.layout.adding_ingridients_listview, forIngridients);
         this.context = context;
         this.forIngridients = forIngridients;
+        this.IDs = IDs;
         //this.values = values;
     }
 
@@ -47,10 +47,10 @@ public class MyArrayAdapter extends ArrayAdapter<String> {
                 , null);
 
         cursor.moveToFirst();
-        cursor.moveToPosition(position);
+        cursor.moveToPosition(IDs.get(position) - 1);
         int isChecked = cursor.getInt(2);
         if (isChecked == 1) {
-            textView.setBackgroundColor(context.getResources().getColor(R.color.chosenElement)); // второй вариант
+            rowView.setBackgroundColor(context.getResources().getColor(R.color.chosenElement)); // второй вариант
           //  textView.setTextColor(context.getResources().getColor(R.color.white));
             Log.d("MY_TAG", "in arrayAdapter");
         }

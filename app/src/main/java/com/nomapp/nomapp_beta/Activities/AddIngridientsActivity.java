@@ -46,7 +46,7 @@ public class AddIngridientsActivity extends Activity {
     }
 
     private void setUpList() {
-        MyArrayAdapter adapter = new MyArrayAdapter(this, forIngridients);
+        MyArrayAdapter adapter = new MyArrayAdapter(this, forIngridients, IDs);
         listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
 
@@ -61,17 +61,19 @@ public class AddIngridientsActivity extends Activity {
                         , null);
 
                 cursor.moveToFirst();
-                cursor.moveToPosition(position);
+                cursor.moveToPosition(IDs.get(position) - 1);
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0) {
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
-                    Log.d("MY_TAG", "in activity");
+                    Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
                 } else {
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.white));
+                    Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
+
                 }
                 cursor.close();
             }
@@ -121,7 +123,9 @@ public class AddIngridientsActivity extends Activity {
         }
 
         cursor.close();
+
     }
+
     private ArrayList<Integer> parse(String toConvert) {
         ArrayList<Integer> converted = new ArrayList<Integer>();
 

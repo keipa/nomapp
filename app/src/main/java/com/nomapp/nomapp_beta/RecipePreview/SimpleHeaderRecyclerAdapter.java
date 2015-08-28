@@ -106,7 +106,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
             case VIEW_TYPE_INFO:
                 return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note, parent, false),
-                        cursor.getInt(5), cursor.getInt(8));
+                        cursor.getInt(6), cursor.getInt(8));
 
             case VIEW_TYPE_DESCRIPTION:
                 return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));

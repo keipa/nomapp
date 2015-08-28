@@ -27,9 +27,12 @@ public class TabsActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar toolbar;
 
+    private Bundle s;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        s = savedInstanceState;
         setContentView(R.layout.activity_tabs);
 
 
@@ -61,14 +64,14 @@ public class TabsActivity extends AppCompatActivity {
 
             @Override
             public Fragment getItem(int position) {
-
-                        return CookingStepsRecyclerViewFragment.newInstance();
+                return CookingStepsRecyclerViewFragment.newInstance(s, position);
             }
 
             @Override
             public int getCount(){
                 Intent intent = getIntent();
-                return intent.getIntExtra("numberOfSteps", 0);
+                int count =  intent.getIntExtra("numberOfSteps", 0);
+                return count;
             }
 
             @Override
