@@ -1,5 +1,6 @@
 package com.nomapp.nomapp_beta.SlidingTabs;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,14 +24,18 @@ public class CookingStepsRecyclerViewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private int position;
 
-    private static final int ITEM_COUNT = 1;
 
-    private List<Object> mContentItems = new ArrayList<>();
-
-    public static CookingStepsRecyclerViewFragment newInstance() {
-        return new CookingStepsRecyclerViewFragment();
+    public static CookingStepsRecyclerViewFragment newInstance(Bundle savedInstanceState, int position) {
+        return new CookingStepsRecyclerViewFragment(savedInstanceState, position);
     }
+
+    public CookingStepsRecyclerViewFragment(Bundle savedInstanceState, int position){
+        super.onCreate(savedInstanceState);
+        this.position = position;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,8 +50,14 @@ public class CookingStepsRecyclerViewFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
+        Intent intent = getActivity().getIntent();
+        String nameOfSteps = intent.getStringExtra("cooking");
 
-        mAdapter = new RecyclerViewMaterialAdapter(new CookingStepsRecyclerViewAdapter(mContentItems));
+        int id = getResources().getIdentifier(nameOfSteps, "array", getActivity().getPackageName());
+        String[] stepsArray = getResources().getStringArray(id);
+
+
+        mAdapter = new RecyclerViewMaterialAdapter(new CookingStepsRecyclerViewAdapter(stepsArray[position]));
         mRecyclerView.setAdapter(mAdapter);
 
 
