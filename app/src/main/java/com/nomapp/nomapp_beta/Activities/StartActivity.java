@@ -118,6 +118,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+
     @Override
     public void onClick(View v) {
 
@@ -126,8 +127,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
                 startActivity(intent);
                 break;
-       */
-            case R.id.imageButton:
+       */    case R.id.imageButton:
                 Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);  //listner to the recipe list activity
                 startActivity(intent);
                 break;
@@ -145,7 +145,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         }
     };
 
-    void setUpUserSettings() {
+    void setUpUserSettings(){
         setUpLocalization();
     }
 
@@ -160,7 +160,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         TextView leaveFeedbackText = (TextView) findViewById(R.id.addReply);
         TextView aboutText = (TextView) findViewById(R.id.addHelp);
 
-        switch (lang) {
+        switch (lang){
             case "1":
                 fridgeText.setText(getString(R.string.fridge_en));
                 dishOfADayText.setText(getString(R.string.dish_of_a_day_en));
@@ -185,8 +185,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         Log.w("MY_TAG", lang);// log note
     }
 
-    void setUpNavigationDraver() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+    void setUpNavigationDraver(){
+        mToolbar= (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -218,8 +218,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         });
 
     }
-
-    void setUpFAB() {
+    void setUpFAB(){
         fab.attachToRecyclerView(selectedIngridients);          //attaching to list
         fab.setColorNormal(getResources().getColor(R.color.chosenElement));  //normal state color
         fab.setColorPressed(getResources().getColor(R.color.primary)); //pressed state color
@@ -358,7 +357,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         return converted;
     }
 
-    void setSwipeTouchListener() {
+    void setSwipeTouchListener(){
         swipeTouchListener =
                 new SwipeableRecyclerViewTouchListener(selectedIngridients,
                         new SwipeableRecyclerViewTouchListener.SwipeListener() {        //throw ingredients from your fridge
