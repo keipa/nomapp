@@ -61,18 +61,24 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
+        setContentView(R.layout.activity_start);    //first screen activation
 
-        nubmerOfAvailableRecipes = 0;
-        selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //    setUpFAB();
+        nubmerOfAvailableRecipes = 0;           //counter on the fridge image
+
+        selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //recycler cardlist init
+
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
-        availableRecipesButton = (ImageButton) findViewById(R.id.imageButton);
-        availableRecipesButton.setOnClickListener(this);
-        //availableRecipesButton.setImageResource(R.drawable.interior_croped);
         showAvailableRecipes.setOnClickListener(this);
+
+        availableRecipesButton = (ImageButton) findViewById(R.id.imageButton); //image button init
+        availableRecipesButton.setOnClickListener(this);
+
+
         bigNumberOfAvailableRecipes = (TextView) findViewById(R.id.bigNum);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        setUpNavigationDraver();
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
+
+        setUpNavigationDraver();        //navigation drawer initiation
 
 
     }
@@ -80,11 +86,13 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
-        showNumberOfAvailableRecipes();
+        showNumberOfAvailableRecipes();  // this function shows  Number Of Available Recipes on the main big text
+
         fillSelectedIngridients();
-        setUpList();
-        setUpFAB();
-        setUpUserSettings();
+        setUpList();            //this function sets up recycer list of chosen ingredients
+
+        setUpFAB();             // this function sets up floating action button
+        setUpUserSettings();     //this function initiate settings
 
     }
 
@@ -109,6 +117,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @Override
     public void onClick(View v) {
 
@@ -118,7 +128,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 break;
        */    case R.id.imageButton:
-                Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
+                Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);  //listner to the recipe list activity
                 startActivity(intent);
                 break;
             default:
@@ -130,7 +140,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     View.OnClickListener onCircleButtonCliclListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(StartActivity.this, CategoriesActivity.class);
+            Intent intent = new Intent(StartActivity.this, CategoriesActivity.class);   //fab listner to the categories list activity
             startActivity(intent);
         }
     };
@@ -139,7 +149,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         setUpLocalization();
     }
 
-    void setUpLocalization() {
+    void setUpLocalization() {          //language change
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         String lang = settings.getString("language", "");
 
@@ -172,7 +182,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             default:
                 break;
         }
-        Log.w("MY_TAG", lang);
+        Log.w("MY_TAG", lang);// log note
     }
 
     void setUpNavigationDraver(){
@@ -184,13 +194,13 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        // Click events for Navigation Drawer
+        // Click events for Navigation Drawer (now available only on start screen)
         LinearLayout navButton = (LinearLayout) findViewById(R.id.txtFridgeButton);
         navButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);
+                Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);// go to categories list
                 startActivity(intent);
             }
         });
@@ -202,31 +212,31 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View v) {
                 // close drawer if you want
                 mDrawerLayout.closeDrawers();
-                Intent intent = new Intent(StartActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(StartActivity.this, SettingsActivity.class);         // go to settings list
                 startActivity(intent);
             }
         });
 
     }
     void setUpFAB(){
-        fab.attachToRecyclerView(selectedIngridients);
-        fab.setColorNormal(getResources().getColor(R.color.chosenElement));
-        fab.setColorPressed(getResources().getColor(R.color.primary));
-        fab.setColorRipple(getResources().getColor(R.color.chosenElement));
-        fab.setOnClickListener(onCircleButtonCliclListener);
-        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);
-        fab.startAnimation(hyperspaceJumpAnimation);
+        fab.attachToRecyclerView(selectedIngridients);          //attaching to list
+        fab.setColorNormal(getResources().getColor(R.color.chosenElement));  //normal state color
+        fab.setColorPressed(getResources().getColor(R.color.primary)); //pressed state color
+        fab.setColorRipple(getResources().getColor(R.color.chosenElement));  //??? color
+        fab.setOnClickListener(onCircleButtonCliclListener);   //setting listner
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);  //animation init
+        fab.startAnimation(hyperspaceJumpAnimation);            //beautiful animation on the start(button appear on from the point)
     }
 
     void setUpList() {
         CardViewAdapter.OnItemTouchListener itemTouchListener = new CardViewAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                Toast.makeText(StartActivity.this, "Tapped " + forSelectedIngridients.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(StartActivity.this, "Tapped " + forSelectedIngridients.get(position), Toast.LENGTH_SHORT).show();        // notification, when you press the element
             }
         };
 
-        mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);
+        mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);  // adapter ??? what it is
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -238,7 +248,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     private void fillSelectedIngridients() {
         forSelectedIngridients = new ArrayList<>();
         IDs = new ArrayList<>();
-        Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,
+        Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,   //connection to the base
                 new String[]
                         {Database.getIngridientId(), Database.getIngridientName(),
                                 Database.getIngridientIsChecked()},
@@ -246,7 +256,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 , null);
 
         cursor.moveToFirst();
-        if (!cursor.isAfterLast()) {
+        if (!cursor.isAfterLast()) {            // loop is going throw the all ingridients and shows marked ones (marked has "1" isChecked option)
             do {
                 if (cursor.getInt(2) != 0) {
                     forSelectedIngridients.add(cursor.getString(1));
@@ -267,8 +277,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             convertedIngrodientsForRecipe.add(convertIngridientsToArrayList(ingridientsForRecipe.get(counter)));
         }
         checking();
-        showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");
-        bigNumberOfAvailableRecipes.setText(String.valueOf(nubmerOfAvailableRecipes));
+        showAvailableRecipes.setText(nubmerOfAvailableRecipes + " recipes available");          //number of available recipes setted on the little invisible button
+        bigNumberOfAvailableRecipes.setText(String.valueOf(nubmerOfAvailableRecipes));          //number of available recipes setted on the big text
     }
 
     private void checking() {
@@ -284,7 +294,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         cursor.moveToFirst();
 
         int numberOfRecipes = convertedIngrodientsForRecipe.size();
-        for (int currentRecipe = 0; currentRecipe < numberOfRecipes; currentRecipe++) {
+        for (int currentRecipe = 0; currentRecipe < numberOfRecipes; currentRecipe++) {                 //mainframe alhorithm of the program
             int numberOfIngridientsInRecipe = convertedIngrodientsForRecipe.get(currentRecipe).size();
             for (int ingridientNumber = 0; ingridientNumber < numberOfIngridientsInRecipe; ingridientNumber++) {
                 cursor.moveToPosition(convertedIngrodientsForRecipe.get(currentRecipe).get(ingridientNumber) - 1);
@@ -350,14 +360,14 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     void setSwipeTouchListener(){
         swipeTouchListener =
                 new SwipeableRecyclerViewTouchListener(selectedIngridients,
-                        new SwipeableRecyclerViewTouchListener.SwipeListener() {
+                        new SwipeableRecyclerViewTouchListener.SwipeListener() {        //throw ingredients from your fridge
                             @Override
                             public boolean canSwipe(int position) {
                                 return true;
                             }
 
                             @Override
-                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                            public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {  //swipe to the left
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
@@ -369,7 +379,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                             }
 
                             @Override
-                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {
+                            public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {   //swipe to the right
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
