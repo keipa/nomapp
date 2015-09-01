@@ -82,7 +82,7 @@ public class AddIngridientsActivity extends Activity {
 
 
     //Извлечение элментов из базы данных
-    private void fillIngridients() {
+    private void fillIngridients() { //
         forIngridients = new ArrayList<>();
         IDs = new ArrayList<>();
 

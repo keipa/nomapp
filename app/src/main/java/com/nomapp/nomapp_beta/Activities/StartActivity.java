@@ -228,24 +228,24 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         fab.startAnimation(hyperspaceJumpAnimation);            //beautiful animation on the start(button appear on from the point)
     }
 
-    void setUpList() {
+    void setUpList() { // setting up visual RecyclerView
         CardViewAdapter.OnItemTouchListener itemTouchListener = new CardViewAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                Toast.makeText(StartActivity.this, "Tapped " + forSelectedIngridients.get(position), Toast.LENGTH_SHORT).show();        // notification, when you press the element
+            //    Toast.makeText(StartActivity.this, "Tapped " + forSelectedIngridients.get(position), Toast.LENGTH_SHORT).show();        // notification, when you press the element
             }
         };
 
-        mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);  // adapter ??? what it is
+        mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);  // setting adapter.
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         selectedIngridients.setLayoutManager(layoutManager);
         selectedIngridients.setAdapter(mAdapter);
         setSwipeTouchListener();
     }
 
-    private void fillSelectedIngridients() {
+    private void fillSelectedIngridients() { // fill ArrayList for RecyclerView
         forSelectedIngridients = new ArrayList<>();
         IDs = new ArrayList<>();
         Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,   //connection to the base
@@ -267,8 +267,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         cursor.close();
     }
 
-    private void showNumberOfAvailableRecipes() {
-
+    private void showNumberOfAvailableRecipes() { // calculating Available recipes;
         nubmerOfAvailableRecipes = 0;
         fillIngridientsForRecipe();
         int size = ingridientsForRecipe.size();
@@ -315,7 +314,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         cursor.close();
     }
 
-    private void fillIngridientsForRecipe() {
+    private void fillIngridientsForRecipe() { // parsing requed ingridients for every recipe from Database (part 1)
         ingridientsForRecipe = new ArrayList<String>();
         Cursor cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
@@ -337,7 +336,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         cursor.close();
     }
 
-    private ArrayList<Integer> convertIngridientsToArrayList(String toConvert) {
+    private ArrayList<Integer> convertIngridientsToArrayList(String toConvert) { // parsing requed ingridients for every recipe from Database (part 2)
         ArrayList<Integer> converted = new ArrayList<Integer>();
 
         int counter = 0;
