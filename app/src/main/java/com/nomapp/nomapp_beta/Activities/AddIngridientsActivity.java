@@ -64,6 +64,7 @@ public class AddIngridientsActivity extends Activity {
                 cursor.moveToPosition(IDs.get(position) - 1);
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0) {
+
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
