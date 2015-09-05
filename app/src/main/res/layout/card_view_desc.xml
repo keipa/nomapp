@@ -15,19 +15,6 @@
         android:id="@+id/Rel">
 
         <TextView
-            android:id="@+id/card_view_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:textColor="#FF9800"
-            android:textSize="24sp"
-            android:text="Описание"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -35,9 +22,10 @@
             android:id="@+id/textView"
             android:paddingLeft="12dp"
             android:paddingTop="20dp"
+            android:fontFamily="sans-serif-condensed"
             android:gravity="left"
+            android:textSize="20dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/card_view_title"
             android:paddingBottom="15dp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

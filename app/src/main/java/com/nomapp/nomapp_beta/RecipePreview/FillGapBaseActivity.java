@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -65,6 +66,9 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResId());
+
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
 
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
         mActionBarSize = getActionBarSize();

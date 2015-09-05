@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import com.nomapp.nomapp_beta.R;
@@ -33,6 +34,8 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
 
         category1 = (Button) findViewById(R.id.button);
         category2 = (Button) findViewById(R.id.button2);

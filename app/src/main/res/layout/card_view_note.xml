@@ -56,6 +56,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="2 часа"
+            android:fontFamily="sans-serif-condensed"
             android:id="@+id/timeText"
             android:textColor="#FF9800"
             android:layout_centerVertical="true"
@@ -72,7 +73,8 @@
             android:layout_alignStart="@+id/textView3"
             android:textColor="#FF9800"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif-condensed" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,6 +82,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Не треб."
             android:id="@+id/textView6"
+            android:fontFamily="sans-serif-condensed"
             android:layout_above="@+id/textView2"
             android:layout_alignRight="@+id/textView2"
             android:layout_alignEnd="@+id/textView2"

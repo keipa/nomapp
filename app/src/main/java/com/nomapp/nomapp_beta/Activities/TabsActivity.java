@@ -12,6 +12,7 @@ package com.nomapp.nomapp_beta.Activities;
         import android.support.v7.widget.Toolbar;
         import android.view.MenuItem;
         import android.view.View;
+        import android.view.Window;
         import android.widget.Toast;
 
         import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -34,6 +35,8 @@ public class TabsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         s = savedInstanceState;
         setContentView(R.layout.activity_tabs);
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
 
 
 
@@ -86,12 +89,14 @@ public class TabsActivity extends AppCompatActivity {
                 switch (page % 2) {
                     case 0:
                         return HeaderDesign.fromColorAndDrawable(
-                                R.color.green,
-                                getResources().getDrawable(R.drawable.example));
+                                R.color.colorMainDark,
+                                getResources().getDrawable(R.drawable.sushi));
                     case 1:
                         return HeaderDesign.fromColorAndDrawable(
-                                R.color.blue,
-                               getResources().getDrawable(R.drawable.interiorpng));
+                                R.color.colorMainDark,
+                               getResources().getDrawable(R.drawable.maxresdefault));
+
+
                 }
 
                 //execute others actions if needed (ex : modify your header logo)

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -35,6 +36,9 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
         availableRecipes = (ListView) findViewById(R.id.availableRecipes);
 
+
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
     }
 
     @Override

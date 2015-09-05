@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class AddIngridientsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ingridients);
+        Window window = getWindow();
+        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
 
         nameOfCategotyView = (TextView) findViewById(R.id.nameOfCategory);
     }

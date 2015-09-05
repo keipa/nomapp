@@ -18,7 +18,7 @@
              which is used to tint widgets -->
         <item name="colorAccent">@color/colorMainAccent</item>
 
-        <item name="android:windowBackground">@color/colorMainBg</item>
+        <item name="android:windowBackground">@color/colorMain</item>
 
         <item name="drawerArrowStyle">@style/ToolbarColorStyle</item>
 
@@ -42,13 +42,19 @@
 
     <color name="colorMain">#EF6C00</color>
     <color name="colorMainDark">#E65100</color>
-    <color name="colorMainAccent">#e8eaf6</color>
+    <color name="colorPrimaryDark">#EF6C00</color>
+    <color name="colorMainAccent">#EF6C00</color>
     <color name="colorMainText">#ffffff</color>
+
+
+
     <color name="colorMainBg">#FAFAFA</color>
+
+
+
     <color name="shadowcolor">#424242</color>
     <color name="colorText">#000000</color>
     <color name="colorTextLight">#FFFFFF</color>
-
     <color name="navdrawer_background">#FFFFFF</color>
     <color name="tab_background">@color/colorMain</color>
     <color name="tab_indicator_color">#FFF</color>

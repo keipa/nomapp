@@ -8,7 +8,9 @@
         android:layout_width="401dp"
         android:padding="10dp"
         android:textSize="20sp"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"
+        android:focusableInTouchMode="false">
     </TextView>
 
 </LinearLayout>
