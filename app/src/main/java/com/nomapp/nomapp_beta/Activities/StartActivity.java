@@ -18,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,6 +55,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     ArrayList<Integer> IDs;
     ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
     TextView bigNumberOfAvailableRecipes;
+    ImageView nullPicture;
+    TextView recAvailableMin;
 
     int nubmerOfAvailableRecipes;
     private CardViewAdapter mAdapter;
@@ -73,10 +76,11 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         showAvailableRecipes = (Button) findViewById(R.id.showAvailableRecipes);
         showAvailableRecipes.setOnClickListener(this);
 
+        nullPicture = (ImageView) findViewById(R.id.imageView);
         availableRecipesButton = (ImageButton) findViewById(R.id.imageButton); //image button init
         availableRecipesButton.setOnClickListener(this);
 
-
+        recAvailableMin = (TextView) findViewById(R.id.textView8);
         bigNumberOfAvailableRecipes = (TextView) findViewById(R.id.bigNum);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
@@ -90,12 +94,31 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         showNumberOfAvailableRecipes();  // this function shows  Number Of Available Recipes on the main big text
-
         fillSelectedIngridients();
         setUpList();            //this function sets up recycer list of chosen ingredients
-
         setUpFAB();             // this function sets up floating action button
         setUpUserSettings();     //this function initiate settings
+
+
+
+        if(numberOfSelectedIngredients != 0) {
+
+            nullPicture.setVisibility(View.INVISIBLE);
+            availableRecipesButton.setVisibility((View.VISIBLE));
+            bigNumberOfAvailableRecipes.setVisibility(View.VISIBLE);
+            recAvailableMin.setVisibility(View.VISIBLE);
+            selectedIngridients.setVisibility(View.VISIBLE);
+
+                         // this function sets up floating action button
+        }else
+        {
+            setUpFABnoView();
+            nullPicture.setVisibility(View.VISIBLE);
+            availableRecipesButton.setVisibility((View.INVISIBLE));
+            bigNumberOfAvailableRecipes.setVisibility(View.INVISIBLE);
+            recAvailableMin.setVisibility(View.INVISIBLE);
+            selectedIngridients.setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -126,11 +149,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         switch (v.getId()) {
-      /*      case R.id.showAvailableRecipes:
-                Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);
-                startActivity(intent);
-                break;
-       */    case R.id.imageButton:
+          case R.id.imageButton:
                 Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);  //listner to the recipe list activity
                 startActivity(intent);
                 break;
@@ -229,6 +248,15 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         fab.setOnClickListener(onCircleButtonCliclListener);   //setting listner
         Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);  //animation init
         fab.startAnimation(hyperspaceJumpAnimation);            //beautiful animation on the start(button appear on from the point)
+    }
+
+    void  setUpFABnoView(){
+        fab.setColorNormal(getResources().getColor(R.color.chosenElement));  //normal state color
+        fab.setColorPressed(getResources().getColor(R.color.primary)); //pressed state color
+        fab.setColorRipple(getResources().getColor(R.color.chosenElement));  //??? color
+        fab.setOnClickListener(onCircleButtonCliclListener);   //setting listner
+        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);  //animation init
+        fab.startAnimation(hyperspaceJumpAnimation);
     }
 
     void setUpList() { // setting up visual RecyclerView
@@ -379,6 +407,15 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                                     showNumberOfAvailableRecipes();
                                     mAdapter.notifyItemRemoved(position);
                                     numberOfSelectedIngredients--;
+                                    if(numberOfSelectedIngredients == 0)
+                                    {
+                                        setUpFABnoView();
+                                        nullPicture.setVisibility(View.VISIBLE);
+                                        availableRecipesButton.setVisibility((View.INVISIBLE));
+                                        bigNumberOfAvailableRecipes.setVisibility(View.INVISIBLE);
+                                        recAvailableMin.setVisibility(View.INVISIBLE);
+                                        selectedIngridients.setVisibility(View.INVISIBLE);
+                                    }
                                 }
                                 mAdapter.notifyDataSetChanged();
                             }
@@ -392,6 +429,15 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                                     showNumberOfAvailableRecipes();
                                     mAdapter.notifyItemRemoved(position);
                                     numberOfSelectedIngredients--;
+                                    if(numberOfSelectedIngredients == 0)
+                                    {
+                                        setUpFABnoView();
+                                        nullPicture.setVisibility(View.VISIBLE);
+                                        availableRecipesButton.setVisibility((View.INVISIBLE));
+                                        bigNumberOfAvailableRecipes.setVisibility(View.INVISIBLE);
+                                        recAvailableMin.setVisibility(View.INVISIBLE);
+                                        selectedIngridients.setVisibility(View.INVISIBLE);
+                                    }
                                 }
                                 mAdapter.notifyDataSetChanged();
                             }

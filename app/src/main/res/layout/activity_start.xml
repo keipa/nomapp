@@ -27,6 +27,14 @@
         android:layout_marginTop="60dp"
         android:visibility="invisible" />
 
+    <ImageView
+        android:layout_width="222dp"
+        android:layout_height="359dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="center"
+        android:src="@drawable/nulljpg"
+        android:layout_marginTop="90dp"
+        android:visibility="invisible" />
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
