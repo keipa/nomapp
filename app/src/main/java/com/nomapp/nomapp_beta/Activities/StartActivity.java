@@ -38,7 +38,8 @@ import java.util.ArrayList;
 public class StartActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TABLE_NAME = "Ingridients";
-    private static final String RECIPES_TABLE_NAME = "Recipes";
+    private static final String RECreIPES_TABLE_NAME = "Recipes";
+
 
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout mDrawerLayout;
@@ -56,6 +57,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
     int nubmerOfAvailableRecipes;
     private CardViewAdapter mAdapter;
+    int numberOfSelectedIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_start);    //first screen activation
 
         nubmerOfAvailableRecipes = 0;           //counter on the fridge image
+        numberOfSelectedIngredients = 0; // counter of selected ingridients
 
         selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //recycler cardlist init
 
@@ -261,6 +264,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                 if (cursor.getInt(2) != 0) {
                     forSelectedIngridients.add(cursor.getString(1));
                     IDs.add(cursor.getInt(0));
+                    numberOfSelectedIngredients++;
+                    Log.w("TAG", numberOfSelectedIngredients+"");
                 }
             } while (cursor.moveToNext());
         }
@@ -316,7 +321,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
     private void fillIngridientsForRecipe() { // parsing requed ingridients for every recipe from Database (part 1)
         ingridientsForRecipe = new ArrayList<String>();
-        Cursor cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
+        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
                                 Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
@@ -373,6 +378,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                                     IDs.remove(position);
                                     showNumberOfAvailableRecipes();
                                     mAdapter.notifyItemRemoved(position);
+                                    numberOfSelectedIngredients--;
                                 }
                                 mAdapter.notifyDataSetChanged();
                             }
@@ -385,6 +391,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                                     IDs.remove(position);
                                     showNumberOfAvailableRecipes();
                                     mAdapter.notifyItemRemoved(position);
+                                    numberOfSelectedIngredients--;
                                 }
                                 mAdapter.notifyDataSetChanged();
                             }
