@@ -29,6 +29,8 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
     Button category12;
     Button category13;
 
+    Button btnSearch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +52,7 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
         category11 = (Button) findViewById(R.id.button11);
         category12 = (Button) findViewById(R.id.button12);
         category13 = (Button) findViewById(R.id.button13);
+        btnSearch = (Button) findViewById(R.id.btnSearch);
 
         category1.setOnClickListener(this);
         category2.setOnClickListener(this);
@@ -64,6 +67,7 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
         category11.setOnClickListener(this);
         category12.setOnClickListener(this);
         category13.setOnClickListener(this);
+        btnSearch.setOnClickListener(this);
     }
 
     @Override
@@ -164,6 +168,10 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
                 startActivity(intent);
                 break;
 
+            case R.id.btnSearch:
+                intent = new Intent(CategoriesActivity.this, SearchIngredientsActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }

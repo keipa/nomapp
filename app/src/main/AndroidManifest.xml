@@ -35,6 +35,9 @@
             android:label="Steps"></activity>
         <activity android:name=".Activities.RecipePreviewActivity"
             android:label="Preview"></activity>
+        <activity android:name=".Activities.SearchIngredientsActivity"
+            android:label="Search"></activity>
+
 
     </application>
 
