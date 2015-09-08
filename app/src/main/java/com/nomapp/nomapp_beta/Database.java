@@ -19,6 +19,7 @@ public class Database {
     private static final String RECIPES_DB_NAME = "RecBase.db";
     private static final String CATEGORIES_DB_NAME = "categories.db";
 
+    private static final String INGREDIENTS_TABLE_NAME = "Ingridients";
     private static final String INGRIDIENT_ID = "_id";
     private static final String INGRIDIENT_NAME = "name";
     private static final String IS_CHECKED = "checked";
@@ -100,6 +101,7 @@ public class Database {
     public static String getRecipesNumberOfPersons() { return RECIPES_NUMBER_OF_PERSONS; }
     public static String getRecipesNumberOfIngridients() { return RECIPES_NUMBER_OF_INGRIDIENTS; }
 
+    public static String getIngredientsTableName() {return INGREDIENTS_TABLE_NAME; };
     public static String getIngridientId() {
         return INGRIDIENT_ID;
     }
