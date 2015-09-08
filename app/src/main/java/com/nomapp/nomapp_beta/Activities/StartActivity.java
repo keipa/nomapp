@@ -39,8 +39,6 @@ import java.util.ArrayList;
 public class StartActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TABLE_NAME = "Ingridients";
-    private static final String RECreIPES_TABLE_NAME = "Recipes";
-
 
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout mDrawerLayout;

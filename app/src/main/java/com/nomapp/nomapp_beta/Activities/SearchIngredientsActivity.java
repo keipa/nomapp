@@ -93,6 +93,7 @@ public class SearchIngredientsActivity extends Activity {
     void setUpRecyclerView() { //RecyclerView settings
      //   searchedIngredientsRecycler.setHasFixedSize(false);
         findedIngsList.setAdapter(new FindedIngredientsListAdapter(this, findedIngsArray, IDs));
+        Log.w("MY_LOG", "set kek1");
         findedIngsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
@@ -102,16 +103,20 @@ public class SearchIngredientsActivity extends Activity {
                                         Database.getIngridientIsChecked()},
                         null, null, null, null
                         , null);
-
+                Log.w("MY_LOG", "kek");
                 cursor.moveToFirst();
                 cursor.moveToPosition(IDs.get(position) - 1);
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0) {
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                    //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
+                    Log.d("MY_TAG", "Checked position " + IDs.get(position));
+
                 } else {
                     Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.white));
+                    Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 
                 }
                 cursor.close();
