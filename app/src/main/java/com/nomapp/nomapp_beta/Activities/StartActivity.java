@@ -69,7 +69,6 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_start);    //first screen activation
 
         nubmerOfAvailableRecipes = 0;           //counter on the fridge image
-        numberOfSelectedIngredients = 0; // counter of selected ingridients
 
         selectedIngridients = (RecyclerView) findViewById(R.id.recycler_view);   //recycler cardlist init
 
@@ -93,6 +92,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+        numberOfSelectedIngredients = 0; // counter of selected ingridients
         showNumberOfAvailableRecipes();  // this function shows  Number Of Available Recipes on the main big text
         fillSelectedIngridients();
         setUpList();            //this function sets up recycer list of chosen ingredients
