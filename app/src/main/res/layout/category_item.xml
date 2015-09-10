@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/catgrid">
+
+    <ImageButton
+        android:layout_width="192dp"
+        android:layout_height="189dp"
+        android:id="@+id/imageButton2"
+        android:src="@drawable/item_cat"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        android:clickable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:text="Large Text"
+        android:id="@+id/textView5"
+        android:fontFamily="sans-serif-condensed" />
+
+</LinearLayout>

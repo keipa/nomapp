@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 
 import com.nomapp.nomapp_beta.R;
 
@@ -15,22 +17,13 @@ import com.nomapp.nomapp_beta.R;
  * Created by antonid on 20.08.2015.
  */
 public class CategoriesActivity extends Activity implements View.OnClickListener {
-    Button category1;
-    Button category2;
-    Button category3;
-    Button category4;
-    Button category5;
-    Button category6;
-    Button category7;
-    Button category8;
-    Button category9;
-    Button category10;
-    Button category11;
-    Button category12;
-    Button category13;
 
-    Button btnSearch;
 
+
+    String[] data = {"Мясо", "Птица", "Рыба", "Морепродукты", "Овощи", "Фрукты и ягоды", "Бакалея", "Крупы", "Молочные продукты", "Грибы", "Зелень", "Орехи", "Готовые продукты"};
+    Integer[] nums = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+    GridView gvMain;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,38 +31,20 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_categories);
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
+        setContentView(R.layout.activity_categories_grid);
+        adapter = new ArrayAdapter<String>(this, R.layout.category_item, R.id.textView5, data);
+        gvMain = (GridView) findViewById(R.id.gridView);
+        gvMain.setAdapter(adapter);
+        adjustGridView();
 
-        category1 = (Button) findViewById(R.id.button);
-        category2 = (Button) findViewById(R.id.button2);
-        category3 = (Button) findViewById(R.id.button3);
-        category4 = (Button) findViewById(R.id.button4);
-        category5 = (Button) findViewById(R.id.button5);
-        category6 = (Button) findViewById(R.id.button6);
-        category7 = (Button) findViewById(R.id.button7);
-        category8 = (Button) findViewById(R.id.button8);
-        category9 = (Button) findViewById(R.id.button9);
-        category10 = (Button) findViewById(R.id.button10);
-        category11 = (Button) findViewById(R.id.button11);
-        category12 = (Button) findViewById(R.id.button12);
-        category13 = (Button) findViewById(R.id.button13);
-        btnSearch = (Button) findViewById(R.id.btnSearch);
-
-        category1.setOnClickListener(this);
-        category2.setOnClickListener(this);
-        category3.setOnClickListener(this);
-        category4.setOnClickListener(this);
-        category5.setOnClickListener(this);
-        category6.setOnClickListener(this);
-        category7.setOnClickListener(this);
-        category8.setOnClickListener(this);
-        category9.setOnClickListener(this);
-        category10.setOnClickListener(this);
-        category11.setOnClickListener(this);
-        category12.setOnClickListener(this);
-        category13.setOnClickListener(this);
-        btnSearch.setOnClickListener(this);
     }
 
+
+    private void adjustGridView(){
+        gvMain.setNumColumns(2);
+        gvMain.setHorizontalSpacing(5);
+        gvMain.setVerticalSpacing(5);
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -100,78 +75,6 @@ public class CategoriesActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()){
-            case R.id.button:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 1);
-                startActivity(intent);
-                break;
-            case R.id.button2:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 2);
-                startActivity(intent);
-                break;
-            case R.id.button3:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 3);
-                startActivity(intent);
-                break;
-            case R.id.button4:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 4);
-                startActivity(intent);
-                break;
-            case R.id.button5:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 5);
-                startActivity(intent);
-                break;
-            case R.id.button6:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 6);
-                startActivity(intent);
-                break;
-            case R.id.button7:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 7);
-                startActivity(intent);
-                break;
-            case R.id.button8:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 8);
-                startActivity(intent);
-                break;
-            case R.id.button9:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 9);
-                startActivity(intent);
-                break;
-            case R.id.button10:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 10);
-                startActivity(intent);
-                break;
-            case R.id.button11:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 11);
-                startActivity(intent);
-                break;
-            case R.id.button12:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 12);
-                startActivity(intent);
-                break;
-            case R.id.button13:
-                intent = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-                intent.putExtra("numberOfCategory", 13);
-                startActivity(intent);
-                break;
 
-            case R.id.btnSearch:
-                intent = new Intent(CategoriesActivity.this, SearchIngredientsActivity.class);
-                startActivity(intent);
-                break;
-        }
     }
 }
