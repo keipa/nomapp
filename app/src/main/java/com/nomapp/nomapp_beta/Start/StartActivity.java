@@ -26,10 +26,11 @@ import android.support.v7.widget.RecyclerView;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
-import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvaliableRecipesActivity;
 import com.nomapp.nomapp_beta.Settings.SettingsActivity;
+import com.nomapp.nomapp_beta.Start.CardViewAdapter;
 import com.nomapp.nomapp_beta.Database.Database;
+import  com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.ArrayList;
@@ -84,6 +85,8 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
 
         setUpNavigationDraver();        //navigation drawer initiation
+
+
     }
 
     @Override

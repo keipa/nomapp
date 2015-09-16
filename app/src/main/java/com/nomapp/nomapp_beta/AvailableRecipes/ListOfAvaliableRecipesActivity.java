@@ -36,7 +36,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_available_recipes);
 
-        availableRecipes = (RecyclerView) findViewById(R.id.availableRecipesLW);
+        availableRecipes = (RecyclerView) findViewById(R.id.availableReciepesLW);
 
 
         Window window = getWindow();
