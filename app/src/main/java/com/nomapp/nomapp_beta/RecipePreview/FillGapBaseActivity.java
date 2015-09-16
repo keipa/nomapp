@@ -17,7 +17,6 @@
 package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -35,8 +34,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
-import com.nomapp.nomapp_beta.Activities.CategoriesActivity;
-import com.nomapp.nomapp_beta.Activities.TabsActivity;
+import com.nomapp.nomapp_beta.Steps.TabsActivity;
 import com.nomapp.nomapp_beta.R;
 
 /**

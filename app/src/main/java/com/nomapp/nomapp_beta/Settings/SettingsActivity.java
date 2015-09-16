@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.Activities;
+package com.nomapp.nomapp_beta.Settings;
 
 /**
  * Created by antonid on 04.08.2015.

@@ -1,9 +1,7 @@
-package com.nomapp.nomapp_beta;
+package com.nomapp.nomapp_beta.Database;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 /**
  * Created by antonid on 12.07.2015.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nomapp.nomapp_beta.Activities;
+package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;

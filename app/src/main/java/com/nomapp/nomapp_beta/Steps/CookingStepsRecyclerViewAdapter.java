@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.SlidingTabs;
+package com.nomapp.nomapp_beta.Steps;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

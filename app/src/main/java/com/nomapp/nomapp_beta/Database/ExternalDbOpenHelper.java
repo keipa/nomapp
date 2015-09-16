@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta;
+package com.nomapp.nomapp_beta.Database;
 
 import android.content.Context;
 import android.database.SQLException;

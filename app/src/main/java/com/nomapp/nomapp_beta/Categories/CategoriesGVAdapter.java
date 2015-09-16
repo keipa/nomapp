@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta;
+package com.nomapp.nomapp_beta.Categories;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.nomapp.nomapp_beta.R;
 
 /**
  * Created by Антоненко Илья on 10.09.2015.

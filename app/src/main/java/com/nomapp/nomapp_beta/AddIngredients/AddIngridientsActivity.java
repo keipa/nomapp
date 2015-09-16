@@ -1,7 +1,6 @@
-package com.nomapp.nomapp_beta.Activities;
+package com.nomapp.nomapp_beta.AddIngredients;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,8 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.nomapp.nomapp_beta.Database;
-import com.nomapp.nomapp_beta.MyArrayAdapter;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.ArrayList;

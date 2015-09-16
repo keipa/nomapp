@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.Activities;
+package com.nomapp.nomapp_beta.Categories;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 
-import com.nomapp.nomapp_beta.CategoriesGVAdapter;
+import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
+import com.nomapp.nomapp_beta.FindIngredients.SearchIngredientsActivity;
 import com.nomapp.nomapp_beta.R;
 
 /**

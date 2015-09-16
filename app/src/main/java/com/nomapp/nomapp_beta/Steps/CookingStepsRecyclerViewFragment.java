@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.SlidingTabs;
+package com.nomapp.nomapp_beta.Steps;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 import com.nomapp.nomapp_beta.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by florentchampigny on 24/04/15.

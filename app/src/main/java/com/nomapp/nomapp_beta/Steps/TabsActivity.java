@@ -1,5 +1,5 @@
 
-package com.nomapp.nomapp_beta.Activities;
+package com.nomapp.nomapp_beta.Steps;
 
         import android.content.Intent;
         import android.os.Bundle;
@@ -11,14 +11,11 @@ package com.nomapp.nomapp_beta.Activities;
         import android.support.v7.app.AppCompatActivity;
         import android.support.v7.widget.Toolbar;
         import android.view.MenuItem;
-        import android.view.View;
         import android.view.Window;
-        import android.widget.Toast;
 
         import com.github.florent37.materialviewpager.MaterialViewPager;
         import com.github.florent37.materialviewpager.header.HeaderDesign;
         import com.nomapp.nomapp_beta.R;
-        import com.nomapp.nomapp_beta.SlidingTabs.CookingStepsRecyclerViewFragment;
 
 public class TabsActivity extends AppCompatActivity {
 

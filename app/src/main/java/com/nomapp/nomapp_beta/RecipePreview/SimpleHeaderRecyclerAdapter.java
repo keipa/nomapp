@@ -17,7 +17,6 @@
 package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,10 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nomapp.nomapp_beta.Database;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

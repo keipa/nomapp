@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.Activities;
+package com.nomapp.nomapp_beta.FindIngredients;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -14,8 +14,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.nomapp.nomapp_beta.Database;
-import com.nomapp.nomapp_beta.FindedIngredientsListAdapter;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.ArrayList;
