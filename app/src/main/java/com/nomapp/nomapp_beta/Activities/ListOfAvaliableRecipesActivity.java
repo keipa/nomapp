@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
+import com.nomapp.nomapp_beta.AvlReciepesRecyclerViewAdapter;
 import com.nomapp.nomapp_beta.Database;
 import com.nomapp.nomapp_beta.R;
 
@@ -22,9 +22,11 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
     private static final String RECIPES_TABLE_NAME = "Recipes";
 
-    ListView availableRecipes;
+    RecyclerView availableRecipes;
+    AvlReciepesRecyclerViewAdapter mAdapter;
 
-    ArrayList<String> recipesForList;
+    ArrayList<String> availableRecipesArrayList;
+    ArrayList<Integer> timeForCooking;
     ArrayList<Integer> IDs;
 
     Cursor cursor;
@@ -34,7 +36,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_available_recipes);
 
-        availableRecipes = (ListView) findViewById(R.id.availableRecipes);
+        availableRecipes = (RecyclerView) findViewById(R.id.availableRecipesLW);
 
 
         Window window = getWindow();
@@ -49,10 +51,32 @@ public class ListOfAvaliableRecipesActivity extends Activity {
     }
 
     private void setUpRecipesList(){
-        availableRecipes.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, recipesForList));
+
+        AvlReciepesRecyclerViewAdapter.OnItemTouchListener itemTouchListener = new AvlReciepesRecyclerViewAdapter.OnItemTouchListener() {
+            @Override
+            public void onCardViewTap(View view, int position) {
+                //    Toast.makeText(StartActivity.this, "Tapped " + forSelectedIngridients.get(position), Toast.LENGTH_SHORT).show();        // notification, when you press the element
+                cursor.moveToPosition(IDs.get(position) - 1);
+                // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
+                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
+                intent.putExtra("cooking", cursor.getString(3));
+                intent.putExtra("numberOfSteps", cursor.getInt(5));
+                startActivity(intent);
+                cursor.close();
+            }
+        };
+
+        mAdapter = new AvlReciepesRecyclerViewAdapter(availableRecipesArrayList, timeForCooking, itemTouchListener);  // setting adapter.
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); //setting layout manager
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        availableRecipes.setLayoutManager(layoutManager);
+        availableRecipes.setAdapter(mAdapter);
 
 
-        availableRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+      /*  availableRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
@@ -65,12 +89,28 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                 startActivity(intent);
                 cursor.close();
             }
-        });
+        });*/
+
+     /*   AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                cursor.moveToPosition(IDs.get(position) - 1);
+                // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
+                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
+                intent.putExtra("cooking", cursor.getString(3));
+                intent.putExtra("numberOfSteps", cursor.getInt(5));
+                startActivity(intent);
+                cursor.close();
+            }
+        };
+        availableRecipes.setOnItemClickListener(itemListener);*/
     }
 
     private void fillAvailableRecipes() {
-        recipesForList = new ArrayList<>();
+        availableRecipesArrayList = new ArrayList<>();
         IDs = new ArrayList<>();
+        timeForCooking = new ArrayList<>();
 
         cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
@@ -86,8 +126,9 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         if (!cursor.isAfterLast()) {
             do {
                 if (cursor.getInt(4) != 0) {
-                    recipesForList.add(cursor.getString(1));
+                    availableRecipesArrayList.add(cursor.getString(1));
                     IDs.add(cursor.getInt(0));
+                    timeForCooking.add(cursor.getInt(6));
                 }
             } while (cursor.moveToNext());
         }

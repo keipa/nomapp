@@ -83,8 +83,6 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
 
         setUpNavigationDraver();        //navigation drawer initiation
-
-
     }
 
     @Override
