@@ -27,6 +27,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
     ArrayList<String> availableRecipesArrayList;
     ArrayList<Integer> timeForCooking;
+    ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
 
     Cursor cursor;
@@ -67,7 +68,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
             }
         };
 
-        mAdapter = new AvlReciepesRecyclerViewAdapter(availableRecipesArrayList, timeForCooking, itemTouchListener);  // setting adapter.
+        mAdapter = new AvlReciepesRecyclerViewAdapter(availableRecipesArrayList, timeForCooking,numberOfSteps, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -76,41 +77,13 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
 
 
-      /*  availableRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                cursor.moveToPosition(IDs.get(position) - 1);
-              // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
-                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
-                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
-                intent.putExtra("cooking", cursor.getString(3));
-                intent.putExtra("numberOfSteps", cursor.getInt(5));
-                startActivity(intent);
-                cursor.close();
-            }
-        });*/
-
-     /*   AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                cursor.moveToPosition(IDs.get(position) - 1);
-                // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
-                Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
-                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
-                intent.putExtra("cooking", cursor.getString(3));
-                intent.putExtra("numberOfSteps", cursor.getInt(5));
-                startActivity(intent);
-                cursor.close();
-            }
-        };
-        availableRecipes.setOnItemClickListener(itemListener);*/
     }
 
     private void fillAvailableRecipes() {
         availableRecipesArrayList = new ArrayList<>();
         IDs = new ArrayList<>();
         timeForCooking = new ArrayList<>();
+        numberOfSteps = new ArrayList<>();
 
         cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
                 new String[]
@@ -129,6 +102,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                     availableRecipesArrayList.add(cursor.getString(1));
                     IDs.add(cursor.getInt(0));
                     timeForCooking.add(cursor.getInt(6));
+                    numberOfSteps.add(cursor.getInt(5));
                 }
             } while (cursor.moveToNext());
         }
