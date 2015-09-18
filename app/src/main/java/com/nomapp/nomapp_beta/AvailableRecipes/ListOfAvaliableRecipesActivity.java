@@ -63,6 +63,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                 intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
                 intent.putExtra("cooking", cursor.getString(3));
                 intent.putExtra("numberOfSteps", cursor.getInt(5));
+                intent.putExtra("nameOfRecipe", cursor.getString(1));
                 startActivity(intent);
                 cursor.close();
             }

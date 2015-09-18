@@ -84,7 +84,8 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
         final S scrollable = createScrollable();
 
-      //  ((TextView) findViewById(R.id.title)).setText(getTitle());
+        Intent data = getIntent();
+        ((TextView) findViewById(R.id.title)).setText(data.getStringExtra("nameOfRecipe"));
         setTitle(null);
 
         ScrollUtils.addOnGlobalLayoutListener((View) scrollable, new Runnable() {
