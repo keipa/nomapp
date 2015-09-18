@@ -6,7 +6,6 @@ package com.nomapp.nomapp_beta.Settings;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 
 import com.nomapp.nomapp_beta.R;
 

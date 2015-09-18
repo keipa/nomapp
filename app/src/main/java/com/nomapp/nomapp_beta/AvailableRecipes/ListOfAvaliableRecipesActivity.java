@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 
-import com.nomapp.nomapp_beta.RecipePreview.RecipePreviewActivity;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.RecipePreview.RecipePreviewActivity;
 
 import java.util.ArrayList;
 
@@ -32,6 +32,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
     Cursor cursor;
 
+    //TES
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

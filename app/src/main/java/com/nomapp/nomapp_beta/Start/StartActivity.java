@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -20,18 +22,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvaliableRecipesActivity;
-import com.nomapp.nomapp_beta.Settings.SettingsActivity;
-import com.nomapp.nomapp_beta.Start.CardViewAdapter;
+import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.Database.Database;
-import  com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.Settings.SettingsActivity;
 
 import java.util.ArrayList;
 

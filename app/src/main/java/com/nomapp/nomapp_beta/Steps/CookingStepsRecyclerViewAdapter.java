@@ -1,6 +1,5 @@
 package com.nomapp.nomapp_beta.Steps;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
-
-import java.util.List;
 
 /**
  * Created by florentchampigny on 24/04/15.

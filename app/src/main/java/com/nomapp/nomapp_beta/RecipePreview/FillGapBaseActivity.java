@@ -18,7 +18,6 @@ package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -35,15 +34,15 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
-import com.nomapp.nomapp_beta.Steps.TabsActivity;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.Steps.TabsActivity;
 
 /**
  * Warning: This example does not work on Android 2.3.
  *
  * @param <S> Scrollable
  */
-public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActivity implements ObservableScrollViewCallbacks{
+public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActivity implements ObservableScrollViewCallbacks {
 
     protected View mHeader;
     protected int mFlexibleSpaceImageHeight;

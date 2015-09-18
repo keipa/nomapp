@@ -16,18 +16,13 @@
 
 package com.nomapp.nomapp_beta.RecipePreview;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.nineoldandroids.view.ViewHelper;
 import com.nomapp.nomapp_beta.R;
-import com.nomapp.nomapp_beta.RecipePreview.FillGapBaseActivity;
-import com.melnykov.fab.FloatingActionButton;
+
 /**
  * Warning: This example does not work on Android 2.3.
  */

@@ -1,21 +1,21 @@
 
 package com.nomapp.nomapp_beta.Steps;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentStatePagerAdapter;
-        import android.support.v4.widget.DrawerLayout;
-        import android.support.v7.app.ActionBar;
-        import android.support.v7.app.ActionBarDrawerToggle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
-        import android.view.MenuItem;
-        import android.view.Window;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.Window;
 
-        import com.github.florent37.materialviewpager.MaterialViewPager;
-        import com.github.florent37.materialviewpager.header.HeaderDesign;
-        import com.nomapp.nomapp_beta.R;
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
+import com.nomapp.nomapp_beta.R;
 
 public class TabsActivity extends AppCompatActivity {
 
@@ -91,7 +91,7 @@ public class TabsActivity extends AppCompatActivity {
                     case 1:
                         return HeaderDesign.fromColorAndDrawable(
                                 R.color.colorMainDark,
-                               getResources().getDrawable(R.drawable.maxresdefault));
+                                getResources().getDrawable(R.drawable.maxresdefault));
 
 
                 }
