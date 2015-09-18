@@ -41,8 +41,9 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.name.setText(names.get(i));
-        viewHolder.time.setText(cookingTimes.get(i) + "");
-        viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + "");
+        viewHolder.time.setText(cookingTimes.get(i) + " мин.");
+        viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + " шагов");
+
     }
 
     @Override
@@ -66,8 +67,8 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);
 
             name.setText(names.get(position));
-            time.setText(cookingTimes.get(position) +"");
-            numberOfSteps.setText(numbersOfSteps.get(position) + "");
+            time.setText(cookingTimes.get(position) +" мин.");
+            numberOfSteps.setText(numbersOfSteps.get(position) + " шагов");
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

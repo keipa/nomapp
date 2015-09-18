@@ -45,7 +45,7 @@
     <color name="colorPrimaryDark">#EF6C00</color>
     <color name="colorMainAccent">#EF6C00</color>
     <color name="colorMainText">#ffffff</color>
-
+    <color name="dividerColor">#eeeeee</color>
 
 
     <color name="colorMainBg">#FAFAFA</color>

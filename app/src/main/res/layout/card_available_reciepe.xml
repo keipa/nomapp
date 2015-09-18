@@ -55,7 +55,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="14dp"
-                android:layout_marginStart="14dp" />
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -66,17 +67,43 @@
                 android:layout_alignTop="@+id/view"
                 android:layout_below="@+id/avlRcpNameTV"
 
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center" />
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
+                android:background="@color/grey"
                 android:id="@+id/view"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="false"
-                 />
+                android:layout_alignLeft="@+id/numberOfStepsTV"
+                android:layout_alignStart="@+id/numberOfStepsTV"
+                android:layout_marginRight="10dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@color/grey"
+                android:id="@+id/viewVerticalLeft"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/numOfIngs"
+                android:layout_toStartOf="@+id/numOfIngs"
+                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignTop="@+id/view" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:id="@+id/viewVerticalRight"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/numOfIngs"
+                android:layout_toEndOf="@+id/numOfIngs"
+                android:layout_marginLeft="21dp"
+                android:layout_marginStart="21dp"
+                android:layout_alignTop="@+id/view" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +114,11 @@
                 android:layout_alignTop="@+id/view"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                 />
+                android:paddingRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="20dp"
+                android:gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,7 +128,11 @@
                 android:id="@+id/numberOfStepsTV"
                 android:layout_alignTop="@+id/view"
                 android:layout_alignLeft="@+id/avlRcpNameTV"
-                android:layout_alignStart="@+id/avlRcpNameTV" />
+                android:layout_alignStart="@+id/avlRcpNameTV"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="20dp"
+                android:gravity="center" />
 
         </RelativeLayout>
 
