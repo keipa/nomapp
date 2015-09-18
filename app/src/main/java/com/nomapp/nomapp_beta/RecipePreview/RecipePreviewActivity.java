@@ -31,7 +31,7 @@ import com.melnykov.fab.FloatingActionButton;
 /**
  * Warning: This example does not work on Android 2.3.
  */
-public class RecipePreviewActivity extends FillGapBaseActivity<ObservableRecyclerView> implements ObservableScrollViewCallbacks {
+public class RecipePreviewActivity extends FillGap2BaseActivity<ObservableRecyclerView> implements ObservableScrollViewCallbacks {
 
     protected ObservableRecyclerView createScrollable() {
         ObservableRecyclerView recyclerView = (ObservableRecyclerView) findViewById(R.id.scroll);
