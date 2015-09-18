@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="snacks_stuffed_eggs1">Лук мелко нарезать.</string>
-    <string name="snacks_stuffed_eggs2">Морковь натереть на мелкой терке.</string>
-    <string name="snacks_stuffed_eggs3">Зелень мелко нарезать.</string>
-    <string name="snacks_stuffed_eggs4">Яйца разрезать на две части. </string>
-    <string name="snacks_stuffed_eggs5">Вынуть желтки. </string>
-    <string name="snacks_stuffed_eggs6">Желтки натереть на мелкой терке.</string>
-    <string name="snacks_stuffed_eggs7">На растительном масле обжарить лук.</string>
-    <string name="snacks_stuffed_eggs8">Добавить морковь, обжарить.</string>
-    <string name="snacks_stuffed_eggs9">Добавить грибы, посолить, поперчить. Жарить около 20–25 минут.  Остудить.</string>
-    <string name="snacks_stuffed_eggs10">Грибы с луком и морковью положить в блендер</string>
-    <string name="snacks_stuffed_eggs11">Измельчить.</string>
-    <string name="snacks_stuffed_eggs12">Добавить желтки, перемешать.</string>
-    <string name="snacks_stuffed_eggs13">Добавить зелень, перемешать.</string>
-    <string name="snacks_stuffed_eggs14">Добавить немного майонеза, перемешать,</string>
-    <string name="snacks_stuffed_eggs15">Полученной массой нафаршировать половинки яиц.</string>
-    <string name="snacks_stuffed_eggs16">Приятного аппетита!</string>
 
     <string-array name="snacks_stuffed_eggs">
         <item>Лук мелко нарезать</item>
