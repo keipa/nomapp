@@ -35,6 +35,7 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
          />
 
     <com.melnykov.fab.FloatingActionButton
@@ -74,7 +75,8 @@
                 android:maxLines="1"
                 android:paddingLeft="@dimen/margin_standard"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:text="Preview" />
         </LinearLayout>
     </FrameLayout>
 </FrameLayout>

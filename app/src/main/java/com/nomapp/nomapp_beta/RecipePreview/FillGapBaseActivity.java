@@ -17,8 +17,8 @@
 package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -35,8 +35,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
-import com.nomapp.nomapp_beta.Activities.CategoriesActivity;
-import com.nomapp.nomapp_beta.Activities.TabsActivity;
+import com.nomapp.nomapp_beta.Steps.TabsActivity;
 import com.nomapp.nomapp_beta.R;
 
 /**
@@ -72,7 +71,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
         mActionBarSize = getActionBarSize();
-
+//TODO
         // Even when the top gap has began to change, header bar still can move
         // within mIntersectionHeight.
         mIntersectionHeight = getResources().getDimensionPixelSize(R.dimen.intersection_height);
@@ -85,7 +84,8 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
         final S scrollable = createScrollable();
 
-        ((TextView) findViewById(R.id.title)).setText(getTitle());
+        Intent data = getIntent();
+        ((TextView) findViewById(R.id.title)).setText(data.getStringExtra("nameOfRecipe"));
         setTitle(null);
 
         ScrollUtils.addOnGlobalLayoutListener((View) scrollable, new Runnable() {
@@ -136,6 +136,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+
     }
 
     protected void updateViews(int scrollY, boolean animated) {
@@ -150,7 +151,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
         // Translate header
         ViewHelper.setTranslationY(mHeader, getHeaderTranslationY(scrollY));
-
+//TODO
         // Show/hide gap
         final int headerHeight = mHeaderBar.getHeight();
         boolean scrollUp = mPrevScrollY < scrollY;
@@ -163,6 +164,8 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
                 changeHeaderBackgroundHeightAnimated(true, animated);
             }
         }
+
+
         mPrevScrollY = scrollY;
     }
 

@@ -1,4 +1,4 @@
-<com.nomapp.nomapp_beta.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.nomapp.nomapp_beta.NavigationDrawer.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/navdrawer_width"
     android:layout_height="match_parent"
@@ -317,4 +317,4 @@
         </LinearLayout>
     </ScrollView>
 
-</com.nomapp.nomapp_beta.ScrimInsetsFrameLayout>
+</com.nomapp.nomapp_beta.NavigationDrawer.ScrimInsetsFrameLayout>
