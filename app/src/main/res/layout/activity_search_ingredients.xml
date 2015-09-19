@@ -5,6 +5,8 @@
     android:weightSum="1"
     android:background="@color/grey">
 
+    <include layout="@layout/toolbar_actionbar" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

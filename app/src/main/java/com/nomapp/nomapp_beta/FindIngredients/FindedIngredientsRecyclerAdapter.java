@@ -2,6 +2,7 @@ package com.nomapp.nomapp_beta.FindIngredients;
 
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,27 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.name.setText(names.get(i));
+        Cursor cursor =  Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+                new String[]
+                        {Database.getIngridientId(), Database.getIngridientName(),
+                                Database.getIngridientIsChecked()},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+        cursor.moveToPosition(IDs.get(i) - 1);
+        int isChecked = cursor.getInt(2);
+        if (isChecked == 1) {
+            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getResources()
+                    .getColor(R.color.chosenElement)); // второй вариант
+            //    Log.w("LOG", IDs.get(position - 1).toString()
+            //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
+        } else{
+            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getResources()
+                    .getColor(R.color.white)); // второй вариант
+        }
+
+//TODO
     }
 
     @Override
@@ -67,6 +89,10 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
             int isChecked = cursor.getInt(2);
             if (isChecked == 1) {
                 itemView.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
+            //    Log.w("LOG", IDs.get(position - 1).toString()
+              //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
+            } else{
+                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
             }
 
 

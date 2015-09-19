@@ -3,8 +3,10 @@ package com.nomapp.nomapp_beta.FindIngredients;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -20,9 +22,9 @@ import com.nomapp.nomapp_beta.R;
 import java.util.ArrayList;
 
 /**
- * Created by Антоненко Илья on 06.09.2015.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ on 06.09.2015.
  */
-public class SearchIngredientsActivity extends Activity {
+public class SearchIngredientsActivity extends AppCompatActivity {
     private static final String TABLE_NAME = "Ingridients";
 
     RecyclerView findedIngsRecycler;
@@ -41,6 +43,8 @@ public class SearchIngredientsActivity extends Activity {
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
 
+        Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mActionBarToolbar);
         // searchedIngredientsRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -53,7 +57,7 @@ public class SearchIngredientsActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_start, menu);
+        getMenuInflater().inflate(R.menu.menu_dynamics_search, menu);
         return true;
     }
 
@@ -92,38 +96,6 @@ public class SearchIngredientsActivity extends Activity {
 
 
     void setUpRecyclerView() { //RecyclerView settings
-     //   searchedIngredientsRecycler.setHasFixedSize(false);
-   /*     findedIngsList.setAdapter(new FindedIngredientsListAdapter(this, findedIngsArray, IDs));
-        Log.w("MY_LOG", "set kek1");
-        findedIngsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,
-                        new String[]
-                                {Database.getIngridientId(), Database.getIngridientName(),
-                                        Database.getIngridientIsChecked()},
-                        null, null, null, null
-                        , null);
-                Log.w("MY_LOG", "kek");
-                cursor.moveToFirst();
-                cursor.moveToPosition(IDs.get(position) - 1);
-                int isChecked = cursor.getInt(2);
-                if (isChecked == 0) {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
-                    //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
-                    Log.d("MY_TAG", "Checked position " + IDs.get(position));
-
-                } else {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.white));
-                    Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
-
-                }
-                cursor.close();
-            }
-        });*/
-
 
         FindedIngredientsRecyclerAdapter.OnItemTouchListener itemTouchListener = new FindedIngredientsRecyclerAdapter.OnItemTouchListener() {
             @Override
