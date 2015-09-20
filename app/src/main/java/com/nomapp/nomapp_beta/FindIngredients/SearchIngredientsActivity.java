@@ -1,8 +1,11 @@
 package com.nomapp.nomapp_beta.FindIngredients;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
@@ -43,8 +47,10 @@ public class SearchIngredientsActivity extends AppCompatActivity {
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
 
-        Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-        setSupportActionBar(mActionBarToolbar);
+        handleIntent(getIntent());
+
+ //       Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+   //     setSupportActionBar(mActionBarToolbar);
         // searchedIngredientsRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -75,8 +81,23 @@ public class SearchIngredientsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search
+            fillArrayList(query);
+            setUpRecyclerView();
+        }
+    }
+
     void setUpEditText() {
-        search = (EditText) findViewById(R.id.findIngsET);
+   /*     search = (EditText) findViewById(R.id.findIngsET);
         search.addTextChangedListener(new TextWatcher(){ //Listener invokes when data in ExitText changes.
             @Override
             public void afterTextChanged(Editable s) {
@@ -91,7 +112,7 @@ public class SearchIngredientsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
-        });
+        });*/
     }
 
 

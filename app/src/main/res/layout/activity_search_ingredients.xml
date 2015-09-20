@@ -5,17 +5,9 @@
     android:weightSum="1"
     android:background="@color/grey">
 
-    <include layout="@layout/toolbar_actionbar" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/findIngsET"
-        android:layout_gravity="center_horizontal" />
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="442dp"
         android:id="@+id/findedIngsRecyclerView"
         android:layout_gravity="center_horizontal" />
 

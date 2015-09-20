@@ -29,11 +29,31 @@
         <activity android:name=".Steps.TabsActivity"
             android:label="Steps"></activity>
         <activity android:name=".Categories.CategoriesActivity"
-            android:label="Steps"></activity>
+            android:label="Steps">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".FindIngredients.SearchIngredientsActivity" />
+        </activity>
         <activity android:name=".RecipePreview.RecipePreviewActivity"
             android:label="Preview"></activity>
+
         <activity android:name=".FindIngredients.SearchIngredientsActivity"
-            android:label="Search"></activity>
+            android:label="Search">
+
+            <!-- to identify this activity as "searchable" -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
 
 
     </application>
