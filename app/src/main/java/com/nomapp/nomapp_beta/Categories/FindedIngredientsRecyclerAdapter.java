@@ -1,8 +1,7 @@
-package com.nomapp.nomapp_beta.FindIngredients;
+package com.nomapp.nomapp_beta.Categories;
 
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

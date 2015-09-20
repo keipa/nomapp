@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="442dp"
         android:id="@+id/findedIngsRecyclerView"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.83" />
 
 </LinearLayout>
