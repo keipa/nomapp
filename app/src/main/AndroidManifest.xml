@@ -29,11 +29,14 @@
         <activity android:name=".Steps.TabsActivity"
             android:label="Steps"></activity>
         <activity android:name=".Categories.CategoriesActivity"
-            android:label="Steps"></activity>
+            android:label="Steps">
+        </activity>
         <activity android:name=".RecipePreview.RecipePreviewActivity"
             android:label="Preview"></activity>
+
         <activity android:name=".FindIngredients.SearchIngredientsActivity"
-            android:label="Search"></activity>
+            android:label="Search">
+        </activity>
 
 
     </application>

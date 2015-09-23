@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="number_of_ingridients_for_stuffer_eggs">
-        Ведро воды - 1\n
-        И х*й туды - 1\n
-        Охапку дров - 15шт\n
-        И плов готов!
+        Здесь ингредиенты.
     </string>
 
 </resources>
