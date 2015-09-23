@@ -1,5 +1,6 @@
 package com.nomapp.nomapp_beta.Categories;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,10 +33,8 @@ import java.util.ArrayList;
 /**
  * Created by antonid on 20.08.2015.
  */
-public class CategoriesActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btnSearch;
+public class CategoriesActivity extends AppCompatActivity {
 
-   // Integer[] nums = {1,2,3,4,5,6,7,8,9,10,11,12,13};
     GridView categoriesGridView;
     LinearLayout llMain;
     EditText enteredText;
@@ -46,8 +46,8 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
 
     FindedIngredientsRecyclerAdapter mAdapter;
 
-
     LinearLayout.LayoutParams lParams;
+    boolean searchMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,14 +102,15 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    public void onClick(View v) {
-       /* switch (v.getId()){
-            case R.id.btnSearch:
-                Intent intent = new Intent(CategoriesActivity.this, SearchIngredientsActivity.class);
-                startActivity(intent);
-                break;
-        }*/
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        // super.onBackPressed();
+        if (searchMode)
+            setNoSearchMode();
+        else
+            super.onBackPressed();
     }
+
 
    /* adds GridView,
     * sets its params
@@ -158,6 +159,12 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
 
         enteredText.setVisibility(View.VISIBLE);
         back.setVisibility(View.VISIBLE);
+        back.requestFocus();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, 0);
+        imm = null;
+
+        searchMode = true;
         //enteredText.setEnabled(true);
     }
 
@@ -175,6 +182,11 @@ public class CategoriesActivity extends AppCompatActivity implements View.OnClic
 
         enteredText.setVisibility(View.INVISIBLE);
         back.setVisibility(View.INVISIBLE);
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(back.getWindowToken(), 0);
+        imm = null;
+
+        searchMode = false;
     }
 
     /*
