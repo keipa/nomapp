@@ -18,6 +18,7 @@ import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListen
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -33,28 +34,27 @@ public class StartFragment extends Fragment {
     SwipeableRecyclerViewTouchListener swipeTouchListener;
 
     ArrayList<String> forSelectedIngridients;
-    ArrayList<String> ingridientsForRecipe;
-    ArrayList<Integer> IDs;
-    ArrayList<ArrayList<Integer>> convertedIngrodientsForRecipe;
+    ArrayList<Integer> IDsOfSelectedIngs;
+    ArrayList<Integer> IDsOfAvailableRecipes;
 
-    int nubmerOfAvailableRecipes;
+    int numberOfAvailableRecipes;
     int numberOfSelectedIngredients;
 
-    onImageButtonClickListener imgBtnClickListener;
+    StartFragmentEventsListener eventsListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.framgent_start, null);
 
-        selectedIngredients =  (RecyclerView) v.findViewById(R.id.start_recycler);
+        selectedIngredients = (RecyclerView) v.findViewById(R.id.start_recycler);
         numOfRecipesTV = (TextView) v.findViewById(R.id.numOfRecipesTV);
 
         toRecipesBtn = (ImageButton) v.findViewById(R.id.startFridgeButton);
         toRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imgBtnClickListener.onClick();
+                eventsListener.onImgBtnClick();
             }
         });
 
@@ -65,31 +65,25 @@ public class StartFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            imgBtnClickListener = (onImageButtonClickListener) activity;
+            eventsListener = (StartFragmentEventsListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement onSomeEventListener");
+            throw new ClassCastException(activity.toString() + " must implement inteface");
         }
     }
 
     public void onStart() {
         super.onStart();
-
-
-        numberOfSelectedIngredients = 0;
-        fillSelectedIngridients();
-
-        countNumberOfAvailableRecipes();
+        //ArrayList of selected recipes already filled in StartActivity's method.
+        numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
 
         setUpRecyclerView();
         setSwipeTouchListener();
-
-
-        // Log.d(LOG_TAG, "Fragment1 onStart");
     }
 
-    void fillSelectedIngridients() { // fill ArrayList for RecyclerView
+    int fillSelectedIngridients() { // fill ArrayList for RecyclerView
+        int number = 0;
         forSelectedIngridients = new ArrayList<>();
-        IDs = new ArrayList<>();
+        IDsOfSelectedIngs = new ArrayList<>();
         Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),   //connection to the base
                 new String[]
                         {Database.getIngridientId(), Database.getIngridientName(),
@@ -102,15 +96,15 @@ public class StartFragment extends Fragment {
             do {
                 if (cursor.getInt(2) != 0) {
                     forSelectedIngridients.add(cursor.getString(1));
-                    IDs.add(cursor.getInt(0));
-                    numberOfSelectedIngredients++;
-                    Log.w("TAG", numberOfSelectedIngredients + "");
+                    IDsOfSelectedIngs.add(cursor.getInt(0));
+                    number++;
+                    Log.w("TAG", number + "");
                 }
             } while (cursor.moveToNext());
         }
         cursor.close();
+        return number;
     }
-
 
 
     void setUpRecyclerView() {
@@ -129,21 +123,115 @@ public class StartFragment extends Fragment {
         selectedIngredients.setLayoutManager(layoutManager);
         selectedIngredients.setAdapter(mAdapter);
     }
+//----------------------------------------------------------------------------------------Main algorithm's functions block--------------------------------------------------------------------------------------//
+    /*
+    *Algorithm: We check all recipes in the database to availability. Then we save IDs of available
+    * recipes to separate ArrayList.
+    * After every swipe we check only already available recipes (their IDs stores in separate
+    * ArrayList) because we cant make available new recipe by swipe, only unavailable.
+    * Thus we need check only, for example, 3 or 15 or 20 already available recipes after swipe,
+    * but not 1000 (all recipes in the database).
+    *
+     */
 
-     void countNumberOfAvailableRecipes() { // calculating Available recipes;
-        nubmerOfAvailableRecipes = 0;
-        fillIngridientsForRecipe();
-        int size = ingridientsForRecipe.size();
-        convertedIngrodientsForRecipe = new ArrayList<>();
-        for (int counter = 0; counter < size; counter++) {
-            convertedIngrodientsForRecipe.add(convertIngridientsToArrayList(ingridientsForRecipe.get(counter)));
+
+    //Check every recipe in database. Perform only in OnStart.
+    private int calculateNumberOfAvailableRecipes() {
+        int numOfAvlRecipes = 0;
+        boolean isAvailable;
+
+        IDsOfAvailableRecipes = new ArrayList<>();
+        ArrayList<Integer> ingredientsForCurrentRecipe; //Parsed from database ingredients for current recipe;
+
+        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
+                new String[]
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                                Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
+                                Database.getRecipesNumberOfSteps()},
+                null, null, null, null
+                , null);
+
+
+        // We check all recipes in the database.
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {
+            do {
+                if (cursor.getInt(2) != 0) {
+                    //Parse ingredients to ArrayList from the database.
+                    //How it looks in the database: (1,3,35,50.).
+                    ingredientsForCurrentRecipe = convertIngridientsToArrayList(cursor.getString(2));
+
+                    //Check is current recipe available.
+                    isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
+                    if (isAvailable){
+                        //If it is available we note it in the database,add its id to the ArrayList
+                        //and increment numberOfAvailableIngredients.
+                        Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                        IDsOfAvailableRecipes.add(cursor.getInt(0));
+                        numOfAvlRecipes++;
+                    } else{
+                        //If it is not we also note it in the database.
+                        Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                    }
+                }
+            } while (cursor.moveToNext());
         }
-        checking();
-        numOfRecipesTV.setText(nubmerOfAvailableRecipes+"");
+        cursor.close();
+
+        numOfRecipesTV.setText(numOfAvlRecipes + "");
+
+        return numOfAvlRecipes;
     }
 
-    private void checking() {
-        boolean isRecipeAvailable = true;
+    //Check only recipes which IDs is in the ArrayList.
+    //Perform after every swipe.
+    private int calculateNumberOfAvlRcpsAfterSwipe(){
+        int numberOfAvlRecipes = 0;
+        boolean isAvailable;
+
+        ArrayList<Integer> ingredientsForCurrentRecipe;
+
+        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
+                new String[]
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                                Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
+                                Database.getRecipesNumberOfSteps()},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+
+        //We check only "numberOfAvailableRecipes" (which already calculated) recipes.
+        //Their IDs is in IDsOfAvailableRecipes. (Yeah, it is that ArrayList).
+        for (int counter = 0; counter < numberOfAvailableRecipes; counter++){
+            //Move to, for example, first ID, or second, etc.
+            cursor.moveToPosition(IDsOfAvailableRecipes.get(counter) - 1);
+
+            //Parse ingredients to ArrayList from the database.
+            //How it looks in the database: (1,3,35,50.).
+            ingredientsForCurrentRecipe = convertIngridientsToArrayList(cursor.getString(2));
+
+            //Check is current recipe available.
+            isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
+            if (isAvailable){
+                //If it is available we note it in the database and increment numberOfAvlRecipes.
+                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                numberOfAvlRecipes++;
+            } else{
+                //If it is not we also note it in the database and remove it's id from the
+                //ArrayList of IDs.
+                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                IDsOfAvailableRecipes.remove(counter);
+            }
+        }
+        cursor.close();
+
+        numOfRecipesTV.setText(numberOfAvlRecipes + "");
+        return numberOfAvlRecipes;
+    }
+
+    //Check is recipe available. Argument - ingredients which required for recipe.
+    private boolean checkIsRecipeAvailable(ArrayList<Integer> ingredientsForCurrentRecipe){
 
         Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
                 new String[]
@@ -154,50 +242,37 @@ public class StartFragment extends Fragment {
 
         cursor.moveToFirst();
 
-        int numberOfRecipes = convertedIngrodientsForRecipe.size();
-        for (int currentRecipe = 0; currentRecipe < numberOfRecipes; currentRecipe++) {                 //mainframe alhorithm of the program
-            int numberOfIngridientsInRecipe = convertedIngrodientsForRecipe.get(currentRecipe).size();
-            for (int ingridientNumber = 0; ingridientNumber < numberOfIngridientsInRecipe; ingridientNumber++) {
-                cursor.moveToPosition(convertedIngrodientsForRecipe.get(currentRecipe).get(ingridientNumber) - 1);
-                if (cursor.getInt(2) != 1) {
-                    isRecipeAvailable = false;
-                    break;
-                }
+        int numberOfIngredients = ingredientsForCurrentRecipe.size();
+
+        //Check every ingredient in the list of ingredients for current recipe.
+        for (int counter = 0; counter < numberOfIngredients; counter++){
+            cursor.moveToPosition(ingredientsForCurrentRecipe.get(counter) - 1);
+
+            if (cursor.getInt(2) != 1){
+                //If current ingredient is not selected we go out of cycle and return that
+                //current recipe is not available.
+                return false;
             }
 
-            if (isRecipeAvailable) {
-                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (currentRecipe + 1) + ";");
-                nubmerOfAvailableRecipes++;
-            } else {
-                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (currentRecipe + 1) + ";");
-            }
-            isRecipeAvailable = true;
+            /*
+            //Alternative method to define is recipe available.
+            //But it is maybe too slow. Its need to pass all elements in IdsOfSelectedIngs
+            //in the worst case.
+            if (!IDsOfSelectedIngs.contains(ingredientsForCurrentRecipe.get(counter) - 1)){
+                return false;
+            }*/
+
         }
         cursor.close();
+
+        //If we checked all ingredients and every of them is selected we return that current
+        // recipe is available.
+        return true;
     }
 
-    void fillIngridientsForRecipe() { // parsing requed ingridients for every recipe from Database (part 1)
-        ingridientsForRecipe = new ArrayList<String>();
-        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
-                new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
-                                Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
-                                Database.getRecipesNumberOfSteps()},
-                null, null, null, null
-                , null);
-
-        cursor.moveToFirst();
-        if (!cursor.isAfterLast()) {
-            do {
-                if (cursor.getInt(2) != 0) {
-                    ingridientsForRecipe.add(cursor.getString(2));
-                    Log.w("MY_TAG", ingridientsForRecipe.get(cursor.getPosition()));
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-    }
-
+    //Parse ingredients to ArrayList from the database.
+    //How it looks in the database: for example (1,3,35,50.).
+    //WARNING: I don't comment this function because it is not optimized. I will rewrite it.
     private ArrayList<Integer> convertIngridientsToArrayList(String toConvert) { // parsing requed ingridients for every recipe from Database (part 2)
         ArrayList<Integer> converted = new ArrayList<Integer>();
 
@@ -218,8 +293,9 @@ public class StartFragment extends Fragment {
         return converted;
     }
 
+//----------------------------------------------------------------------------------------End of main algorithm's functions block--------------------------------------------------------------------------------------//
 
-    void setSwipeTouchListener(){
+    void setSwipeTouchListener() {
         swipeTouchListener =
                 new SwipeableRecyclerViewTouchListener(selectedIngredients,
                         new SwipeableRecyclerViewTouchListener.SwipeListener() {        //throw ingredients from your fridge
@@ -231,15 +307,14 @@ public class StartFragment extends Fragment {
                             @Override
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {  //swipe to the left
                                 for (int position : reverseSortedPositions) {
-                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
+                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
-                                    IDs.remove(position);
-                                    countNumberOfAvailableRecipes();
+                                    IDsOfSelectedIngs.remove(position);
+                                    numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
                                     mAdapter.notifyItemRemoved(position);
                                     numberOfSelectedIngredients--;
-                                    if(numberOfSelectedIngredients == 0)
-                                    {
-
+                                    if (numberOfSelectedIngredients == 0) {
+                                        eventsListener.onFridgeEmpty();
                                     }
                                 }
                                 mAdapter.notifyDataSetChanged();
@@ -248,15 +323,14 @@ public class StartFragment extends Fragment {
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {   //swipe to the right
                                 for (int position : reverseSortedPositions) {
-                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
+                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
-                                    IDs.remove(position);
-                                    countNumberOfAvailableRecipes();
+                                    IDsOfSelectedIngs.remove(position);
+                                    numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
                                     mAdapter.notifyItemRemoved(position);
                                     numberOfSelectedIngredients--;
-                                    if(numberOfSelectedIngredients == 0)
-                                    {
-
+                                    if (numberOfSelectedIngredients == 0) {
+                                        eventsListener.onFridgeEmpty();
                                     }
                                 }
                                 mAdapter.notifyDataSetChanged();
@@ -266,7 +340,9 @@ public class StartFragment extends Fragment {
         selectedIngredients.addOnItemTouchListener(swipeTouchListener);
     }
 
-    public interface onImageButtonClickListener {
-        public void onClick();
+    public interface StartFragmentEventsListener {
+        public void onImgBtnClick();
+
+        public void onFridgeEmpty();
     }
 }

@@ -21,7 +21,7 @@ import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.R;
 
 
-public class StartActivity extends AppCompatActivity implements StartFragment.onImageButtonClickListener {
+public class StartActivity extends AppCompatActivity implements StartFragment.StartFragmentEventsListener {
 
     ActionBarDrawerToggle mDrawerToggle;
     DrawerLayout mDrawerLayout;
@@ -59,7 +59,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.on
 
         // setUpUserSettings();     //this function initiate settings
 
-        startFragment.fillSelectedIngridients();
+        startFragment.numberOfSelectedIngredients = startFragment.fillSelectedIngridients();
         if (startFragment.numberOfSelectedIngredients != 0) {
             fTransaction = getFragmentManager().beginTransaction();
             fTransaction.replace(R.id.startFragmentContainer, startFragment);
@@ -190,8 +190,15 @@ public class StartActivity extends AppCompatActivity implements StartFragment.on
 
 
     @Override
-    public void onClick() {
+    public void onImgBtnClick() {
         Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);  //listner to the recipe list activity
         startActivity(intent);
+    }
+
+    @Override
+    public void onFridgeEmpty() {
+        fTransaction = getFragmentManager().beginTransaction();
+        fTransaction.replace(R.id.startFragmentContainer, imgFragment);
+        fTransaction.commit();
     }
 }
