@@ -10,7 +10,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorMain</item>
-
+        <item name="android:textColorPrimary">@android:color/white</item>
         <!-- colorPrimaryDark is used for the status bar -->
         <item name="colorPrimaryDark">@color/colorMainDark</item>
 

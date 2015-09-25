@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
         app:viewpager_logoMarginTop="100dp"
-        app:viewpager_color="@color/colorPrimary"
+        app:viewpager_color="@color/white"
         app:viewpager_headerHeight="200dp"
         app:viewpager_headerAlpha="1.0"
 

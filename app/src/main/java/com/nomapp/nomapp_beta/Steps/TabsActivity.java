@@ -37,12 +37,18 @@ public class TabsActivity extends AppCompatActivity {
 
 
 
+
         setTitle("");
 
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
         toolbar = mViewPager.getToolbar();
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //mViewPager.getPagerTitleStrip().setDividerColor(R.color.white);
+        mViewPager.getPagerTitleStrip().setTextColor(getResources().getColor(R.color.white));
+        //mViewPager.getPagerTitleStrip().setIndicatorColor(R.color.white);
+        //mViewPager.
+        mViewPager.getPagerTitleStrip().getIndicatorColor();
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -67,10 +73,11 @@ public class TabsActivity extends AppCompatActivity {
                 return CookingStepsRecyclerViewFragment.newInstance(s, position);
             }
 
+
             @Override
-            public int getCount(){
+            public int getCount() {
                 Intent intent = getIntent();
-                int count =  intent.getIntExtra("numberOfSteps", 0);
+                int count = intent.getIntExtra("numberOfSteps", 0);
                 return count;
             }
 
@@ -83,18 +90,20 @@ public class TabsActivity extends AppCompatActivity {
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
+
                 switch (page % 2) {
                     case 0:
                         return HeaderDesign.fromColorAndDrawable(
-                                R.color.colorMainDark,
+                                getResources().getColor(R.color.colorMain),
                                 getResources().getDrawable(R.drawable.sushi));
                     case 1:
                         return HeaderDesign.fromColorAndDrawable(
-                                R.color.colorMainDark,
+                                getResources().getColor(R.color.colorMain),
                                 getResources().getDrawable(R.drawable.maxresdefault));
 
 
                 }
+
 
                 //execute others actions if needed (ex : modify your header logo)
                 return null;
@@ -103,17 +112,7 @@ public class TabsActivity extends AppCompatActivity {
 
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
-/*
-        View logo = findViewById(R.id.logo_white);
-        if (logo != null)
-            logo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mViewPager.notifyHeaderChanged();
-                    Toast.makeText(getApplicationContext(), "Yes, the title is clickable", Toast.LENGTH_SHORT).show();
-                }
-            });
-*/
+
     }
 
     @Override
