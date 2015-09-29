@@ -34,6 +34,7 @@ public class StartFragment extends Fragment {
     SwipeableRecyclerViewTouchListener swipeTouchListener;
 
     ArrayList<String> forSelectedIngridients;
+    ArrayList<ArrayList<Integer>> ingredientsForAvailableRecipes;
     ArrayList<Integer> IDsOfSelectedIngs;
     ArrayList<Integer> IDsOfAvailableRecipes;
 
@@ -141,6 +142,8 @@ public class StartFragment extends Fragment {
         boolean isAvailable;
 
         IDsOfAvailableRecipes = new ArrayList<>();
+        ingredientsForAvailableRecipes = new ArrayList<>();
+
         ArrayList<Integer> ingredientsForCurrentRecipe; //Parsed from database ingredients for current recipe;
 
         Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
@@ -164,8 +167,10 @@ public class StartFragment extends Fragment {
                     //Check is current recipe available.
                     isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
                     if (isAvailable){
-                        //If it is available we note it in the database,add its id to the ArrayList
-                        //and increment numberOfAvailableIngredients.
+                        //If it is available we note it in the database,add its id to the ArrayList,
+                        //add ingredients for recipe to the ArrayList
+                        // and increment numberOfAvailableIngredients.
+                        ingredientsForAvailableRecipes.add(ingredientsForCurrentRecipe);
                         Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                         IDsOfAvailableRecipes.add(cursor.getInt(0));
                         numOfAvlRecipes++;
@@ -207,9 +212,9 @@ public class StartFragment extends Fragment {
             //Move to, for example, first ID, or second, etc.
             cursor.moveToPosition(IDsOfAvailableRecipes.get(counter) - 1);
 
-            //Parse ingredients to ArrayList from the database.
-            //How it looks in the database: (1,3,35,50.).
-            ingredientsForCurrentRecipe = convertIngridientsToArrayList(cursor.getString(2));
+            //After swipe we get ingredients from the ArrayList
+            //And we don't need to make query to the database.
+            ingredientsForCurrentRecipe = ingredientsForAvailableRecipes.get(counter);
 
             //Check is current recipe available.
             isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
@@ -222,6 +227,7 @@ public class StartFragment extends Fragment {
                 //ArrayList of IDs.
                 Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                 IDsOfAvailableRecipes.remove(counter);
+                ingredientsForAvailableRecipes.remove(counter);
             }
         }
         cursor.close();
