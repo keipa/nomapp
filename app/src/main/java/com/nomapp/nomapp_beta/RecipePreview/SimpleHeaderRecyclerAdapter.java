@@ -103,7 +103,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
             case VIEW_TYPE_INFO:
                 return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note, parent, false),
-                        cursor.getInt(6), cursor.getInt(8));
+                        cursor.getString(6), cursor.getInt(8));
 
             case VIEW_TYPE_DESCRIPTION:
                 return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));
@@ -134,12 +134,12 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         TextView timeText;
         TextView personText;
 
-        public InfoViewHolder(View view, int time, int persons) {
+        public InfoViewHolder(View view, String time, int persons) {
             super(view);
             timeText = (TextView) view.findViewById(R.id.timeText);
             personText = (TextView) view.findViewById(R.id.personsText);
             personText.setText(persons+"");
-            timeText.setText(time+"m");
+            timeText.setText(time);
         }
     }
 

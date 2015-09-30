@@ -42,173 +42,40 @@
     </string-array>
 
 
-    <string name="snacks_jellied_meat1">Положить мясо, почищенные морковь и лук в кастрюлю, залить 1.5 л воды, варить 1 час.</string>
-    <string name="snacks_jellied_meat2">За 15 минут до готовности добавить лавровый лист, перец, посолить.</string>
-    <string name="snacks_jellied_meat3">Желатин замочить в 150 мл холодной кипяченой воды и оставить на то время, которое указано на упаковке.</string>
-    <string name="snacks_jellied_meat4">Затем бульон процедить (всего необходимо 500 мл бульона), добавить желатин, поставить на огонь и довести до кипения, но не кипятить.</string>
-<string name="snacks_jellied_meat5">Белки отделить от желтков.
-Белки нарезать кубиками (желтки нам не понадобятся).</string>
-    <string name="snacks_jellied_meat6">Морковь нарезать кубиками.</string>
-    <string name="snacks_jellied_meat7">Мясо нарезать кубиками.</string>
-    <string name="snacks_jellied_meat8">Смешать мясо, белки, морковь.</string>
-    <string name="snacks_jellied_meat9">В формочки выложить клюкву и зелень.</string>
-    <string name="snacks_jellied_meat10">На клюкву и зелень выложить мясо с белками и морковью.</string>
-    <string name="snacks_jellied_meat11">Залить бульоном.</string>
-    <string name="snacks_jellied_meat12">Поставить в холодильник и охлаждать до тех пор, пока заливное полностью не застынет (около 5–7 часов).</string>
+    <string-array name="anchousny_oil">
+        <item>Селедку очистить и мякоть, снятую с костей, замочить в холодной воде на 10–12 часов,
+            затем пропустить через мясорубку или мелко изрубить ножом.</item>
+        <item>Смешать с маслом, придать нужную форму и охладить.</item>
+        <item>Сверху можно красиво оформить размягченным сливочным маслом.</item>
+    </string-array>
 
-    <string name="snacks_sea_shell1">Булочки разрезать вдоль, но не до конца.</string>
-    <string name="snacks_sea_shell2">Из нижней части вынуть мякиш.</string>
-    <string name="snacks_sea_shell3">На растительном масле пожарить мякиш до золотистого цвета.</string>
-    <string name="snacks_sea_shell4">Яйца натереть на мелкой терке.</string>
-    <string name="snacks_sea_shell5">Креветки мелко нарезать.</string>
-    <string name="snacks_sea_shell6">Смешать сухарики, креветки, яйца, икру.</string>
-    <string name="snacks_sea_shell7">Заправить майонезом. Если необходимо, посолить.</string>
-    <string name="snacks_sea_shell8">Булочки начинить салатом. Чтобы булочки не закрывались, поставить зубочистку.</string>
-<string name="snacks_sea_shell9">Для украшения можно положить перепелиное яйцо, оно будет символизировать жемчужину.
-Если перепелиных яиц нет, можно вырезать овал из белка куриного яйца.</string>
-    <string name="snacks_sea_shell10">Приятного аппетита!</string>
+    <string-array name="oranges_or_limes_in_sugar">
+        <item>Обмытые апельсины или лимоны нарезать тонкими ломтиками, удалить зер-на, уложить
+            рядами в стеклянную банку, пересыпав каждый ряд сахаром.</item>
+        <item>В таком виде апельсины или лимоны оставить в теплой комнате на три дня, чтобы сахар
+            растворился и образовался сироп.</item>
+        <item>Хранить апельсины и лимоны в сахаре нужно в холодном месте. </item>
+    </string-array>
 
-    <string name="snacks_easter1">Куриное филе отварить до готовности (варить около 20 минут после закипания).</string>
-    <string name="snacks_easter2">Готовое филе остудить, мелко нарезать.</string>
-    <string name="snacks_easter3">Лук мелко нарезать.</string>
-<string name="snacks_easter4">Залить его кипятком, оставить на 10 минут.
-Затем промыть в холодной воде (это делается для того, чтобы лук не горчил).</string>
-    <string name="snacks_easter5">Перец очистить от семян, нарезать кубиками.</string>
-    <string name="snacks_easter6">Зелень мелко нарезать.</string>
-    <string name="snacks_easter7">Смешать филе, перец, лук, зелень.Посолить, поперчить.</string>
-    <string name="snacks_easter8">Добавить немного сметаны (около 1–2 ст.л.), перемешать.</string>
-    <string name="snacks_easter9">Картофель натереть на терке для корейской моркови, либо нарезать очень тонкой соломкой.</string>
-<string name="snacks_easter10">В большом количестве разогретого масла пожарить картофель до золотистого цвета.
-Жарить лучше небольшими порциями.
-Готовый картофель промокнуть бумажным полотенцем, чтобы убрать излишки жира.</string>
-    <string name="snacks_easter11">На тарелки выложить салат.</string>
-    <string name="snacks_easter12">На салат выложить картофель.</string>
-    <string name="snacks_easter13">В серединку выложить яйца.</string>
+    <string-array name="orange_juice_with_cream">
+        <item>Взбить 1/2 яичного желтка (на 1 стакан напитка) с 2 ст. ложками сахару, добавить 1/4
+            стакана апельсинового сока.</item>
+        <item>Перемешать, влить в бокал и долить сливками.</item>
+    </string-array>
 
-    <string name="snacks_ham_salad1">На ветчину выложить салат.</string>
-    <string name="snacks_ham_salad2">Свернуть рулетик.</string>
-    <string name="snacks_ham_salad3">Завязать луком.</string>
-    <string name="snacks_ham_salad4">Хлеб нарезать треугольниками, выложить на них рулетики.</string>
-    <string name="snacks_ham_salad5">Приятного аппетита!</string>
+    <string-array name="orange_drink">
+        <item>Смешать 3/4 стакана молока и 1/4 стакана апельсинового сока.</item>
+        <item>Lобавить 1 ст. ложку сахару и все это взбить веничком, чтобы образовалась однородная
+            масса. Подать в охлажденном виде.</item>
+    </string-array>
 
-    <string name="snacks_rolls_of_pita1">Зелень мелко нарезать.</string>
-    <string name="snacks_rolls_of_pita2">Семгу нарезать тонкими пластиками.</string>
-    <string name="snacks_rolls_of_pita3">Лаваш смазать тонким слоем сыра.</string>
-    <string name="snacks_rolls_of_pita4">Выложить семгу.</string>
-    <string name="snacks_rolls_of_pita5">Посыпать зеленью.</string>
-    <string name="snacks_rolls_of_pita6">Лаваш с семгой свернуть в рулет и положить на 10–15 минут в морозилку. Затем достать и нарезать кусочками.</string>
-    <string name="snacks_rolls_of_pita7">Также сделать рулетики с ветчиной.</string>
-    <string name="snacks_rolls_of_pita8">Приятного аппетита!</string>
-
-    <string name="snacks_pate_with_chicken1">Желатин замочить в 150 мл холодной кипяченой воды и оставить на 1 час.</string>
-    <string name="snacks_pate_with_chicken2">Лук мелко нарезать.</string>
-    <string name="snacks_pate_with_chicken3">Помидоры нарезать кубиками.</string>
-    <string name="snacks_pate_with_chicken4">Зелень мелко нарезать.</string>
-    <string name="snacks_pate_with_chicken5">Морковь (сырую) натереть на мелкой терке.</string>
-    <string name="snacks_pate_with_chicken6">Сыр натереть на мелкой терке.</string>
-    <string name="snacks_pate_with_chicken7">Обжарить лук на растительном масле до золотистого цвета.</string>
-    <string name="snacks_pate_with_chicken8">Добавить печень, посолить, жарить до готовности (10–15 минут). Остудить.</string>
-<string name="snacks_pate_with_chicken9">Желатин довести до кипения, но не кипятить.
-Затем немного остудить.</string>
-    <string name="snacks_pate_with_chicken10">Пропустить печень через мясорубку.</string>
-    <string name="snacks_pate_with_chicken11">Смешать печень и морковь.</string>
-    <string name="snacks_pate_with_chicken12">Добавить половину желатина в печеночную массу, перемешать.</string>
-    <string name="snacks_pate_with_chicken13">Смешать сыр, помидоры, зелень.</string>
-    <string name="snacks_pate_with_chicken14">Добавить оставшийся желатин в сырную массу, перемешать.</string>
-    <string name="snacks_pate_with_chicken15">Выложить половину печени в форму (я использовала форму размером 11×23 см, и высотой 5 см), разровнять.</string>
-    <string name="snacks_pate_with_chicken16">На печень выложить весь сыр, разровнять.</string>
-    <string name="snacks_pate_with_chicken17">На сыр выложить оставшуюся печень, разровнять. Поставить в холодильник на 5–6 часов.</string>
-    <string name="snacks_pate_with_chicken18">Приятного аппетита!</string>
-
-
-    <string name="snacks_stuffed_tomatoes1">У помидорок срезать верхушку.</string>
-    <string name="snacks_stuffed_tomatoes2">При помощи чайной ложки вынуть мякоть (мякоть нам пригодится для начинки № 2).</string>
-    <string name="snacks_stuffed_tomatoes3">Базилик мелко нарезать.</string>
-    <string name="snacks_stuffed_tomatoes4">Креветки мелко нарезать.</string>
-    <string name="snacks_stuffed_tomatoes5">Авокадо почистить, вынуть косточку, мякоть нарезать мелкими кубиками.</string>
-    <string name="snacks_stuffed_tomatoes6">Семгу мелко нарезать.</string>
-    <string name="snacks_stuffed_tomatoes7">Готовим начинку № 1. Яйцо натереть на мелкой терке.</string>
-    <string name="snacks_stuffed_tomatoes8">Добавить креветки, немного посолить, поперчить.</string>
-    <string name="snacks_stuffed_tomatoes9">Добавить Альметте (или сметану), хорошо перемешать.</string>
-    <string name="snacks_stuffed_tomatoes10">Для начинки № 2 смешать мякоть из помидор (сок слить), базилик, Альметте.Посолить, поперчить.</string>
-    <string name="snacks_stuffed_tomatoes11">Готовим начинку № 3. Смешать авокадо и семгу.</string>
-    <string name="snacks_stuffed_tomatoes12">Добавить Альметте, хорошо перемешать.</string>
-    <string name="snacks_stuffed_tomatoes13">Помидоры нафаршировать полученными начинками.</string>
-
-    <string name="snacks_hawaiian1">В форму для запекания выложить кусочки хлеба.</string>
-    <string name="snacks_hawaiian2">На хлеб выложить нарезанную ветчину.</string>
-    <string name="snacks_hawaiian3">На ветчину выложить кусочки ананаса.</string>
-    <string name="snacks_hawaiian4">Сверху накрыть пластиками сыра и поставить в духовку. Запекать при температуре 180 градусов до золотистого цвета (около 15–20 минут).</string>
-    <string name="snacks_hawaiian5">Готовые тостики можно украсить помидорами черри или маслинами.</string>
-
-    <string name="snacks_canape1">Насадить на шпажку кукурузу, кусочек болгарского перца, кубик ветчины, дольку свежего огурчика.</string>
-    <string name="snacks_canape2">Ветчину, сыр нарезать тонкими ломтиками. При помощи формочки, или ножом, вырезать одинаковые фигурки из ветчины, сыра и болгарского перца. Насадить на шпажку.</string>
-    <string name="snacks_canape3">На шпажку насадить креветку, проткнув хвостик. Далее насаживаем кусочек болгарского перца, кружок маслинки, кубик сыра, далее насаживаем другой конец креветки и кубик ветчины.</string>
-    <string name="snacks_canape4">Кружок маслины, кусочек болгарского перца, кружок огурчика, кубик сыра.</string>
-    <string name="snacks_canape5">Кукуруза, кружок огурчика, кусочек помидорки, кубик сыра.</string>
-    <string name="snacks_canape6">На хвостик креветки надеть кружок маслины, насадить креветку на шпажку, далее насадить кубик ветчины.</string>
-    <string name="snacks_canape7">Болгарский перец, кружок маслины, сыр, огурец, ветчина.</string>
-    <string name="snacks_canape8">Насаживаем хвостик креветки, корнишон, ветчину, далее другой конец креветки, кружок маслины, кубик сыра.</string>
-    <string name="snacks_canape9">Целая маслина, болгарский перец, лучок, кружок огурчика, шампиньон.</string>
-    <string name="snacks_canape10">Корнишон, лучок, болгарский перец, кубик ветчины.</string>
-    <string name="snacks_canape11">Шампиньон, ветчина, лучок, огурчик, сыр.</string>
-    <string name="snacks_canape12">Кружок маслины, болгарский перец, кубик ветчины, кубик хлеба.</string>
-
-    <string name="snacks_stuffed_rolls1">Куриное филе отварить до готовности (варить около 25 минут после закипания).</string>
-    <string name="snacks_stuffed_rolls2">Затем филе остудить, мелко нарезать.</string>
-    <string name="snacks_stuffed_rolls3">Помидоры нарезать кубиками (если помидоры слишком сочные, сок можно слить).</string>
-    <string name="snacks_stuffed_rolls4">Смешать филе, помидоры, горошек (воду слить), посолить, поперчить.</string>
-    <string name="snacks_stuffed_rolls5">Заправить майонезом.</string>
-    <string name="snacks_stuffed_rolls6">Сыр натереть на мелкой терке (можно сыр перемешать с начинкой).</string>
-    <string name="snacks_stuffed_rolls7">Булочки разрезать по горизонтали на 2 части.</string>
-    <string name="snacks_stuffed_rolls8">Вынуть мякиш (он нам не пригодится).</string>
-    <string name="snacks_stuffed_rolls9">Обе части булочки наполнить начинкой.</string>
-    <string name="snacks_stuffed_rolls10">Нижнюю часть посыпать сыром.</string>
-    <string name="snacks_stuffed_rolls11">На сыр выложить листья салата.</string>
-    <string name="snacks_stuffed_rolls12">Накрыть второй половиной.Булочки можно немного подогреть, а можно подавать холодными.</string>
-
-
-    <string name="snacks_tomatoes_cucumbers1">Лук нарезать кольцами. Чеснок нарезать небольшими кусочками.</string>
-    <string name="snacks_tomatoes_cucumbers2">Огурцы нарезать кружочками.</string>
-    <string name="snacks_tomatoes_cucumbers3">Перец очистить от семян, нарезать небольшими кусочками.</string>
-    <string name="snacks_tomatoes_cucumbers4">Зелень мелко нарезать.</string>
-    <string name="snacks_tomatoes_cucumbers5">В банки положить лук и чеснок.</string>
-    <string name="snacks_tomatoes_cucumbers6">Выложить помидоры, огурцы, болгарский перец.</string>
-    <string name="snacks_tomatoes_cucumbers7">Сверху выложить укроп.</string>
-    <string name="snacks_tomatoes_cucumbers8">Готовим маринад. В воду добавить сахар, соль, перец горошком. Довести до кипения, кипятить около 3 минут.</string>
-    <string name="snacks_tomatoes_cucumbers9">Горячим отваром залить овощи.</string>
-    <string name="snacks_tomatoes_cucumbers10">В каждую баночку добавить по 2 ст.л. уксуса. Закрыть крышкой. Остудить. Поставить в холодильник на 3–5 дней.</string>
-
-
-    <string name="snacks_hot_sandwiches1">Помидоры нарезать кружочками.</string>
-    <string name="snacks_hot_sandwiches2">У шести кусочков хлеба вынуть мякиш.</string>
-    <string name="snacks_hot_sandwiches3">Кусочки хлеба (целые) выложить в форму для запекания.</string>
-    <string name="snacks_hot_sandwiches4">На хлеб выложить кусочки окорока.</string>
-    <string name="snacks_hot_sandwiches5">На окорок выложить кусочки хлеба (которые без мякиша).</string>
-    <string name="snacks_hot_sandwiches6">Выложить помидоры.</string>
-    <string name="snacks_hot_sandwiches7">Добавить 2 перепелиных (или 1 куриное) яйца.</string>
-    <string name="snacks_hot_sandwiches8">Немного посолить, поперчить.Поставить в духовку. Запекать при температуре 180 градусов до готовности (примерно 20–25 минут).</string>
-    <string name="snacks_hot_sandwiches9">При подаче украсить зеленью.</string>
-
-    <string name="snacks_squash_caviar1">Лук мелко нарезать.</string>
-    <string name="snacks_squash_caviar2">Морковь натереть на средней терке.</string>
-    <string name="snacks_squash_caviar3">Кабачки почистить (если кабачки старые, удалить семена), нарезать кубиками.</string>
-    <string name="snacks_squash_caviar4">На растительном масле обжарить лук.</string>
-    <string name="snacks_squash_caviar5">Добавить морковь, обжарить.</string>
-    <string name="snacks_squash_caviar6">Добавить кабачки, посолить, поперчить, тушить под крышкой около 30 минут.</string>
-    <string name="snacks_squash_caviar7">Добавить выдавленный через чеснокодавку чеснок, тушить около 10 минут.</string>
-    <string name="snacks_squash_caviar8">Добавить томатную пасту.</string>
-    <string name="snacks_squash_caviar9">Перемешать. Тушить около 5 минут.</string>
-    <string name="snacks_squash_caviar10">Готовую икру остудить. Выложить в блендер.</string>
-    <string name="snacks_squash_caviar11">Измельчить.</string>
-    <string name="snacks_squash_caviar12">Приятного аппетита!</string>
-
-    <string name="snacks_pickled_mushrooms1">Грибы почистить.</string>
-    <string name="snacks_pickled_mushrooms2">Чеснок нарезать.</string>
-    <string name="snacks_pickled_mushrooms3">В кастрюлю налить воду. Добавить сахар, соль, перец, лавровый лист, семена горчицы, чеснок, растительное масло. Довести до кипения.</string>
-    <string name="snacks_pickled_mushrooms4">Добавить грибы. Варить в течение 5–7 минут.</string>
-    <string name="snacks_pickled_mushrooms5">Добавить уксус. Варить 5 минут.</string>
-    <string name="snacks_pickled_mushrooms6">В банки выложить шампиньоны, залить горячим маринадом. Остудить, поставить в холодильник. Через сутки шампиньоны готовы.</string>
-    <string name="snacks_pickled_mushrooms7">Приятного аппетита!</string>
+    <string-array name="anchovies_or_sparts_with_potatoes">
+        <item>Свежесваренный очищенный картофель протереть сквозь решето или сито над салатником и
+            уложить горкой.</item>
+        <item>У основания горки уложить анчоусы, свернутые колечком, или кильки, очищенные и без
+            костей.</item>
+        <item>Между ними положить мелко нарезанный зеленый лук.</item>
+        <item>Картофель полить приготовленным соусом из масла, уксуса, соли и перца.</item>
+    </string-array>
 
 </resources>

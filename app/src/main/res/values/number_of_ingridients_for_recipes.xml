@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="number_of_ingridients_for_stuffer_eggs">
-        Здесь ингредиенты.
+        Здесь ингредиенты.\n
     </string>
 
+    <string name="number_of_ingredients_for_anchousny_oil">
+        Масло сливочное - 25 г\n
+        Сельдь - 25 г\n
+    </string>
+
+    <string name="number_of_ingredients_for_oranges_or_limes_in_sugar">
+        На 1 кг апельсинов:\n
+        1.5 кг сахара\n
+    </string>
+    
+    <string name="number_of_ingredients_for_orange_juice_with_cream">
+        Желток яичный - 0.5 шт\n
+        Сахар - 2 ст. ложки\n
+        Сок апельсиновый - 0.25 стакана\n
+        Сливки по вкусу\n
+    </string>
+
+    <string name="number_of_ingredients_for_orange_drink">
+        Молоко - 0.75 стакана\n
+        Сок апельсиновый - 0.25 стакана\n
+        Сахар - 1 ст. ложка\n
+    </string>
+
+    <string name="number_of_ingredients_for_anchovies_or_sparts_with_potatoes">
+        5-6 шт. картофеля\n
+        1 ст. ложка растительного масла\n
+        2 ст. ложки уксуса\n
+        Соль и перец по вкусу\n
+    </string>
 </resources>
