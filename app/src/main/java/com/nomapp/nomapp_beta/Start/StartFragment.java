@@ -251,7 +251,7 @@ public class StartFragment extends Fragment {
         int numberOfIngredients = ingredientsForCurrentRecipe.size();
 
         //Check every ingredient in the list of ingredients for current recipe.
-        for (int counter = 0; counter < 3; counter++){
+        for (int counter = 0; counter < numberOfIngredients; counter++){
             cursor.moveToPosition(ingredientsForCurrentRecipe.get(counter) - 1);
 
             if (cursor.getInt(2) != 1){
