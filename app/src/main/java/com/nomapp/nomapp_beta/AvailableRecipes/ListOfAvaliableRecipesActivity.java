@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -29,6 +30,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
     ArrayList<Integer> timeForCooking;
     ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
+    ArrayList<Integer> numberOfIngs;
 
     Cursor cursor;
 
@@ -57,9 +59,8 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         AvlReciepesRecyclerViewAdapter.OnItemTouchListener itemTouchListener = new AvlReciepesRecyclerViewAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                //    Toast.makeText(StartActivity.this, "Tapped " + forSelectedIngridients.get(position), Toast.LENGTH_SHORT).show();        // notification, when you press the element
                 cursor.moveToPosition(IDs.get(position) - 1);
-                // Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, TabsActivity.class);
+
                 Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
                 intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
                 intent.putExtra("cooking", cursor.getString(3));
@@ -70,7 +71,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
             }
         };
 
-        mAdapter = new AvlReciepesRecyclerViewAdapter(availableRecipesArrayList, timeForCooking,numberOfSteps, itemTouchListener);  // setting adapter.
+        mAdapter = new AvlReciepesRecyclerViewAdapter(availableRecipesArrayList, timeForCooking, numberOfSteps, numberOfIngs, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -86,14 +87,15 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         IDs = new ArrayList<>();
         timeForCooking = new ArrayList<>();
         numberOfSteps = new ArrayList<>();
+        numberOfIngs = new ArrayList<>();
 
-        cursor = Database.getDatabase().getRecipes().query(RECIPES_TABLE_NAME,
+        cursor = Database.getDatabase().getGeneralDb().query(RECIPES_TABLE_NAME,
                 new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
                         Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
                         Database.getRecipesNumberOfSteps(), Database.getRecipesTimeForCooking(),
                         Database.getRecipesDescription(), Database.getRecipesNumberOfPersons(),
-                        Database.getRecipesNumberOfIngridients()},
+                        Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfSteps()},
                 null, null, null, null
                 , null);
 
@@ -105,6 +107,7 @@ public class ListOfAvaliableRecipesActivity extends Activity {
                     IDs.add(cursor.getInt(0));
                     timeForCooking.add(cursor.getInt(6));
                     numberOfSteps.add(cursor.getInt(5));
+                    numberOfIngs.add(cursor.getInt(10));
                 }
             } while (cursor.moveToNext());
         }

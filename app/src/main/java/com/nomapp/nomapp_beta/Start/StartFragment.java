@@ -81,10 +81,10 @@ public class StartFragment extends Fragment {
         int number = 0;
         forSelectedIngridients = new ArrayList<>();
         IDsOfSelectedIngs = new ArrayList<>();
-        Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),   //connection to the base
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),   //connection to the base
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientName(),
-                                Database.getIngridientIsChecked()},
+                        {Database.getIngredientId(), Database.getIngredientName(),
+                                Database.getIngredientIsChecked()},
                 null, null, null, null
                 , null);
 
@@ -142,9 +142,9 @@ public class StartFragment extends Fragment {
 
         ArrayList<Integer> ingredientsForCurrentRecipe; //Parsed from database ingredients for current recipe;
 
-        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
                                 Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
                                 Database.getRecipesNumberOfSteps()},
                 null, null, null, null
@@ -167,12 +167,14 @@ public class StartFragment extends Fragment {
                         //add ingredients for recipe to the ArrayList
                         // and increment numberOfAvailableIngredients.
                         ingredientsForAvailableRecipes.add(ingredientsForCurrentRecipe);
-                        Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                        Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
+                                + " SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                         IDsOfAvailableRecipes.add(cursor.getInt(0));
                         numOfAvlRecipes++;
                     } else{
                         //If it is not we also note it in the database.
-                        Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                        Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
+                                + " SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                     }
                 }
             } while (cursor.moveToNext());
@@ -192,9 +194,9 @@ public class StartFragment extends Fragment {
 
         ArrayList<Integer> ingredientsForCurrentRecipe;
 
-        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
                                 Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
                                 Database.getRecipesNumberOfSteps()},
                 null, null, null, null
@@ -216,12 +218,14 @@ public class StartFragment extends Fragment {
             isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
             if (isAvailable){
                 //If it is available we note it in the database and increment numberOfAvlRecipes.
-                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
+                        + " SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                 numberOfAvlRecipes++;
             } else{
                 //If it is not we also note it in the database and remove it's id from the
                 //ArrayList of IDs.
-                Database.getDatabase().getRecipes().execSQL("UPDATE Recipes SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
+                         + " SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                 IDsOfAvailableRecipes.remove(counter);
                 ingredientsForAvailableRecipes.remove(counter);
             }
@@ -235,10 +239,10 @@ public class StartFragment extends Fragment {
     //Check is recipe available. Argument - ingredients which required for recipe.
     private boolean checkIsRecipeAvailable(ArrayList<Integer> ingredientsForCurrentRecipe){
 
-        Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientName(),
-                                Database.getIngridientIsChecked()},
+                        {Database.getIngredientId(), Database.getIngredientName(),
+                                Database.getIngredientIsChecked()},
                 null, null, null, null
                 , null);
 
@@ -309,7 +313,8 @@ public class StartFragment extends Fragment {
                             @Override
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {  //swipe to the left
                                 for (int position : reverseSortedPositions) {
-                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
+                                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
                                     IDsOfSelectedIngs.remove(position);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
@@ -325,7 +330,8 @@ public class StartFragment extends Fragment {
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {   //swipe to the right
                                 for (int position : reverseSortedPositions) {
-                                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
+                                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                                             + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
                                     IDsOfSelectedIngs.remove(position);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();

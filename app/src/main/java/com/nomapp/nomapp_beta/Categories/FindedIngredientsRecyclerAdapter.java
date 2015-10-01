@@ -37,10 +37,10 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.name.setText(names.get(i));
-        Cursor cursor =  Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+        Cursor cursor =  Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientName(),
-                                Database.getIngridientIsChecked()},
+                        {Database.getIngredientId(), Database.getIngredientName(),
+                                Database.getIngredientIsChecked()},
                 null, null, null, null
                 , null);
 
@@ -76,10 +76,10 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
 
             name.setText(names.get(position));
 
-            Cursor cursor =  Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+            Cursor cursor =  Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                     new String[]
-                            {Database.getIngridientId(), Database.getIngridientName(),
-                                    Database.getIngridientIsChecked()},
+                            {Database.getIngredientId(), Database.getIngredientName(),
+                                    Database.getIngredientIsChecked()},
                     null, null, null, null
                     , null);
 

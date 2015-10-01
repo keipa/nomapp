@@ -20,14 +20,18 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
     private ArrayList<String> names;
     private ArrayList<Integer> cookingTimes;
     private ArrayList<Integer> numbersOfSteps;
+    private ArrayList<Integer> numberOfIngs;
 
     private OnItemTouchListener onItemTouchListener;
 
-    public AvlReciepesRecyclerViewAdapter(ArrayList<String> names, ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps, OnItemTouchListener onItemTouchListener) {
+    public AvlReciepesRecyclerViewAdapter(ArrayList<String> names,
+                                          ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps,
+                                          ArrayList<Integer> numberOfIngs, OnItemTouchListener onItemTouchListener) {
         this.names = names;
         this.cookingTimes = cookingTimes;
         this.numbersOfSteps = numbersOfSteps;
         this.onItemTouchListener = onItemTouchListener;
+        this.numberOfIngs = numberOfIngs;
     }
 
     @Override
@@ -53,6 +57,7 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
         private TextView name;
         private TextView time;
         private TextView numberOfSteps;
+        private TextView numberOfIngredients;
         private ImageView image;
 
         public ViewHolder(View itemView, int position) {
@@ -61,12 +66,14 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             name = (TextView) itemView.findViewById(R.id.avlRcpNameTV);
             time = (TextView) itemView.findViewById(R.id.timeTV);
             numberOfSteps = (TextView) itemView.findViewById(R.id.numberOfStepsTV);
+            numberOfIngredients = (TextView) itemView.findViewById(R.id.numOfIngs);
 
             image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);
 
             name.setText(names.get(position));
             time.setText(cookingTimes.get(position) +" мин.");
             numberOfSteps.setText(numbersOfSteps.get(position) + " шагов");
+            numberOfIngredients.setText(numberOfIngs.get(position) + " продуктов");
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

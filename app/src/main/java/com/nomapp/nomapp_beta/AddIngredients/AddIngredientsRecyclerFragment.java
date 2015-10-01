@@ -46,14 +46,14 @@ public class AddIngredientsRecyclerFragment extends Fragment{
         forIngridients = new ArrayList<>();
         IDs = new ArrayList<>();
 
-        Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                 new String[]
-                        {Database.getIngridientId(), Database.getIngridientName(),
-                                Database.getIngridientIsChecked()},
+                        {Database.getIngredientId(), Database.getIngredientName(),
+                                Database.getIngredientIsChecked()},
                 null, null, null, null
                 , null);
 
-        Cursor categoryCursor = Database.getDatabase().getCategories().query(Database.getCategoriesTableName(),
+        Cursor categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getCategoriesTableName(),
                 new String[]
                         {Database.getCategoriesId(), Database.getCategoryName(),
                                 Database.getCategoryIngredients()},
@@ -107,49 +107,14 @@ public class AddIngredientsRecyclerFragment extends Fragment{
     }
 
 
-   /* private void setUpRecyclerView() {
-        MyArrayAdapter adapter = new MyArrayAdapter(this, forIngridients, IDs);
-        listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Cursor cursor = Database.getDatabase().getIngridients().query(TABLE_NAME,
-                        new String[]
-                                {Database.getIngridientId(), Database.getIngridientName(),
-                                        Database.getIngridientIsChecked()},
-                        null, null, null, null
-                        , null);
-
-                cursor.moveToFirst();
-                cursor.moveToPosition(IDs.get(position) - 1);
-                int isChecked = cursor.getInt(2);
-                if (isChecked == 0) {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
-                    //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
-                    Log.d("MY_TAG", "Checked position " + IDs.get(position));
-
-                } else {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.white));
-                    Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
-
-                }
-                cursor.close();
-            }
-        });
-    }
-*/
     void setUpRecyclerView() {
         AddIngredientsRecyclerAdapter.OnItemTouchListener itemTouchListener = new AddIngredientsRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+                Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                         new String[]
-                                {Database.getIngridientId(), Database.getIngridientName(),
-                                        Database.getIngridientIsChecked()},
+                                {Database.getIngredientId(), Database.getIngredientName(),
+                                        Database.getIngredientIsChecked()},
                         null, null, null, null
                         , null);
                 Log.w("MY_LOG", "kek");
@@ -157,13 +122,15 @@ public class AddIngredientsRecyclerFragment extends Fragment{
                 cursor.moveToPosition(IDs.get(position) - 1);
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0) {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
+                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                            + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
                 } else {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
+                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                            + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.white));
                     Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 

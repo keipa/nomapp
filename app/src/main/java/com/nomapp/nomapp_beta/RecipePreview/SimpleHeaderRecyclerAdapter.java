@@ -18,6 +18,7 @@ package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,13 +85,13 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Cursor cursor = Database.getDatabase().getRecipes().query(Database.getRecipesTableName(),
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngridients(),
+                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
                                 Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
                                 Database.getRecipesNumberOfSteps(), Database.getRecipesTimeForCooking(),
                                 Database.getRecipesDescription(), Database.getRecipesNumberOfPersons(),
-                                Database.getRecipesNumberOfIngridients()},
+                                Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfIngredients()},
                 null, null, null, null
                 , null);
 

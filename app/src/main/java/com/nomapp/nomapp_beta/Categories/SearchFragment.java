@@ -48,10 +48,10 @@ public class SearchFragment extends Fragment {
         IDs.clear();
 
         if (enteredText.length() != 0) {
-            Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+            Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                     new String[]
-                            {Database.getIngridientId(), Database.getIngridientName(),
-                                    Database.getIngridientIsChecked()},
+                            {Database.getIngredientId(), Database.getIngredientName(),
+                                    Database.getIngredientIsChecked()},
                     null, null, null, null
                     , null);
 
@@ -79,10 +79,10 @@ public class SearchFragment extends Fragment {
         FindedIngredientsRecyclerAdapter.OnItemTouchListener itemTouchListener = new FindedIngredientsRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                Cursor cursor = Database.getDatabase().getIngridients().query(Database.getIngredientsTableName(),
+                Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                         new String[]
-                                {Database.getIngridientId(), Database.getIngridientName(),
-                                        Database.getIngridientIsChecked()},
+                                {Database.getIngredientId(), Database.getIngredientName(),
+                                        Database.getIngredientIsChecked()},
                         null, null, null, null
                         , null);
                 Log.w("MY_LOG", "kek");
@@ -90,13 +90,15 @@ public class SearchFragment extends Fragment {
                 cursor.moveToPosition(IDs.get(position) - 1);
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0) {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=1 WHERE _id=" + IDs.get(position) + ";");
+                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                            + " + SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
                 } else {
-                    Database.getDatabase().getIngridients().execSQL("UPDATE Ingridients SET checked=0 WHERE _id=" + IDs.get(position) + ";");
+                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                            + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.white));
                     Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 

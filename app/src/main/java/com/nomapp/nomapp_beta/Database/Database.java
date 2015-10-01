@@ -9,15 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
 public class Database {
     private static Database database;
 
-    private SQLiteDatabase ingridients;
-    private SQLiteDatabase recipes;
-    private SQLiteDatabase categories;
+    private SQLiteDatabase generalDb;
 
-    private static final String INGRIDIENTS_DB_NAME = "IngBase.db";
-    private static final String RECIPES_DB_NAME = "RecBase.db";
-    private static final String CATEGORIES_DB_NAME = "categories.db";
+    private static final String DATABASE_NAME = "Database.db";
 
-    private static final String INGREDIENTS_TABLE_NAME = "Ingridients";
+    private static final String INGREDIENTS_TABLE_NAME = "Ingredients";
     private static final String INGRIDIENT_ID = "_id";
     private static final String INGRIDIENT_NAME = "name";
     private static final String IS_CHECKED = "checked";
@@ -25,18 +21,19 @@ public class Database {
     private static final String RECIPES_TABLE_NAME = "Recipes";
     private static final String RECIPES_ID = "_id";
     private static final String RECIPES_NAME = "Name";
-    private static final String RECIPES_INGRIDIENTS = "ingridients";
+    private static final String RECIPES_INGREDIENTS = "ingredients";
     private static final String RECIPES_HOW_TO_COOK = "howToCook";
     private static final String RECIPES_IS_AVAILABLE = "isAvailable";
     private static final String RECIPES_NUMBER_OF_STEPS = "numberOfSteps";
     private static final String RECIPES_TIME_FOR_COOKING = "timeForCooking";
     private static final String RECIPES_DESCRIPTION = "description";
     private static final String RECIPES_NUMBER_OF_PERSONS = "numberOfPersons";
-    private static final String RECIPES_NUMBER_OF_INGRIDIENTS = "numberOfIngridients";
+    private static final String RECIPES_NUMBER_OF_EVERY_ING = "numberOfEveryIng";
+    private static final String RECIPES_NUMBER_OF_INGREDIENTS = "numberOfIngredients";
 
 
 
-    private static final String CATEGORIES_TABLE_NAME = "categories";
+    private static final String CATEGORIES_TABLE_NAME = "Categories";
     private static final String CATEGORIES_ID = "_id";
     private static final String CATEGORY_NAME= "name";
     private static final String CATEGORY_INGREDIENTS= "ingredients";
@@ -53,26 +50,12 @@ public class Database {
     }
 
     private Database(Context context) {
-        ExternalDbOpenHelper dbOpenHelper = new ExternalDbOpenHelper(context, INGRIDIENTS_DB_NAME);
-        ingridients = dbOpenHelper.openDataBase();
-
-        ExternalDbOpenHelper reciepesOpenHelper = new ExternalDbOpenHelper(context, RECIPES_DB_NAME);
-        recipes = reciepesOpenHelper.openDataBase();
-
-        ExternalDbOpenHelper categoriesOpenHelper = new ExternalDbOpenHelper(context, CATEGORIES_DB_NAME);
-        categories = categoriesOpenHelper.openDataBase();
-
-
+        ExternalDbOpenHelper dbOpenHelper = new ExternalDbOpenHelper(context, DATABASE_NAME);
+        generalDb = dbOpenHelper.openDataBase();
     }
 
-    public SQLiteDatabase getIngridients() {
-        return ingridients;
-    }
-    public SQLiteDatabase getRecipes() {
-        return recipes;
-    }
-    public SQLiteDatabase getCategories(){
-        return  categories;
+    public SQLiteDatabase getGeneralDb() {
+        return generalDb;
     }
 
     public static String getRecipesId() {
@@ -81,8 +64,8 @@ public class Database {
     public static String getRecipesName() {
         return RECIPES_NAME;
     }
-    public static String getRecipesIngridients() {
-        return RECIPES_INGRIDIENTS;
+    public static String getRecipesIngredients() {
+        return RECIPES_INGREDIENTS;
     }
     public static String getRecipesHowToCook() {
         return RECIPES_HOW_TO_COOK;
@@ -97,16 +80,17 @@ public class Database {
     public static String getRecipesTimeForCooking() { return RECIPES_TIME_FOR_COOKING; }
     public static String getRecipesDescription() { return RECIPES_DESCRIPTION; }
     public static String getRecipesNumberOfPersons() { return RECIPES_NUMBER_OF_PERSONS; }
-    public static String getRecipesNumberOfIngridients() { return RECIPES_NUMBER_OF_INGRIDIENTS; }
+    public static String getRecipesNumberOfEveryIng() { return  RECIPES_NUMBER_OF_EVERY_ING; }
+    public static String getRecipesNumberOfIngredients() { return RECIPES_NUMBER_OF_INGREDIENTS; }
 
     public static String getIngredientsTableName() {return INGREDIENTS_TABLE_NAME; };
-    public static String getIngridientId() {
+    public static String getIngredientId() {
         return INGRIDIENT_ID;
     }
-    public static String getIngridientName() {
+    public static String getIngredientName() {
         return INGRIDIENT_NAME;
     }
-    public static String getIngridientIsChecked() {
+    public static String getIngredientIsChecked() {
         return IS_CHECKED;
     }
 
