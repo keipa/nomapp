@@ -45,6 +45,7 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
         viewHolder.name.setText(names.get(i));
         viewHolder.time.setText(cookingTimes.get(i) + " мин.");
         viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + " шагов");
+        viewHolder.numberOfIngredients.setText(numberOfIngs.get(i) + " продуктов");
 
     }
 

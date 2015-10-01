@@ -63,9 +63,13 @@ public class ListOfAvaliableRecipesActivity extends Activity {
 
                 Intent intent = new Intent(ListOfAvaliableRecipesActivity.this, RecipePreviewActivity.class);
                 intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
-                intent.putExtra("cooking", cursor.getString(3));
-                intent.putExtra("numberOfSteps", cursor.getInt(5));
-                intent.putExtra("nameOfRecipe", cursor.getString(1));
+                int x = IDs.get(position) - 1;
+                intent.putExtra("cooking", cursor.getString(6));
+                String y = cursor.getString(6);
+                intent.putExtra("numberOfSteps", numberOfSteps.get(position));
+                int n = numberOfSteps.get(position);
+                intent.putExtra("nameOfRecipe", availableRecipesArrayList.get(position));
+                String nr = availableRecipesArrayList.get(position);
                 startActivity(intent);
                 cursor.close();
             }
@@ -89,25 +93,24 @@ public class ListOfAvaliableRecipesActivity extends Activity {
         numberOfSteps = new ArrayList<>();
         numberOfIngs = new ArrayList<>();
 
-        cursor = Database.getDatabase().getGeneralDb().query(RECIPES_TABLE_NAME,
+        cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
-                        Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
-                        Database.getRecipesNumberOfSteps(), Database.getRecipesTimeForCooking(),
-                        Database.getRecipesDescription(), Database.getRecipesNumberOfPersons(),
-                        Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfSteps()},
+                        {Database.getRecipesId(), Database.getRecipesName(),
+                                Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
+                                Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
+                        Database.getRecipesHowToCook()},
                 null, null, null, null
                 , null);
 
         cursor.moveToFirst();
         if (!cursor.isAfterLast()) {
             do {
-                if (cursor.getInt(4) != 0) {
+                if (cursor.getInt(2) != 0) {
                     availableRecipesArrayList.add(cursor.getString(1));
                     IDs.add(cursor.getInt(0));
-                    timeForCooking.add(cursor.getInt(6));
-                    numberOfSteps.add(cursor.getInt(5));
-                    numberOfIngs.add(cursor.getInt(10));
+                    timeForCooking.add(cursor.getInt(4));
+                    numberOfSteps.add(cursor.getInt(3));
+                    numberOfIngs.add(cursor.getInt(5));
                 }
             } while (cursor.moveToNext());
         }

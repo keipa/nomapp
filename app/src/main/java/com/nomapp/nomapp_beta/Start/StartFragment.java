@@ -16,6 +16,7 @@ import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListen
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Created by antonid on 24.09.2015.
@@ -280,17 +281,20 @@ public class StartFragment extends Fragment {
     //How it looks in the database: for example (1,3,35,50.).
     //WARNING: I don't comment this function because it is not optimized. I will rewrite it.
     private ArrayList<Integer> convertIngridientsToArrayList(String toConvert) { // parsing requed ingridients for every recipe from Database (part 2)
-        ArrayList<Integer> converted = new ArrayList<Integer>();
-
+        ArrayList<Integer> converted = new ArrayList<>();
+        Stack<Integer> temporaryStack = new Stack<>();
         int counter = 0;
         int factor = 1;
         int currentIngridient = 0;
         int size = toConvert.length();
         for (counter = 0; counter < size; counter++) {
             while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
-                currentIngridient += (toConvert.charAt(counter) - '0') * factor;
-                factor *= 10;
+                temporaryStack.push(toConvert.charAt(counter) - '0');
                 counter++;
+            }
+            while (!temporaryStack.empty()){
+                currentIngridient += temporaryStack.pop() * factor;
+                factor *= 10;
             }
             factor = 1;
             converted.add(currentIngridient);

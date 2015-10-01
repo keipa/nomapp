@@ -91,7 +91,7 @@ public class SearchFragment extends Fragment {
                 int isChecked = cursor.getInt(2);
                 if (isChecked == 0) {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
-                            + " + SET checked=1 WHERE _id=" + IDs.get(position) + ";");
+                            + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
