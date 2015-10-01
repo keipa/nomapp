@@ -3,30 +3,22 @@ package com.nomapp.nomapp_beta.Categories;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
-import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.ArrayList;
@@ -38,12 +30,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
 
     EditText enteredText;
     ImageButton back;
-
-    RecyclerView findedIngsRecycler;
-    ArrayList<String> findedIngsArray;
-    ArrayList<Integer> IDs;
-
-    FindedIngredientsRecyclerAdapter mAdapter;
 
     GridViewFragment gridViewFragment;
     SearchFragment searchFragment;

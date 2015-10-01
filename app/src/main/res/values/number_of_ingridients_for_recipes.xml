@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="number_of_ingridients_for_stuffer_eggs">
         Здесь ингредиенты.\n
@@ -32,5 +32,32 @@
         1 ст. ложка растительного масла\n
         2 ст. ложки уксуса\n
         Соль и перец по вкусу\n
+    </string>
+
+	<string name="number_of_ingredients_for_tasty_oli_for_fish">
+        1 л растительного масла\n
+        35–50 г  петрушки\n
+        35–50 г  сельдерея\n
+        Пряности\n
+    </string>
+
+	<string name="number_of_ingredients_for_tasty_uksus">
+        1 л уксуса\n
+        100 г эстрагона\n
+        100 г сельдерея\n
+        100 г укропа\n
+    </string>
+
+<string name="number_of_ingredients_for_artishoks">
+        Артишоки\n
+        1 лимон\n
+    </string>
+<string name="number_of_ingredients_for_abricos_juice">
+        3,7 кг абрикосов\n
+        450 г сахара\n
+    </string>
+
+<string name="number_of_ingredients_for_arbus_honey">
+        1 арбуз\n
     </string>
 </resources>
