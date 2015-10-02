@@ -20,12 +20,13 @@
             android:layout_height="150dp"
             android:textColor="#FF9800"
             android:textSize="24sp"
-            android:text="Sample_Text"
+            android:text="Информация"
             android:paddingTop="10dp"
             android:gravity="center_horizontal"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:fontFamily="sans-serif-condensed" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,6 +40,40 @@
             android:layout_alignParentStart="true"
             android:paddingTop="10dp" />
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:id="@+id/view"
+            android:layout_above="@+id/timeText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:id="@+id/viewVerticalRight"
+            android:layout_toLeftOf="@+id/timeText"
+            android:layout_toStartOf="@+id/timeText"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="40dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+
+            android:layout_toLeftOf="@+id/textView3"
+            android:layout_toStartOf="@+id/textView3"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,10 +81,10 @@
             android:text="Кол-во порций"
             android:id="@+id/textView3"
             android:layout_alignTop="@+id/textView2"
+            android:paddingTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:paddingRight="30dp"
-            android:paddingTop="10dp" />
+            android:layout_marginRight="30dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,9 +107,9 @@
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignStart="@+id/textView3"
             android:textColor="#FF9800"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:fontFamily="sans-serif-condensed" />
+            android:fontFamily="sans-serif-condensed"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignEnd="@+id/textView3" />
 
         <TextView
             android:layout_width="wrap_content"

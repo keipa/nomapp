@@ -13,11 +13,22 @@
         app:popupTheme="@style/Theme.AppCompat"
         app:theme="@style/ToolbarTheme" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/availableReciepesLW"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/avl_recipes_recycler_cont"
+        android:orientation="vertical">
+
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.nomapp.nomapp_beta.AvailableRecipes.AvlRecipesRecyclerFragment"
+            android:id="@+id/fragment"
+            android:layout_gravity="center_horizontal"
+            tools:layout="@layout/fragment_recycler_avl_recipes" />
+    </LinearLayout>
 
 </RelativeLayout>
