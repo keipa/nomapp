@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="number_of_ingridients_for_stuffer_eggs">
         Здесь ингредиенты.\n
@@ -60,4 +60,78 @@
 <string name="number_of_ingredients_for_arbus_honey">
         1 арбуз\n
     </string>
+<string name="number_of_ingredients_for_babka_iz_belogo">
+	500 г яблок\n
+	1 стакан молока\n
+	1 яйцо\n
+	3/4 стакана сахара\n
+	3 ст. ложки сливочного масла\n
+</string>
+
+<string name="number_of_ingredients_for_baklajani_s_lukom">
+	2 баклажана\n
+	2 головки лука\n
+	3 столовые ложки муки\n
+	1/2 стакана сметаны\n
+	3 столовые ложки масла\n
+</string>
+
+<string name="number_of_ingredients_for_baklazani_v_smetane">
+	2 баклажана\n
+	1 ст. ложка муки\n
+	1 стакан сметаны\n
+	2 ст. ложки масла\n
+</string>
+
+<string name="number_of_ingredients_for_baklazani_farsh">
+	2 баклажана\n
+	1 ст. ложка муки\n
+	1 стакан сметаны\n
+	2 ст. ложки масла \n
+</string>
+
+<string name="number_of_ingredients_for_baranina_jarenaya">
+	Баранина\n
+	2-3 ложки масла\n
+</string>
+
+<string name="number_of_ingredients_for_baranina_v_belom_souse">
+	500 г баранины\n
+	600 г картофеля\n
+	2 головки лука\n
+	2 шт. моркови\n
+	1 ст. ложка муки (для соуса). \n
+	1 ст. ложка масла (для соуса). \n
+</string>
+
+<string name="number_of_ingredients_for_baranina_s_zeleni">
+	500 г баранины\n
+	1 стакан фасоли\n
+	1 головку лука\n
+	2 ст. ложки масла\n
+</string>
+
+<string name="number_of_ingredients_for_baranina_s_risom">
+	Баранина\n
+	Лук\n
+	1 стакан риса\n
+</string>
+
+<string name="number_of_ingredients_for_baranina_s_fasoliu">
+	500 г баранины\n
+	1 стакан фасоли\n
+	1 головка лука\n
+	200 г. помидоров\n
+	2 ст. ложки масла\n
+</string>
+
+<string name="number_of_ingredients_for_baranina_tushonaya_s_ovo">
+	500 г баранины\n
+	600 г картофеля\n
+	2 шт. моркови\n
+	1 головку лука\n
+	1 репу\n
+	200 г. капусты\n
+</string>
+
 </resources>
