@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -124,14 +127,14 @@ public class AddIngredientsRecyclerFragment extends Fragment{
                 if (isChecked == 0) {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                    (view.findViewById(R.id.name_of_ingredient_tv)).setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
                 } else {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.white));
+                    (view.findViewById(R.id.name_of_ingredient_tv)).setBackgroundColor(getResources().getColor(R.color.white));
                     Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 
                 }

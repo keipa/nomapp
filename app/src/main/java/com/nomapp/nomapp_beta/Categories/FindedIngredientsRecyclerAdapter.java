@@ -30,7 +30,7 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_ingredient, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_ingregient_color, viewGroup, false);
         return new ViewHolder(v, i);
     }
 
@@ -48,12 +48,12 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
         cursor.moveToPosition(IDs.get(i) - 1);
         int isChecked = cursor.getInt(2);
         if (isChecked == 1) {
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getResources()
+            viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.chosenElement)); // второй вариант
             //    Log.w("LOG", IDs.get(position - 1).toString()
             //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
         } else{
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getResources()
+            viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.white)); // второй вариант
         }
 
@@ -72,7 +72,7 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
         public ViewHolder(View itemView, int position) {
             super(itemView);
 
-            name = (TextView) itemView.findViewById(R.id.nameOfIngTextView);
+            name = (TextView) itemView.findViewById(R.id.name_of_ingredient_tv);
 
             name.setText(names.get(position));
 
@@ -87,11 +87,11 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
             cursor.moveToPosition(IDs.get(position) - 1);
             int isChecked = cursor.getInt(2);
             if (isChecked == 1) {
-                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
+                name.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
             //    Log.w("LOG", IDs.get(position - 1).toString()
               //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
             } else{
-                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
+                name.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
             }
 
 

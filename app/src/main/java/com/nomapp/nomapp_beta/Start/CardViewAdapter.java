@@ -22,7 +22,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_layout, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_ingregient_color, viewGroup, false);
         return new ViewHolder(v);
     }
 
@@ -41,7 +41,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.card_view_title);
+            title = (TextView) itemView.findViewById(R.id.name_of_ingredient_tv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

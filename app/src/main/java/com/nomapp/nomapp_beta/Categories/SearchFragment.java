@@ -92,14 +92,14 @@ public class SearchFragment extends Fragment {
                 if (isChecked == 0) {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                    view.findViewById(R.id.name_of_ingredient_tv).setBackgroundColor(getResources().getColor(R.color.chosenElement));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
                 } else {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
-                    view.setBackgroundColor(getResources().getColor(R.color.white));
+                    view.findViewById(R.id.name_of_ingredient_tv).setBackgroundColor(getResources().getColor(R.color.white));
                     Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 
                 }

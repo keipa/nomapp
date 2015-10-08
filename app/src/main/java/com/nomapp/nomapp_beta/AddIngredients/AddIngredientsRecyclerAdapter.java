@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.Database.Database;
@@ -30,7 +31,7 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_ingredient, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_ingregient_color, viewGroup, false);
         return new ViewHolder(v, i);
     }
 
@@ -48,12 +49,12 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
         cursor.moveToPosition(IDs.get(i) - 1);
         int isChecked = cursor.getInt(2);
         if (isChecked == 1) {
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getResources()
+            viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.chosenElement)); // второй вариант
             //    Log.w("LOG", IDs.get(position - 1).toString()
             //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
         } else{
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getResources()
+            viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.white)); // второй вариант
         }
 
@@ -67,12 +68,13 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
+        private ImageView image;
 
 
         public ViewHolder(View itemView, int position) {
             super(itemView);
 
-            name = (TextView) itemView.findViewById(R.id.nameOfIngTextView);
+            name = (TextView) itemView.findViewById(R.id.name_of_ingredient_tv);
 
             name.setText(names.get(position));
 
@@ -87,11 +89,11 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
             cursor.moveToPosition(IDs.get(position) - 1);
             int isChecked = cursor.getInt(2);
             if (isChecked == 1) {
-                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
+                name.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
             //    Log.w("LOG", IDs.get(position - 1).toString()
               //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
             } else{
-                itemView.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
+                name.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
             }
 
 
