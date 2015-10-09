@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +24,8 @@ import java.util.Stack;
  * Created by antonid on 24.09.2015.
  */
 public class StartFragment extends Fragment {
+    CountingIngredientsThread countingIngredientsThread;
+    Handler handler;
 
     RecyclerView selectedIngredients;
     ImageButton toRecipesBtn;
@@ -72,7 +76,20 @@ public class StartFragment extends Fragment {
     public void onStart() {
         super.onStart();
         //ArrayList of selected recipes already filled in StartActivity's method.
-        numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+     //   numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                numOfRecipesTV.setText(text);
+            }
+        };
+
+        //creating and starting new thread
+        countingIngredientsThread = new CountingIngredientsThread();
+        countingIngredientsThread.start();
 
         setUpRecyclerView();
         setSwipeTouchListener();
@@ -123,8 +140,8 @@ public class StartFragment extends Fragment {
     }
 //----------------------------------------------------------------------------------------Main algorithm's functions block--------------------------------------------------------------------------------------//
     /*
-    *Algorithm: We check all recipes in the database to availability. Then we save IDs of available
-    * recipes to separate ArrayList.
+    *Algorithm: We check all recipes in the database to availability (in separated thread).
+    * Then we save IDs of available recipes to separate ArrayList.
     * After every swipe we check only already available recipes (their IDs stores in separate
     * ArrayList) because we cant make available new recipe by swipe, only unavailable.
     * Thus we need check only, for example, 3 or 15 or 20 already available recipes after swipe,
@@ -182,7 +199,7 @@ public class StartFragment extends Fragment {
         }
         cursor.close();
 
-        numOfRecipesTV.setText(numOfAvlRecipes + "");
+      //  numOfRecipesTV.setText(numOfAvlRecipes + "");
 
         return numOfAvlRecipes;
     }
@@ -351,6 +368,22 @@ public class StartFragment extends Fragment {
 
         selectedIngredients.addOnItemTouchListener(swipeTouchListener);
     }
+
+    //----------------------------------------------------------Thread for counting number of available recipes------------------------------------------------------------//
+    class CountingIngredientsThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            Log.w("THREAD_TAG", "hello");
+            //ArrayList of selected recipes already filled in StartActivity's method.
+            numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+            Message msg = new Message();
+            msg.obj = numberOfAvailableRecipes + "";
+            handler.sendMessage(msg);
+        }
+    }
+    //----------------------------------------------------------End of thread for counting number of available recipes------------------------------------------------------//
+
 
     public interface StartFragmentEventsListener {
         public void onImgBtnClick();
