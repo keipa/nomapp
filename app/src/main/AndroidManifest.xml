@@ -34,8 +34,8 @@
         <activity android:name=".RecipePreview.RecipePreviewActivity"
             android:label="Preview"></activity>
 
-        <activity android:name=".FindIngredients.SearchIngredientsActivity"
-            android:label="Search">
+        <activity android:name=".AllRecipes.AllRecipesActivity"
+            android:label="All Recipes">
         </activity>
 
 

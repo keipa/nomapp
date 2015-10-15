@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
+import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvaliableRecipesActivity;
 import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.R;
@@ -165,7 +166,15 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
             }
         });
 
-        LinearLayout settingsButton = (LinearLayout) findViewById(R.id.txtSettings);
+        LinearLayout allRecipesButton  = (LinearLayout) findViewById(R.id.txtAllRecipes);
+        allRecipesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDrawerLayout.closeDrawers();
+                Intent intent = new Intent(StartActivity.this, AllRecipesActivity.class);
+                startActivity(intent);
+            }
+        });
       /*  settingsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -26,6 +26,7 @@ import java.util.Stack;
 public class StartFragment extends Fragment {
     CountingIngredientsThread countingIngredientsThread;
     Handler handler;
+    Handler imgBtnEnabler;
 
     RecyclerView selectedIngredients;
     ImageButton toRecipesBtn;
@@ -87,6 +88,16 @@ public class StartFragment extends Fragment {
             }
         };
 
+        imgBtnEnabler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                if (text == "enable")
+                    toRecipesBtn.setEnabled(true);
+                if (text == "disable")
+                toRecipesBtn.setEnabled(false);
+            }
+        };
         //creating and starting new thread
         countingIngredientsThread = new CountingIngredientsThread();
         countingIngredientsThread.start();
@@ -339,6 +350,12 @@ public class StartFragment extends Fragment {
                                     forSelectedIngridients.remove(position);
                                     IDsOfSelectedIngs.remove(position);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
+
+                                    //make unavailable imageButton when we havent available recipes
+                                    if (numberOfAvailableRecipes == 0)
+                                        toRecipesBtn.setEnabled(false);
+                                    else
+                                        toRecipesBtn.setEnabled(true);
                                     mAdapter.notifyItemRemoved(position);
                                     numberOfSelectedIngredients--;
                                     if (numberOfSelectedIngredients == 0) {
@@ -356,6 +373,11 @@ public class StartFragment extends Fragment {
                                     forSelectedIngridients.remove(position);
                                     IDsOfSelectedIngs.remove(position);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
+                                    //make unavailable imageButton when we havent available recipes
+                                    if (numberOfAvailableRecipes == 0)
+                                        toRecipesBtn.setEnabled(false);
+                                    else
+                                        toRecipesBtn.setEnabled(true);
                                     mAdapter.notifyItemRemoved(position);
                                     numberOfSelectedIngredients--;
                                     if (numberOfSelectedIngredients == 0) {
@@ -377,6 +399,15 @@ public class StartFragment extends Fragment {
             Log.w("THREAD_TAG", "hello");
             //ArrayList of selected recipes already filled in StartActivity's method.
             numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+
+            //make unavailable imageButton when we havent available recipes
+            Message enableButton = new Message();
+            if (numberOfAvailableRecipes == 0)
+                enableButton.obj = "disable";
+            else
+                enableButton.obj = "enable";
+            imgBtnEnabler.sendMessage(enableButton);
+
             Message msg = new Message();
             msg.obj = numberOfAvailableRecipes + "";
             handler.sendMessage(msg);
