@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
@@ -93,6 +94,7 @@ public class SearchFragment extends Fragment {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     view.findViewById(R.id.name_of_ingredient_tv).setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                    ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.white));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
@@ -100,6 +102,7 @@ public class SearchFragment extends Fragment {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                     view.findViewById(R.id.name_of_ingredient_tv).setBackgroundColor(getResources().getColor(R.color.white));
+                    ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.black));
                     Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 
                 }
