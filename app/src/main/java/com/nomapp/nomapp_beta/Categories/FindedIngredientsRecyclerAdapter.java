@@ -50,11 +50,15 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
         if (isChecked == 1) {
             viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.chosenElement)); // второй вариант
+            viewHolder.name.setTextColor(viewHolder.itemView.getResources()
+                    .getColor(R.color.white));
             //    Log.w("LOG", IDs.get(position - 1).toString()
             //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
         } else{
             viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.white)); // второй вариант
+            viewHolder.name.setTextColor(viewHolder.itemView.getResources()
+                    .getColor(R.color.black));
         }
 
 //TODO

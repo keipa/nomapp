@@ -48,14 +48,17 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
         cursor.moveToFirst();
         cursor.moveToPosition(IDs.get(i) - 1);
         int isChecked = cursor.getInt(2);
+
         if (isChecked == 1) {
             viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.chosenElement)); // второй вариант
+            viewHolder.name.setTextColor(viewHolder.itemView.getResources().getColor(R.color.white));
             //    Log.w("LOG", IDs.get(position - 1).toString()
             //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
         } else{
             viewHolder.name.setBackgroundColor(viewHolder.itemView.getResources()
                     .getColor(R.color.white)); // второй вариант
+            viewHolder.name.setTextColor(viewHolder.itemView.getResources().getColor(R.color.black));
         }
 
 //TODO
@@ -76,6 +79,7 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
 
             name = (TextView) itemView.findViewById(R.id.name_of_ingredient_tv);
 
+
             name.setText(names.get(position));
 
             Cursor cursor =  Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
@@ -90,10 +94,12 @@ public class AddIngredientsRecyclerAdapter extends RecyclerView.Adapter<AddIngre
             int isChecked = cursor.getInt(2);
             if (isChecked == 1) {
                 name.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
+                name.setTextColor(itemView.getResources().getColor(R.color.white));
             //    Log.w("LOG", IDs.get(position - 1).toString()
               //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
             } else{
                 name.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
+                name.setTextColor(itemView.getResources().getColor(R.color.black));
             }
 
 

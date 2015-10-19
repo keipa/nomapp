@@ -124,10 +124,12 @@ public class AddIngredientsRecyclerFragment extends Fragment{
                 cursor.moveToFirst();
                 cursor.moveToPosition(IDs.get(position) - 1);
                 int isChecked = cursor.getInt(2);
+                ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.black));
                 if (isChecked == 0) {
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
                     (view.findViewById(R.id.name_of_ingredient_tv)).setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                    ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.white));
                     //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
                     Log.d("MY_TAG", "Checked position " + IDs.get(position));
 
@@ -135,6 +137,7 @@ public class AddIngredientsRecyclerFragment extends Fragment{
                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
                             + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
                     (view.findViewById(R.id.name_of_ingredient_tv)).setBackgroundColor(getResources().getColor(R.color.white));
+                    ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.black));
                     Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
 
                 }
