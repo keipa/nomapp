@@ -91,15 +91,27 @@ public class TabsActivity extends AppCompatActivity {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
 
-                switch (page % 2) {
+                switch (page % 5) {
                     case 0:
                         return HeaderDesign.fromColorAndDrawable(
                                 getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.sushi));
+                                getResources().getDrawable(R.drawable.image_for_steps1));
                     case 1:
                         return HeaderDesign.fromColorAndDrawable(
                                 getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.maxresdefault));
+                                getResources().getDrawable(R.drawable.image_for_steps2));
+                    case 2:
+                        return HeaderDesign.fromColorAndDrawable(
+                                getResources().getColor(R.color.colorMain),
+                                getResources().getDrawable(R.drawable.image_for_steps3));
+                    case 3:
+                        return HeaderDesign.fromColorAndDrawable(
+                                getResources().getColor(R.color.colorMain),
+                                getResources().getDrawable(R.drawable.image_for_steps4));
+                    case 4:
+                        return HeaderDesign.fromColorAndDrawable(
+                                getResources().getColor(R.color.colorMain),
+                                getResources().getDrawable(R.drawable.image_for_steps5));
 
 
                 }
