@@ -1,20 +1,30 @@
 package com.nomapp.nomapp_beta.Start;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
+import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
+import com.nineoldandroids.view.ViewHelper;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 import java.util.ArrayList;
@@ -23,16 +33,18 @@ import java.util.Stack;
 /**
  * Created by antonid on 24.09.2015.
  */
-public class StartFragment extends Fragment {
+public class StartFragment extends Fragment implements ObservableScrollViewCallbacks {
     CountingIngredientsThread countingIngredientsThread;
     Handler handler;
     Handler imgBtnEnabler;
 
-    RecyclerView selectedIngredients;
+    ObservableRecyclerView selectedIngredients;
     ImageButton toRecipesBtn;
     TextView numOfRecipesTV;
 
-    CardViewAdapter mAdapter;
+   // CardViewAdapter mAdapter;
+    SimpleHeaderRecyclerAdapter mAdapter;
+
     SwipeableRecyclerViewTouchListener swipeTouchListener;
 
     ArrayList<String> forSelectedIngridients;
@@ -43,6 +55,20 @@ public class StartFragment extends Fragment {
     int numberOfAvailableRecipes;
     int numberOfSelectedIngredients;
 
+    //--------------------------------------------------------Variables for FlexibleSpace------------------------------------------------//
+    private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
+
+    private static final int NUM_OF_ITEMS = 100;
+
+    private View mImageView;
+    private View mOverlayView;
+    private View mRecyclerViewBackground;
+    private TextView mTitleView;
+    private int mActionBarSize;
+    private int mFlexibleSpaceImageHeight;
+    //--------------------------------------------------------End of variables for FlexibleSpace------------------------------------------------//
+
+
     StartFragmentEventsListener eventsListener;
 
     @Override
@@ -50,7 +76,7 @@ public class StartFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.framgent_start, null);
 
-        selectedIngredients = (RecyclerView) v.findViewById(R.id.start_recycler);
+        selectedIngredients = (ObservableRecyclerView) v.findViewById(R.id.start_recycler);
         numOfRecipesTV = (TextView) v.findViewById(R.id.numOfRecipesTV);
 
         toRecipesBtn = (ImageButton) v.findViewById(R.id.startFridgeButton);
@@ -60,6 +86,21 @@ public class StartFragment extends Fragment {
                 eventsListener.onImgBtnClick();
             }
         });
+
+
+        //------------------------------------------------Code for FlexibleSpace-------------------------------------------//
+
+        mImageView = v.findViewById(R.id.container_with_image);
+        mOverlayView = v.findViewById(R.id.overlay);
+        // mRecyclerViewBackground makes RecyclerView's background except header view.
+        mRecyclerViewBackground = v.findViewById(R.id.list_background);
+
+
+        mTitleView = (TextView) getActivity().findViewById(R.id.start_title);
+        mTitleView.setText("");
+        // setTitle(null);
+
+        //-----------------------------------------------End of code for FlexibleSpace-------------------------------------//
 
         return v;
     }
@@ -102,7 +143,44 @@ public class StartFragment extends Fragment {
         countingIngredientsThread = new CountingIngredientsThread();
         countingIngredientsThread.start();
 
-        setUpRecyclerView();
+
+        mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
+        mActionBarSize = getActionBarSize();
+
+        final View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.recycler_header, null);
+        headerView.post(new Runnable() {
+            @Override
+            public void run() {
+                headerView.getLayoutParams().height = mFlexibleSpaceImageHeight;
+            }
+        });
+
+        //List of selectedIngredients already filled in StartActivity
+        setUpRecyclerView(headerView);
+        //setDummyDataWithHeader(recyclerView, headerView);
+
+
+        //since you cannot programmatically add a header view to a RecyclerView we added an empty view as the header
+        // in the adapter and then are shifting the views OnCreateView to compensate
+        final float scale = 1 + MAX_TEXT_SCALE_DELTA;
+        mRecyclerViewBackground.post(new Runnable() {
+            @Override
+            public void run() {
+                ViewHelper.setTranslationY(mRecyclerViewBackground, mFlexibleSpaceImageHeight);
+            }
+        });
+        ViewHelper.setTranslationY(mOverlayView, mFlexibleSpaceImageHeight);
+        mTitleView.post(new Runnable() {
+            @Override
+            public void run() {
+                ViewHelper.setTranslationY(mTitleView, (int) (mFlexibleSpaceImageHeight - mTitleView.getHeight() * scale));
+                ViewHelper.setPivotX(mTitleView, 0);
+                ViewHelper.setPivotY(mTitleView, 0);
+                ViewHelper.setScaleX(mTitleView, scale);
+                ViewHelper.setScaleY(mTitleView, scale);
+            }
+        });
+
         setSwipeTouchListener();
     }
 
@@ -133,7 +211,7 @@ public class StartFragment extends Fragment {
     }
 
 
-    void setUpRecyclerView() {
+    void setUpRecyclerView(View headerView) {
         // setting up visual RecyclerView
         CardViewAdapter.OnItemTouchListener itemTouchListener = new CardViewAdapter.OnItemTouchListener() {
             @Override
@@ -142,11 +220,17 @@ public class StartFragment extends Fragment {
             }
         };
 
-        mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);  // setting adapter.
+        //forSelectedIngredients alreadyFilled in StartActivity.
+       // mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener, headerView);  // setting adapter.
+        mAdapter = new SimpleHeaderRecyclerAdapter(getActivity(), forSelectedIngridients, headerView);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
+        selectedIngredients.setScrollViewCallbacks(this);
+        selectedIngredients.setLayoutManager(new LinearLayoutManager(getActivity()));
+        selectedIngredients.setHasFixedSize(false);
+
+       /* LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        selectedIngredients.setLayoutManager(layoutManager);
+        selectedIngredients.setLayoutManager(layoutManager);*/
         selectedIngredients.setAdapter(mAdapter);
     }
 //----------------------------------------------------------------------------------------Main algorithm's functions block--------------------------------------------------------------------------------------//
@@ -390,6 +474,85 @@ public class StartFragment extends Fragment {
 
         selectedIngredients.addOnItemTouchListener(swipeTouchListener);
     }
+
+
+    //---------------------------------------------------------Realization of FlexibleSpace----------------------------------------------------------------------//
+    @Override
+    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
+        // Translate overlay and image
+        float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
+        int minOverlayTransitionY = mActionBarSize - mOverlayView.getHeight();
+        ViewHelper.setTranslationY(mOverlayView, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
+        ViewHelper.setTranslationY(mImageView, ScrollUtils.getFloat(-scrollY / 2, minOverlayTransitionY, 0));
+
+        // Translate list background
+        ViewHelper.setTranslationY(mRecyclerViewBackground, Math.max(0, -scrollY + mFlexibleSpaceImageHeight));
+
+        // Change alpha of overlay
+        ViewHelper.setAlpha(mOverlayView, ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
+
+        // Scale title text
+        float scale = 1 + ScrollUtils.getFloat((flexibleRange - scrollY) / flexibleRange, 0, MAX_TEXT_SCALE_DELTA);
+        setPivotXToTitle();
+        ViewHelper.setPivotY(mTitleView, 0);
+        ViewHelper.setScaleX(mTitleView, scale);
+        ViewHelper.setScaleY(mTitleView, scale);
+
+        // Translate title text
+        int maxTitleTranslationY = (int) (mFlexibleSpaceImageHeight - mTitleView.getHeight() * scale);
+        int titleTranslationY = maxTitleTranslationY - scrollY;
+        ViewHelper.setTranslationY(mTitleView, titleTranslationY);
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+    }
+
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setPivotXToTitle() {
+      /*  Configuration config = getResources().getConfiguration();
+        if (Build.VERSION_CODES.JELLY_BEAN_MR1 <= Build.VERSION.SDK_INT
+                && config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            ViewHelper.setPivotX(mTitleView, v.findViewById(android.R.id.content).getWidth());
+        } else {
+            ViewHelper.setPivotX(mTitleView, 0);
+        }*/
+    }
+
+    protected int getActionBarSize() {
+        TypedValue typedValue = new TypedValue();
+        int[] textSizeAttr = new int[]{R.attr.actionBarSize};
+        int indexOfAttrTextSize = 0;
+        TypedArray a = getActivity().obtainStyledAttributes(typedValue.data, textSizeAttr);
+        int actionBarSize = a.getDimensionPixelSize(indexOfAttrTextSize, -1);
+        a.recycle();
+        return actionBarSize;
+    }
+
+
+    public static ArrayList<String> getDummyData() {
+        return getDummyData(NUM_OF_ITEMS);
+    }
+
+    public static ArrayList<String> getDummyData(int num) {
+        ArrayList<String> items = new ArrayList<>();
+        for (int i = 1; i <= num; i++) {
+            items.add("Item " + i);
+        }
+        return items;
+    }
+
+    protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
+        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(getActivity(), getDummyData(), headerView));
+    }
+
+
+    //-------------------------------------------------------End of realization of FlexibleSpqce----------------------------------------------------------------//
+
 
     //----------------------------------------------------------Thread for counting number of available recipes------------------------------------------------------------//
     class CountingIngredientsThread extends Thread {
