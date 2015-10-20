@@ -430,9 +430,9 @@ public class StartFragment extends Fragment implements ObservableScrollViewCallb
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {  //swipe to the left
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
-                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
-                                    forSelectedIngridients.remove(position);
-                                    IDsOfSelectedIngs.remove(position);
+                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position-1) + ";");
+                                    forSelectedIngridients.remove(position-1);
+                                    IDsOfSelectedIngs.remove(position-1);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
 
                                     //make unavailable imageButton when we havent available recipes
@@ -447,15 +447,16 @@ public class StartFragment extends Fragment implements ObservableScrollViewCallb
                                     }
                                 }
                                 mAdapter.notifyDataSetChanged();
+                                //onScrollChanged(0, false, false);
                             }
 
                             @Override
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {   //swipe to the right
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
-                                             + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
-                                    forSelectedIngridients.remove(position);
-                                    IDsOfSelectedIngs.remove(position);
+                                             + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position-1) + ";");
+                                    forSelectedIngridients.remove(position-1);
+                                    IDsOfSelectedIngs.remove(position-1);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
                                     //make unavailable imageButton when we havent available recipes
                                     if (numberOfAvailableRecipes == 0)
@@ -470,9 +471,11 @@ public class StartFragment extends Fragment implements ObservableScrollViewCallb
                                 }
                                 mAdapter.notifyDataSetChanged();
                             }
+
                         });
 
         selectedIngredients.addOnItemTouchListener(swipeTouchListener);
+
     }
 
 
@@ -506,6 +509,7 @@ public class StartFragment extends Fragment implements ObservableScrollViewCallb
 
     @Override
     public void onDownMotionEvent() {
+
     }
 
     @Override
@@ -531,23 +535,6 @@ public class StartFragment extends Fragment implements ObservableScrollViewCallb
         int actionBarSize = a.getDimensionPixelSize(indexOfAttrTextSize, -1);
         a.recycle();
         return actionBarSize;
-    }
-
-
-    public static ArrayList<String> getDummyData() {
-        return getDummyData(NUM_OF_ITEMS);
-    }
-
-    public static ArrayList<String> getDummyData(int num) {
-        ArrayList<String> items = new ArrayList<>();
-        for (int i = 1; i <= num; i++) {
-            items.add("Item " + i);
-        }
-        return items;
-    }
-
-    protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(getActivity(), getDummyData(), headerView));
     }
 
 
