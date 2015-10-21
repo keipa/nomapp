@@ -53,7 +53,7 @@ public class AllRecipesRecyclerFragment extends Fragment {
         AllRecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new AllRecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                cursor.moveToPosition(position - 1);
+                cursor.moveToPosition(position);
 
                 Intent intent = new Intent(getActivity(), RecipePreviewActivity.class); //TODO maybe
                 intent.putExtra("numberOfRecipe", IDs.get(position) - 1);

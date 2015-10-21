@@ -1,10 +1,13 @@
 package com.nomapp.nomapp_beta.Categories;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
@@ -15,13 +18,13 @@ import com.nomapp.nomapp_beta.R;
 public class CategoriesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
+    TypedArray imagesArray;
 
-    String[] data = {"Мясо", "Птица", "Рыба", "Морепродукты", "Овощи", "Фрукты и ягоды", "Бакалея",
-            "Крупы", "Молочные продукты", "Грибы", "Зелень", "Орехи", "Готовые продукты"};
 
     public CategoriesGVAdapter(Context c) {
         mContext = c;
         mInflater = LayoutInflater.from(mContext);
+        imagesArray = mContext.getResources().obtainTypedArray(R.array.images_for_categories);
     }
 
     public int getCount() {
@@ -40,8 +43,10 @@ public class CategoriesGVAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
         view = mInflater.inflate(R.layout.category_item, parent, false);
-        TextView text = (TextView) view.findViewById(R.id.textView5);
-        text.setText(data[position]);
+
+        ImageView image = (ImageView) view.findViewById(R.id.category_image);
+        image.setImageResource(imagesArray.getResourceId(position, -1));
+
         return view;
     }
 
