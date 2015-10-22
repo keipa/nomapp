@@ -28,6 +28,8 @@
             android:layout_height="wrap_content"
             tools:text="Test Text"
             android:visibility="invisible"
+            android:textCursorDrawable="@color/white"
+
             />
     </android.support.v7.widget.Toolbar>
 

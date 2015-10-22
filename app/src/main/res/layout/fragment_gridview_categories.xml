@@ -12,5 +12,6 @@
         android:verticalSpacing="5dp"
         android:layout_gravity="center_horizontal"
         android:background="#e8333333"
-        android:paddingTop="20dp" />
+        android:paddingTop="20dp"
+        android:paddingLeft="5dp" />
 </LinearLayout>
