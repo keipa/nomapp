@@ -19,12 +19,24 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/add_ings_fragment_cont">
 
-       <!-- <fragment
-            android:name="com.nomapp.nomapp_beta.AddIngredients.AddIngredientsRecyclerFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/fragment_recycler_add_ingredients">
-        </fragment>
--->
+        <com.melnykov.fab.FloatingActionButton
+            android:id="@+id/fabtohome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="23dp"
+            android:layout_marginBottom="33dp" />
+
+        <!-- <fragment
+             android:name="com.nomapp.nomapp_beta.AddIngredients.AddIngredientsRecyclerFragment"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:layout="@layout/fragment_recycler_add_ingredients">
+         </fragment>
+ -->
       </FrameLayout>
 </LinearLayout>

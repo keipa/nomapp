@@ -9,4 +9,5 @@
         android:id="@+id/add_ings_recycler"
         android:layout_gravity="center_horizontal"
         android:background="@color/grey" />
+
 </LinearLayout>

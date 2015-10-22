@@ -25,7 +25,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
-                android:background="@drawable/img_navdrawerheader"
+                android:background="@drawable/interiorpng"
                 android:gravity="left|bottom"
                 android:id="@+id/ltDrawerHeader">
                 <TextView
@@ -34,7 +34,7 @@
                     android:id="@+id/imgDrawerHeader"
                     android:adjustViewBounds="true"
                     android:src="@drawable/img_navdrawerheader"
-                    android:text="Materialdesign"
+                    android:text="Nom_Nom"
                     android:gravity="bottom"
                     android:textSize="25dp"
                     android:textColor="#ffffff"
@@ -48,7 +48,7 @@
                     android:layout_height="20dp"
                     android:fontFamily="sans-serif"
                     android:textColor="#E9E9E9"
-                    android:text="Template"
+                    android:text="Beta - Debug"
                     android:paddingLeft="16dp"
                     android:layout_marginBottom="5dp"
                     android:textSize="15dp"

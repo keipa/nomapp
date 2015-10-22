@@ -18,8 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/image_button_back"
-            android:src="@android:drawable/ic_menu_revert"
-            android:visibility="invisible"/>
+            android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+            android:visibility="invisible"
+            android:background="@color/chosenElement"/>
 
         <EditText
             android:id="@+id/search_field"

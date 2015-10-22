@@ -49,7 +49,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         setSupportActionBar(mActionBarToolbar);
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
+        window.setStatusBarColor(getResources().getColor(R.color.notification));
 
         setUpEditText();
         setUpGridViewFragment();

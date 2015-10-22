@@ -18,7 +18,7 @@ public class AllRecipesActivity extends Activity {
 
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
+        window.setStatusBarColor(getResources().getColor(R.color.notification));
     }
 
 }
