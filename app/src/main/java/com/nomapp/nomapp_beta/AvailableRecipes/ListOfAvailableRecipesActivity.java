@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by antonid on 26.07.2015.
  */
-public class ListOfAvaliableRecipesActivity extends Activity {
+public class ListOfAvailableRecipesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

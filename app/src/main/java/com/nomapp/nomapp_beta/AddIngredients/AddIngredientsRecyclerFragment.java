@@ -30,6 +30,7 @@ public class AddIngredientsRecyclerFragment extends Fragment{
 
     RecyclerView addIngredientsRecycler;
     AddIngredientsRecyclerAdapter mAdapter;
+    String title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +41,8 @@ public class AddIngredientsRecyclerFragment extends Fragment{
 
         fillIngridients();
         setUpRecyclerView();
+
+        ((TextView)v.findViewById(R.id.category_name_tw)).setText(title);
         return v;
     }
 
@@ -67,7 +70,7 @@ public class AddIngredientsRecyclerFragment extends Fragment{
         Intent intent = getActivity().getIntent();
         categoryCursor.moveToPosition(intent.getIntExtra("numberOfCategory", 0) - 1);
 
-        ((TextView)getActivity().findViewById(R.id.nameOfCategory)).setText(categoryCursor.getString(1));
+        title = categoryCursor.getString(1);
 
         IDs = parse(categoryCursor.getString(2));
         categoryCursor.close();

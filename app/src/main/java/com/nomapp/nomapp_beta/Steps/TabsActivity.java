@@ -33,7 +33,7 @@ public class TabsActivity extends AppCompatActivity {
         s = savedInstanceState;
         setContentView(R.layout.activity_tabs);
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.colorMainDark));
+        window.setStatusBarColor(getResources().getColor(R.color.notification));
 
 
 
@@ -83,7 +83,7 @@ public class TabsActivity extends AppCompatActivity {
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return "Step " + position;
+                return "ÿ¿√ " + (position + 1);
             }
         });
 
