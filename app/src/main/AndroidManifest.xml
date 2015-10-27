@@ -19,20 +19,20 @@
         </activity>
         <activity
             android:name=".AddIngredients.AddIngridientsActivity"
-            android:label="Add Ingridient"></activity>
+            android:label="Add Ingredient"/>
         <activity
-            android:name=".AvailableRecipes.ListOfAvaliableRecipesActivity"
-            android:label="Available recipes"></activity>
+            android:name=".AvailableRecipes.ListOfAvailableRecipesActivity"
+            android:label="Available recipes"/>
         <activity
             android:name=".Settings.SettingsActivity"
-            android:label="Steps"></activity>
+            android:label="Steps"/>
         <activity android:name=".Steps.TabsActivity"
-            android:label="Steps"></activity>
+            android:label="Steps"/>
         <activity android:name=".Categories.CategoriesActivity"
             android:label="Steps">
         </activity>
         <activity android:name=".RecipePreview.RecipePreviewActivity"
-            android:label="Preview"></activity>
+            android:label="Preview"/>
 
         <activity android:name=".AllRecipes.AllRecipesActivity"
             android:label="All Recipes">

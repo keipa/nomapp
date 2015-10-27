@@ -37,6 +37,7 @@ public class AddIngridientsActivity extends FragmentActivity {
         window.setStatusBarColor(getResources().getColor(R.color.notification));
         fab = (FloatingActionButton) findViewById(R.id.fabtohome);  //floating action button init
         setUpFAB();
+
     }
 
     View.OnClickListener onCircleButtonClickListener = new View.OnClickListener() {
@@ -46,6 +47,7 @@ public class AddIngridientsActivity extends FragmentActivity {
             startActivity(intent);
         }
     };
+
     void setUpFAB() {
         fab.setColorNormal(getResources().getColor(R.color.chosenElement));  //normal state color
         fab.setColorPressed(getResources().getColor(R.color.primary)); //pressed state color

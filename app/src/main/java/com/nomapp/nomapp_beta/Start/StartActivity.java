@@ -7,8 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -17,7 +15,7 @@ import android.widget.LinearLayout;
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
-import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvaliableRecipesActivity;
+import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
 import com.nomapp.nomapp_beta.R;
 
@@ -181,7 +179,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
 
     @Override
     public void onImgBtnClick() {
-        Intent intent = new Intent(StartActivity.this, ListOfAvaliableRecipesActivity.class);  //listner to the recipe list activity
+        Intent intent = new Intent(StartActivity.this, ListOfAvailableRecipesActivity.class);  //listner to the recipe list activity
         startActivity(intent);
     }
 

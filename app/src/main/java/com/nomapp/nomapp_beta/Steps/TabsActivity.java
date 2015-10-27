@@ -83,7 +83,7 @@ public class TabsActivity extends AppCompatActivity {
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return "Step " + position;
+                return "ÿ¿√ " + (position + 1);
             }
         });
 

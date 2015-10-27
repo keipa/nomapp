@@ -75,9 +75,9 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+       /* if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
        if (id == R.id.action_search){
             Log.w("LOG", "search pressed");
