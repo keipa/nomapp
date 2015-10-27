@@ -34,7 +34,7 @@
                     android:id="@+id/imgDrawerHeader"
                     android:adjustViewBounds="true"
                     android:src="@drawable/img_navdrawerheader"
-                    android:text="Nom_Nom"
+                    android:text="Nom - Nom"
                     android:gravity="bottom"
                     android:textSize="25dp"
                     android:textColor="#ffffff"
@@ -83,7 +83,7 @@
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
+                        android:textColor="#282626"
                         android:minHeight="?android:attr/listPreferredItemHeightSmall"
                         android:background="@android:color/transparent"
                         android:text="Холодильник"
@@ -126,7 +126,7 @@
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
+                        android:textColor="#282626"
                         android:minHeight="?android:attr/listPreferredItemHeightSmall"
                         android:background="@android:color/transparent"
                         android:text="Все рецепты"
@@ -144,6 +144,14 @@
                         android:id="@+id/addAllRecepies" />
                 </LinearLayout>
             </LinearLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                android:id="@+id/view"
+                android:layout_above="@+id/timeText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/txtSettings"
                 android:layout_width="match_parent"
@@ -157,18 +165,11 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:id="@+id/txtSettingsIcon"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/ic_settings_dr"
-                        android:layout_marginRight="0dp" />
+
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
+                        android:textColor="#282626"
                         android:minHeight="?android:attr/listPreferredItemHeightSmall"
                         android:background="@android:color/transparent"
                         android:text="Настройки"
@@ -200,18 +201,11 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:id="@+id/txtReplyIcon"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/ic_reply_dr"
-                        android:layout_marginRight="0dp" />
+
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
+                        android:textColor="#282626"
                         android:minHeight="?android:attr/listPreferredItemHeightSmall"
                         android:background="@android:color/transparent"
                         android:text="Оставить отзыв"
@@ -242,18 +236,11 @@
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="20dp"
-                        android:id="@+id/txtHelpIcon"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/ic_help_dr"
-                        android:layout_marginRight="0dp" />
+
                     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
+                        android:textColor="#282626"
                         android:minHeight="?android:attr/listPreferredItemHeightSmall"
                         android:background="@android:color/transparent"
                         android:text="Справка"

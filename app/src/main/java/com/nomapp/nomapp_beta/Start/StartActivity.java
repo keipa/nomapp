@@ -142,7 +142,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, AddIngridientsActivity.class);// go to categories list
+                Intent intent = new Intent(StartActivity.this, StartActivity.class);// go to categories list
                 startActivity(intent);
             }
         });
