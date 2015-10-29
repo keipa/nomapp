@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
@@ -17,12 +18,14 @@ public class NavDrawerListAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
    // ArrayList<Product> objects;
-    String[] items = {"Холодиьник", "Все рецепты", "Настройки", "Оставить отзыв",
+    //Data for out NavDrawer
+    String[] items = {"Холодильник", "Все рецепты", "Настройки", "Оставить отзыв",
     "Справка"};
+
+    int[] images = {R.drawable.ic_fridge_dr, R.drawable.ic_recepies_dr};
 
     public NavDrawerListAdapter(Context context) {
         ctx = context;
-     //   objects = products;
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -55,6 +58,11 @@ public class NavDrawerListAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.nav_drawer_item, parent, false);
         }
         ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
+
+        if (position == 0 || position == 1)
+            ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                    setImageResource(images[position]);
+
         return view;
     }
 

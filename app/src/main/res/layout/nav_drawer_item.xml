@@ -11,7 +11,6 @@
             android:id="@+id/navdrawer_item_icon"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/ic_fridge_dr"
             android:layout_marginRight="0dp" />
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"

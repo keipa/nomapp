@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -143,6 +144,8 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         // Set the adapter for the list view
         mDrawerList.setAdapter(new NavDrawerListAdapter(this));
         // Click events for Navigation Drawer (now available only on start screen)
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
 
     }
 
@@ -167,5 +170,24 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         fTransaction = getFragmentManager().beginTransaction();
         fTransaction.replace(R.id.startFragmentContainer, imgFragment);
         fTransaction.commit();
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            navDrawerSelectItem(i);
+        }
+    }
+
+    //
+    private void navDrawerSelectItem(int position){
+        switch (position){
+            case 0: break;
+            case 1:
+                Intent toAllRecipes = new Intent(StartActivity.this, AllRecipesActivity.class);
+                startActivity(toAllRecipes);
+                break;
+            default: break;
+        }
     }
 }
