@@ -11,15 +11,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
-import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
-import com.nomapp.nomapp_beta.NavDrawer.NavDrawerListAdapter;
+import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 
 
@@ -139,7 +137,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 
-        mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
+         mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new NavDrawerListAdapter(this));

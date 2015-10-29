@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.NavDrawer;
+package com.nomapp.nomapp_beta.NavigationDrawer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -55,13 +55,17 @@ public class NavDrawerListAdapter extends BaseAdapter {
         View view = convertView;
 
         if (view == null) {
-            view = lInflater.inflate(R.layout.nav_drawer_item, parent, false);
-        }
-        ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
+            if (position < 2) { //Main items
+                view = lInflater.inflate(R.layout.navdrawer_item, parent, false);
+                ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
+                ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                        setImageResource(images[position]);
+            } else {
+                view = lInflater.inflate(R.layout.navdrawer_additional_item, parent, false);
+                ((TextView) view.findViewById(R.id.navdrawer_name_of_additional_item)).setText(items[position]);
+            }
 
-        if (position == 0 || position == 1)
-            ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
-                    setImageResource(images[position]);
+        }
 
         return view;
     }

@@ -4,6 +4,8 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,12 +16,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
+import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
+import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.Start.StartActivity;
 
 import java.util.ArrayList;
 
@@ -34,6 +44,13 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     GridViewFragment gridViewFragment;
     SearchFragment searchFragment;
     FragmentTransaction fTransaction;
+
+
+    ActionBarDrawerToggle mDrawerToggle;
+    ListView mDrawerList;
+    DrawerLayout mDrawerLayout;
+    Toolbar mToolbar;
+
 
     boolean searchMode = false;
 
@@ -54,6 +71,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         setUpEditText();
         setUpGridViewFragment();
         setUpBackButton();
+        setUpNavigationDraver();
     }
 
     @Override
@@ -158,11 +176,11 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     void setUpEditText() {
         enteredText = (EditText) findViewById(R.id.search_field);
 
-        enteredText.addTextChangedListener(new TextWatcher(){ //Listener invokes when data in ExitText changes.
+        enteredText.addTextChangedListener(new TextWatcher() { //Listener invokes when data in ExitText changes.
             @Override
             public void afterTextChanged(Editable s) {
                 searchFragment.search(enteredText.getText().toString());
-            //    setUpRecyclerView(); TODO
+                //    setUpRecyclerView(); TODO
             }
 
             @Override
@@ -193,5 +211,47 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         Intent toIngs = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
         toIngs.putExtra("numberOfCategory", position + 1);
         startActivity(toIngs);
+    }
+
+    void setUpNavigationDraver() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        setSupportActionBar(mToolbar);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+
+        mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new NavDrawerListAdapter(this));
+        // Click events for Navigation Drawer (now available only on start screen)
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            navDrawerSelectItem(i);
+        }
+    }
+
+    //
+    private void navDrawerSelectItem(int position){
+        switch (position){
+            case 0:
+                Intent toStartActivity = new Intent(CategoriesActivity.this, StartActivity.class);
+                startActivity(toStartActivity);
+                break;
+            case 1:
+                Intent toAllRecipes = new Intent(CategoriesActivity.this, AllRecipesActivity.class);
+                startActivity(toAllRecipes);
+                break;
+            default: break;
+        }
     }
 }
