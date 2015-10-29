@@ -11,18 +11,21 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
+import com.nomapp.nomapp_beta.NavDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 
 
 public class StartActivity extends AppCompatActivity implements StartFragment.StartFragmentEventsListener {
 
     ActionBarDrawerToggle mDrawerToggle;
+    ListView mDrawerList;
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
     FloatingActionButton fab;
@@ -134,36 +137,12 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+
+        mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new NavDrawerListAdapter(this));
         // Click events for Navigation Drawer (now available only on start screen)
-        LinearLayout navButton = (LinearLayout) findViewById(R.id.txtFridgeButton);
-        navButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, StartActivity.class);// go to categories list
-                startActivity(intent);
-            }
-        });
-
-        LinearLayout allRecipesButton  = (LinearLayout) findViewById(R.id.txtAllRecipes);
-        allRecipesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawerLayout.closeDrawers();
-                Intent intent = new Intent(StartActivity.this, AllRecipesActivity.class);
-                startActivity(intent);
-            }
-        });
-      /*  settingsButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // close drawer if you want
-                mDrawerLayout.closeDrawers();
-                Intent intent = new Intent(StartActivity.this, SettingsActivity.class);         // go to settings list
-                startActivity(intent);
-            }
-        });*/
 
     }
 
