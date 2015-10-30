@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -53,13 +54,13 @@ public class StartFragment extends Fragment {
         selectedIngredients = (RecyclerView) v.findViewById(R.id.start_recycler);
         numOfRecipesTV = (TextView) v.findViewById(R.id.numOfRecipesTV);
 
-        /*toRecipesBtn = (ImageButton) v.findViewById(R.id.startFridgeButton);
+        toRecipesBtn = (ImageButton) v.findViewById(R.id.imageButton);
         toRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 eventsListener.onImgBtnClick();
             }
-        });*/
+        });
 
         return v;
     }

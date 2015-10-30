@@ -32,6 +32,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
     FragmentTransaction fTransaction;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -48,6 +49,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
 
         setUpNavigationDraver();        //navigation drawer initiation
+
 
 
     }
@@ -154,7 +156,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
                 startActivity(intent);
             }
         });
-      /*  settingsButton.setOnClickListener(new View.OnClickListener() {
+ /*       settingsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
