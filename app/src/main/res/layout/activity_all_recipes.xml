@@ -12,11 +12,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/docPanelsColors"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:id="@+id/all_recipes_recycler_cont">
 
@@ -25,7 +30,7 @@
             android:layout_height="wrap_content"
             android:name="com.nomapp.nomapp_beta.AllRecipes.AllRecipesRecyclerFragment"
             android:id="@+id/fragment2"
-            tools:layout="@layout/fragment_recycler_avl_recipes" />
+            tools:layout="@layout/fragment_recycler_all_recipes" />
     </LinearLayout>
 </LinearLayout>
 

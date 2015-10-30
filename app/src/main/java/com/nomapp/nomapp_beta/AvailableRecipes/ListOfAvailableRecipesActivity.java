@@ -39,7 +39,7 @@ public class ListOfAvailableRecipesActivity extends AppCompatActivity {
     }
 
     void setUpNavigationDraver() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

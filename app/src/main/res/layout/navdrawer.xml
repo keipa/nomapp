@@ -63,7 +63,9 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="353dp"
-                android:id="@+id/nav_drawer_list_view" />
+                android:id="@+id/nav_drawer_list_view"
+                android:dividerHeight="0dp"
+                android:divider="@android:color/transparent" />
 
         </LinearLayout>
     </ScrollView>

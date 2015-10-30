@@ -31,5 +31,6 @@
             android:paddingBottom="16dp"
             android:paddingLeft="25dp"
             android:id="@+id/navdrawer_name_of_item" />
+
     </LinearLayout>
 

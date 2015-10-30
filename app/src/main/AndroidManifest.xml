@@ -23,7 +23,7 @@
             android:label="Add Ingredient"/>
         <activity
             android:name=".AvailableRecipes.ListOfAvailableRecipesActivity"
-            android:label="Available recipes"/>
+            android:label="Вы можете приготовить:"/>
         <activity
             android:name=".Settings.SettingsActivity"
             android:label="Steps"/>
@@ -36,7 +36,7 @@
             android:label="Preview"/>
 
         <activity android:name=".AllRecipes.AllRecipesActivity"
-            android:label="All Recipes">
+            android:label="">
         </activity>
 
 
