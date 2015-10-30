@@ -5,6 +5,7 @@
     <application
         android:name=".Database.MyApp"
         android:allowBackup="true"
+        android:screenOrientation="portrait"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
