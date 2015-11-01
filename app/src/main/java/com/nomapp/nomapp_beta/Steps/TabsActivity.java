@@ -166,10 +166,12 @@ public class TabsActivity extends AppCompatActivity {
     private void navDrawerSelectItem(int position){
         switch (position){
             case 0:
+                mDrawer.closeDrawers();
                 Intent toStartActivity = new Intent(TabsActivity.this, StartActivity.class);
                 startActivity(toStartActivity);
                 break;
             case 1:
+                mDrawer.closeDrawers();
                 Intent toAllRecipes = new Intent(TabsActivity.this, AllRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;

@@ -2,8 +2,10 @@ package com.nomapp.nomapp_beta.AllRecipes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Start.StartActivity;
@@ -28,6 +31,7 @@ public class AllRecipesActivity extends AppCompatActivity {
     ListView mDrawerList;
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +40,24 @@ public class AllRecipesActivity extends AppCompatActivity {
 
         Window window = getWindow();
         window.setStatusBarColor(getResources().getColor(R.color.notification));
-        setUpNavigationDraver();
+        setUpNavigationDrawer();
     }
 
-    void setUpNavigationDraver() {
+    void setUpNavigationDrawer() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+            //   actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+        }
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
@@ -59,6 +75,7 @@ public class AllRecipesActivity extends AppCompatActivity {
 
     }
 
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,6 +87,7 @@ public class AllRecipesActivity extends AppCompatActivity {
     private void navDrawerSelectItem(int position){
         switch (position){
             case 0:
+                mDrawerLayout.closeDrawers();
                 Intent toStartActivity = new Intent(AllRecipesActivity.this, StartActivity.class);
                 startActivity(toStartActivity);
                 break;

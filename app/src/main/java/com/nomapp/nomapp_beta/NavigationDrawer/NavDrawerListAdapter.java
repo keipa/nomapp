@@ -14,7 +14,6 @@ import com.nomapp.nomapp_beta.R;
  * Created by antonid on 29.10.2015.
  */
 public class NavDrawerListAdapter extends BaseAdapter {
-    final static int NUMBER_OF_ELEMENTS = 2;
     Context ctx;
     LayoutInflater lInflater;
    // ArrayList<Product> objects;
@@ -56,10 +55,18 @@ public class NavDrawerListAdapter extends BaseAdapter {
 
         if (view == null) {
             if (position < 2) { //Main items
-                view = lInflater.inflate(R.layout.navdrawer_item, parent, false);
-                ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
-                ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
-                        setImageResource(images[position]);
+                if (position == 1){
+                    view = lInflater.inflate(R.layout.navdrawer_item_with_separator, parent, false);
+                    ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
+                    ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                            setImageResource(images[position]);
+
+                } else {
+                    view = lInflater.inflate(R.layout.navdrawer_item, parent, false);
+                    ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
+                    ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                            setImageResource(images[position]);
+                }
             } else {
                 view = lInflater.inflate(R.layout.navdrawer_additional_item, parent, false);
                 ((TextView) view.findViewById(R.id.navdrawer_name_of_additional_item)).setText(items[position]);

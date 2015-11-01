@@ -46,9 +46,11 @@ public class CategoriesGVAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(350, 350));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(20, 8, 8, 8);
+            imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+            imageView.setPadding(8, 8, 8, 8);
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+
         } else {
             imageView = (ImageView) convertView;
         }
@@ -57,7 +59,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
         return imageView;
     }
 
-    // references to our images
+// references to our images
     private Integer[] imagesArray = {
             R.drawable.category_meat, R.drawable.category_bird,
             R.drawable.category_fish, R.drawable.category_seaproducts,

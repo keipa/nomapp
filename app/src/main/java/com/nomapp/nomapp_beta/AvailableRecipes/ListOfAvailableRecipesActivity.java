@@ -67,10 +67,12 @@ public class ListOfAvailableRecipesActivity extends AppCompatActivity {
     private void navDrawerSelectItem(int position){
         switch (position){
             case 0:
+                mDrawerLayout.closeDrawers();
                 Intent toStartActivity = new Intent(ListOfAvailableRecipesActivity.this, StartActivity.class);
                 startActivity(toStartActivity);
                 break;
             case 1:
+                mDrawerLayout.closeDrawers();
                 Intent toAllRecipes = new Intent(ListOfAvailableRecipesActivity.this, AllRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;

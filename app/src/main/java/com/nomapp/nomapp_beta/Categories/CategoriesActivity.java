@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -50,6 +51,8 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     ListView mDrawerList;
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
+
+    ActionBar actionBar;
 
 
     boolean searchMode = false;
@@ -134,6 +137,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     * , make EditText and BackButton visible
      */
     private void setUpSearchMode(){
+        actionBar.setDisplayHomeAsUpEnabled(false);
         fTransaction = getFragmentManager().beginTransaction();
         fTransaction.replace(R.id.categoriesFragmentCont, searchFragment);
         fTransaction.commit();
@@ -156,6 +160,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     * make button and EditText invisible
      */
     private void setNoSearchMode() {
+        actionBar.setDisplayHomeAsUpEnabled(true);
         fTransaction = getFragmentManager().beginTransaction();
         fTransaction.replace(R.id.categoriesFragmentCont, gridViewFragment);
         fTransaction.commit();
@@ -217,6 +222,17 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mToolbar);
 
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+            //   actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+        }
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
@@ -244,10 +260,12 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     private void navDrawerSelectItem(int position){
         switch (position){
             case 0:
+                mDrawerLayout.closeDrawers();
                 Intent toStartActivity = new Intent(CategoriesActivity.this, StartActivity.class);
                 startActivity(toStartActivity);
                 break;
             case 1:
+                mDrawerLayout.closeDrawers();
                 Intent toAllRecipes = new Intent(CategoriesActivity.this, AllRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;

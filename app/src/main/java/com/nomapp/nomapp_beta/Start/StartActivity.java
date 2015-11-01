@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -128,12 +129,25 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
     }
 
     void setUpNavigationDraver() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(mToolbar);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+         //   actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+        }
+
+            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, 0, 0);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
 
@@ -182,6 +196,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         switch (position){
             case 0: break;
             case 1:
+                mDrawerLayout.closeDrawers();
                 Intent toAllRecipes = new Intent(StartActivity.this, AllRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
