@@ -33,7 +33,7 @@ public class GridViewFragment extends Fragment {
                 gridViewOnClickListener.onClick(position);
             }
         });
-        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity()));
+        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(),  (GridView) v.findViewById(R.id.categoryGridView)));
 
         return v;
     }

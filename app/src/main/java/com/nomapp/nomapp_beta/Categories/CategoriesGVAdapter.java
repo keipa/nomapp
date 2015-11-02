@@ -19,13 +19,18 @@ import com.nomapp.nomapp_beta.R;
 public class CategoriesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
+    GridView gridView;
+
+    int w;
+    int h;
    // TypedArray imagesArray;
 
 
-    public CategoriesGVAdapter(Context c) {
+    public CategoriesGVAdapter(Context c, GridView gridView) {
+        this.gridView = gridView;
         mContext = c;
         mInflater = LayoutInflater.from(mContext);
-     //   imagesArray = mContext.getResources().obtainTypedArray(R.array.images_for_categories);
+        //   imagesArray = mContext.getResources().obtainTypedArray(R.array.images_for_categories);
     }
 
     public int getCount() {
@@ -44,12 +49,14 @@ public class CategoriesGVAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
+            w = gridView.getColumnWidth();
+            h = w;
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT));
+          //  imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, imageView.getLayoutParams().width));
+            imageView.setLayoutParams(new GridView.LayoutParams(w, h));
             imageView.setPadding(8, 8, 8, 8);
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         } else {
             imageView = (ImageView) convertView;
