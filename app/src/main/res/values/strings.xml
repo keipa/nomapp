@@ -10,7 +10,12 @@
     //Settings activity----------------------------
     <string name="chooseLanguage_en">Choose language</string>
     <string name="chooseLanguage_ru">Выберите язык</string>
-
+    <string name="onerec">рецепт</string>
+    <string name="twofourrec">рецепта</string>
+    <string name="morerec">рецептов</string>
+    <string name="oneavail">доступен</string>
+    <string name="twoavail">доступно</string>
+    <string name="moreavail">доступно</string>
     <string name="localization_en">Localization</string>
     <string name="localization_ru">Локализация</string>
 

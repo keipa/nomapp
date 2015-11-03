@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,10 +28,16 @@ public class StartFragment extends Fragment {
     CountingIngredientsThread countingIngredientsThread;
     Handler handler;
     Handler imgBtnEnabler;
+    Handler setterRecCaseText;
+    Handler setterAvailCaseText;
 
     RecyclerView selectedIngredients;
     ImageButton toRecipesBtn;
     TextView numOfRecipesTV;
+    TextView recTextView;
+    TextView availTextView;
+
+
 
     CardViewAdapter mAdapter;
     SwipeableRecyclerViewTouchListener swipeTouchListener;
@@ -52,14 +59,15 @@ public class StartFragment extends Fragment {
 
         selectedIngredients = (RecyclerView) v.findViewById(R.id.start_recycler);
         numOfRecipesTV = (TextView) v.findViewById(R.id.numOfRecipesTV);
-
-        /*toRecipesBtn = (ImageButton) v.findViewById(R.id.startFridgeButton);
+        recTextView = (TextView)v.findViewById(R.id.textView5);
+        availTextView = (TextView)v.findViewById(R.id.textView8);
+        toRecipesBtn = (ImageButton) v.findViewById(R.id.imageButton);
         toRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 eventsListener.onImgBtnClick();
             }
-        });*/
+        });
 
         return v;
     }
@@ -96,6 +104,21 @@ public class StartFragment extends Fragment {
                     toRecipesBtn.setEnabled(true);
                 if (text == "disable")
                 toRecipesBtn.setEnabled(false);
+            }
+        };
+
+        setterRecCaseText = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                recTextView.setText(text);
+            }
+        };
+
+        setterAvailCaseText = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                availTextView.setText((String) msg.obj);
             }
         };
         //creating and starting new thread
@@ -211,7 +234,7 @@ public class StartFragment extends Fragment {
         cursor.close();
 
       //  numOfRecipesTV.setText(numOfAvlRecipes + "");
-
+    //    setCase(numOfAvlRecipes);
         return numOfAvlRecipes;
     }
 
@@ -262,9 +285,59 @@ public class StartFragment extends Fragment {
         cursor.close();
 
         numOfRecipesTV.setText(numberOfAvlRecipes + "");
+        setCase(numberOfAvlRecipes);
         return numberOfAvlRecipes;
     }
 
+    void setCase(int rec){
+        int modNumberOAR =rec % 10;
+        if (modNumberOAR >=2 && modNumberOAR <=4){
+            recTextView.setText("рецепта"+"");
+            availTextView.setText("доступен");
+        }
+        if (modNumberOAR >=5){
+            recTextView.setText("рецептов"+"");
+            availTextView.setText("доступено");
+        }
+        if (modNumberOAR == 1){
+            recTextView.setText("рецепт"+"");
+            availTextView.setText("доступен");
+        }
+    }
+
+    String setCaseRec(int rec){
+        String toReturn = "";
+        int modNumberOAR =rec % 10;
+        if (modNumberOAR >=2 && modNumberOAR <=4){
+            toReturn = getResources().getString(R.string.twofourrec);
+
+        }
+        if (modNumberOAR >=5){
+            toReturn = getResources().getString(R.string.morerec);
+
+        }
+        if (modNumberOAR == 1){
+            toReturn = getResources().getString(R.string.onerec);
+        }
+        return toReturn;
+    }
+
+    String setCaseAvail(int rec){
+        String toReturn = "";
+        int modNumberOAR =rec % 10;
+        if (modNumberOAR >=2 && modNumberOAR <=4){
+            toReturn = getResources().getString(R.string.twoavail);
+
+        }
+        if (modNumberOAR >=5){
+            toReturn = getResources().getString(R.string.moreavail);
+
+        }
+        if (modNumberOAR == 1){
+            toReturn = getResources().getString(R.string.oneavail);
+        }
+        return toReturn;
+    }
     //Check is recipe available. Argument - ingredients which required for recipe.
     private boolean checkIsRecipeAvailable(ArrayList<Integer> ingredientsForCurrentRecipe){
 
@@ -396,9 +469,19 @@ public class StartFragment extends Fragment {
         @Override
         public void run() {
             super.run();
-            Log.w("THREAD_TAG", "hello");
+           // Log.w("THREAD_TAG", "hello");
             //ArrayList of selected recipes already filled in StartActivity's method.
             numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+            String recCase = setCaseRec(numberOfAvailableRecipes); //for cases of 2 views with text
+            String availCase = setCaseAvail(numberOfAvailableRecipes);
+
+            Message textOfRecCase =  new Message(); //Messages for .setText in main thread
+            textOfRecCase.obj = recCase;
+            setterRecCaseText.sendMessage(textOfRecCase);
+
+            Message textOfAvailCase = new Message();
+            textOfAvailCase.obj = availCase;
+            setterAvailCaseText.sendMessage(textOfAvailCase);
 
             //make unavailable imageButton when we havent available recipes
             Message enableButton = new Message();

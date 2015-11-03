@@ -36,6 +36,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
     FragmentTransaction fTransaction;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,6 +54,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
 
 
         setUpNavigationDraver();        //navigation drawer initiation
+
 
 
     }
@@ -158,7 +160,9 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         // Set the adapter for the list view
         mDrawerList.setAdapter(new NavDrawerListAdapter(this));
         // Click events for Navigation Drawer (now available only on start screen)
+
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
 
 
     }
