@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navdraver_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/navdrawer_name_of_item"
+        android:layout_centerHorizontal="true"
+        android:background="@color/grey"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:id="@+id/navdrawer_item_icon"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="0dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#282626"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:background="@android:color/transparent"
+        android:text="Холодильник"
+        android:textStyle="bold"
+        android:singleLine="false"
+        android:focusableInTouchMode="true"
+        android:fontFamily="sans-serif"
+        android:focusable="false"
+        android:elegantTextHeight="false"
+        android:editable="false"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="25dp"
+        android:id="@+id/navdrawer_name_of_item"
+        android:layout_toEndOf="@+id/navdrawer_item_icon" />
+
+</RelativeLayout>
+

@@ -2,27 +2,31 @@ package com.nomapp.nomapp_beta.Start;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
-import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
+import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 
 
 public class StartActivity extends AppCompatActivity implements StartFragment.StartFragmentEventsListener {
 
     ActionBarDrawerToggle mDrawerToggle;
+    ListView mDrawerList;
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
     FloatingActionButton fab;
@@ -46,6 +50,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         fTransaction.commit();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
+
 
         setUpNavigationDraver();        //navigation drawer initiation
 
@@ -126,44 +131,35 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
     }
 
     void setUpNavigationDraver() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(mToolbar);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(true);
+         //   actionBar.setDisplayUseLogoEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+        }
+
+            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, 0, 0);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+
+         mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new NavDrawerListAdapter(this));
         // Click events for Navigation Drawer (now available only on start screen)
-        LinearLayout navButton = (LinearLayout) findViewById(R.id.txtFridgeButton);
-        navButton.setOnClickListener(new View.OnClickListener() {
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, StartActivity.class);// go to categories list
-                startActivity(intent);
-            }
-        });
-
-        LinearLayout allRecipesButton  = (LinearLayout) findViewById(R.id.txtAllRecipes);
-        allRecipesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawerLayout.closeDrawers();
-                Intent intent = new Intent(StartActivity.this, AllRecipesActivity.class);
-                startActivity(intent);
-            }
-        });
-      /*  settingsButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // close drawer if you want
-                mDrawerLayout.closeDrawers();
-                Intent intent = new Intent(StartActivity.this, SettingsActivity.class);         // go to settings list
-                startActivity(intent);
-            }
-        });*/
 
     }
 
@@ -188,5 +184,25 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         fTransaction = getFragmentManager().beginTransaction();
         fTransaction.replace(R.id.startFragmentContainer, imgFragment);
         fTransaction.commit();
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            navDrawerSelectItem(i);
+        }
+    }
+
+    //
+    private void navDrawerSelectItem(int position){
+        switch (position){
+            case 0: break;
+            case 1:
+                mDrawerLayout.closeDrawers();
+                Intent toAllRecipes = new Intent(StartActivity.this, AllRecipesActivity.class);
+                startActivity(toAllRecipes);
+                break;
+            default: break;
+        }
     }
 }

@@ -11,17 +11,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.Start.StartActivity;
 
 public class TabsActivity extends AppCompatActivity {
 
     private MaterialViewPager mViewPager;
 
     private DrawerLayout mDrawer;
+    private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar toolbar;
 
@@ -65,6 +72,15 @@ public class TabsActivity extends AppCompatActivity {
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
         mDrawer.setDrawerListener(mDrawerToggle);
+
+        mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new NavDrawerListAdapter(this));
+        // Click events for Navigation Drawer (now available only on start screen)
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+
+
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
 
@@ -137,5 +153,29 @@ public class TabsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return mDrawerToggle.onOptionsItemSelected(item) ||
                 super.onOptionsItemSelected(item);
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            navDrawerSelectItem(i);
+        }
+    }
+
+    //
+    private void navDrawerSelectItem(int position){
+        switch (position){
+            case 0:
+                mDrawer.closeDrawers();
+                Intent toStartActivity = new Intent(TabsActivity.this, StartActivity.class);
+                startActivity(toStartActivity);
+                break;
+            case 1:
+                mDrawer.closeDrawers();
+                Intent toAllRecipes = new Intent(TabsActivity.this, AllRecipesActivity.class);
+                startActivity(toAllRecipes);
+                break;
+            default: break;
+        }
     }
 }

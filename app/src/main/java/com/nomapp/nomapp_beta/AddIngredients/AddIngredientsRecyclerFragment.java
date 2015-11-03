@@ -42,7 +42,7 @@ public class AddIngredientsRecyclerFragment extends Fragment{
         fillIngridients();
         setUpRecyclerView();
 
-        ((TextView)v.findViewById(R.id.category_name_tw)).setText(title);
+        //((TextView)getActivity().findViewById(R.id.category_name_tw)).setText(title);
         return v;
     }
 

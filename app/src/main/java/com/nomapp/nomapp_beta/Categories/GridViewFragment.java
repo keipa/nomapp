@@ -26,14 +26,14 @@ public class GridViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_gridview_categories, null);
 
-        categoriesGridView = (GridView) v.findViewById(R.id.categoriewGridView);
+        categoriesGridView = (GridView) v.findViewById(R.id.categoryGridView);
         categoriesGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 gridViewOnClickListener.onClick(position);
             }
         });
-        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity()));
+        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(),  (GridView) v.findViewById(R.id.categoryGridView)));
 
         return v;
     }

@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Start.StartActivity"
-            android:label="@string/app_name">
+            android:label="Холодильник"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,23 +20,30 @@
         </activity>
         <activity
             android:name=".AddIngredients.AddIngridientsActivity"
-            android:label="Add Ingredient"/>
+            android:label=" "
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AvailableRecipes.ListOfAvailableRecipesActivity"
-            android:label="Available recipes"/>
+            android:label="Вы можете приготовить:"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Settings.SettingsActivity"
-            android:label="Steps"/>
+            android:label="Steps"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Steps.TabsActivity"
-            android:label="Steps"/>
+            android:label="Steps"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Categories.CategoriesActivity"
-            android:label="Steps">
+            android:label="Steps"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".RecipePreview.RecipePreviewActivity"
-            android:label="Preview"/>
+            android:label="Preview"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".AllRecipes.AllRecipesActivity"
-            android:label="All Recipes">
+            android:label=""
+            android:screenOrientation="portrait">
         </activity>
 
 

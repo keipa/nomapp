@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navdraver_additional_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#282626"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:background="@android:color/transparent"
+        android:text="Холодильник"
+        android:textStyle="bold"
+        android:singleLine="false"
+        android:focusableInTouchMode="true"
+        android:fontFamily="sans-serif"
+        android:focusable="false"
+        android:elegantTextHeight="false"
+        android:editable="false"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="25dp"
+        android:id="@+id/navdrawer_name_of_additional_item" />
+</LinearLayout>
+
