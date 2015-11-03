@@ -53,13 +53,13 @@ public class StartFragment extends Fragment {
         selectedIngredients = (RecyclerView) v.findViewById(R.id.start_recycler);
         numOfRecipesTV = (TextView) v.findViewById(R.id.numOfRecipesTV);
 
-        toRecipesBtn = (ImageButton) v.findViewById(R.id.startFridgeButton);
+        /*toRecipesBtn = (ImageButton) v.findViewById(R.id.startFridgeButton);
         toRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 eventsListener.onImgBtnClick();
             }
-        });
+        });*/
 
         return v;
     }
