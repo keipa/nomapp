@@ -285,25 +285,11 @@ public class StartFragment extends Fragment {
         cursor.close();
 
         numOfRecipesTV.setText(numberOfAvlRecipes + "");
-        setCase(numberOfAvlRecipes);
+        recTextView.setText(setCaseRec(numberOfAvlRecipes));
+        availTextView.setText(setCaseAvail(numberOfAvlRecipes));
         return numberOfAvlRecipes;
     }
 
-    void setCase(int rec){
-        int modNumberOAR =rec % 10;
-        if (modNumberOAR >=2 && modNumberOAR <=4){
-            recTextView.setText("рецепта"+"");
-            availTextView.setText("доступен");
-        }
-        if (modNumberOAR >=5){
-            recTextView.setText("рецептов"+"");
-            availTextView.setText("доступено");
-        }
-        if (modNumberOAR == 1){
-            recTextView.setText("рецепт"+"");
-            availTextView.setText("доступен");
-        }
-    }
 
     String setCaseRec(int rec){
         String toReturn = "";
@@ -312,9 +298,8 @@ public class StartFragment extends Fragment {
             toReturn = getResources().getString(R.string.twofourrec);
 
         }
-        if (modNumberOAR >=5){
+        if (modNumberOAR >=5 || modNumberOAR == 0){
             toReturn = getResources().getString(R.string.morerec);
-
         }
         if (modNumberOAR == 1){
             toReturn = getResources().getString(R.string.onerec);
@@ -325,11 +310,11 @@ public class StartFragment extends Fragment {
     String setCaseAvail(int rec){
         String toReturn = "";
         int modNumberOAR =rec % 10;
-        if (modNumberOAR >=2 && modNumberOAR <=4){
+        if (modNumberOAR >= 2 && modNumberOAR <=4){
             toReturn = getResources().getString(R.string.twoavail);
 
         }
-        if (modNumberOAR >=5){
+        if (modNumberOAR >= 5 || modNumberOAR == 0){
             toReturn = getResources().getString(R.string.moreavail);
 
         }

@@ -1,8 +1,7 @@
-package com.nomapp.nomapp_beta.Categories;
+package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesGVAdapter;
 import com.nomapp.nomapp_beta.R;
 
 /**
@@ -33,7 +33,8 @@ public class GridViewFragment extends Fragment {
                 gridViewOnClickListener.onClick(position);
             }
         });
-        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(),  (GridView) v.findViewById(R.id.categoryGridView)));
+        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(),
+                (GridView) v.findViewById(R.id.categoryGridView)));
 
         return v;
     }

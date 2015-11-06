@@ -32,20 +32,18 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
                 android:textSize="70dp"
-                android:text="5"
                 android:id="@+id/numOfRecipesTV"
                 android:gravity="bottom"
                 android:layout_alignBottom="@+id/imageButton"
                 android:paddingLeft="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:layout_alignTop="@+id/textView5"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="1dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="рецептов"
                 android:id="@+id/textView5"
                 android:textColor="@color/white"
                 android:textSize="30dp"
@@ -57,7 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="доступно"
                 android:id="@+id/textView8"
                 android:textColor="@color/white"
                 android:textSize="30dp"

@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.Categories;
+package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 
 import android.app.Fragment;
 import android.database.Cursor;
