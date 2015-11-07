@@ -121,7 +121,7 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
      */
     private void setUpGridViewFragment(){
         fTransaction = getFragmentManager().beginTransaction();
-        fTransaction.add(R.id.categoriesFragmentCont, gridViewFragment);
+        fTransaction.add(R.id.categoriesOfRecipesFragmentCont, gridViewFragment);
         fTransaction.commit();
     }
 
@@ -134,7 +134,7 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
     private void setUpSearchMode(){
         actionBar.setDisplayHomeAsUpEnabled(false);
         fTransaction = getFragmentManager().beginTransaction();
-        fTransaction.replace(R.id.categoriesFragmentCont, searchFragment);
+        fTransaction.replace(R.id.categoriesOfRecipesFragmentCont, searchFragment);
         fTransaction.commit();
 
 

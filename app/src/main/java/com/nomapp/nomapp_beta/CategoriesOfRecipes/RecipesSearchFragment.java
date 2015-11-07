@@ -42,6 +42,7 @@ public class RecipesSearchFragment extends Fragment {
 
         findedRecipesRecycler = (RecyclerView) v.findViewById(R.id.findedRecipesRecyclerView);
 
+        findedRecipesArray = new ArrayList<>();
         IDs = new ArrayList<>();
         timeForCooking = new ArrayList<>();
         numberOfSteps = new ArrayList<>();

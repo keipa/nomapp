@@ -18,6 +18,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 
@@ -202,7 +203,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
             case 0: break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(StartActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(StartActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;
