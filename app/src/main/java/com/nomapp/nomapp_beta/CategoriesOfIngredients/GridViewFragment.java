@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesGVAdapter;
 import com.nomapp.nomapp_beta.R;
 
 /**

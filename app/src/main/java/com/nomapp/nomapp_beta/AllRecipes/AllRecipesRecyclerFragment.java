@@ -24,13 +24,15 @@ public class AllRecipesRecyclerFragment extends Fragment {
     AllRecipesRecyclerAdapter mAdapter;
 
     ArrayList<String> availableRecipesArrayList;
-    ArrayList<Integer> timeForCooking;
+    ArrayList<String> timeForCooking;
     ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
     ArrayList<Integer> numberOfIngs;
 
     Cursor cursor;
+    Cursor categoryCursor;
 
+    String title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,16 +92,54 @@ public class AllRecipesRecyclerFragment extends Fragment {
                 null, null, null, null
                 , null);
 
+       categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesCategoriesTableName(),
+                new String[]
+                        {Database.getRecipesCategoriesId(), Database.getRecipesCategoriesName(),
+                                Database.getRecipesCategoriesRecipes()},
+                null, null, null, null
+                , null);
+
+        categoryCursor.moveToFirst();
+        Intent intent = getActivity().getIntent();
+        categoryCursor.moveToPosition(intent.getIntExtra("numberOfCategory", 0) - 1);
+
+        title = categoryCursor.getString(1);
+
+        IDs = parse(categoryCursor.getString(2));
+        categoryCursor.close();
+
         cursor.moveToFirst();
-        if (!cursor.isAfterLast()) {
-            do {
-                    availableRecipesArrayList.add(cursor.getString(1));
-                    IDs.add(cursor.getInt(0));
-                    timeForCooking.add(cursor.getInt(4));
-                    numberOfSteps.add(cursor.getInt(3));
-                    numberOfIngs.add(cursor.getInt(5));
-            } while (cursor.moveToNext());
+        int size = IDs.size();
+        for (int counter = 0; counter < size; counter++) {
+            cursor.moveToPosition(IDs.get(counter) - 1);
+            availableRecipesArrayList.add(cursor.getString(1));
+            timeForCooking.add(cursor.getString(4));
+            numberOfSteps.add(cursor.getInt(3));
+            numberOfIngs.add(cursor.getInt(5));
         }
+
+        cursor.close();
+
+    }
+
+    private ArrayList<Integer> parse(String toConvert) {
+        ArrayList<Integer> converted = new ArrayList<>();
+
+        int counter;
+        int factor = 1;
+        int currentIngridient = 0;
+        int size = toConvert.length();
+        for (counter = 0; counter < size; counter++) {
+            while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
+                currentIngridient += (toConvert.charAt(counter) - '0') * factor;
+                factor *= 10;
+                counter++;
+            }
+            factor = 1;
+            converted.add(currentIngridient);
+            currentIngridient = 0;
+        }
+        return converted;
     }
 
 

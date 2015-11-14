@@ -157,7 +157,7 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
     private void setNoSearchMode() {
         actionBar.setDisplayHomeAsUpEnabled(true);
         fTransaction = getFragmentManager().beginTransaction();
-        fTransaction.replace(R.id.categoriesFragmentCont, gridViewFragment);
+        fTransaction.replace(R.id.categoriesOfRecipesFragmentCont, gridViewFragment);
         fTransaction.commit();
 
 
@@ -205,10 +205,12 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
         });
     }
 
+
+    //Click to the GridView's item
     @Override
     public void onClick(int position) {
         Log.w("MY_TAG", "gridItem clicked");
-        Intent toIngs = new Intent(CategoriesOfRecipesActivity.this, AddIngridientsActivity.class);
+        Intent toIngs = new Intent(CategoriesOfRecipesActivity.this, AllRecipesActivity.class);
         toIngs.putExtra("numberOfCategory", position + 1);
         startActivity(toIngs);
     }

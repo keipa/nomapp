@@ -18,14 +18,14 @@ import java.util.ArrayList;
 
 public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRecyclerAdapter.ViewHolder> {
     private ArrayList<String> names;
-    private ArrayList<Integer> cookingTimes;
+    private ArrayList<String> cookingTimes;
     private ArrayList<Integer> numbersOfSteps;
     private ArrayList<Integer> numberOfIngs;
 
     private OnItemTouchListener onItemTouchListener;
 
     public AllRecipesRecyclerAdapter(ArrayList<String> names,
-                                     ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps,
+                                     ArrayList<String> cookingTimes, ArrayList<Integer> numbersOfSteps,
                                      ArrayList<Integer> numberOfIngs, OnItemTouchListener onItemTouchListener) {
         this.names = names;
         this.cookingTimes = cookingTimes;
@@ -43,7 +43,7 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.name.setText(names.get(i));
-        viewHolder.time.setText(cookingTimes.get(i) + " мин.");
+        viewHolder.time.setText(cookingTimes.get(i));
         viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + " шагов");
         viewHolder.numberOfIngredients.setText(numberOfIngs.get(i) + " продуктов");
 
