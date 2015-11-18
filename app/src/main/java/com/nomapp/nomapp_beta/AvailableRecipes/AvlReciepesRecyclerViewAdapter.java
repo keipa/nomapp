@@ -1,5 +1,6 @@
 package com.nomapp.nomapp_beta.AvailableRecipes;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +70,6 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             numberOfSteps = (TextView) itemView.findViewById(R.id.numberOfStepsTV);
             numberOfIngredients = (TextView) itemView.findViewById(R.id.numOfIngs);
 
-            image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);
 
             name.setText(names.get(position));
             time.setText(cookingTimes.get(position) +" мин.");
