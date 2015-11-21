@@ -1,5 +1,6 @@
 package com.nomapp.nomapp_beta.AllRecipes;
 
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.ArrayList;
@@ -17,21 +19,63 @@ import java.util.ArrayList;
 
 
 public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRecyclerAdapter.ViewHolder> {
+    private Cursor cursor;
+
     private ArrayList<String> names;
     private ArrayList<String> cookingTimes;
     private ArrayList<Integer> numbersOfSteps;
     private ArrayList<Integer> numberOfIngs;
 
+    private ArrayList<Integer> IDsOfRecipesInCategory;
+
     private OnItemTouchListener onItemTouchListener;
 
-    public AllRecipesRecyclerAdapter(ArrayList<String> names,
-                                     ArrayList<String> cookingTimes, ArrayList<Integer> numbersOfSteps,
-                                     ArrayList<Integer> numberOfIngs, OnItemTouchListener onItemTouchListener) {
-        this.names = names;
-        this.cookingTimes = cookingTimes;
-        this.numbersOfSteps = numbersOfSteps;
+    public AllRecipesRecyclerAdapter(ArrayList<Integer> IDsOfRecipesInCategory, OnItemTouchListener onItemTouchListener) {
+        this.IDsOfRecipesInCategory = IDsOfRecipesInCategory;
         this.onItemTouchListener = onItemTouchListener;
-        this.numberOfIngs = numberOfIngs;
+
+
+        names = new ArrayList<>();
+        cookingTimes = new ArrayList<>();
+        numbersOfSteps = new ArrayList<>();
+        numberOfIngs = new ArrayList<>();
+        cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                new String[]
+                        {Database.getRecipesId(), Database.getRecipesName(),
+                                Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
+                                Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
+                                Database.getRecipesHowToCook()},
+                null, null, null, null
+                , null);
+
+        fillRecipesInThisCategory();
+
+    }
+
+    private void fillRecipesInThisCategory() {
+        if (cursor.isClosed())
+        {
+            cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                    new String[]
+                            {Database.getRecipesId(), Database.getRecipesName(),
+                                    Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
+                                    Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
+                                    Database.getRecipesHowToCook()},
+                    null, null, null, null
+                    , null);
+        }
+
+        cursor.moveToFirst();
+        int size = IDsOfRecipesInCategory.size();
+        for (int counter = 0; counter < size; counter++) {
+            cursor.moveToPosition(IDsOfRecipesInCategory.get(counter) - 1);
+            names.add(cursor.getString(1));
+            cookingTimes.add(cursor.getString(4));
+            numbersOfSteps.add(cursor.getInt(3));
+            numberOfIngs.add(cursor.getInt(5));
+        }
+        cursor.close();
+
     }
 
     @Override

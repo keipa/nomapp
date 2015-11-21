@@ -37,66 +37,61 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     private static final int VIEW_TYPE_INGREDIENTS = 3;
 
     private LayoutInflater mInflater;
-    private ArrayList<String> mItems;
     private View mHeaderView;
 
     private int numberOfRecipe;
+    private int numberOfItems;
+
+    private String timeForCooking;
+    private String ingredientsForRecipe;
+    private int numberOfPersonsForRecipe;
 
     private Context ctx;
 
-    public SimpleHeaderRecyclerAdapter(Context context, ArrayList<String> items, View headerView, int numberOfRecipe, Context ctx) {
+    public SimpleHeaderRecyclerAdapter(Context context, int numberOfItems, View headerView, int numberOfRecipe) {
         mInflater = LayoutInflater.from(context);
-        mItems = items;
         mHeaderView = headerView;
+
+        this.numberOfItems = numberOfItems;
         this.numberOfRecipe = numberOfRecipe;
-        this.ctx = ctx;
+        this.ctx = context;
+
+        initDataForRecipe();
+    }
+
+    private void initDataForRecipe() {
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                new String[]
+                        {Database.getRecipesName(), Database.getRecipesTimeForCooking(),
+                                Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfPersons()},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+        cursor.moveToPosition(numberOfRecipe - 1);
+
+        timeForCooking = cursor.getString(1);
+        ingredientsForRecipe = cursor.getString(2);
+        numberOfPersonsForRecipe = cursor.getInt(3);
     }
 
     @Override
     public int getItemCount() {
         if (mHeaderView == null) {
-            return mItems.size();
+            return numberOfItems;
         } else {
-            return mItems.size() + 1;
+            return numberOfItems + 1;
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-
-   /*     switch (position){
-            case 0:
-                return VIEW_TYPE_DESCRIPTION;
-
-            case 2:
-                return VIEW_TYPE_DESCRIPTION;
-
-            case 1:
-                return VIEW_TYPE_INFO;
-
-            case 3:
-                return VIEW_TYPE_INGREDIENTS;
-
-            default:
-                return VIEW_TYPE_HEADER;
-        }*/
         return position;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
-                new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
-                                Database.getRecipesHowToCook(),Database.getRecipesIsAvailable(),
-                                Database.getRecipesNumberOfSteps(), Database.getRecipesTimeForCooking(),
-                                Database.getRecipesDescription(), Database.getRecipesNumberOfPersons(),
-                                Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfIngredients()},
-                null, null, null, null
-                , null);
 
-        cursor.moveToFirst();
-        cursor.moveToPosition(numberOfRecipe);
 
         switch (viewType){
             case VIEW_TYPE_HEADER:
@@ -104,14 +99,14 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
             case VIEW_TYPE_INFO:
                 return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note, parent, false),
-                        cursor.getString(6), cursor.getInt(8));
+                        timeForCooking, numberOfPersonsForRecipe);
 
             case VIEW_TYPE_DESCRIPTION:
                 return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));
 
             case VIEW_TYPE_INGREDIENTS:
                 return new IngredientsViewHolder(mInflater.inflate(R.layout.card_recipe_preview_ingridients, parent, false),
-                        cursor.getString(9), ctx);
+                        ingredientsForRecipe, ctx);
 
             default:
                 return new HeaderViewHolder(mHeaderView);

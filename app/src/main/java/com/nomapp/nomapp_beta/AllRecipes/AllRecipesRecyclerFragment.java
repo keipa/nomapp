@@ -66,19 +66,17 @@ public class AllRecipesRecyclerFragment extends Fragment {
                             null, null, null, null
                             , null);
                 }
-                cursor.moveToPosition(position);
+                cursor.moveToPosition(IDs.get(position) - 1);
 
-                Intent intent = new Intent(getActivity(), RecipePreviewActivity.class); //TODO maybe
-                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
-                intent.putExtra("cooking", cursor.getString(6));
-                intent.putExtra("numberOfSteps", numberOfSteps.get(position));
-                intent.putExtra("nameOfRecipe", availableRecipesArrayList.get(position));
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), RecipePreviewActivity.class);
+                intent.putExtra("numberOfRecipe", cursor.getInt(0));
+                intent.putExtra("nameOfRecipe", cursor.getString(1));
                 cursor.close();
+                startActivity(intent);
             }
         };
 
-        mAdapter = new AllRecipesRecyclerAdapter(availableRecipesArrayList, timeForCooking, numberOfSteps, numberOfIngs, itemTouchListener);  // setting adapter.
+        mAdapter = new AllRecipesRecyclerAdapter(IDs, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -119,17 +117,6 @@ public class AllRecipesRecyclerFragment extends Fragment {
         IDs = parse(categoryCursor.getString(2));
         categoryCursor.close();
 
-        cursor.moveToFirst();
-        int size = IDs.size();
-        for (int counter = 0; counter < size; counter++) {
-            cursor.moveToPosition(IDs.get(counter) - 1);
-            availableRecipesArrayList.add(cursor.getString(1));
-            timeForCooking.add(cursor.getString(4));
-            numberOfSteps.add(cursor.getInt(3));
-            numberOfIngs.add(cursor.getInt(5));
-        }
-
-        cursor.close();
 
     }
 
