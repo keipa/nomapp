@@ -59,45 +59,73 @@
             android:layout_below="@+id/relativeLayout">
 
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3"
-                android:id="@+id/numOfIngs"
-                android:textSize="55dp"
-                android:fontFamily="sans-serif-thin"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentStart="false"
-                android:textColor="#434343" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="40dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight="1">
+
+                    <include layout="@layout/card_material_recipe_steps" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_weight="1">
+
+                    <include
+                        layout="@layout/card_material_recipe_products"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight="1"
+                    android:id="@+id/relativeLayout2">
+
+                    <include
+                        layout="@layout/card_material_recipe_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/include" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="PRODUCTS"
-                android:id="@+id/text_prod"
+                android:text="SHARE"
+                android:id="@+id/share"
                 android:gravity="center"
                 android:fontFamily="sans-serif-medium"
-                android:layout_alignTop="@+id/text_steps"
-                android:layout_centerHorizontal="true"
-                android:textSize="15dp"
-                android:textColor="#434343" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="MIN."
-                android:id="@+id/text_time"
-                android:gravity="center"
-                android:fontFamily="sans-serif-medium"
-                android:layout_alignTop="@+id/text_prod"
-                android:layout_alignEnd="@+id/time"
-                android:textSize="15dp"
-                android:textColor="#434343" />
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:layout_alignTop="@+id/preview"
+                android:layout_marginRight="25dp"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,58 +141,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="12dp"
-                android:layout_marginLeft="25dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="SHARE"
-                android:id="@+id/share"
-                android:gravity="center"
-                android:fontFamily="sans-serif-medium"
-
-                android:textSize="14dp"
-                android:textColor="@color/black"
-                android:layout_alignTop="@+id/preview"
-                android:layout_alignStart="@+id/time"
-                android:layout_marginRight="25dp"
-                android:visibility="invisible" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5"
-                android:id="@+id/steps"
-                android:textSize="55dp"
-                android:fontFamily="sans-serif-thin"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="40dp"
-                android:layout_alignParentStart="false"
-                android:textColor="#434343" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="STEPS"
-                android:id="@+id/text_steps"
-                android:gravity="center"
-                android:fontFamily="sans-serif-medium"
-                android:textSize="15dp"
-                android:layout_centerVertical="true"
-                android:layout_alignEnd="@+id/steps"
-                android:textColor="#434343" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:id="@+id/time"
-                android:textSize="55dp"
-                android:fontFamily="sans-serif-thin"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="40dp"
-                android:layout_alignParentStart="false"
-                android:textColor="#434343" />
+                android:layout_marginLeft="25dp"
+                android:visibility="visible" />
 
             <View
                 android:layout_width="fill_parent"
