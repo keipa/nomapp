@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3"
+        android:text="35"
         android:id="@+id/steps"
         android:textSize="55dp"
         android:fontFamily="sans-serif-thin"
