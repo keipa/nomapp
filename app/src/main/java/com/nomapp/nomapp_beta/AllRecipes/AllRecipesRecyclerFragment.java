@@ -55,6 +55,17 @@ public class AllRecipesRecyclerFragment extends Fragment {
         AllRecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new AllRecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
+                if (cursor.isClosed())
+                {
+                    cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                            new String[]
+                                    {Database.getRecipesId(), Database.getRecipesName(),
+                                            Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
+                                            Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
+                                            Database.getRecipesHowToCook()},
+                            null, null, null, null
+                            , null);
+                }
                 cursor.moveToPosition(position);
 
                 Intent intent = new Intent(getActivity(), RecipePreviewActivity.class); //TODO maybe
