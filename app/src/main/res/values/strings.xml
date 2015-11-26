@@ -5,6 +5,7 @@
     <string name="font_fontFamily_medium">sans-serif</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Menuitem</string>
+    <string name="step">ШАГ</string>
 
 
     //Settings activity----------------------------

@@ -111,7 +111,8 @@ public class TabsActivity extends AppCompatActivity {
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return "STEP " + (position + 1);
+                return getResources().getString(R.string.step) + " "
+                        + (position + 1);
             }
         });
 

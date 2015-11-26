@@ -58,10 +58,7 @@ public class AvlRecipesRecyclerFragment extends Fragment {
                 cursor.moveToPosition(IDs.get(position) - 1);
 
                 Intent intent = new Intent(getActivity(), RecipePreviewActivity.class); //TODO maybe
-                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
-                intent.putExtra("cooking", cursor.getString(6));
-                intent.putExtra("numberOfSteps", numberOfSteps.get(position));
-                intent.putExtra("nameOfRecipe", availableRecipesArrayList.get(position));
+                intent.putExtra("numberOfRecipe", IDs.get(position));
                 startActivity(intent);
                 cursor.close();
             }
