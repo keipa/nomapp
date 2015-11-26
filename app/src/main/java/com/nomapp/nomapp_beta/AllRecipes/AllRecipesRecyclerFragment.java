@@ -70,7 +70,6 @@ public class AllRecipesRecyclerFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), RecipePreviewActivity.class);
                 intent.putExtra("numberOfRecipe", cursor.getInt(0));
-                intent.putExtra("nameOfRecipe", cursor.getString(1));
                 cursor.close();
                 startActivity(intent);
             }

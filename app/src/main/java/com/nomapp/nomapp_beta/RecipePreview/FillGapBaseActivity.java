@@ -17,7 +17,9 @@
 package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -34,6 +36,7 @@ import com.melnykov.fab.FloatingActionButton;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Steps.TabsActivity;
 
@@ -83,9 +86,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
         final S scrollable = createScrollable();
 
-        Intent data = getIntent();
-        ((TextView) findViewById(R.id.title)).setText(data.getStringExtra("nameOfRecipe"));
-        setTitle(null);
+        setUpTitle();
 
         ScrollUtils.addOnGlobalLayoutListener((View) scrollable, new Runnable() {
             @Override
@@ -99,8 +100,23 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         });
     }
 
+    private void setUpTitle() {
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                new String[]
+                        {Database.getRecipesName()},
+                null, null, null, null
+                , null);
+
+        Intent data = getIntent();
+        cursor.moveToPosition(data.getIntExtra("numberOfRecipe", 0) - 1);
+
+        ((TextView) findViewById(R.id.title)).setText(cursor.getString(0));
+        cursor.close();
+
+        setTitle(null);
+    }
+
     void setUpFAB(){
-       // fab.attachToRecyclerView(selectedIngridients);
         fab.setColorNormal(getResources().getColor(R.color.chosenElement));
         fab.setColorPressed(getResources().getColor(R.color.primary));
         fab.setColorRipple(getResources().getColor(R.color.chosenElement));
@@ -115,8 +131,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         public void onClick(View v) {
             Intent data = getIntent();
             Intent intent = new Intent(FillGapBaseActivity.this, TabsActivity.class);
-            intent.putExtra("cooking", data.getStringExtra("cooking"));
-            intent.putExtra("numberOfSteps", data.getIntExtra("numberOfSteps", 0));
+            intent.putExtra("numberOfRecipe", data.getIntExtra("numberOfRecipe", 0));
             startActivity(intent);
         }
     };
