@@ -1,6 +1,5 @@
 package com.nomapp.nomapp_beta.AvailableRecipes;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +36,7 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_available_reciepe, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_material_recipe, viewGroup, false);
         return new ViewHolder(v, i);
     }
 
@@ -66,9 +65,9 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.avlRcpNameTV);
-            time = (TextView) itemView.findViewById(R.id.timeTV);
-            numberOfSteps = (TextView) itemView.findViewById(R.id.numberOfStepsTV);
-            numberOfIngredients = (TextView) itemView.findViewById(R.id.numOfIngs);
+            time = (TextView) itemView.findViewById(R.id.text_time);
+            numberOfSteps = (TextView) itemView.findViewById(R.id.text_steps);
+            numberOfIngredients = (TextView) itemView.findViewById(R.id.text_products);
 
 
             name.setText(names.get(position));

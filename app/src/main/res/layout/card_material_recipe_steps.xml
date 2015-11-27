@@ -6,19 +6,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="35"
-        android:id="@+id/steps"
-        android:textSize="55dp"
+        android:text="9"
+        android:id="@+id/text_steps"
+        android:textSize="50dp"
         android:fontFamily="sans-serif-thin"
         android:textColor="#434343"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="STEPS"
-        android:id="@+id/text_steps"
+        android:text="ШАГОВ"
+
         android:gravity="center"
         android:fontFamily="sans-serif-medium"
         android:textSize="15dp"

@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/avlRcpImageView"
-                android:src="@drawable/tetet"
+                android:src="@drawable/image_for_steps3"
                 android:padding="0dp"
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true"
@@ -40,7 +40,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/avlRcpNameTV"
                 android:gravity="left"
-                android:textSize="35dp"
+                android:textSize="25dp"
                 android:text="Roast beef"
                 android:visibility="visible"
                 android:layout_marginLeft="14dp"
@@ -49,7 +49,7 @@
                 android:layout_alignParentStart="true"
                 android:textColor="@color/white"
                 android:focusableInTouchMode="false"
-                android:fontFamily="sans-serif-medium" />
+                android:fontFamily="sans-serif-condensed" />
 
         </RelativeLayout>
 
@@ -73,7 +73,12 @@
 
                     android:layout_weight="1">
 
-                    <include layout="@layout/card_material_recipe_steps" />
+                    <include layout="@layout/card_material_recipe_steps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/include_steps" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -88,7 +93,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/include_products" />
 
                 </RelativeLayout>
 
@@ -105,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:id="@+id/include" />
+                        android:id="@+id/include_time" />
 
                 </RelativeLayout>
 
@@ -131,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="PREVIEW"
+                android:text="ПОСМОТРЕТЬ"
                 android:id="@+id/preview"
                 android:gravity="center"
                 android:fontFamily="sans-serif-medium"
