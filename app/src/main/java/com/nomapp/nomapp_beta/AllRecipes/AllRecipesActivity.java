@@ -55,7 +55,7 @@ public class AllRecipesActivity extends AppCompatActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         }
 
 
