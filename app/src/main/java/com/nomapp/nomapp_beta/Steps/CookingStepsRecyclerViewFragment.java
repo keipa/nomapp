@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta.Steps;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
 /**
@@ -47,8 +49,8 @@ public class CookingStepsRecyclerViewFragment extends Fragment {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        Intent intent = getActivity().getIntent();
-        String nameOfSteps = intent.getStringExtra("cooking");
+
+        String nameOfSteps = getNameOfSteps();
 
         int id = getResources().getIdentifier(nameOfSteps, "array", getActivity().getPackageName());
         String[] stepsArray = getResources().getStringArray(id);
@@ -60,4 +62,21 @@ public class CookingStepsRecyclerViewFragment extends Fragment {
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
     }
+
+    private String getNameOfSteps() {
+        Intent intent = getActivity().getIntent();
+
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                new String[]
+                        {Database.getRecipesHowToCook()},
+                null, null, null, null
+                , null);
+        cursor.moveToPosition(intent.getIntExtra("numberOfRecipe", 0) - 1);
+
+        String steps = cursor.getString(0);
+        cursor.close();
+        return steps;
+    }
+
+
 }

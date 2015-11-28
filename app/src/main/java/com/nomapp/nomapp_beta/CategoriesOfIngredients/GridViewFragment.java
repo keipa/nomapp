@@ -1,8 +1,7 @@
-package com.nomapp.nomapp_beta.Categories;
+package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,8 @@ public class GridViewFragment extends Fragment {
                 gridViewOnClickListener.onClick(position);
             }
         });
-        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(),  (GridView) v.findViewById(R.id.categoryGridView)));
+        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(),
+                (GridView) v.findViewById(R.id.categoryGridView)));
 
         return v;
     }

@@ -29,16 +29,16 @@ import java.util.ArrayList;
 
 public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAdapter.ViewHolder> {
     private LayoutInflater mInflater;
-    private ArrayList<String> mItems;
+    int numberOfItems;
 
-    public SimpleRecyclerAdapter(Context context, ArrayList<String> items) {
+    public SimpleRecyclerAdapter(Context context, int numberOfItems) {
         mInflater = LayoutInflater.from(context);
-        mItems = items;
+        this.numberOfItems = numberOfItems;
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return numberOfItems ;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class SimpleRecyclerAdapter extends RecyclerView.Adapter<SimpleRecyclerAd
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.textView.setText(mItems.get(position));
+  //      viewHolder.textView.setText(mItems.get(position));
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

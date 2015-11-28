@@ -2,6 +2,7 @@
 package com.nomapp.nomapp_beta.Steps;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Start.StartActivity;
@@ -90,13 +92,24 @@ public class TabsActivity extends AppCompatActivity {
             @Override
             public int getCount() {
                 Intent intent = getIntent();
-                int count = intent.getIntExtra("numberOfSteps", 0);
+
+                Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                        new String[]
+                                {Database.getRecipesNumberOfSteps()},
+                        null, null, null, null
+                        , null);
+                cursor.moveToPosition(intent.getIntExtra("numberOfRecipe", 0) - 1);
+
+                int count = cursor.getInt(0);
+                cursor.close();
+
                 return count;
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return "ÿ¿√ " + (position + 1);
+                return getResources().getString(R.string.step) + " "
+                        + (position + 1);
             }
         });
 

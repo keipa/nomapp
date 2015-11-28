@@ -1,22 +1,19 @@
-package com.nomapp.nomapp_beta.Categories;
+package com.nomapp.nomapp_beta.CategoriesOfRecipes;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
 
 /**
  * Created by Антоненко Илья on 10.09.2015.
  */
-public class CategoriesGVAdapter extends BaseAdapter {
+public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     GridView gridView;
@@ -26,7 +23,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
    // TypedArray imagesArray;
 
 
-    public CategoriesGVAdapter(Context c, GridView gridView) {
+    public CategoriesOfRecipesGVAdapter(Context c, GridView gridView) {
         this.gridView = gridView;
         mContext = c;
         mInflater = LayoutInflater.from(mContext);
@@ -34,7 +31,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return 13;
+        return 9;
     }
 
     public Object getItem(int position) {
@@ -72,9 +69,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
             R.drawable.category_fish, R.drawable.category_seaproducts,
             R.drawable.category_vegetables, R.drawable.category_fruits,
             R.drawable.category_bakalei, R.drawable.category_crups,
-            R.drawable.category_milk, R.drawable.category_mashrooms,
-            R.drawable.category_zelen, R.drawable.category_nuts,
-            R.drawable.category_readyproducts
+            R.drawable.category_milk
     };
 
 }

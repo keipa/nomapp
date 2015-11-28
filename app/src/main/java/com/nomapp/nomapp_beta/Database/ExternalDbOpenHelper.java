@@ -39,7 +39,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
 
     //Создаст базу, если она не создана
     public void createDataBase() {
-        boolean dbExist = /*checkDataBase()*/ false;
+        boolean dbExist = checkDataBase();
         if (!dbExist) {
             this.getReadableDatabase();
             try {
@@ -96,7 +96,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
 
     public SQLiteDatabase openDataBase() throws SQLException {
         String path = DB_PATH + DB_NAME;
-//        if (!checkDataBase())
+        if (!checkDataBase())
             createDataBase();
 
         database = SQLiteDatabase.openDatabase(path, null,

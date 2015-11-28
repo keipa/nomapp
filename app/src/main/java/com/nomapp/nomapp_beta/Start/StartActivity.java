@@ -2,7 +2,6 @@ package com.nomapp.nomapp_beta.Start;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -18,7 +17,8 @@ import android.widget.ListView;
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
-import com.nomapp.nomapp_beta.Categories.CategoriesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 
@@ -204,7 +204,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
                 break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(StartActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(StartActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;

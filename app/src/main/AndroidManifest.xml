@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".AddIngredients.AddIngridientsActivity"
-            android:label=" "
+            android:label=""
             android:screenOrientation="portrait"/>
         <activity
             android:name=".AvailableRecipes.ListOfAvailableRecipesActivity"
@@ -33,7 +33,7 @@
         <activity android:name=".Steps.TabsActivity"
             android:label="Steps"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Categories.CategoriesActivity"
+        <activity android:name=".CategoriesOfIngredients.CategoriesActivity"
             android:label="Steps"
             android:screenOrientation="portrait">
         </activity>
@@ -42,7 +42,12 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".AllRecipes.AllRecipesActivity"
-            android:label=""
+            android:label="Каталог"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".CategoriesOfRecipes.CategoriesOfRecipesActivity"
+            android:label="Выберите категорию"
             android:screenOrientation="portrait">
         </activity>
 

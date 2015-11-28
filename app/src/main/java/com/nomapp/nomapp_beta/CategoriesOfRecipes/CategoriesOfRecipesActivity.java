@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.Categories;
+package com.nomapp.nomapp_beta.CategoriesOfRecipes;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,34 +16,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
-import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfIngredients.GridViewFragment;
+import com.nomapp.nomapp_beta.CategoriesOfIngredients.SearchFragment;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Start.StartActivity;
 
-import java.util.ArrayList;
-
 /**
- * Created by antonid on 20.08.2015.
+ * Created by antonid on 05.11.2015.
  */
-public class CategoriesActivity extends AppCompatActivity implements GridViewFragment.CategoriesGridViewOnClickListener {
-
+public class CategoriesOfRecipesActivity extends AppCompatActivity implements RecipesGridViewFragment.CategoriesGridViewOnClickListener {
     EditText enteredText;
     ImageButton back;
 
-    GridViewFragment gridViewFragment;
-    SearchFragment searchFragment;
+    RecipesGridViewFragment gridViewFragment;
+    RecipesSearchFragment searchFragment;
     FragmentTransaction fTransaction;
 
 
@@ -61,10 +55,10 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_categories);
+        setContentView(R.layout.activity_categories_of_recipes);
 
-        gridViewFragment = new GridViewFragment();
-        searchFragment = new SearchFragment();
+        gridViewFragment = new RecipesGridViewFragment();
+        searchFragment = new RecipesSearchFragment();
 
         Toolbar mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         setSupportActionBar(mActionBarToolbar);
@@ -101,7 +95,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
             return true;
         }*/
 
-       if (id == R.id.action_search){
+        if (id == R.id.action_search){
             Log.w("LOG", "search pressed");
             setUpSearchMode();
             return true;
@@ -121,13 +115,13 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     }
 
 
-   /* adds GridView,
-    * sets its params
-    * and onItemClickListener
-    */
+    /* adds GridView,
+     * sets its params
+     * and onItemClickListener
+     */
     private void setUpGridViewFragment(){
         fTransaction = getFragmentManager().beginTransaction();
-        fTransaction.add(R.id.categoriesFragmentCont, gridViewFragment);
+        fTransaction.add(R.id.categoriesOfRecipesFragmentCont, gridViewFragment);
         fTransaction.commit();
     }
 
@@ -140,7 +134,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     private void setUpSearchMode(){
         actionBar.setDisplayHomeAsUpEnabled(false);
         fTransaction = getFragmentManager().beginTransaction();
-        fTransaction.replace(R.id.categoriesFragmentCont, searchFragment);
+        fTransaction.replace(R.id.categoriesOfRecipesFragmentCont, searchFragment);
         fTransaction.commit();
 
 
@@ -163,7 +157,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
     private void setNoSearchMode() {
         actionBar.setDisplayHomeAsUpEnabled(true);
         fTransaction = getFragmentManager().beginTransaction();
-        fTransaction.replace(R.id.categoriesFragmentCont, gridViewFragment);
+        fTransaction.replace(R.id.categoriesOfRecipesFragmentCont, gridViewFragment);
         fTransaction.commit();
 
 
@@ -211,10 +205,12 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         });
     }
 
+
+    //Click to the GridView's item
     @Override
     public void onClick(int position) {
         Log.w("MY_TAG", "gridItem clicked");
-        Intent toIngs = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
+        Intent toIngs = new Intent(CategoriesOfRecipesActivity.this, AllRecipesActivity.class);
         toIngs.putExtra("numberOfCategory", position + 1);
         startActivity(toIngs);
     }
@@ -231,7 +227,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -262,12 +258,12 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         switch (position){
             case 0:
                 mDrawerLayout.closeDrawers();
-                Intent toStartActivity = new Intent(CategoriesActivity.this, StartActivity.class);
+                Intent toStartActivity = new Intent(CategoriesOfRecipesActivity.this, StartActivity.class);
                 startActivity(toStartActivity);
                 break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(CategoriesActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(CategoriesOfRecipesActivity.this, AllRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;

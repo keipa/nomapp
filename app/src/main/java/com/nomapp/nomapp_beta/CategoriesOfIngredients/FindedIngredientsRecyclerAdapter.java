@@ -1,4 +1,4 @@
-package com.nomapp.nomapp_beta.Categories;
+package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;

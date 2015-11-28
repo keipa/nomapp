@@ -24,13 +24,15 @@ public class AllRecipesRecyclerFragment extends Fragment {
     AllRecipesRecyclerAdapter mAdapter;
 
     ArrayList<String> availableRecipesArrayList;
-    ArrayList<Integer> timeForCooking;
+    ArrayList<String> timeForCooking;
     ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
     ArrayList<Integer> numberOfIngs;
 
     Cursor cursor;
+    Cursor categoryCursor;
 
+    String title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,19 +55,27 @@ public class AllRecipesRecyclerFragment extends Fragment {
         AllRecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new AllRecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                cursor.moveToPosition(position);
+                if (cursor.isClosed())
+                {
+                    cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                            new String[]
+                                    {Database.getRecipesId(), Database.getRecipesName(),
+                                            Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
+                                            Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
+                                            Database.getRecipesHowToCook()},
+                            null, null, null, null
+                            , null);
+                }
+                cursor.moveToPosition(IDs.get(position) - 1);
 
-                Intent intent = new Intent(getActivity(), RecipePreviewActivity.class); //TODO maybe
-                intent.putExtra("numberOfRecipe", IDs.get(position) - 1);
-                intent.putExtra("cooking", cursor.getString(6));
-                intent.putExtra("numberOfSteps", numberOfSteps.get(position));
-                intent.putExtra("nameOfRecipe", availableRecipesArrayList.get(position));
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), RecipePreviewActivity.class);
+                intent.putExtra("numberOfRecipe", cursor.getInt(0));
                 cursor.close();
+                startActivity(intent);
             }
         };
 
-        mAdapter = new AllRecipesRecyclerAdapter(availableRecipesArrayList, timeForCooking, numberOfSteps, numberOfIngs, itemTouchListener);  // setting adapter.
+        mAdapter = new AllRecipesRecyclerAdapter(IDs, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -90,16 +100,43 @@ public class AllRecipesRecyclerFragment extends Fragment {
                 null, null, null, null
                 , null);
 
-        cursor.moveToFirst();
-        if (!cursor.isAfterLast()) {
-            do {
-                    availableRecipesArrayList.add(cursor.getString(1));
-                    IDs.add(cursor.getInt(0));
-                    timeForCooking.add(cursor.getInt(4));
-                    numberOfSteps.add(cursor.getInt(3));
-                    numberOfIngs.add(cursor.getInt(5));
-            } while (cursor.moveToNext());
+       categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesCategoriesTableName(),
+                new String[]
+                        {Database.getRecipesCategoriesId(), Database.getRecipesCategoriesName(),
+                                Database.getRecipesCategoriesRecipes()},
+                null, null, null, null
+                , null);
+
+        categoryCursor.moveToFirst();
+        Intent intent = getActivity().getIntent();
+        categoryCursor.moveToPosition(intent.getIntExtra("numberOfCategory", 0) - 1);
+
+        title = categoryCursor.getString(1);
+
+        IDs = parse(categoryCursor.getString(2));
+        categoryCursor.close();
+
+
+    }
+
+    private ArrayList<Integer> parse(String toConvert) {
+        ArrayList<Integer> converted = new ArrayList<>();
+
+        int counter;
+        int factor = 1;
+        int currentIngridient = 0;
+        int size = toConvert.length();
+        for (counter = 0; counter < size; counter++) {
+            while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
+                currentIngridient += (toConvert.charAt(counter) - '0') * factor;
+                factor *= 10;
+                counter++;
+            }
+            factor = 1;
+            converted.add(currentIngridient);
+            currentIngridient = 0;
         }
+        return converted;
     }
 
 

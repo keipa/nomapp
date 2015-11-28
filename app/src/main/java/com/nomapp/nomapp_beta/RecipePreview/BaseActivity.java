@@ -45,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return actionBarSize;
     }
 
+
     protected int getScreenHeight() {
         return findViewById(android.R.id.content).getHeight();
     }
@@ -104,7 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setDummyData(RecyclerView recyclerView, int num) {
-        recyclerView.setAdapter(new SimpleRecyclerAdapter(this, getDummyData(num)));
+        recyclerView.setAdapter(new SimpleRecyclerAdapter(this, 3));
     }
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, int headerHeight) {
@@ -118,6 +119,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
         Intent data = getIntent();
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, getDummyData(), headerView, data.getIntExtra("numberOfRecipe", 0), this));
+        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, NUM_OF_ITEMS, headerView, data.getIntExtra("numberOfRecipe", 0)));
     }
 }
