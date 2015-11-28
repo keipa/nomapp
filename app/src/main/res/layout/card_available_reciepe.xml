@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="продуктов"
-                android:id="@+id/numOfIngs"
+                android:id="@+id/text_products"
                 android:layout_alignTop="@+id/view"
                 android:layout_below="@+id/avlRcpNameTV"
 
@@ -87,8 +87,8 @@
                 android:background="@color/grey"
                 android:id="@+id/viewVerticalLeft"
                 android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/numOfIngs"
-                android:layout_toStartOf="@+id/numOfIngs"
+                android:layout_toLeftOf="@+id/text_products"
+                android:layout_toStartOf="@+id/text_products"
                 android:layout_marginRight="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_alignTop="@+id/view" />
@@ -99,8 +99,8 @@
                 android:background="@color/grey"
                 android:id="@+id/viewVerticalRight"
                 android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/numOfIngs"
-                android:layout_toEndOf="@+id/numOfIngs"
+                android:layout_toRightOf="@+id/text_products"
+                android:layout_toEndOf="@+id/text_products"
                 android:layout_marginLeft="21dp"
                 android:layout_marginStart="21dp"
                 android:layout_alignTop="@+id/view" />

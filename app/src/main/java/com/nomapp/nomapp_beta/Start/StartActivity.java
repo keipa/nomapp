@@ -144,8 +144,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-         //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         }
 
             mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -200,7 +199,9 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
     //
     private void navDrawerSelectItem(int position){
         switch (position){
-            case 0: break;
+            case 0:
+                mDrawerLayout.closeDrawers();
+                break;
             case 1:
                 mDrawerLayout.closeDrawers();
                 Intent toAllRecipes = new Intent(StartActivity.this, AllRecipesActivity.class);

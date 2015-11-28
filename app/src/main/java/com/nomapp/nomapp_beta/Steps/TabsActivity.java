@@ -51,10 +51,7 @@ public class TabsActivity extends AppCompatActivity {
 
         toolbar = mViewPager.getToolbar();
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //mViewPager.getPagerTitleStrip().setDividerColor(R.color.white);
         mViewPager.getPagerTitleStrip().setTextColor(getResources().getColor(R.color.white));
-        //mViewPager.getPagerTitleStrip().setIndicatorColor(R.color.white);
-        //mViewPager.
         mViewPager.getPagerTitleStrip().getIndicatorColor();
 
         if (toolbar != null) {
