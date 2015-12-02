@@ -227,7 +227,7 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.hamburger_icon);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -263,8 +263,6 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
                 break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(CategoriesOfRecipesActivity.this, AllRecipesActivity.class);
-                startActivity(toAllRecipes);
                 break;
             default: break;
         }

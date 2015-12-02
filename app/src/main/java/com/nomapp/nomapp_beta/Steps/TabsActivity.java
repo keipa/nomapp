@@ -20,6 +20,7 @@ import android.widget.ListView;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
@@ -182,7 +183,7 @@ public class TabsActivity extends AppCompatActivity {
                 break;
             case 1:
                 mDrawer.closeDrawers();
-                Intent toAllRecipes = new Intent(TabsActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(TabsActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;

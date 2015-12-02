@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Start.StartActivity;
@@ -260,7 +261,7 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
                 break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(CategoriesActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(CategoriesActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;

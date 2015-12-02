@@ -11,7 +11,9 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;import com.nomapp.nomapp_beta.Database.Database;
+import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Start.StartActivity;
@@ -73,7 +75,7 @@ public class ListOfAvailableRecipesActivity extends AppCompatActivity {
                 break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(ListOfAvailableRecipesActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(ListOfAvailableRecipesActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;

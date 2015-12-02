@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
@@ -142,7 +143,7 @@ public class AddIngridientsActivity extends AppCompatActivity {
                 break;
             case 1:
                 mDrawerLayout.closeDrawers();
-                Intent toAllRecipes = new Intent(AddIngridientsActivity.this, AllRecipesActivity.class);
+                Intent toAllRecipes = new Intent(AddIngridientsActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
                 break;
             default: break;
