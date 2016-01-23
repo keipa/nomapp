@@ -14,9 +14,10 @@ public class Database {
     private static final String DATABASE_NAME = "Database.db";
 
     private static final String INGREDIENTS_TABLE_NAME = "Ingredients";
-    private static final String INGRIDIENT_ID = "_id";
-    private static final String INGRIDIENT_NAME = "name";
+    private static final String INGREDIENT_ID = "_id";
+    private static final String INGREDIENT_NAME = "name";
     private static final String IS_CHECKED = "checked";
+    private static final String INGREDIENTS_FOR_WHAT_RECIPES = "forWhatRecipes";
 
     private static final String RECIPES_TABLE_NAME = "Recipes";
     private static final String RECIPES_ID = "_id";
@@ -91,14 +92,15 @@ public class Database {
 
     public static String getIngredientsTableName() {return INGREDIENTS_TABLE_NAME; };
     public static String getIngredientId() {
-        return INGRIDIENT_ID;
+        return INGREDIENT_ID;
     }
     public static String getIngredientName() {
-        return INGRIDIENT_NAME;
+        return INGREDIENT_NAME;
     }
     public static String getIngredientIsChecked() {
         return IS_CHECKED;
     }
+    public static String getIngredientsForWhatRecipes() { return  INGREDIENTS_FOR_WHAT_RECIPES; }
 
     public static String getCategoriesId() {
         return CATEGORIES_ID;

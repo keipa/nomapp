@@ -19,6 +19,7 @@ import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListen
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Stack;
 
 /**
@@ -43,9 +44,16 @@ public class StartFragment extends Fragment {
     SwipeableRecyclerViewTouchListener swipeTouchListener;
 
     ArrayList<String> forSelectedIngridients;
+
+    /*
+        It needs to do not parse ings for recipes after every swipe.
+        We write ingredients for every already available recipe here.
+     */
     ArrayList<ArrayList<Integer>> ingredientsForAvailableRecipes;
+
     ArrayList<Integer> IDsOfSelectedIngs;
     ArrayList<Integer> IDsOfAvailableRecipes;
+    ArrayList<Integer> IDsOfPotentialRecipes;
 
     int numberOfAvailableRecipes;
     int numberOfSelectedIngredients;
@@ -174,8 +182,8 @@ public class StartFragment extends Fragment {
     }
 //----------------------------------------------------------------------------------------Main algorithm's functions block--------------------------------------------------------------------------------------//
     /*
-    *Algorithm: We check all recipes in the database to availability (in separated thread).
-    * Then we save IDs of available recipes to separate ArrayList.
+    *Algorithm: First of all we parse strings with potential recipes of ingredients
+    * to ArrayList. Then we delete the repeating elements. After that we check all potential recipes.
     * After every swipe we check only already available recipes (their IDs stores in separate
     * ArrayList) because we cant make available new recipe by swipe, only unavailable.
     * Thus we need check only, for example, 3 or 15 or 20 already available recipes after swipe,
@@ -189,52 +197,66 @@ public class StartFragment extends Fragment {
         int numOfAvlRecipes = 0;
         boolean isAvailable;
 
-        IDsOfAvailableRecipes = new ArrayList<>();
-        ingredientsForAvailableRecipes = new ArrayList<>();
+        HashSet<Integer> potentialRecipesSet = new HashSet<>();  //for potential recipes. HashSet works without repeats.
 
-        ArrayList<Integer> ingredientsForCurrentRecipe; //Parsed from database ingredients for current recipe;
 
-        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+        //Parsing potential recipes.
+        Cursor ingredientsTableCursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                 new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(), Database.getRecipesIngredients(),
-                                Database.getRecipesHowToCook(), Database.getRecipesIsAvailable(),
-                                Database.getRecipesNumberOfSteps()},
+                        {Database.getIngredientIsChecked(), Database.getIngredientsForWhatRecipes()},
                 null, null, null, null
                 , null);
 
+        ingredientsTableCursor.moveToFirst();
 
-        // We check all recipes in the database.
-        cursor.moveToFirst();
-        if (!cursor.isAfterLast()) {
+        //parsing potential recipes from every selected ingredient.
+        if (!ingredientsTableCursor.isAfterLast()) {
             do {
-                if (cursor.getInt(2) != 0) {
-                    //Parse ingredients to ArrayList from the database.
-                    //How it looks in the database: (1,3,35,50.).
-                    ingredientsForCurrentRecipe = convertIngridientsToArrayList(cursor.getString(2));
-
-                    //Check is current recipe available.
-                    isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
-                    if (isAvailable){
-                        //If it is available we note it in the database,add its id to the ArrayList,
-                        //add ingredients for recipe to the ArrayList
-                        // and increment numberOfAvailableIngredients.
-                        ingredientsForAvailableRecipes.add(ingredientsForCurrentRecipe);
-                        Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
-                                + " SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
-                        IDsOfAvailableRecipes.add(cursor.getInt(0));
-                        numOfAvlRecipes++;
-                    } else{
-                        //If it is not we also note it in the database.
-                        Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
-                                + " SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
-                    }
+                if (!ingredientsTableCursor.getString(1).equals("NULL") &&
+                        ingredientsTableCursor.getInt(0) == 1) { //TODO "NULL"
+                    potentialRecipesSet.addAll(parsePotentialRecipesFromIngredient(ingredientsTableCursor.getString(1)));
                 }
-            } while (cursor.moveToNext());
+            } while (ingredientsTableCursor.moveToNext());
         }
-        cursor.close();
+        ingredientsTableCursor.close();
 
-      //  numOfRecipesTV.setText(numOfAvlRecipes + "");
-    //    setCase(numOfAvlRecipes);
+
+        IDsOfAvailableRecipes = new ArrayList<>();
+        ingredientsForAvailableRecipes = new ArrayList<>();
+
+        //Converting potential recipes to ArrayList to use it in "foreach" cycle
+        IDsOfPotentialRecipes = new ArrayList<>(potentialRecipesSet);
+
+        ArrayList<Integer> ingredientsForCurrentRecipe; //Parsed from database ingredients for current recipe;
+
+        //Cursor for working with recipes from the database (setting up is it available, etc.)
+        Cursor recipesCursor =  Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                new String[] {Database.getRecipesIngredients()}, null, null, null, null, null );
+
+        //Checking for availability all potential recipes.
+        for (int currentRecipe: IDsOfPotentialRecipes) {
+            recipesCursor.moveToPosition(currentRecipe - 1);
+            ingredientsForCurrentRecipe = convertIngridientsToArrayList(recipesCursor.getString(0));
+
+            isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
+            if (isAvailable){
+                /* If it is available we note it in the database,add its id to the ArrayList,
+                * add ingredients for recipe to the ArrayList
+                * and increment numberOfAvailableIngredients.
+                */
+                ingredientsForAvailableRecipes.add(ingredientsForCurrentRecipe);
+                Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
+                        + " SET isAvailable=1 WHERE _id=" + (currentRecipe) + ";");
+                IDsOfAvailableRecipes.add(recipesCursor.getInt(0));
+                numOfAvlRecipes++;
+            } else {
+                //If it is not we also note it in the database.
+                Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
+                        + " SET isAvailable=0 WHERE _id=" + (currentRecipe) + ";");
+            }
+        }
+        recipesCursor.close();
+
         return numOfAvlRecipes;
     }
 
@@ -285,13 +307,13 @@ public class StartFragment extends Fragment {
         cursor.close();
 
         numOfRecipesTV.setText(numberOfAvlRecipes + "");
-        recTextView.setText(setCaseRec(numberOfAvlRecipes));
-        availTextView.setText(setCaseAvail(numberOfAvlRecipes));
+        recTextView.setText(setEndingInRecipe(numberOfAvlRecipes));
+        availTextView.setText(setEndingInAvailable(numberOfAvlRecipes));
         return numberOfAvlRecipes;
     }
 
 
-    String setCaseRec(int rec){
+    String setEndingInRecipe(int rec){
         String toReturn = "";
         int modNumberOAR =rec % 10;
         if (modNumberOAR >=2 && modNumberOAR <=4){
@@ -307,7 +329,7 @@ public class StartFragment extends Fragment {
         return toReturn;
     }
 
-    String setCaseAvail(int rec){
+    String setEndingInAvailable(int rec){
         String toReturn = "";
         int modNumberOAR =rec % 10;
         if (modNumberOAR >= 2 && modNumberOAR <=4){
@@ -389,6 +411,31 @@ public class StartFragment extends Fragment {
         return converted;
     }
 
+    private ArrayList<Integer> parsePotentialRecipesFromIngredient(String toConvert) { // parsing requed ingridients for every recipe from Database (part 2)
+        ArrayList<Integer> converted = new ArrayList<>();
+        Stack<Integer> temporaryStack = new Stack<>();
+        int counter = 0;
+        int factor = 1;
+        int currentIngredient = 0;
+        int size = toConvert.length();
+        for (counter = 0; counter < size; counter++) {
+            while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
+                temporaryStack.push(toConvert.charAt(counter) - '0');
+                counter++;
+            }
+            while (!temporaryStack.empty()){
+                currentIngredient += temporaryStack.pop() * factor;
+                factor *= 10;
+            }
+            factor = 1;
+            converted.add(currentIngredient);
+            currentIngredient = 0;
+        }
+        return converted;
+    }
+
+
+
 //----------------------------------------------------------------------------------------End of main algorithm's functions block--------------------------------------------------------------------------------------//
 
     void setSwipeTouchListener() {
@@ -457,8 +504,8 @@ public class StartFragment extends Fragment {
            // Log.w("THREAD_TAG", "hello");
             //ArrayList of selected recipes already filled in StartActivity's method.
             numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
-            String recCase = setCaseRec(numberOfAvailableRecipes); //for cases of 2 views with text
-            String availCase = setCaseAvail(numberOfAvailableRecipes);
+            String recCase = setEndingInRecipe(numberOfAvailableRecipes); //for cases of 2 views with text
+            String availCase = setEndingInAvailable(numberOfAvailableRecipes);
 
             Message textOfRecCase =  new Message(); //Messages for .setText in main thread
             textOfRecCase.obj = recCase;
