@@ -239,7 +239,7 @@ public class CategoriesOfRecipesActivity extends AppCompatActivity implements Re
         mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
 
         // Set the adapter for the list view
-        mDrawerList.setAdapter(new NavDrawerListAdapter(this));
+        mDrawerList.setAdapter(new NavDrawerListAdapter(this, 1)); //1 means than we are on  a second view in NavDrawer
         // Click events for Navigation Drawer (now available only on start screen)
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 

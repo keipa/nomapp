@@ -157,7 +157,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
          mDrawerList = (ListView) findViewById(R.id.nav_drawer_list_view);
 
         // Set the adapter for the list view
-        mDrawerList.setAdapter(new NavDrawerListAdapter(this));
+        mDrawerList.setAdapter(new NavDrawerListAdapter(this, 0));  // 0 means that we are on the first view
         // Click events for Navigation Drawer (now available only on start screen)
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
