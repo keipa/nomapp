@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
+
+import java.lang.reflect.Type;
 
 /**
  * Created by Антоненко Илья on 10.09.2015.
@@ -45,15 +48,34 @@ public class CategoriesGVAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         view = mInflater.inflate(R.layout.card_material_category, parent, false);
-        TextView name = (TextView)view.findViewById(R.id.name_of_category);
+         TextView name = (TextView)view.findViewById(R.id.name_of_category);
         name.setText(stringArrayCategory[position]);
+
+
+       /* if (stringArrayCategory[position].length() > 9)
+            name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20 );
+       */ /*if (stringArrayCategory[position].length() > 5) {
+                name.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView name = (TextView) view.findViewById(R.id.name_of_category);
+                        while (name.getLineCount() >= 1) {
+                            int lineCount = name.getLineCount();
+
+                            name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 5);
+                           // name.
+                        }
+                        // Perform any actions you want based on the line count here.
+                    }
+                });
+        }*/
 
         return view;
 
 
     }
     private String[] stringArrayCategory = {
-            "Мясо",
+            "Фрукты и ягоды",
             "Птица",
             "Рыба",
             "Морепродукты",
