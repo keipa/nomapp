@@ -14,6 +14,7 @@ import com.nomapp.nomapp_beta.R;
 /**
  * Created by antonid on 30.09.2015.
  */
+
 public class GridViewFragment extends Fragment {
     CategoriesGridViewOnClickListener gridViewOnClickListener;
 
