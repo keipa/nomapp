@@ -64,6 +64,11 @@ public class RecipesSearchFragment extends Fragment {
         numberOfSteps.clear();
         numberOfIngs.clear();
 
+        if (enteredText.equals("")) {
+            setUpRecyclerView();
+            return;
+        }
+
         cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(),

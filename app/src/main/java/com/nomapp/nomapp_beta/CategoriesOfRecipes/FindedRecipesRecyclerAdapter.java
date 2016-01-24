@@ -44,9 +44,9 @@ public class FindedRecipesRecyclerAdapter extends RecyclerView.Adapter<FindedRec
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.name.setText(names.get(i));
-        viewHolder.time.setText(cookingTimes.get(i) + " мин.");
-        viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + " шагов");
-        viewHolder.numberOfIngredients.setText(numberOfIngs.get(i) + " продуктов");
+        viewHolder.time.setText(cookingTimes.get(i) + "");
+        viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + "");
+        viewHolder.numberOfIngredients.setText(numberOfIngs.get(i) + "");
 
     }
 
@@ -66,16 +66,16 @@ public class FindedRecipesRecyclerAdapter extends RecyclerView.Adapter<FindedRec
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.avlRcpNameTV);
-            time = (TextView) itemView.findViewById(R.id.timeTV);
-            numberOfSteps = (TextView) itemView.findViewById(R.id.numberOfStepsTV);
+            time = (TextView) itemView.findViewById(R.id.text_time);
+            numberOfSteps = (TextView) itemView.findViewById(R.id.text_steps);
             numberOfIngredients = (TextView) itemView.findViewById(R.id.text_products);
 
             image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);
 
             name.setText(names.get(position));
-            time.setText(cookingTimes.get(position) + " мин.");
-            numberOfSteps.setText(numbersOfSteps.get(position) + " шагов");
-            numberOfIngredients.setText(numberOfIngs.get(position) + " продуктов");
+            time.setText(cookingTimes.get(position) + "");
+            numberOfSteps.setText(numbersOfSteps.get(position) + "");
+            numberOfIngredients.setText(numberOfIngs.get(position) + "");
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
