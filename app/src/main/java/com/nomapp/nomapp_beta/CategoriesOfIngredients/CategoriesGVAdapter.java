@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
 
@@ -44,9 +45,28 @@ public class CategoriesGVAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         view = mInflater.inflate(R.layout.card_material_category, parent, false);
+        TextView name = (TextView)view.findViewById(R.id.name_of_category);
+        name.setText(stringArrayCategory[position]);
+
         return view;
 
+
     }
+    private String[] stringArrayCategory = {
+            "Мясо",
+            "Птица",
+            "Рыба",
+            "Морепродукты",
+            "Овощи",
+            "Фрукты и ягоды",
+            "Бакалея",
+            "Крупы и бобовые",
+            "Молочные продукты",
+            "Грибы",
+            "Зелень и травы",
+            "Орехи",
+            "Готовые продукты",
+    };
 //        ImageView imageView;
 //        if (convertView == null) {
 //            w = gridView.getColumnWidth();
