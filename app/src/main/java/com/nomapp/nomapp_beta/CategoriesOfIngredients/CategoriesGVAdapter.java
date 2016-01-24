@@ -43,7 +43,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        view = convertView.findViewById(R.id.card_category_ingredient);
+        view = mInflater.inflate(R.layout.card_material_category, parent, false);
         return view;
 
     }
