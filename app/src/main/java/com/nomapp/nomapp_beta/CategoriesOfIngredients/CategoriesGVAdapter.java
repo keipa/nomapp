@@ -7,28 +7,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 /**
- * Created by Антоненко Илья on 10.09.2015.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ on 10.09.2015.
  */
 public class CategoriesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    GridView gridView;
-   View view;
-    int w;
-    int h;
+    View view;
+
+    ArrayList<String> names;
+    ArrayList<Integer> numbersOfIngredients;
+
+
    // TypedArray imagesArray;
 
 
-    public CategoriesGVAdapter(Context c, GridView gridView) {
-        this.gridView = gridView;
+    public CategoriesGVAdapter(Context c, ArrayList<String> names,
+                               ArrayList<Integer> numbersOfIngredients) {
         mContext = c;
+        this.names = names;
+        this.numbersOfIngredients = numbersOfIngredients;
+
         mInflater = LayoutInflater.from(mContext);
     }
 
@@ -48,13 +57,16 @@ public class CategoriesGVAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         view = mInflater.inflate(R.layout.card_material_category, parent, false);
-         TextView name = (TextView)view.findViewById(R.id.name_of_category);
-        name.setText(stringArrayCategory[position]);
+        TextView name = (TextView)view.findViewById(R.id.name_of_category);
+        TextView numOfIngs = (TextView)view.findViewById(R.id.count_of_products);
+
+        name.setText(names.get(position));
+        numOfIngs.setText(numbersOfIngredients.get(position) + "");
 
 
        /* if (stringArrayCategory[position].length() > 9)
             name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20 );
-       */ /*if (stringArrayCategory[position].length() > 5) {
+       *//* if (stringArrayCategory[position].length() > 5) {
                 name.post(new Runnable() {
                     @Override
                     public void run() {
@@ -68,27 +80,13 @@ public class CategoriesGVAdapter extends BaseAdapter {
                         // Perform any actions you want based on the line count here.
                     }
                 });
-        }*/
+            }*/
 
         return view;
 
 
     }
-    private String[] stringArrayCategory = {
-            "Фрукты и ягоды",
-            "Птица",
-            "Рыба",
-            "Морепродукты",
-            "Овощи",
-            "Фрукты и ягоды",
-            "Бакалея",
-            "Крупы и бобовые",
-            "Молочные продукты",
-            "Грибы",
-            "Зелень и травы",
-            "Орехи",
-            "Готовые продукты",
-    };
+
 //        ImageView imageView;
 //        if (convertView == null) {
 //            w = gridView.getColumnWidth();

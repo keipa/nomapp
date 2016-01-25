@@ -42,7 +42,8 @@ public class Database {
     private static final String CATEGORIES_TABLE_NAME = "Categories";
     private static final String CATEGORIES_ID = "_id";
     private static final String CATEGORY_NAME= "name";
-    private static final String CATEGORY_INGREDIENTS= "ingredients";
+    private static final String CATEGORY_INGREDIENTS = "ingredients";
+    private static final String CATEGORY_NUMBER_OF_INGREDIENTS = "numberOfIngredients";
 
 
     public static void initDatabase(Context context) {
@@ -106,17 +107,15 @@ public class Database {
     public static String getCategoryName() {
         return CATEGORY_NAME;
     }
-    public static String getCategoryIngredients() {
-        return CATEGORY_INGREDIENTS;
-    }
-    public static String getCategoriesTableName() {
-        return CATEGORIES_TABLE_NAME;
-    }
+    public static String getCategoryIngredients() { return CATEGORY_INGREDIENTS; }
+    public static String getCategoryNumberOfIngredients() { return CATEGORY_NUMBER_OF_INGREDIENTS;}
+    public static String getCategoriesTableName() { return CATEGORIES_TABLE_NAME; }
 
     public static String getRecipesCategoriesTableName() { return RECIPES_CATEGORIES_TABLE_NAME; }
     public static String getRecipesCategoriesId() { return RECIPES_ID; }
     public static String getRecipesCategoriesName() { return RECIPES_CATEGORIES_NAME; }
     public static String getRecipesCategoriesRecipes() { return RECIPES_CATEGORIES_RECIPES; }
+
 
 
 }
