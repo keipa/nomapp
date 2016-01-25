@@ -17,6 +17,12 @@
     <string name="oneavail">доступен</string>
     <string name="twoavail">доступно</string>
     <string name="moreavail">доступно</string>
+
+    <string name="one_product">продукт</string>
+    <string name="two_or_four_products">продукта</string>
+    <string name="more_products">продуктов</string>
+
+
     <string name="localization_en">Localization</string>
     <string name="localization_ru">Локализация</string>
 
