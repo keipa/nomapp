@@ -30,6 +30,21 @@ public class CategoriesGVAdapter extends BaseAdapter {
     ArrayList<String> examples;
     ArrayList<Integer> numbersOfIngredients;
 
+    private Integer[] imagesArray = {
+            R.drawable.meat,
+            R.drawable.bird,
+            R.drawable.fish,
+            R.drawable.sea,
+            R.drawable.veget,
+            R.drawable.fruit,
+            R.drawable.backaley,
+            R.drawable.beans,
+            R.drawable.milk,
+            R.drawable.mashroom,
+            R.drawable.grass,
+            R.drawable.nuts,
+            R.drawable.ready
+    };
 
     private OnItemTouchListener onItemTouchListener;
 
@@ -72,7 +87,8 @@ public class CategoriesGVAdapter extends BaseAdapter {
             TextView name = (TextView) convertView.findViewById(R.id.name_of_category);
             TextView numOfIngs = (TextView) convertView.findViewById(R.id.count_of_products);
             TextView example = (TextView) convertView.findViewById(R.id.category_example);
-
+            ImageView icon = (ImageView)  convertView.findViewById(R.id.image_of_category);
+            icon.setImageResource(imagesArray[position]);
             name.setText(names.get(position));
             numOfIngs.setText(numbersOfIngredients.get(position) + " " + setEnding(numbersOfIngredients.get(position))); //TODO
             example.setText(examples.get(position));
@@ -123,16 +139,8 @@ public class CategoriesGVAdapter extends BaseAdapter {
 //        return imageView;
 
 
-// references to our images
-//    private Integer[] imagesArray = {
-//            R.drawable.category_meat, R.drawable.category_bird,
-//            R.drawable.category_fish, R.drawable.category_seaproducts,
-//            R.drawable.category_vegetables, R.drawable.category_fruits,
-//            R.drawable.category_bakalei, R.drawable.category_crups,
-//            R.drawable.category_milk, R.drawable.category_mashrooms,
-//            R.drawable.category_zelen, R.drawable.category_nuts,
-//            R.drawable.category_readyproducts
-//    };
+
+
 
 
     /**
