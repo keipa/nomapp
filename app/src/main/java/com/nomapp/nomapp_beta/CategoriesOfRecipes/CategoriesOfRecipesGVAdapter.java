@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
 
@@ -22,6 +23,7 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
     int h;
    // TypedArray imagesArray;
 
+    private OnItemTouchListener onItemTouchListener;
 
     public CategoriesOfRecipesGVAdapter(Context c, GridView gridView) {
         this.gridView = gridView;
@@ -44,32 +46,53 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) {
-            w = gridView.getColumnWidth();
-            h = w;
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-          //  imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, imageView.getLayoutParams().width));
-            imageView.setLayoutParams(new GridView.LayoutParams(w, h));
-            imageView.setPadding(8, 8, 8, 8);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        convertView = null;
 
-        } else {
-            imageView = (ImageView) convertView;
+        if (convertView == null)
+        {
+            convertView = mInflater.inflate(R.layout.card_material_category, parent, false);
+            TextView name = (TextView) convertView.findViewById(R.id.name_of_category);
+            TextView numOfRecs = (TextView) convertView.findViewById(R.id.count_of_products);
+            TextView example = (TextView) convertView.findViewById(R.id.category_example);
+            ImageView icon = (ImageView)  convertView.findViewById(R.id.image_of_category);
+            icon.setImageResource(imagesArray[position]);
+            //name.setText(names.get(position));
+            //numOfIngs.setText(numbersOfIngredients.get(position) + " " + setEnding(numbersOfIngredients.get(position))); //TODO
+            //example.setText(examples.get(position));
+
+//            convertView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    onItemTouchListener.onCardViewTap(v, position);
+//                }
+//            });
         }
-
-        imageView.setImageResource(imagesArray[position]);
-        return imageView;
+        return convertView;
     }
 
+    public interface OnItemTouchListener {
+        /**
+         * Callback invoked when the user Taps one of the RecyclerView items
+         *
+         * @param view     the CardView touched
+         * @param position the index of the item touched in the RecyclerView
+         */
+       public void onCardViewTap(View view, int position);
+
+    }
 // references to our images
     private Integer[] imagesArray = {
-            R.drawable.category_meat, R.drawable.category_bird,
-            R.drawable.category_fish, R.drawable.category_seaproducts,
-            R.drawable.category_vegetables, R.drawable.category_fruits,
-            R.drawable.category_bakalei, R.drawable.category_crups,
-            R.drawable.category_milk
-    };
+        R.drawable.colddish,
+        R.drawable.child,
+        R.drawable.soup,
+        R.drawable.meatrec,
+        R.drawable.flower,
+        R.drawable.fishrec,
+        R.drawable.diff,
+        R.drawable.doctor,
+        R.drawable.pastry,
+        R.drawable.vegemash
+};
+
 
 }

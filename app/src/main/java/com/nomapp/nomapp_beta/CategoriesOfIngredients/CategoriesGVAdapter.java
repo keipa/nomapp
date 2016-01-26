@@ -153,7 +153,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
          * @param view     the CardView touched
          * @param position the index of the item touched in the RecyclerView
          */
-        public void onCardViewTap(View view, int position);
+         void onCardViewTap(View view, int position);
 
     }
 }
