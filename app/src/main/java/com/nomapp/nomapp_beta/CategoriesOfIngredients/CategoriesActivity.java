@@ -23,7 +23,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
-import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
@@ -90,11 +89,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-       /* if (id == R.id.action_settings) {
-            return true;
-        }*/
-
        if (id == R.id.action_search){
             Log.w("LOG", "search pressed");
             setUpSearchMode();
@@ -114,23 +108,12 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
             super.onBackPressed();
     }
 
-
-   /* adds GridView,
-    * sets its params
-    * and onItemClickListener
-    */
     private void setUpGridViewFragment(){
         fTransaction = getFragmentManager().beginTransaction();
         fTransaction.add(R.id.categoriesFragmentCont, gridViewFragment);
         fTransaction.commit();
     }
 
-    /*
-    * Enables search mode
-    * (removes GridView with categories
-    * , adds RecyclerView for results
-    * , make EditText and BackButton visible
-     */
     private void setUpSearchMode(){
         actionBar.setDisplayHomeAsUpEnabled(false);
         fTransaction = getFragmentManager().beginTransaction();
@@ -148,12 +131,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         //enteredText.setEnabled(true);
     }
 
-    /*
-    * Sets usual mode
-    * (remove RecyclerView,
-    * add categories,
-    * make button and EditText invisible
-     */
     private void setNoSearchMode() {
         actionBar.setDisplayHomeAsUpEnabled(true);
         fTransaction = getFragmentManager().beginTransaction();
@@ -170,9 +147,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         searchMode = false;
     }
 
-    /*
-    * EditText for making queries.
-     */
     void setUpEditText() {
         enteredText = (EditText) findViewById(R.id.search_field);
 
@@ -192,8 +166,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
             }
         });
     }
-
-
 
     void setUpBackButton(){
         back = (ImageButton) findViewById(R.id.image_button_back);
@@ -251,7 +223,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         }
     }
 
-    //
     private void navDrawerSelectItem(int position){
         switch (position){
             case 0:

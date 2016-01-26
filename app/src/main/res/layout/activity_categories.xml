@@ -22,4 +22,5 @@
         android:id="@+id/categoriesFragmentCont" />
 </LinearLayout>
     <include layout="@layout/navdrawer" />
+
 </android.support.v4.widget.DrawerLayout>

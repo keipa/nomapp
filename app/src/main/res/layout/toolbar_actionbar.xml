@@ -25,6 +25,7 @@
         <EditText
             android:id="@+id/search_field"
             android:layout_width="match_parent"
+            android:singleLine="true"
             android:layout_height="wrap_content"
             tools:text="Test Text"
             android:visibility="invisible"
