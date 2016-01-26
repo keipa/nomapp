@@ -55,8 +55,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
 
         setUpNavigationDraver();        //navigation drawer initiation
 
-
-
     }
 
     @Override
@@ -92,45 +90,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         }
     };
 
-    void setUpUserSettings() {
-        setUpLocalization();
-    }
-
-    void setUpLocalization() {          //language change
-        /*SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = settings.getString("language", "");
-
-        TextView fridgeText = (TextView) findViewById(R.id.addFridge);
-        TextView dishOfADayText = (TextView) findViewById(R.id.addDishOfADay);
-        TextView allRecipesText = (TextView) findViewById(R.id.addAllRecepies);
-        TextView settingsText = (TextView) findViewById(R.id.addSettings);
-        TextView leaveFeedbackText = (TextView) findViewById(R.id.addReply);
-        TextView aboutText = (TextView) findViewById(R.id.addHelp);
-
-        switch (lang){
-            case "1":
-                fridgeText.setText(getString(R.string.fridge_en));
-                dishOfADayText.setText(getString(R.string.dish_of_a_day_en));
-                allRecipesText.setText(getString(R.string.all_recipes_en));
-                settingsText.setText(getString(R.string.settings_en));
-                leaveFeedbackText.setText(getString(R.string.leave_feedback_en));
-                aboutText.setText(getString(R.string.about_en));
-                break;
-
-            case "2":
-                fridgeText.setText(getString(R.string.fridge_ru));
-                dishOfADayText.setText(getString(R.string.dish_of_a_day_ru));
-                allRecipesText.setText(getString(R.string.all_recipes_ru));
-                settingsText.setText(getString(R.string.settings_ru));
-                leaveFeedbackText.setText(getString(R.string.leave_feedback_ru));
-                aboutText.setText(getString(R.string.about_ru));
-                break;
-
-            default:
-                break;
-        }
-        Log.w("MY_TAG", lang);// log note*/
-    }
 
     void setUpNavigationDraver() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -147,7 +106,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
         }
 
-            mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, 0, 0);
         mDrawerToggle.setDrawerIndicatorEnabled(true);
@@ -161,9 +120,6 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         // Click events for Navigation Drawer (now available only on start screen)
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-
-
     }
 
     void setUpFAB() {

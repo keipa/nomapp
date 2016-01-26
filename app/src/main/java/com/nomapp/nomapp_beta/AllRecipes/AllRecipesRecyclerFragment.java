@@ -75,7 +75,7 @@ public class AllRecipesRecyclerFragment extends Fragment {
             }
         };
 
-        mAdapter = new AllRecipesRecyclerAdapter(IDs, itemTouchListener);  // setting adapter.
+        mAdapter = new AllRecipesRecyclerAdapter(getActivity(), IDs, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -138,6 +138,8 @@ public class AllRecipesRecyclerFragment extends Fragment {
         }
         return converted;
     }
+
+
 
 
 }
