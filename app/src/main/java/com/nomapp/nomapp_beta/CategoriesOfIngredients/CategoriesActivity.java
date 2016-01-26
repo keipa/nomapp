@@ -31,7 +31,7 @@ import com.nomapp.nomapp_beta.Start.StartActivity;
 /**
  * Created by antonid on 20.08.2015.
  */
-public class CategoriesActivity extends AppCompatActivity implements GridViewFragment.CategoriesGridViewOnClickListener {
+public class CategoriesActivity extends AppCompatActivity {
 
     EditText enteredText;
     ImageButton back;
@@ -177,13 +177,6 @@ public class CategoriesActivity extends AppCompatActivity implements GridViewFra
         });
     }
 
-    @Override
-    public void onClick(int position) {
-        Log.w("MY_TAG", "gridItem clicked");
-        Intent toIngs = new Intent(CategoriesActivity.this, AddIngridientsActivity.class);
-        toIngs.putExtra("numberOfCategory", position + 1);
-        startActivity(toIngs);
-    }
 
     void setUpNavigationDraver() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);

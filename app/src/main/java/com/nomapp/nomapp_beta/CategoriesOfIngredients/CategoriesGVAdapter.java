@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class CategoriesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    View view;
 
     ArrayList<String> names;
     ArrayList<String> examples;
@@ -88,6 +87,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
             TextView numOfIngs = (TextView) convertView.findViewById(R.id.count_of_products);
             TextView example = (TextView) convertView.findViewById(R.id.category_example);
             ImageView icon = (ImageView)  convertView.findViewById(R.id.image_of_category);
+
             icon.setImageResource(imagesArray[position]);
             name.setText(names.get(position));
             numOfIngs.setText(numbersOfIngredients.get(position) + " " + setEnding(numbersOfIngredients.get(position))); //TODO
@@ -120,25 +120,6 @@ public class CategoriesGVAdapter extends BaseAdapter {
         }
         return toReturn;
     }
-//        ImageView imageView;
-//        if (convertView == null) {
-//            w = gridView.getColumnWidth();
-//            h = w;
-//            // if it's not recycled, initialize some attributes
-//            imageView = new ImageView(mContext);
-//          //  imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, imageView.getLayoutParams().width));
-//            imageView.setLayoutParams(new GridView.LayoutParams(w, h));
-//            imageView.setPadding(8, 8, 8, 8);
-//            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-//
-//        } else {
-//            imageView = (ImageView) convertView;
-//        }
-//
-//        imageView.setImageResource(imagesArray[position]);
-//        return imageView;
-
-
 
 
 

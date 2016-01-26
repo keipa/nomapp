@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta.CategoriesOfRecipes;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by Антоненко Илья on 10.09.2015.
@@ -17,19 +21,23 @@ import com.nomapp.nomapp_beta.R;
 public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    GridView gridView;
 
-    int w;
-    int h;
-   // TypedArray imagesArray;
+    ArrayList<String> names;
+    ArrayList<String> descriptions;
+    ArrayList<Integer> numbersOfIngredients;
 
     private OnItemTouchListener onItemTouchListener;
 
-    public CategoriesOfRecipesGVAdapter(Context c, GridView gridView) {
-        this.gridView = gridView;
+    public CategoriesOfRecipesGVAdapter(Context c, OnItemTouchListener onItemTouchListener) {
         mContext = c;
         mInflater = LayoutInflater.from(mContext);
-        //   imagesArray = mContext.getResources().obtainTypedArray(R.array.images_for_categories);
+
+        this.onItemTouchListener = onItemTouchListener;
+
+        names = new ArrayList<>();
+        descriptions = new ArrayList<>();
+        numbersOfIngredients = new ArrayList<>();
+        getData();
     }
 
     public int getCount() {
@@ -45,29 +53,69 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
     }
 
     // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = null;
 
         if (convertView == null)
         {
-            convertView = mInflater.inflate(R.layout.card_material_category, parent, false);
-            TextView name = (TextView) convertView.findViewById(R.id.name_of_category);
-            TextView numOfRecs = (TextView) convertView.findViewById(R.id.count_of_products);
-            TextView example = (TextView) convertView.findViewById(R.id.category_example);
-            ImageView icon = (ImageView)  convertView.findViewById(R.id.image_of_category);
-            icon.setImageResource(imagesArray[position]);
-            //name.setText(names.get(position));
-            //numOfIngs.setText(numbersOfIngredients.get(position) + " " + setEnding(numbersOfIngredients.get(position))); //TODO
-            //example.setText(examples.get(position));
+                convertView = mInflater.inflate(R.layout.card_material_category, parent, false);
+                TextView name = (TextView) convertView.findViewById(R.id.name_of_category);
+                TextView numOfIngs = (TextView) convertView.findViewById(R.id.count_of_products);
+                TextView example = (TextView) convertView.findViewById(R.id.category_example);
+                ImageView icon = (ImageView)  convertView.findViewById(R.id.image_of_category);
 
-//            convertView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    onItemTouchListener.onCardViewTap(v, position);
-//                }
-//            });
+                icon.setImageResource(imagesArray[position]);
+                name.setText(names.get(position));
+                numOfIngs.setText(numbersOfIngredients.get(position) + " " + getEnding(numbersOfIngredients.get(position)));
+                example.setText(descriptions.get(position));
+
+                convertView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                onItemTouchListener.onCardViewTap(v, position);
+                            }
+                });
         }
         return convertView;
+    }
+
+    private void getData()
+    {
+        Cursor categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesCategoriesTableName(),   //connection to the base
+                new String[]
+                        {Database.getRecipesCategoriesName(), Database.getRecipesCategoriesNumberOfRecipes(),
+                        Database.getRecipesCategoriesDescription()},
+                null, null, null, null
+                , null);
+
+        categoryCursor.moveToFirst();
+
+        if (!categoryCursor.isAfterLast()) {            // loop is going throw the all ingridients and shows marked ones (marked has "1" isChecked option)
+            do {
+                names.add(categoryCursor.getString(0));
+                numbersOfIngredients.add(categoryCursor.getInt(1));
+                descriptions.add(categoryCursor.getString(2));
+            } while (categoryCursor.moveToNext());
+        }
+
+        categoryCursor.close();
+    }
+
+    private String getEnding(int number)
+    {
+        String toReturn = "";
+        int modNumberOAR =number % 10;
+        if (modNumberOAR >=2 && modNumberOAR <=4){
+            toReturn = mContext.getResources().getString(R.string.twofourrec);
+
+        }
+        if (modNumberOAR >=5 || modNumberOAR == 0){
+            toReturn = mContext.getResources().getString(R.string.morerec);
+        }
+        if (modNumberOAR == 1){
+            toReturn = mContext.getResources().getString(R.string.onerec);
+        }
+        return toReturn;
     }
 
     public interface OnItemTouchListener {
@@ -81,18 +129,21 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
 
     }
 // references to our images
-    private Integer[] imagesArray = {
+private Integer[] imagesArray = {
         R.drawable.colddish,
-        R.drawable.child,
         R.drawable.soup,
+        R.drawable.fishrec,
         R.drawable.meatrec,
+        R.drawable.vegemash,
         R.drawable.flower,
         R.drawable.fishrec,
         R.drawable.diff,
-        R.drawable.doctor,
         R.drawable.pastry,
-        R.drawable.vegemash
+        R.drawable.vegemash,
+        R.drawable.sugar,
+        R.drawable.diff
 };
+
 
 
 }

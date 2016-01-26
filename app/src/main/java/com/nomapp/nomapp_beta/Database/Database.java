@@ -36,6 +36,10 @@ public class Database {
     private static final String RECIPES_CATEGORIES_ID = "_id";
     private static final String RECIPES_CATEGORIES_NAME = "name";
     private static final String RECIPES_CATEGORIES_RECIPES = "recipes";
+    private static final String RECIPES_CATEGORIES_NUMBER_OF_RECIPES = "numberOfRecipes";
+    private static final String RECIPES_CATEGORIES_DESCRIPTION = "description";
+
+
 
     private static final String CATEGORIES_TABLE_NAME = "Categories";
     private static final String CATEGORIES_ID = "_id";
@@ -116,7 +120,8 @@ public class Database {
     public static String getRecipesCategoriesId() { return RECIPES_ID; }
     public static String getRecipesCategoriesName() { return RECIPES_CATEGORIES_NAME; }
     public static String getRecipesCategoriesRecipes() { return RECIPES_CATEGORIES_RECIPES; }
-
+    public static String getRecipesCategoriesNumberOfRecipes() { return RECIPES_CATEGORIES_NUMBER_OF_RECIPES; }
+    public static String getRecipesCategoriesDescription() { return RECIPES_CATEGORIES_DESCRIPTION; }
 
 
 }
