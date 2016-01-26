@@ -1,5 +1,6 @@
 package com.nomapp.nomapp_beta.AvailableRecipes;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,18 +21,25 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
     private ArrayList<String> names;
     private ArrayList<Integer> cookingTimes;
     private ArrayList<Integer> numbersOfSteps;
-    private ArrayList<Integer> numberOfIngs;
+    private ArrayList<Integer> numbersOfIngs;
+    private ArrayList<String> measuresForTime;
 
     private OnItemTouchListener onItemTouchListener;
 
-    public AvlReciepesRecyclerViewAdapter(ArrayList<String> names,
+    private Context ctx;
+
+    public AvlReciepesRecyclerViewAdapter(Context ctx, ArrayList<String> names,
                                           ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps,
-                                          ArrayList<Integer> numberOfIngs, OnItemTouchListener onItemTouchListener) {
+                                          ArrayList<Integer> numbersOfIngs,
+                                          ArrayList<String> measuresForTime,
+                                          OnItemTouchListener onItemTouchListener) {
         this.names = names;
         this.cookingTimes = cookingTimes;
         this.numbersOfSteps = numbersOfSteps;
         this.onItemTouchListener = onItemTouchListener;
-        this.numberOfIngs = numberOfIngs;
+        this.numbersOfIngs = numbersOfIngs;
+        this.measuresForTime = measuresForTime;
+        this.ctx = ctx;
     }
 
     @Override
@@ -45,8 +53,10 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
         viewHolder.name.setText(names.get(i));
         viewHolder.time.setText(cookingTimes.get(i) + "");
         viewHolder.numberOfSteps.setText(numbersOfSteps.get(i) + "");
-        viewHolder.numberOfIngredients.setText(numberOfIngs.get(i) + "");
-
+        viewHolder.numberOfIngredients.setText(numbersOfIngs.get(i) + "");
+        viewHolder.textSteps.setText(getStepsEnding(numbersOfSteps.get(i)));
+        viewHolder.textNumberOfProducts.setText(getProductsEnding(numbersOfIngs.get(i)));
+        viewHolder.textMeasureForTime.setText(measuresForTime.get(i));
     }
 
     @Override
@@ -59,6 +69,10 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
         private TextView time;
         private TextView numberOfSteps;
         private TextView numberOfIngredients;
+        private TextView textSteps;
+        private TextView textNumberOfProducts;
+        private TextView textMeasureForTime;
+
         private ImageView image;
 
         public ViewHolder(View itemView, int position) {
@@ -69,12 +83,9 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             numberOfSteps = (TextView) itemView.findViewById(R.id.text_steps);
             numberOfIngredients = (TextView) itemView.findViewById(R.id.text_products);
 
-
-            name.setText(names.get(position));
-            time.setText(cookingTimes.get(position) + "");
-            numberOfSteps.setText(numbersOfSteps.get(position) + "");
-            numberOfIngredients.setText(numberOfIngs.get(position) + "");
-
+            textSteps = (TextView) itemView.findViewById(R.id.steps_tv);
+            textNumberOfProducts = (TextView) itemView.findViewById(R.id.text_ings);
+            textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_for_time_tv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,6 +94,41 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
                 }
             });
         }
+    }
+
+
+    private String getStepsEnding(int count)
+    {
+        String toReturn = "";
+        int modNumberOAR =count  % 10;
+        if (modNumberOAR >=2 && modNumberOAR <=4){
+            toReturn = ctx.getResources().getString(R.string.two_or_four_steps);
+
+        }
+        if (modNumberOAR >=5 || modNumberOAR == 0){
+            toReturn = ctx.getResources().getString(R.string.more_steps);
+        }
+        if (modNumberOAR == 1){
+            toReturn = ctx.getResources().getString(R.string.one_step);
+        }
+        return toReturn;
+    }
+
+    private String getProductsEnding(int count)
+    {
+        String toReturn = "";
+        int modNumberOAR =count  % 10;
+        if (modNumberOAR >=2 && modNumberOAR <=4){
+            toReturn = ctx.getResources().getString(R.string.two_or_four_products);
+
+        }
+        if (modNumberOAR >=5 || modNumberOAR == 0){
+            toReturn = ctx.getResources().getString(R.string.more_products);
+        }
+        if (modNumberOAR == 1){
+            toReturn = ctx.getResources().getString(R.string.one_product);
+        }
+        return toReturn.toUpperCase();
     }
     /**
      * Interface for the touch events in each item

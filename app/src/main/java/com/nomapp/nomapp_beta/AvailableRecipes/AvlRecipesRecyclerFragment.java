@@ -29,6 +29,7 @@ public class AvlRecipesRecyclerFragment extends Fragment {
     ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
     ArrayList<Integer> numberOfIngs;
+    ArrayList<String> measureForTime;
 
     Cursor cursor;
 
@@ -64,7 +65,8 @@ public class AvlRecipesRecyclerFragment extends Fragment {
             }
         };
 
-        mAdapter = new AvlReciepesRecyclerViewAdapter(availableRecipesArrayList, timeForCooking, numberOfSteps, numberOfIngs, itemTouchListener);  // setting adapter.
+        mAdapter = new AvlReciepesRecyclerViewAdapter(getActivity() ,availableRecipesArrayList,
+                timeForCooking, numberOfSteps, numberOfIngs, measureForTime, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -79,13 +81,14 @@ public class AvlRecipesRecyclerFragment extends Fragment {
         timeForCooking = new ArrayList<>();
         numberOfSteps = new ArrayList<>();
         numberOfIngs = new ArrayList<>();
+        measureForTime = new ArrayList<>();
 
         cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(),
                                 Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
                                 Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
-                                Database.getRecipesHowToCook()},
+                                Database.getRecipesMeasureForTime()},
                 null, null, null, null
                 , null);
 
@@ -98,6 +101,7 @@ public class AvlRecipesRecyclerFragment extends Fragment {
                     timeForCooking.add(cursor.getInt(4));
                     numberOfSteps.add(cursor.getInt(3));
                     numberOfIngs.add(cursor.getInt(5));
+                    measureForTime.add(cursor.getString(6));
                 }
             } while (cursor.moveToNext());
         }

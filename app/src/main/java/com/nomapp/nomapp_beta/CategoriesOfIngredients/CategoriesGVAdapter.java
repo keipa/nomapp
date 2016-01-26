@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class CategoriesGVAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    View view;
 
     ArrayList<String> names;
     ArrayList<String> examples;
@@ -120,28 +119,6 @@ public class CategoriesGVAdapter extends BaseAdapter {
         }
         return toReturn;
     }
-//        ImageView imageView;
-//        if (convertView == null) {
-//            w = gridView.getColumnWidth();
-//            h = w;
-//            // if it's not recycled, initialize some attributes
-//            imageView = new ImageView(mContext);
-//          //  imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, imageView.getLayoutParams().width));
-//            imageView.setLayoutParams(new GridView.LayoutParams(w, h));
-//            imageView.setPadding(8, 8, 8, 8);
-//            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-//
-//        } else {
-//            imageView = (ImageView) convertView;
-//        }
-//
-//        imageView.setImageResource(imagesArray[position]);
-//        return imageView;
-
-
-
-
-
 
     /**
      * Interface for the touch events in each item

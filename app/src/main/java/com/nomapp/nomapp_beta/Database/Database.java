@@ -31,6 +31,7 @@ public class Database {
     private static final String RECIPES_NUMBER_OF_PERSONS = "numberOfPersons";
     private static final String RECIPES_NUMBER_OF_EVERY_ING = "numberOfEveryIng";
     private static final String RECIPES_NUMBER_OF_INGREDIENTS = "numberOfIngredients";
+    private static final String RECIPES_MEASURE_FOR_TIME = "measureForTime";
 
     private static final String RECIPES_CATEGORIES_TABLE_NAME = "CategoriesOfRecipes";
     private static final String RECIPES_CATEGORIES_ID = "_id";
@@ -43,6 +44,7 @@ public class Database {
     private static final String CATEGORY_INGREDIENTS = "ingredients";
     private static final String CATEGORY_NUMBER_OF_INGREDIENTS = "numberOfIngredients";
     private static final String CATEGORY_EXAMPLE = "example";
+
 
 
     public static void initDatabase(Context context) {
@@ -88,6 +90,7 @@ public class Database {
     public static String getRecipesNumberOfPersons() { return RECIPES_NUMBER_OF_PERSONS; }
     public static String getRecipesNumberOfEveryIng() { return  RECIPES_NUMBER_OF_EVERY_ING; }
     public static String getRecipesNumberOfIngredients() { return RECIPES_NUMBER_OF_INGREDIENTS; }
+    public static String getRecipesMeasureForTime() { return RECIPES_MEASURE_FOR_TIME; }
 
     public static String getIngredientsTableName() {return INGREDIENTS_TABLE_NAME; };
     public static String getIngredientId() {

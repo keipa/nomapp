@@ -43,6 +43,7 @@
                 android:textSize="25dp"
                 android:text="Roast beef"
                 android:visibility="visible"
+                android:singleLine="true"
                 android:layout_marginLeft="14dp"
                 android:layout_marginStart="21dp"
                 android:layout_alignParentBottom="true"

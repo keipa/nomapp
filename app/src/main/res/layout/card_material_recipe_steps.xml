@@ -26,5 +26,6 @@
         android:textColor="#434343"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="55dp"
+        android:id="@+id/steps_tv" />
 </RelativeLayout>

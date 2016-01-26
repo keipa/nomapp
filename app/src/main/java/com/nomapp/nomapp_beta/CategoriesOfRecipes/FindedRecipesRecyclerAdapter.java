@@ -72,12 +72,6 @@ public class FindedRecipesRecyclerAdapter extends RecyclerView.Adapter<FindedRec
 
             image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);
 
-            name.setText(names.get(position));
-            time.setText(cookingTimes.get(position) + "");
-            numberOfSteps.setText(numbersOfSteps.get(position) + "");
-            numberOfIngredients.setText(numberOfIngs.get(position) + "");
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

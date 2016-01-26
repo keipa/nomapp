@@ -78,27 +78,6 @@ public class FindedIngredientsRecyclerAdapter extends RecyclerView.Adapter<Finde
 
             name = (TextView) itemView.findViewById(R.id.name_of_ingredient_tv);
 
-            name.setText(names.get(position));
-
-            Cursor cursor =  Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
-                    new String[]
-                            {Database.getIngredientId(), Database.getIngredientName(),
-                                    Database.getIngredientIsChecked()},
-                    null, null, null, null
-                    , null);
-
-            cursor.moveToFirst();
-            cursor.moveToPosition(IDs.get(position) - 1);
-            int isChecked = cursor.getInt(2);
-            if (isChecked == 1) {
-                name.setBackgroundColor(itemView.getResources().getColor(R.color.chosenElement)); // второй вариант
-            //    Log.w("LOG", IDs.get(position - 1).toString()
-              //          + " " + String.valueOf(position) + " " + String.valueOf(isChecked));
-            } else{
-                name.setBackgroundColor(itemView.getResources().getColor(R.color.white)); // второй вариант
-            }
-
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
