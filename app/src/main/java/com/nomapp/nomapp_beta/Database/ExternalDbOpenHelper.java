@@ -40,17 +40,17 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
     //Создаст базу, если она не создана
     public void createDataBase() {
         boolean dbExist = checkDataBase();
-   //     if (!dbExist) {
-            this.getReadableDatabase();
-            try {
-                copyDataBase();
-            } catch (IOException e) {
-                Log.e(this.getClass().toString(), "Copying error");
-                throw new Error("Error copying database!");
-            }
-    //    } else {
-      //      Log.i(this.getClass().toString(), "Database already exists");
-       // }
+        //  if (!dbExist) {
+        this.getReadableDatabase();
+        try {
+            copyDataBase();
+        } catch (IOException e) {
+            Log.e(this.getClass().toString(), "Copying error");
+            throw new Error("Error copying database!");
+        }
+      /*  } else {
+            Log.i(this.getClass().toString(), "Database already exists");
+        }*/
     }
 
     //Проверка существования базы данных
@@ -96,8 +96,9 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
 
     public SQLiteDatabase openDataBase() throws SQLException {
         String path = DB_PATH + DB_NAME;
-        //if (!checkDataBase())
-            createDataBase();
+        //    if (!checkDataBase())
+        //         createDataBase();
+        createDataBase();
 
         database = SQLiteDatabase.openDatabase(path, null,
                 SQLiteDatabase.OPEN_READWRITE);
