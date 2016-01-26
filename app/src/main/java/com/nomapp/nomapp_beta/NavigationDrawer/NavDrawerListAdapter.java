@@ -62,7 +62,7 @@ public class NavDrawerListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // используем созданные, но не используемые view
         View view = convertView;
-
+      //  TextView text = (TextView)convertView.findViewById(R.id.navdrawer_name_of_item);
         if (view == null) {
             if (position < 2) { //Main items
                 if (position == 1){
@@ -82,8 +82,10 @@ public class NavDrawerListAdapter extends BaseAdapter {
                 ((TextView) view.findViewById(R.id.navdrawer_name_of_additional_item)).setText(items[position]);
             }
 
-            if (position == currentPosition)
+            if (position == currentPosition) {
+                ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setTextColor(ctx.getResources().getColor(R.color.chosenElement));
                 view.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
+            }
 
         }
 
