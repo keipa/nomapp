@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Джордж сказал, что класть в баранье рагу всего четыре картофелины просто нелепо, поэтому мы вымыли еще с полдесятка и сунули их в кастрюлю нечищеными. Мы добавили кочан капусты и фунтов десять гороха. Джордж все это перемешал и сказал, что остается еще пропасть места, и тогда мы обыскали обе корзины и высыпали в рагу."
+            android:text="Книга о вкусной и здоровой пище. СССР 1952 - 1964г."
             android:id="@+id/textView"
             android:paddingLeft="12dp"
             android:paddingTop="20dp"

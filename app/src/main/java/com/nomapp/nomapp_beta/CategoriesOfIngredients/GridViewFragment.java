@@ -23,8 +23,6 @@ import java.util.ArrayList;
  */
 
 public class GridViewFragment extends Fragment {
-    CategoriesGridViewOnClickListener gridViewOnClickListener;
-
     GridView categoriesGridView;
 
     @Override
@@ -50,15 +48,6 @@ public class GridViewFragment extends Fragment {
         return v;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            gridViewOnClickListener = (CategoriesGridViewOnClickListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement inteface");
-        }
-    }
 
 
     public interface CategoriesGridViewOnClickListener{

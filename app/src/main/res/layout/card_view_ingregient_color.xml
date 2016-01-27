@@ -42,7 +42,7 @@
             android:id="@+id/imageView3"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:src="@drawable/sushi"
+            android:background="@color/chosenElement"
             android:scaleType="centerCrop" />
 
     </RelativeLayout>

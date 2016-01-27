@@ -86,6 +86,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
             TextView numOfIngs = (TextView) convertView.findViewById(R.id.count_of_products);
             TextView example = (TextView) convertView.findViewById(R.id.category_example);
             ImageView icon = (ImageView)  convertView.findViewById(R.id.image_of_category);
+
             icon.setImageResource(imagesArray[position]);
             name.setText(names.get(position));
             numOfIngs.setText(numbersOfIngredients.get(position) + " " + setEnding(numbersOfIngredients.get(position))); //TODO
@@ -120,12 +121,14 @@ public class CategoriesGVAdapter extends BaseAdapter {
     }
 
 
+
     private void getData()
     {
 
         names = new ArrayList<>();
         examples = new ArrayList<>();
         numbersOfIngredients = new ArrayList<>();
+
 
 
 
@@ -159,7 +162,7 @@ public class CategoriesGVAdapter extends BaseAdapter {
          * @param view     the CardView touched
          * @param position the index of the item touched in the RecyclerView
          */
-        public void onCardViewTap(View view, int position);
+         void onCardViewTap(View view, int position);
 
     }
 }
