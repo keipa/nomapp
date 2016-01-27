@@ -23,8 +23,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
 
     int currentPosition;
 
-    int[] images = {R.drawable.ic_fridge_dr, R.drawable.ic_recepies_dr};
-
+    int[] images = {R.drawable.ic_local_dining_grey_18dp, R.drawable.ic_import_contacts_grey_18dp};
+    int[] selImages = {R.drawable.ic_local_dining_orange_18dp,R.drawable.ic_import_contacts_orange_18dp};
     public NavDrawerListAdapter(Context context, int currentPosition) {
         ctx = context;
         lInflater = (LayoutInflater) ctx
@@ -83,6 +83,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
             }
 
             if (position == currentPosition) {
+                ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                        setImageResource(selImages[currentPosition]);
                 ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setTextColor(ctx.getResources().getColor(R.color.chosenElement));
                 view.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
             }

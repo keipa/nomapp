@@ -136,9 +136,9 @@ private Integer[] imagesArray = {
         R.drawable.meatrec,
         R.drawable.vegemash,
         R.drawable.flower,
-        R.drawable.fishrec,
-        R.drawable.diff,
         R.drawable.pastry,
+        R.drawable.sugar,
+        R.drawable.diff,
         R.drawable.vegemash,
         R.drawable.sugar,
         R.drawable.diff
