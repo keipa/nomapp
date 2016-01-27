@@ -30,6 +30,7 @@ public class RecipesSearchFragment extends Fragment {
     ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
     ArrayList<Integer> numberOfIngs;
+    ArrayList<String> measuresForTime;
 
     FindedRecipesRecyclerAdapter mAdapter;
     Cursor cursor;
@@ -47,6 +48,7 @@ public class RecipesSearchFragment extends Fragment {
         timeForCooking = new ArrayList<>();
         numberOfSteps = new ArrayList<>();
         numberOfIngs = new ArrayList<>();
+        measuresForTime = new ArrayList<>();
 
         return v;
     }
@@ -63,12 +65,14 @@ public class RecipesSearchFragment extends Fragment {
         timeForCooking.clear();
         numberOfSteps.clear();
         numberOfIngs.clear();
+        measuresForTime.clear();
 
         if (enteredText.equals("")) {
             setUpRecyclerView();
             return;
         }
 
+/*
         cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(),
@@ -77,13 +81,14 @@ public class RecipesSearchFragment extends Fragment {
                                 Database.getRecipesHowToCook()},
                 null, null, null, null
                 , null);
+*/
 
         cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(),
                                 Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
                                 Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
-                                Database.getRecipesHowToCook()},
+                                Database.getRecipesMeasureForTime()},
                 null, null, null, null
                 , null);
 
@@ -97,6 +102,7 @@ public class RecipesSearchFragment extends Fragment {
                     timeForCooking.add(cursor.getInt(4));
                     numberOfSteps.add(cursor.getInt(3));
                     numberOfIngs.add(cursor.getInt(5));
+                    measuresForTime.add(cursor.getString(6));
                 }
             } while (cursor.moveToNext());
         }
@@ -124,7 +130,8 @@ public class RecipesSearchFragment extends Fragment {
             }
         };
 
-            mAdapter = new FindedRecipesRecyclerAdapter(findedRecipesArray, timeForCooking, numberOfSteps, numberOfIngs, itemTouchListener);  // setting adapter.
+            mAdapter = new FindedRecipesRecyclerAdapter(getActivity(), findedRecipesArray, timeForCooking,
+                    numberOfSteps, numberOfIngs, measuresForTime, itemTouchListener);  // setting adapter.
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
