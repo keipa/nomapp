@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.CategoriesOfRecipes.FindedRecipesRecyclerAdapter;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
 import org.w3c.dom.Text;
@@ -50,15 +52,12 @@ public class CategoriesGVAdapter extends BaseAdapter {
    // TypedArray imagesArray;
 
 
-    public CategoriesGVAdapter(Context c, ArrayList<String> names,
-                               ArrayList<Integer> numbersOfIngredients, ArrayList<String> examples,
-                               OnItemTouchListener onItemTouchListener)
+    public CategoriesGVAdapter(Context c, OnItemTouchListener onItemTouchListener)
     {
         mContext = c;
-        this.names = names;
-        this.numbersOfIngredients = numbersOfIngredients;
-        this.examples = examples;
         this.onItemTouchListener = onItemTouchListener;
+
+        getData();
 
         mInflater = LayoutInflater.from(mContext);
     }
@@ -118,6 +117,36 @@ public class CategoriesGVAdapter extends BaseAdapter {
             toReturn = mContext.getResources().getString(R.string.one_product);
         }
         return toReturn;
+    }
+
+
+    private void getData()
+    {
+
+        names = new ArrayList<>();
+        examples = new ArrayList<>();
+        numbersOfIngredients = new ArrayList<>();
+
+
+
+        Cursor categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getCategoriesTableName(),   //connection to the base
+                new String[]
+                        {Database.getCategoryName(), Database.getCategoryNumberOfIngredients(),
+                                Database.getCategoryExample()},
+                null, null, null, null
+                , null);
+
+        categoryCursor.moveToFirst();
+
+        if (!categoryCursor.isAfterLast()) {            // loop is going throw the all ingridients and shows marked ones (marked has "1" isChecked option)
+            do {
+                names.add(categoryCursor.getString(0));
+                numbersOfIngredients.add(categoryCursor.getInt(1));
+                examples.add(categoryCursor.getString(2));
+            } while (categoryCursor.moveToNext());
+        }
+
+        categoryCursor.close();
     }
 
     /**

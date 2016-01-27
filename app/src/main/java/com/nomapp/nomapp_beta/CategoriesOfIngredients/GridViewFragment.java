@@ -27,23 +27,12 @@ public class GridViewFragment extends Fragment {
 
     GridView categoriesGridView;
 
-    ArrayList<String> names;
-    ArrayList<String> examples;
-    ArrayList<Integer> numbersOfIngredients;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_gridview_categories, null);
 
-        names = new ArrayList<>();
-        examples = new ArrayList<>();
-        numbersOfIngredients = new ArrayList<>();
-
-        getData();
-
         categoriesGridView = (GridView) v.findViewById(R.id.categoryGridView);
-
 
         CategoriesGVAdapter.OnItemTouchListener itemTouchListener = new CategoriesGVAdapter.OnItemTouchListener() {
             @Override
@@ -56,8 +45,7 @@ public class GridViewFragment extends Fragment {
             }
         };
 
-        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(), names,
-                numbersOfIngredients, examples, itemTouchListener));
+        categoriesGridView.setAdapter(new CategoriesGVAdapter(getActivity(), itemTouchListener));
 
         return v;
     }
@@ -70,28 +58,6 @@ public class GridViewFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement inteface");
         }
-    }
-
-    private void getData()
-    {
-        Cursor categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getCategoriesTableName(),   //connection to the base
-                new String[]
-                        {Database.getCategoryName(), Database.getCategoryNumberOfIngredients(),
-                        Database.getCategoryExample()},
-                null, null, null, null
-                , null);
-
-        categoryCursor.moveToFirst();
-
-        if (!categoryCursor.isAfterLast()) {            // loop is going throw the all ingridients and shows marked ones (marked has "1" isChecked option)
-            do {
-                names.add(categoryCursor.getString(0));
-                numbersOfIngredients.add(categoryCursor.getInt(1));
-                examples.add(categoryCursor.getString(2));
-            } while (categoryCursor.moveToNext());
-        }
-
-        categoryCursor.close();
     }
 
 
