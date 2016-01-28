@@ -83,7 +83,7 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         setContentView(getLayoutResId());
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.notification));
+//        window.setStatusBarColor(getResources().getColor(R.color.notification));
 
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
         mActionBarSize = getActionBarSize();

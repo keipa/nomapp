@@ -37,7 +37,7 @@ public class ListOfAvailableRecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_available_recipes);
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.notification));
+  //      window.setStatusBarColor(getResources().getColor(R.color.notification));
         setUpNavigationDraver();
     }
 
@@ -53,7 +53,7 @@ public class ListOfAvailableRecipesActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_go_white_24dp);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

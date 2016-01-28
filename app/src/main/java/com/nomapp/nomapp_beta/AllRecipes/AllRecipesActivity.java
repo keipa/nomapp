@@ -39,7 +39,7 @@ public class AllRecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_recipes);
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.notification));
+   //     window.setStatusBarColor(getResources().getColor(R.color.notification));
         setUpNavigationDrawer();
     }
 
@@ -54,7 +54,7 @@ public class AllRecipesActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_go_white_24dp);
         }
 
 

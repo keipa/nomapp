@@ -29,7 +29,7 @@ import com.nomapp.nomapp_beta.Start.StartActivity;
  * Created by antonid on 05.07.2015.
  */
 
-public class AddIngridientsActivity extends AppCompatActivity {
+public class AddIngridientsActivity extends android.support.v7.app.AppCompatActivity {
     ActionBarDrawerToggle mDrawerToggle;
     ListView mDrawerList;
     DrawerLayout mDrawerLayout;
@@ -49,7 +49,7 @@ public class AddIngridientsActivity extends AppCompatActivity {
         trans.commit();
 
         Window window = getWindow();
-        window.setStatusBarColor(getResources().getColor(R.color.notification));
+//        window.setStatusBarColor(getResources().getColor(R.color.notification));
         fab = (FloatingActionButton) findViewById(R.id.fabtohome);  //floating action button init
         setUpFAB();
         setUpNavigationDraver();
@@ -90,7 +90,7 @@ public class AddIngridientsActivity extends AppCompatActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_go_white_24dp);
         }
 
 
