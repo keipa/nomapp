@@ -25,7 +25,7 @@
         app:viewpager_transparentToolbar="true"
         app:viewpager_animatedHeaderImage="false"
 
-        />
+        android:background="@color/white" />
 
     <include layout="@layout/navdrawer" />
 </android.support.v4.widget.DrawerLayout>

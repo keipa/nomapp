@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="StartActivity">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -24,19 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/add_ings_fragment_cont">
+        android:id="@+id/add_ings_fragment_cont"
+        android:layout_below="@+id/toolbar">
 
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/fabtohome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:src="@drawable/ic_local_dining_white_24dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="23dp"
-            android:layout_marginBottom="33dp" />
 
         <!-- <fragment
              android:name="com.nomapp.nomapp_beta.AddIngredients.AddIngredientsRecyclerFragment"
@@ -47,6 +37,18 @@
  -->
       </FrameLayout>
 
-</LinearLayout>
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fabtohome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:src="@drawable/ic_local_dining_white_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="33dp" />
+
+</RelativeLayout>
     <include layout="@layout/navdrawer" />
 </android.support.v4.widget.DrawerLayout>

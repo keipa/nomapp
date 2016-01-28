@@ -3,6 +3,7 @@ package com.nomapp.nomapp_beta.Steps;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -43,10 +44,11 @@ public class TabsActivity extends AppCompatActivity {
         s = savedInstanceState;
         setContentView(R.layout.activity_tabs);
         Window window = getWindow();
-//        window.setStatusBarColor(getResources().getColor(R.color.notification));
 
 
-
+        if (Build.VERSION.SDK_INT >= 21 ) {
+            window.setStatusBarColor(getResources().getColor(R.color.notification));
+        }
 
         setTitle("");
 

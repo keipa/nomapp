@@ -9,7 +9,8 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     card_view:cardCornerRadius="10dp"
-    android:id="@+id/card_category_ingredient">
+    android:id="@+id/card_category_ingredient"
+    card_view:cardBackgroundColor="#f0f0f0">
 
     <LinearLayout
         android:orientation="vertical"
@@ -66,6 +67,7 @@
             android:id="@+id/content"
             android:layout_below="@+id/name_count_image"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:background="#e4e4e4">
 
 
