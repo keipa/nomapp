@@ -17,12 +17,18 @@
 package com.nomapp.nomapp_beta.AddIngredients;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.FindedRecipesRecyclerAdapter;
+import com.nomapp.nomapp_beta.Database.Database;
+import com.nomapp.nomapp_beta.R;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -30,21 +36,29 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     private static final int VIEW_TYPE_ITEM = 1;
 
     private LayoutInflater mInflater;
-    private ArrayList<String> mItems;
     private View mHeaderView;
 
-    public SimpleHeaderRecyclerAdapter(Context context, ArrayList<String> items, View headerView) {
+    private OnItemTouchListener onItemTouchListener;
+
+    ArrayList<String> names;
+    ArrayList<Integer> IDs;
+
+
+    public SimpleHeaderRecyclerAdapter(Context context, ArrayList<String> names, ArrayList<Integer> IDs,
+                                       OnItemTouchListener onItemTouchListener, View headerView) {
         mInflater = LayoutInflater.from(context);
-        mItems = items;
+        this.names = names;
+        this.IDs = IDs;
+        this.onItemTouchListener = onItemTouchListener;
         mHeaderView = headerView;
     }
 
     @Override
     public int getItemCount() {
         if (mHeaderView == null) {
-            return mItems.size();
+            return IDs.size();
         } else {
-            return mItems.size() + 1;
+            return IDs.size() + 1;
         }
     }
 
@@ -58,14 +72,38 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         if (viewType == VIEW_TYPE_HEADER) {
             return new HeaderViewHolder(mHeaderView);
         } else {
-            return new ItemViewHolder(mInflater.inflate(android.R.layout.simple_list_item_1, parent, false));
+            return new ItemViewHolder(mInflater.inflate(R.layout.card_view_ingregient_color, parent, false));
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof ItemViewHolder) {
-            ((ItemViewHolder) viewHolder).textView.setText(mItems.get(position - 1));
+            position--;
+
+            ((ItemViewHolder) viewHolder).name.setText(names.get(position));
+
+            Cursor cursor =  Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
+                    new String[]
+                            {Database.getIngredientId(), Database.getIngredientName(),
+                                    Database.getIngredientIsChecked()},
+                    null, null, null, null
+                    , null);
+
+            cursor.moveToFirst();
+            cursor.moveToPosition(IDs.get(position) - 1);
+            int isChecked = cursor.getInt(2);
+
+            if (isChecked == 1) {
+                ((ItemViewHolder) viewHolder).name.setBackgroundColor(viewHolder.itemView.getResources()
+                        .getColor(R.color.chosenElement)); // второй вариант
+                ((ItemViewHolder) viewHolder).name.setTextColor(viewHolder.itemView.getResources().getColor(R.color.white));
+            } else{
+                ((ItemViewHolder) viewHolder).name.setBackgroundColor(viewHolder.itemView.getResources()
+                        .getColor(R.color.white)); // второй вариант
+                ((ItemViewHolder) viewHolder).name.setTextColor(viewHolder.itemView.getResources().getColor(R.color.black));
+            }
+
         }
     }
 
@@ -75,12 +113,35 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    static class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
+        TextView name;
 
-        public ItemViewHolder(View view) {
-            super(view);
-            textView = (TextView) view.findViewById(android.R.id.text1);
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            name = (TextView) itemView.findViewById(R.id.name_of_ingredient_tv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemTouchListener.onCardViewTap(v, getPosition());
+                }
+            });
         }
+    }
+
+
+
+    /**
+     * Interface for the touch events in each item
+     */
+    public interface OnItemTouchListener {
+        /**
+         * Callback invoked when the user Taps one of the RecyclerView items
+         *
+         * @param view     the CardView touched
+         * @param position the index of the item touched in the RecyclerView
+         */
+        public void onCardViewTap(View view, int position);
+
     }
 }

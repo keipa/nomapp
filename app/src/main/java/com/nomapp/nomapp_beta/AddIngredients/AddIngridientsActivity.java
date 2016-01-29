@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,21 +50,29 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
     ActionBarDrawerToggle mDrawerToggle;
     ListView mDrawerList;
     DrawerLayout mDrawerLayout;
+
+    ObservableRecyclerView recyclerView;
+
     Toolbar mToolbar;
-    ActionBar actionBar;
 
     FloatingActionButton fab;
 
-    private static final int NUM_OF_ITEMS = 100;
+    private static int NUM_OF_ITEMS = 0;
 
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
-
     private View mImageView;
     private View mOverlayView;
     private View mRecyclerViewBackground;
     private TextView mTitleView;
     private int mActionBarSize;
+
+
     private int mFlexibleSpaceImageHeight;
+    private ArrayList<String> forIngridients;
+
+    private ArrayList<Integer> IDs;
+
+    String title;
 
 
     @Override
@@ -71,14 +80,13 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ingredients);
 
+        fillIngridients();
 
         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
         mActionBarSize = getActionBarSize();
 
-        ObservableRecyclerView recyclerView = (ObservableRecyclerView) findViewById(R.id.recycler);
-        recyclerView.setScrollViewCallbacks(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(false);
+        recyclerView = (ObservableRecyclerView) findViewById(R.id.recycler);
+
         final View headerView = LayoutInflater.from(this).inflate(R.layout.recycler_header, null);
         headerView.post(new Runnable() {
             @Override
@@ -86,13 +94,14 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
                 headerView.getLayoutParams().height = mFlexibleSpaceImageHeight;
             }
         });
-        setDummyDataWithHeader(recyclerView, headerView);
+
+        setUpRecyclerView(headerView);
 
         mImageView = findViewById(R.id.image);
         mOverlayView = findViewById(R.id.overlay);
 
         mTitleView = (TextView) findViewById(R.id.title);
-        mTitleView.setText(getTitle());
+        mTitleView.setText(title);
         setTitle(null);
 
         // mRecyclerViewBackground makes RecyclerView's background except header view.
@@ -209,57 +218,56 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
     }
 
 
-    public static ArrayList<String> getDummyData() {
-        return getDummyData(NUM_OF_ITEMS);
+    protected void setUpRecyclerView(View headerView) {
+
+        recyclerView.setScrollViewCallbacks(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(false);
+
+        SimpleHeaderRecyclerAdapter.OnItemTouchListener itemTouchListener = new SimpleHeaderRecyclerAdapter.OnItemTouchListener() {
+            @Override
+            public void onCardViewTap(View view, int position) {
+                position--;
+                Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
+                        new String[]
+                                {Database.getIngredientId(), Database.getIngredientName(),
+                                        Database.getIngredientIsChecked()},
+                        null, null, null, null
+                        , null);
+                Log.w("MY_LOG", "kek");
+                cursor.moveToFirst();
+                cursor.moveToPosition(IDs.get(position) - 1);
+                int isChecked = cursor.getInt(2);
+                ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.black));
+                if (isChecked == 0) {
+                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                            + " SET checked=1 WHERE _id=" + IDs.get(position) + ";");
+                    (view.findViewById(R.id.name_of_ingredient_tv)).setBackgroundColor(getResources().getColor(R.color.chosenElement));
+                    ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.white));
+                    //  ((TextView) view).setTextColor(getResources().getColor(R.color.chosenElement));
+                    Log.d("MY_TAG", "Checked position " + IDs.get(position));
+
+                } else {
+                    Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
+                            + " SET checked=0 WHERE _id=" + IDs.get(position) + ";");
+                    (view.findViewById(R.id.name_of_ingredient_tv)).setBackgroundColor(getResources().getColor(R.color.white));
+                    ((TextView)view.findViewById(R.id.name_of_ingredient_tv)).setTextColor(getResources().getColor(R.color.black));
+                    Log.d("MY_TAG", "Unchecked position " + IDs.get(position));
+
+                }
+                cursor.close();
+            }
+        };
+
+        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, forIngridients, IDs, itemTouchListener, headerView));
+
+
+
     }
 
-    public static ArrayList<String> getDummyData(int num) {
-        ArrayList<String> items = new ArrayList<>();
-        for (int i = 1; i <= num; i++) {
-            items.add("Item " + i);
-        }
-        return items;
-    }
 
-    protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, getDummyData(), headerView));
-    }
-
-
-
-
-    void setUpNavigationDraver() {
-      /*  mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-
-        actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(true);
-            actionBar.setDisplayUseLogoEnabled(false);
-            actionBar.setHomeButtonEnabled(true);
-            //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_go_white_24dp);
-        }
-
-
-        //Setting title of the toolbar
-        Cursor categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getCategoriesTableName(),
-                new String[]
-                        {Database.getCategoriesId(), Database.getCategoryName(),
-                                Database.getCategoryIngredients()},
-                null, null, null, null
-                , null);
-
-        categoryCursor.moveToFirst();
-        Intent intent = getIntent();
-        categoryCursor.moveToPosition(intent.getIntExtra("numberOfCategory", 0) - 1);
-
-        String title = categoryCursor.getString(1);
-        actionBar.setTitle(title);
-        categoryCursor.close();
-*/
+    void setUpNavigationDraver()
+    {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.notification));
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
@@ -277,6 +285,68 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
     }
 
 
+
+
+    //Извлечение элментов из базы данных
+    private void fillIngridients() { //
+        forIngridients = new ArrayList<>();
+        IDs = new ArrayList<>();
+
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
+                new String[]
+                        {Database.getIngredientId(), Database.getIngredientName(),
+                                Database.getIngredientIsChecked()},
+                null, null, null, null
+                , null);
+
+        Cursor categoryCursor = Database.getDatabase().getGeneralDb().query(Database.getCategoriesTableName(),
+                new String[]
+                        {Database.getCategoriesId(), Database.getCategoryName(),
+                                Database.getCategoryIngredients()},
+                null, null, null, null
+                , null);
+
+        categoryCursor.moveToFirst();
+        Intent intent = getIntent();
+        categoryCursor.moveToPosition(intent.getIntExtra("numberOfCategory", 0) - 1);
+
+        title = categoryCursor.getString(1);
+
+        IDs = parse(categoryCursor.getString(2));
+        categoryCursor.close();
+
+        cursor.moveToFirst();
+
+        int size = IDs.size();
+        NUM_OF_ITEMS = size;
+        for (int counter = 0; counter < size; counter++) {
+            cursor.moveToPosition(IDs.get(counter) - 1);
+            forIngridients.add(cursor.getString(1));
+        }
+
+        cursor.close();
+
+    }
+
+    private ArrayList<Integer> parse(String toConvert) {
+        ArrayList<Integer> converted = new ArrayList<Integer>();
+
+        int counter = 0;
+        int factor = 1;
+        int currentIngridient = 0;
+        int size = toConvert.length();
+        for (counter = 0; counter < size; counter++) {
+            while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
+                currentIngridient += (toConvert.charAt(counter) - '0') * factor;
+                factor *= 10;
+                counter++;
+            }
+            factor = 1;
+            converted.add(currentIngridient);
+            currentIngridient = 0;
+        }
+        return converted;
+    }
 
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
