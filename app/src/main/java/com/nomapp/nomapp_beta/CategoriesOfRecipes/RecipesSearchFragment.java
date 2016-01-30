@@ -72,17 +72,6 @@ public class RecipesSearchFragment extends Fragment {
             return;
         }
 
-/*
-        cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
-                new String[]
-                        {Database.getRecipesId(), Database.getRecipesName(),
-                                Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
-                                Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
-                                Database.getRecipesHowToCook()},
-                null, null, null, null
-                , null);
-*/
-
         cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesId(), Database.getRecipesName(),
@@ -118,6 +107,18 @@ public class RecipesSearchFragment extends Fragment {
         FindedRecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new FindedRecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
+                if (cursor.isClosed())
+                {
+                    cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                            new String[]
+                                    {Database.getRecipesId(), Database.getRecipesName(),
+                                            Database.getRecipesIsAvailable(), Database.getRecipesNumberOfSteps(),
+                                            Database.getRecipesTimeForCooking(), Database.getRecipesNumberOfIngredients(),
+                                            Database.getRecipesMeasureForTime()},
+                            null, null, null, null
+                            , null);
+                }
+
                 cursor.moveToPosition(IDs.get(position) - 1);
 
                 Intent intent = new Intent(getActivity(), RecipePreviewActivity.class); //TODO maybe
