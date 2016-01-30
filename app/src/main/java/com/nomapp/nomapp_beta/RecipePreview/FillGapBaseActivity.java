@@ -76,7 +76,6 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
     DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
 
-    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,9 +106,6 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
             public void run() {
                 mReady = true;
                 updateViews(scrollable.getCurrentScrollY(), false);
-
-                fab = (FloatingActionButton) findViewById(R.id.fab2);
-                setUpFAB();
             }
         });
 
@@ -176,26 +172,6 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
 
         setTitle(null);
     }
-
-    void setUpFAB(){
-        fab.setColorNormal(getResources().getColor(R.color.chosenElement));
-        fab.setColorPressed(getResources().getColor(R.color.primary));
-        fab.setColorRipple(getResources().getColor(R.color.chosenElement));
-        fab.setOnClickListener(onCircleButtonCliclListener);
-        Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this, R.anim.fab_animation);
-        fab.startAnimation(hyperspaceJumpAnimation);
-    }
-
-
-    View.OnClickListener onCircleButtonCliclListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent data = getIntent();
-            Intent intent = new Intent(FillGapBaseActivity.this, TabsActivity.class);
-            intent.putExtra("numberOfRecipe", data.getIntExtra("numberOfRecipe", 0));
-            startActivity(intent);
-        }
-    };
 
     protected abstract int getLayoutResId();
     protected abstract S createScrollable();

@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.FindedRecipesRecyclerAdapter;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
@@ -35,6 +36,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     private static final int VIEW_TYPE_INFO = 1;
     private static final int VIEW_TYPE_DESCRIPTION = 2;
     private static final int VIEW_TYPE_INGREDIENTS = 3;
+    private static final int VIEW_TYPE_GO_COOK = 4;
 
     private LayoutInflater mInflater;
     private View mHeaderView;
@@ -46,15 +48,20 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     private String ingredientsForRecipe;
     private int numberOfPersonsForRecipe;
 
+    private OnItemTouchListener onItemTouchListener;
+
+
     private Context ctx;
 
-    public SimpleHeaderRecyclerAdapter(Context context, int numberOfItems, View headerView, int numberOfRecipe) {
+    public SimpleHeaderRecyclerAdapter(Context context, int numberOfItems, View headerView, int numberOfRecipe,
+                                       OnItemTouchListener onItemTouchListener) {
         mInflater = LayoutInflater.from(context);
         mHeaderView = headerView;
 
         this.numberOfItems = numberOfItems;
         this.numberOfRecipe = numberOfRecipe;
         this.ctx = context;
+        this.onItemTouchListener = onItemTouchListener;
 
         initDataForRecipe();
     }
@@ -98,8 +105,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 return new HeaderViewHolder(mHeaderView);
 
             case VIEW_TYPE_INFO:
-                return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note, parent, false),
-                        timeForCooking, numberOfPersonsForRecipe);
+                return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note, parent, false));
 
             case VIEW_TYPE_DESCRIPTION:
                 return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));
@@ -107,6 +113,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             case VIEW_TYPE_INGREDIENTS:
                 return new IngredientsViewHolder(mInflater.inflate(R.layout.card_recipe_preview_ingridients, parent, false),
                         ingredientsForRecipe, ctx);
+            case VIEW_TYPE_GO_COOK:
+                return new CookingButtonViewHolder(mInflater.inflate(R.layout.go_cook_button, parent, false));
 
             default:
                 return new HeaderViewHolder(mHeaderView);
@@ -114,9 +122,14 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int viewType) {
         if (viewHolder instanceof IngredientsViewHolder) {
-          //  ((ItemViewHolder) viewHolder).textView.setText(mItems.get(position - 1));
+
+            if (viewType == VIEW_TYPE_INFO)
+            {
+                ((InfoViewHolder)viewHolder).personText.setText(numberOfPersonsForRecipe+"");
+                ((InfoViewHolder)viewHolder).timeText.setText(timeForCooking);
+            }
         }
     }
 
@@ -126,16 +139,15 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    static class InfoViewHolder extends RecyclerView.ViewHolder {
+     static class InfoViewHolder extends RecyclerView.ViewHolder {
         TextView timeText;
         TextView personText;
 
-        public InfoViewHolder(View view, String time, int persons) {
+        public InfoViewHolder(View view) {
             super(view);
             timeText = (TextView) view.findViewById(R.id.timeText);
             personText = (TextView) view.findViewById(R.id.personsText);
-            personText.setText(persons+"");
-            timeText.setText(time);
+
         }
     }
 
@@ -155,4 +167,32 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             super(view);
         }
     }
+
+    class CookingButtonViewHolder extends RecyclerView.ViewHolder{
+        public CookingButtonViewHolder (View view)
+        {
+            super(view);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemTouchListener.onCardViewTap(v, getPosition());
+                }
+            });
+        }
+    }
+
+    /**
+     * Interface for the touch events in each item
+     */
+    public interface OnItemTouchListener {
+        /**
+         * Callback invoked when the user Taps one of the RecyclerView items
+         *
+         * @param view     the CardView touched
+         * @param position the index of the item touched in the RecyclerView
+         */
+        public void onCardViewTap(View view, int position);
+
+    }
+
 }

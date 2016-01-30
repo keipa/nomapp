@@ -61,5 +61,6 @@
 
     <string name="bs_s1">Возьмите хлеб </string>
     <string name="bs_s2">Положите сыр </string>
+    <string name="go_cook_text">НАЧАТЬ ГОТОВИТЬ!</string>
 
 </resources>

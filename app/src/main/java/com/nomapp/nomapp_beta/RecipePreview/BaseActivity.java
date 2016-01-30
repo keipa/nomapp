@@ -27,13 +27,16 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
 
+import com.nomapp.nomapp_beta.AllRecipes.AllRecipesRecyclerAdapter;
+import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.Steps.TabsActivity;
 
 import java.util.ArrayList;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private static final int NUM_OF_ITEMS = 3;
-    private static final int NUM_OF_ITEMS_FEW = 3;
+    private static final int NUM_OF_ITEMS = 4;
+    private static final int NUM_OF_ITEMS_FEW = 4;
 
     protected int getActionBarSize() {
         TypedValue typedValue = new TypedValue();
@@ -50,9 +53,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return findViewById(android.R.id.content).getHeight();
     }
 
-    public static ArrayList<String> getDummyData() {
-        return getDummyData(NUM_OF_ITEMS);
-    }
 
     public static ArrayList<String> getDummyData(int num) {
         ArrayList<String> items = new ArrayList<>();
@@ -62,51 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return items;
     }
 
-    protected void setDummyData(ListView listView) {
-        setDummyData(listView, NUM_OF_ITEMS);
-    }
 
-    protected void setDummyDataFew(ListView listView) {
-        setDummyData(listView, NUM_OF_ITEMS_FEW);
-    }
-
-    protected void setDummyData(ListView listView, int num) {
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getDummyData(num)));
-    }
-
-    protected void setDummyDataWithHeader(ListView listView, int headerHeight) {
-        setDummyDataWithHeader(listView, headerHeight, NUM_OF_ITEMS);
-    }
-
-    protected void setDummyDataWithHeader(ListView listView, int headerHeight, int num) {
-        View headerView = new View(this);
-        headerView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, headerHeight));
-        headerView.setMinimumHeight(headerHeight);
-        // This is required to disable header's list selector effect
-        headerView.setClickable(true);
-        setDummyDataWithHeader(listView, headerView, num);
-    }
-
-    protected void setDummyDataWithHeader(ListView listView, View headerView, int num) {
-        listView.addHeaderView(headerView);
-        setDummyData(listView, num);
-    }
-
-    protected void setDummyData(GridView gridView) {
-        gridView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getDummyData()));
-    }
-
-    protected void setDummyData(RecyclerView recyclerView) {
-        setDummyData(recyclerView, NUM_OF_ITEMS);
-    }
-
-    protected void setDummyDataFew(RecyclerView recyclerView) {
-        setDummyData(recyclerView, NUM_OF_ITEMS_FEW);
-    }
-
-    protected void setDummyData(RecyclerView recyclerView, int num) {
-        recyclerView.setAdapter(new SimpleRecyclerAdapter(this, 3));
-    }
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, int headerHeight) {
         View headerView = new View(this);
@@ -118,7 +74,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
+
+        SimpleHeaderRecyclerAdapter.OnItemTouchListener itemTouchListener = new SimpleHeaderRecyclerAdapter.OnItemTouchListener() {
+            @Override
+            public void onCardViewTap(View view, int position) {
+                Intent data = getIntent();
+                Intent intent = new Intent(BaseActivity.this, TabsActivity.class);
+                intent.putExtra("numberOfRecipe", data.getIntExtra("numberOfRecipe", 0));
+                startActivity(intent);
+            }
+        };
+
+
         Intent data = getIntent();
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, NUM_OF_ITEMS, headerView, data.getIntExtra("numberOfRecipe", 0)));
+        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, NUM_OF_ITEMS, headerView, data.getIntExtra("numberOfRecipe", 0), itemTouchListener));
     }
+
 }
