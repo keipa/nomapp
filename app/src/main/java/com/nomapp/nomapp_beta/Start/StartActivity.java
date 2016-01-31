@@ -103,7 +103,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_go_white_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

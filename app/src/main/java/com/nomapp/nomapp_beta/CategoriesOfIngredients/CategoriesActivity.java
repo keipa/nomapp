@@ -190,7 +190,7 @@ public class CategoriesActivity extends AppCompatActivity {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             //   actionBar.setDisplayUseLogoEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_go_white_24dp);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
