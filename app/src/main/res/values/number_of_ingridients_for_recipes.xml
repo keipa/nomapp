@@ -134,4 +134,207 @@
 	200 г. капусты\n
 </string>
 
+<string name="number_of_ingredients_for_salad_with_smetana">
+	300 г зеленого салата\n
+	1 свежий огурец\n
+	1 яйцо\n
+	1/2 стакана соуса из сметаны с уксусом\n
+</string>
+
+<string name="number_of_ingredients_for_salad_with_oil">
+	300 г зеленого салата\n
+	1/4 стакана соуса из уксуса и растительного масла\n
+</string>
+
+<string name="number_of_ingredients_for_salad_health">
+	2 свежих огурца\n
+	2 сырых моркови\n
+	2 яблока\n
+	2 помидора\n
+	100 г зеленого салата\n
+	1/2 стакана сметаны\n
+	1/4 лимона\n
+</string>
+
+<string name="number_of_ingredients_for_salad_with_cucumbers">
+	3 огурца\n
+	1/4 стакана сметаны\n
+	1/2 ст. ложки уксуса\n
+</string>
+
+<string name="number_of_ingredients_for_salad_with_redis">
+	2–3 пучка редиски\n
+	1 яйцо\n
+	1/2 стакана сметаны\n
+</string>
+
+<string name="number_of_ingredients_for_salad_with_tomatos_and_cucum">
+	5–6 помидоров\n
+	2–3 огурца\n
+	2 ст. ложки растительного масла\n
+	3–4 ст. ложки уксуса\n
+</string>
+
+<string name="number_of_ingredients_for_salad_with_svekla">
+	2–3 шт. столовой свеклы\n
+	2 ст. ложки растительного масла\n
+	1/4 стакана уксуса\n
+</string>
+
+<string name="number_of_ingredients_for_salad_kartof">
+	500 г картофеля\n
+	50 г зеленого лука\n
+	2 ст. ложки растительного масла\n
+	1/4 стакана уксуса\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_krasnokach_kapusti">
+	500 г. капусты\n
+	1/4 стакана уксуса\n
+	1/2 ст. ложки сахара\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_belokach_kapusti">
+	500 г. капусты\n
+	1/4 стакана уксуса\n
+	1/2 ст. ложки сахара\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_belokach_kap_s_yablokami">
+	500 г. капусты белокочанной\n
+	1 стебель сельдерея\n
+	1 яблоко\n
+	1/4 стакана уксуса\n
+	1/2 ст. ложки сахара\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_kvash_kapusti">
+	500 г. квашеной шинкованной капусты\n
+	1 ст. ложка растительного масла\n
+	1-2 ст. ложки сахара\n
+
+</string>
+
+    <string name="number_of_ingredients_for_salat_vesna">
+	3 яблока\n
+	1 груша\n
+	1  апельсин\n
+	1 мандарин\n
+	1/4 стакана майонеза\n
+	1/4 лимона\n
+	1 ч. ложка сахара (сахарной пудры)\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_myasa">
+	200 г. мяса\n
+	2 огурца\n
+	100 г. зеленого салата\n
+	1/2 стакана майонеза\n
+</string>
+
+<string name="number_of_ingredients_for_salat_s_kolbasoy">
+	200 г. колбасы или ветчины\n
+	3-4 шт. картофеля\n
+	50 г. сельдерея\n
+	75 г. маринованных огурцов\n
+	1 яблоко\n
+	75 г. салата\n
+	1/2 стакана майонеза\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_treski_s_hrenom">
+	250 г филе трески\n
+	4-5 шт. картофеля\n
+	2 огурца\n
+	100 г. хрена\n
+	1/2 стакана майонеза\n
+	2 чайных ложки уксуса\n
+	50 г. зеленого лука\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_treski_s_mayonezom">
+	200 г. филе трески\n
+	50 г. сельдерея\n
+	1 яблоко\n
+	1 пучок редиски\n
+	1 огурец\n
+	100 г. салата\n
+	1/2 стакана майонеза\n
+	1 ст. ложка уксуса\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_seldi">
+	Одна некрупная сельдь\n
+	2 шт. вареного картофеля\n
+	1 яблоко\n
+	1 соленый огурец\n
+	1 головку лука\n
+	1 вареная свекла\n
+	1-2 яйца\n
+	3 ст. ложки растительного масла\n
+	2 ст. ложки уксуса\n
+	1 чайная ложка горчицы\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_fasoli">
+	1 стакан фасоли\n
+	2-3 моркови\n
+	75 г. сельдерея\n
+	200 г. салата\n
+	2 ст. ложки растительного масла\n
+	горчица, уксус, сахар - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_vinegret_iz_ovoschey">
+	На 4-5 шт. вареного картофеля:\n
+	1 свеклу\n
+	1 морковь\n
+	2 соленых огурца\n
+	1 свежее или моченое яблоко\n
+	100 г. квашеной капусты\n
+	50 г. зеленого лука\n
+	2-3 ст. ложки растительного масла\n
+	1/4 стакана уксуса\n
+	1 чайную ложку горчицы\n
+	сахар по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_vinegret_iz_fruktov_i_ovoshey">
+	1 яблоко\n
+	1 груша\n
+	1 мандарин\n
+	1 апельсин\n
+	3-4 шт. вареного картофеля\n
+	1 морковь\n
+	1 огурец\n
+	50 г. сельдерея\n
+	50 г. салата\n
+	50 г. горошка\n
+	1/2 стакана майонеза\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_pertsa_s_kartofelem">
+	На 1 банку (500 г.) фарш. перца:\n
+	5-6 шт. вареного картофеля\n
+	1 яйцо\n
+	100 г. зеленого лука\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_krasnohack_kapusti">
+	чеснок - 1 зубчик\n
+	капуста краснокачанная - 1/2 качана\n
+	1 ч. ложка лимонного сока\n
+	соль - по вкусу\n
+	перец - по вкусу\n
+	йогурт греческий - 4 ст. л.\n
+</string>
+
+<string name="number_of_ingredients_for_salat_morsk_kapusta_izumitelniy">
+	Лук красный - 1 шт.\n
+	чернослив без косточек - 100г.\n
+	грецкие орехи - 100г.\n
+	майонез - 1,5 ст. ложки\n
+	капуста морская - 1 банка\n
+</string>
+
 </resources>

@@ -15,6 +15,7 @@ import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.RecipePreview.RecipePreviewActivity;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * Created by antonid on 02.10.2015.
@@ -121,20 +122,23 @@ public class AllRecipesRecyclerFragment extends Fragment {
 
     private ArrayList<Integer> parse(String toConvert) {
         ArrayList<Integer> converted = new ArrayList<>();
-
-        int counter;
+        Stack<Integer> temporaryStack = new Stack<>();
+        int counter = 0;
         int factor = 1;
-        int currentIngridient = 0;
+        int currentIngredient = 0;
         int size = toConvert.length();
         for (counter = 0; counter < size; counter++) {
             while (toConvert.charAt(counter) != ',' && toConvert.charAt(counter) != '.') {//TODO
-                currentIngridient += (toConvert.charAt(counter) - '0') * factor;
-                factor *= 10;
+                temporaryStack.push(toConvert.charAt(counter) - '0');
                 counter++;
             }
+            while (!temporaryStack.empty()){
+                currentIngredient += temporaryStack.pop() * factor;
+                factor *= 10;
+            }
             factor = 1;
-            converted.add(currentIngridient);
-            currentIngridient = 0;
+            converted.add(currentIngredient);
+            currentIngredient = 0;
         }
         return converted;
     }
