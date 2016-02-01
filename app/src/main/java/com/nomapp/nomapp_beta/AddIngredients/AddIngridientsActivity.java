@@ -23,6 +23,7 @@ import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -60,7 +61,8 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
     private static int NUM_OF_ITEMS = 0;
 
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
-    private View mImageView;
+   // private View mImageView;
+    private ImageView image;
     private View mOverlayView;
     private View mRecyclerViewBackground;
     private TextView mTitleView;
@@ -79,6 +81,7 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_ingredients);
+        image = (ImageView)findViewById(R.id.bigImageOfCategory);
 
         fillIngridients();
 
@@ -97,7 +100,7 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
 
         setUpRecyclerView(headerView);
 
-        mImageView = findViewById(R.id.image);
+      //  mImageView = findViewById(R.id.image);
         mOverlayView = findViewById(R.id.overlay);
 
         mTitleView = (TextView) findViewById(R.id.title);
@@ -165,7 +168,7 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
         float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
         int minOverlayTransitionY = mActionBarSize - mOverlayView.getHeight();
         ViewHelper.setTranslationY(mOverlayView, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
-        ViewHelper.setTranslationY(mImageView, ScrollUtils.getFloat(-scrollY / 2, minOverlayTransitionY, 0));
+        ViewHelper.setTranslationY(image, ScrollUtils.getFloat(-scrollY / 2, minOverlayTransitionY, 0));
 
         // Translate list background
         ViewHelper.setTranslationY(mRecyclerViewBackground, Math.max(0, -scrollY + mFlexibleSpaceImageHeight));
@@ -217,12 +220,29 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
         return actionBarSize;
     }
 
+    private Integer[] imagesArray = {
+            R.drawable.in_category_meat,
+            R.drawable.in_category_bird,
+            R.drawable.in_category_fish,
+            R.drawable.in_category_sea,
+            R.drawable.in_category_veget,
+            R.drawable.in_category_fruit,
+            R.drawable.in_category_bakalei,
+            R.drawable.in_category_bob,
+            R.drawable.in_category_milk,
+            R.drawable.in_category_mashrooms,
+            R.drawable.in_category_green,
+            R.drawable.in_category_nuts,
+            R.drawable.in_category_ready
+    };
+
 
     protected void setUpRecyclerView(View headerView) {
 
         recyclerView.setScrollViewCallbacks(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(false);
+
 
         SimpleHeaderRecyclerAdapter.OnItemTouchListener itemTouchListener = new SimpleHeaderRecyclerAdapter.OnItemTouchListener() {
             @Override
@@ -310,6 +330,7 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
         Intent intent = getIntent();
         categoryCursor.moveToPosition(intent.getIntExtra("numberOfCategory", 0) - 1);
 
+        image.setImageResource(imagesArray[intent.getIntExtra("numberOfCategory", 0)-1]);   //получение номера по ключу numberOfCategory из intent
         title = categoryCursor.getString(1);
 
         IDs = parse(categoryCursor.getString(2));

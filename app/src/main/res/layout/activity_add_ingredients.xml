@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/bigImageOfCategory"
             android:layout_width="match_parent"
             android:layout_height="@dimen/flexible_space_image_height"
             android:scaleType="centerCrop"
