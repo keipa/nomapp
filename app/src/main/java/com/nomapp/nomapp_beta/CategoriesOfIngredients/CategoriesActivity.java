@@ -208,14 +208,14 @@ public class CategoriesActivity extends AppCompatActivity {
 
 
     }
-
+    //clicklister для navigationDrawer
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             navDrawerSelectItem(i);
         }
     }
-
+    //обработка нажатий navigationDrawer
     private void navDrawerSelectItem(int position){
         switch (position){
             case 0:
