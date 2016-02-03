@@ -246,7 +246,7 @@ public class StartFragment extends Fragment {
                 ingredientsForAvailableRecipes.add(ingredientsForCurrentRecipe);
                 Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
                         + " SET isAvailable=1 WHERE _id=" + (currentRecipe) + ";");
-                IDsOfAvailableRecipes.add(recipesCursor.getInt(0));
+                IDsOfAvailableRecipes.add(currentRecipe);
                 numOfAvlRecipes++;
             } else {
                 //If it is not we also note it in the database.
@@ -262,7 +262,6 @@ public class StartFragment extends Fragment {
     //Check only recipes which IDs is in the ArrayList.
     //Perform after every swipe.
     private int calculateNumberOfAvlRcpsAfterSwipe(){
-        int numberOfAvlRecipes = 0;
         boolean isAvailable;
 
         ArrayList<Integer> ingredientsForCurrentRecipe;
@@ -293,7 +292,6 @@ public class StartFragment extends Fragment {
                 //If it is available we note it in the database and increment numberOfAvlRecipes.
                 Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
                         + " SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
-                numberOfAvlRecipes++;
             } else{
                 //If it is not we also note it in the database and remove it's id from the
                 //ArrayList of IDs.
@@ -304,6 +302,8 @@ public class StartFragment extends Fragment {
             }
         }
         cursor.close();
+
+        int numberOfAvlRecipes = IDsOfAvailableRecipes.size();
 
         numOfRecipesTV.setText(numberOfAvlRecipes + "");
         recTextView.setText(setEndingInRecipe(numberOfAvlRecipes));

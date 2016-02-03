@@ -337,4 +337,189 @@
 	капуста морская - 1 банка\n
 </string>
 
+<string name="number_of_ingredients_for_salad_with_fruits">
+	3 яблока\n
+	1 грушу\n
+	1 апельсин\n
+	1 мандарин\n
+	1/4 стакана соуса майонез\n
+	1/4 лимона\n
+	1 чайную ложку сахарной пудры\n
+</string>
+
+<string name="number_of_ingredients_for_vinegret_iz_pertsa">
+	500г фаршированного перца\n
+	5–6 шт. вареного картофеля\n
+	1 яйцо\n
+	100 г зеленого лука\n
+</string>
+
+<string name="number_of_ingredients_for_vinegret_s_myasom">
+	338 г тушеного мяса\n
+	5–6 шт. вареного картофеля\n
+	3 соленых огурца\n
+	1 вареная свекла\n
+	100 г зеленого лука\n
+	1–2 яйца\n
+	1/2 стакана соуса майонез\n
+	1 чайную ложку горчицы\n
+	1 ст. ложку уксуса\n
+</string>
+
+<string name="number_of_ingredients_for_buter_s_pomi_i_ogur">
+	Помидор\n
+	Огурец\n
+	Майонез\n
+	Редис\n
+</string>
+
+<string name="number_of_ingredients_for_buter_s_ikroi">
+	Хлеб\n
+	Яйцо\n
+	Икра\n
+	Растительное масло\n
+</string>
+
+<string name="number_of_ingredients_for_buter_s_sirom">
+	Сыр\n
+	Томатная паста\n
+	Масло растительное\n
+</string>
+
+<string name="number_of_ingredients_for_buter_s_kilkoy">
+	Хлеб\n
+	Помидор\n
+	Яйцо\n
+	Анчоус\n
+	Майонез\n
+</string>
+
+<string name="number_of_ingredients_for_buter_s_sardinami">
+	Хлеб\n
+	Сардина\n
+	Майонез\n
+	Томатная паста\n
+	Лимон\n
+</string>
+
+<string name="number_of_ingredients_for_buter_s_semgoy">
+	Хлеб\n
+	Сёмга\n
+	Масло\n
+	Чёрная икра\n
+	Петрушка\n
+	Огурец\n
+</string>
+
+<string name="number_of_ingredients_for_seld_s_garnirom">
+	Сельдь\n
+	Чай\n
+	Огурцы\n
+	Помидоры\n
+	Корнишоны\n
+	Грибы\n
+	Лук\n
+	Варёные яйца\n
+</string>
+
+<string name="number_of_ingredients_for_seld_rublenaya">
+	1 сельдь\n
+	2 ст. ложки сливочного несоленого масла\n
+	1 яблоко (крупное)\n
+</string>
+
+<string name="number_of_ingredients_for_seld_s_kartofelem_i_maslom">
+	Одна крупная сельдь\n
+	500 г. картофеля\n
+	50 г. сливочного масла\n
+	2 свежих огурца\n
+</string>
+
+<string name="number_of_ingredients_for_ustritsi">
+	Устрицы\n
+</string>
+
+<string name="number_of_ingredients_for_bujenina">
+	Свинина (окорок или шея) - 700-100 г.\n
+	Чеснок\n
+	Лавровый лист\n
+	Соль\n
+	Перец\n
+</string>
+
+<string name="number_of_ingredients_for_vetchina_v_sire">
+	Ветчина - 300 г\n
+	сыр - 400-400 г.\n
+	чеснок - 1 зубчик\n
+	зелень петрушки или укропа\n
+	желатин - 1 столовая ложка\n
+</string>
+
+<string name="number_of_ingredients_for_goryachaya_zakuska_v_bagete">
+	Багет (батон) - 1 шт.\n
+	ветчина или сосиски - 300-400 г.\n
+	сыр - 200 г.\n
+	болгарский перец - 1 шт.\n
+	зелень петрушки или укропа\n
+	чеснок - 1-2 зубчика (по желанию)\n
+	яйцо - 1 шт.\n
+	майонез или сметана\n
+	соль\n
+</string>
+
+<string name="number_of_ingredients_for_goryachaya_zakuska_v_lavashe">
+	Лаваш - 0.5 - 1 шт.\n
+	кружок ветчины\n
+	кружок помидора\n
+	яйцо - 1 шт.\n
+	сыр твердый - 20 г.\n
+	зелень\n
+	соль\n
+	перец\n
+</string>
+
+<string name="number_of_ingredients_for_julen_iz_kuritsh">
+	Куриные окорочка - 2-3 шт\n
+	грибы лесные - 200-300 г.\n
+	лук репчатый - 4-6 шт.\n
+	сметана - 100-150г.\n
+	сыр твердый - 100-150г.\n
+	мука - 1 ст. ложка\n
+	сливочное масло - 80г.\n
+	растительное масло\n
+	соль\n
+	свежемолотый перец\n
+</string>
+
+<string name="number_of_ingredients_for_zakuska_iz_lavasha_s_myasnim_farshem">
+	лаваш - 3 листа\n
+	мясной фарш - 300-400 г.\n
+	лук репчатый - 1 шт.\n
+	морковь - 1 шт.\n
+	помидоры - 1-2 шт.\n
+	листья салата\n
+	сыр - 50 г.\n
+	майонез\n
+	чеснок - 1-2 дольки\n
+	зелень петрушки или укропа\n
+</string>
+
+<string name="number_of_ingredients_for_zakuska_s_pechenochnim_pashtetom">
+	Яйца перепелиные - 6 шт.\n
+	батон - 6 кусков\n
+	зелень\n
+	куриная печень - 300г.\n
+	лук репчатый - 1 шт.\n
+	сливочное масло - 60 г.\n
+	соль\n
+	свежемолотый перец\n
+</string>
+
+<string name="number_of_ingredients_for_krilishki_v_soevom_souse">
+	крылышки куриные - 1 кг.\n
+	соевый соус - 100-150 мл.\n
+	мед - 2-3 ч.л.\n
+	чеснок - 2 дольки\n
+</string>
+
 </resources>
