@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="number_of_ingridients_for_stuffer_eggs">
         Здесь ингредиенты.\n
@@ -520,6 +520,69 @@
 	соевый соус - 100-150 мл.\n
 	мед - 2-3 ч.л.\n
 	чеснок - 2 дольки\n
+</string>
+
+<string name="number_of_ingredients_for_hocol_b_macle">
+	1 стакан фасоли\n
+	1 головку лука\n
+	2 ст. ложки растительного масла\n
+</string>
+
+<string name="number_of_ingredients_for_pashtet_ez_hocole">
+	1 стакан фасоли \n
+	2–3 ст. ложки растительного масла\n
+	1 головку лука\n
+</string>
+
+<string name="number_of_ingredients_for_ekra_grebnai">
+	250 г соленых грибов\n
+	1 головку лука\n
+	1–2 ст. ложки растительного масла\n
+</string>
+
+<string name="number_of_ingredients_for_ekra_ez_baklazana">
+	300 г баклажан\n
+	1–2 головки лука\n
+	2 ст. ложки растительного масла\n
+	1 помидор\n
+</string>
+
+<string name="number_of_ingredients_for_ekra_ez_cBekla">
+	1/2 кг сырой свеклы\n
+	2–3 ст. ложки сахара\n
+	2 ст. ложки сливочного масла\n
+	1/2 лимона\n
+</string>
+
+<string name="number_of_ingredients_for_zfleBnoe_cydak">
+	1 судака\n
+	10–12 г желатины\n
+	1 шт. кореньев и головку лука\n
+</string>
+
+<string name="number_of_ingredients_for_zalivnoy_sudak">
+	1 судак\n
+	10–12 г желатины\n
+	1 головка лука\n
+</string>
+
+<string name="number_of_ingredients_for_zalebnay_ocetrena">
+	1 кг осетрины\n
+	25–30 г желатины\n
+	1 головка лука\n
+</string>
+
+<string name="number_of_ingredients_for_zalebnoy_azyk">
+	1 язык\n
+	20–25 г желатины\n
+	1 головка лука\n
+</string>
+
+<string name="number_of_ingredients_for_ctyden_ez_cterlyde">
+	1 кг стерляди\n
+	15–20 г желатины\n
+	 25 г икры\n
+	1 головка лука\n
 </string>
 
 </resources>
