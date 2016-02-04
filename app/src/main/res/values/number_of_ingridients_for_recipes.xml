@@ -585,4 +585,109 @@
 	1 головка лука\n
 </string>
 
+<string name="number_of_ingredients_for_klubnichniy_koktail">
+	Молоко\n
+	Клубника\n
+	Мороженое\n
+</string>
+
+<string name="number_of_ingredients_for_tomatniy_sup_pure">
+	1 кг помидор (4-5 шт. очищенных от кожицы)\n
+	3 болгарских перца\n
+	средняя луковица\n
+	1 долька чеснока\n
+	соль, перец по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_domashnee_morojenoe_iz_kivi">
+	420 мл. воды\n
+	240 мл. сахара\n
+	4 киви\n
+	120 мл. свежего сока лайма (не обязательно)\n
+</string>
+
+<string name="number_of_ingredients_for_chayniye_yaytsa">
+	Яйца куриные - 2 шт.\n
+	Чайный пакетик - 1 шт.\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_svekli_sira_gr_orehov">
+	Свекла одна большая (несколько маленьких)\n
+	Чеснок - 1 головка\n
+	Сыр - 70 гр.\n
+	Майонез - по вкусу\n
+	Орехи (по желанию). Лучше грецкие.\n
+	Соль по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_tvorojno_mork_zapekanka">
+	Творог - 400-500г.\n
+	Морковь - 2-3 шт.\n
+	Яйца - 2 шт.\n
+	По желанию : сахар, соль, орехи\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_pomidorov_i_yaits">
+	помидоры - 4 шт.\n
+	сваренные вкрутую яйца - 4 шт.\n
+	сметана - 3/4 стакана\n
+	соль и чеснок по вкусу\n
+	мелко нарезанная зелень по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_salat_iz_pomidor_s_brinzoy">
+	помидоры - 5-6 шт.\n
+	сладкий перец - 1 стручок (или желтые помидоры)\n
+	брынза - 100 г.\n
+	петрушка или другая зелень по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_italyanskiy_salat_s_makaronami">
+	макароны - 1/3 пачки\n
+	2-3 помидора\n
+	ветчина (или колбаса и т.д.)\n
+	По желанию:\n
+	сыр (типа Эдам) - 100 г.\n
+	зелень - по вкусу\n
+	Для соуса (можно заменить майонезом): \n
+	4 ст.л. растительного масла без запаха,\n
+	1 ст.л. лимонного сока,\n
+	1 ч.л. сахара,\n
+	соль, перец, петрушка, горчица по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_kartofelnoe_pyre">
+	картофель - 1 кг.\n
+	молоко - 200 мл.\n
+	соленое сливочное масло - 20 гр.\n
+</string>
+
+<string name="number_of_ingredients_for_garnir_iz_kartofelya_k_blydam_iz_farsha">
+	картофель\n
+	морковь\n
+	лук\n
+	пассерованное томат-пюре\n
+	лавр, перец, соль (по желанию)\n
+</string>
+
+<string name="number_of_ingredients_for_garnir_pyre_iz_goroshka_k_kotletam">
+	горошек - 450 гр.\n
+	сметана - 150 гр.\n
+	петрушка, укроп - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_citrusoviy_desert_s_saharom_i_vinom">
+	Апельсины (мандарины) - 100 г.\n
+	сахар - 40 г.\n
+	вино - 10 г.\n
+</string>
+
+<string name="number_of_ingredients_for_zapechennaya_kartoshka_v_kojure">
+	картофель - 1 кг.\n
+</string>
+
+<string name="number_of_ingredients_for_zapechenniye_kartofelnie_dolki">
+	Картофель - 1 кг.\n
+</string>
+
 </resources>
