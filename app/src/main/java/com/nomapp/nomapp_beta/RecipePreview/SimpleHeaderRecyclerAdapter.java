@@ -141,7 +141,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-     static class InfoViewHolder extends RecyclerView.ViewHolder {
+    class InfoViewHolder extends RecyclerView.ViewHolder {
         TextView timeText;
         TextView personText;
 
@@ -149,7 +149,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             super(view);
             timeText = (TextView) view.findViewById(R.id.timeText);
             personText = (TextView) view.findViewById(R.id.personsText);
-
+            timeText.setText(timeForCooking);
+            personText.setText(numberOfPersonsForRecipe+"");
         }
     }
 

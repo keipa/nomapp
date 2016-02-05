@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="number_of_ingridients_for_stuffer_eggs">
         Здесь ингредиенты.\n
@@ -688,6 +688,74 @@
 
 <string name="number_of_ingredients_for_zapechenniye_kartofelnie_dolki">
 	Картофель - 1 кг.\n
+</string>
+
+<string name="number_of_ingredients_for_vegetariansky_pinkberry">
+	йогурт - 1 упаковка\n
+	сахар - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_arahiso_banan_morojenoe">
+	Бананы - по вкусу\n
+	Арахисовое масло - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_klubnichnaya_pomadka">
+	Шоколад - 1 упаковка\n
+	Клубничная глазуь (клубника) - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_shokoladnie_tryfeli">
+	Шоколад - по вкусу\n
+	Сыр плавленный - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_syrnye_chipsi">
+	Сыр твердый - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_ovsyanoe_pechenie">
+	Хлопья овсяные - по вкусу\n
+	Бананы - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_biskviti">
+	Мука самовосходящая (с добавлением разрыхлителя) - по вкусу\n
+	Молоко - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_makaruni">
+	Стружка кокосовая - по вкусу\n
+	Молоко сгущеное - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_tyshemiy_kartofel_s_ovowami">
+	Кртофель - 400 г.\n
+	Морковь - 40 г.\n
+	Петрушка (корень) - 20 гр.\n
+	Лук репчатый - 40 г.\n
+	соус сметанный, молочный - 150 г.\n
+	лист лавровый, перец горошком - по вкусу\n
+	зелень, соль - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_gribi_i_kartofel_zapechenniy_v_duhovke">
+	картофель - 500 г.\n
+	шампиньены (небольшие) - 150 г.\n
+	сливочное масло - 50 г.\n
+	укроп, чеснок, соль, перец - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_so_svininoy">
+	картофель - 8 шт.\n
+	мясо - 200 г.\n
+	репчатый лук - 1 шт.\n
+	мука - 1 ч.л.\n
+	тертый сыр - 1 ст.л.\n
+	масло растительное - 2 ст.л.\n
+	панировочные сухари - 1 ст.л.\n
+	бульон - 2 ст.л.\n
+	соль - по вкусу\n
 </string>
 
 </resources>
