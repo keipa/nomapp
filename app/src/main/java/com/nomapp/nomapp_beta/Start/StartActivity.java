@@ -1,6 +1,9 @@
 package com.nomapp.nomapp_beta.Start;
 
+import android.app.AlarmManager;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -20,7 +23,10 @@ import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
+import com.nomapp.nomapp_beta.Notification.TimeNotification;
 import com.nomapp.nomapp_beta.R;
+
+import java.util.Calendar;
 
 
 public class StartActivity extends android.support.v7.app.AppCompatActivity implements StartFragment.StartFragmentEventsListener {
@@ -61,6 +67,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     protected void onStart() {
         super.onStart();
 
+            restartNotify();
         // setUpUserSettings();     //this function initiate settings
 
         startFragment.numberOfSelectedIngredients = startFragment.fillSelectedIngridients();
@@ -166,5 +173,20 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
                 break;
             default: break;
         }
+    }
+
+    private void restartNotify() {
+        AlarmManager am;
+        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, TimeNotification.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+                intent, PendingIntent.FLAG_CANCEL_CURRENT);
+// На случай, если мы ранее запускали активити, а потом поменяли время,
+// откажемся от уведомления
+        am.cancel(pendingIntent);
+// Устанавливаем разовое напоминание
+
+        Calendar calendar = Calendar.getInstance();
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10000, pendingIntent);
     }
 }
