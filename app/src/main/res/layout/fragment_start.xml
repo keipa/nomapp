@@ -9,11 +9,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/start_button"
-        app:cardBackgroundColor="@color/docPanelsColors">
+        app:cardBackgroundColor="@color/docPanelsColors"
+        android:layout_marginTop="5dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -25,7 +27,8 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentEnd="false"
                 android:layout_alignParentRight="true"
-                android:paddingTop="100dp" />
+                android:paddingTop="100dp"
+                android:layout_marginTop="0dp" />
 
             <TextView
                 android:layout_width="wrap_content"
