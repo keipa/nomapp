@@ -104,6 +104,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            setTitle("Холодильник");
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

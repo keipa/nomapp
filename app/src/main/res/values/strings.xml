@@ -41,7 +41,7 @@
     <!--справка-->
 
     <string name="fridge_en">Fridge</string>
-    <string name="fridge_ru">Холодильник</string>
+    <string name="fridge_ru">NomApp</string>
     <string name="dish_of_a_day_en">Dish of a day</string>
     <string name="dish_of_a_day_ru">Блюдо дня</string>
     <string name="all_recipes_en">All Recipes</string>
