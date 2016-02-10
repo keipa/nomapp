@@ -48,7 +48,9 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private String timeForCooking;
     private String ingredientsForRecipe;
+    private String measureOfTime;
     private int numberOfPersonsForRecipe;
+    private int numberOfSteps;
 
     private OnItemTouchListener onItemTouchListener;
 
@@ -72,7 +74,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                 new String[]
                         {Database.getRecipesName(), Database.getRecipesTimeForCooking(),
-                                Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfPersons()},
+                                Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfPersons(),
+                                Database.getRecipesMeasureForTime(), Database.getRecipesNumberOfSteps()},
                 null, null, null, null
                 , null);
 
@@ -82,6 +85,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         timeForCooking = cursor.getString(1);
         ingredientsForRecipe = cursor.getString(2);
         numberOfPersonsForRecipe = cursor.getInt(3);
+        measureOfTime = cursor.getString(4);
+        numberOfSteps = cursor.getInt(5);
     }
 
     @Override
@@ -144,13 +149,21 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     class InfoViewHolder extends RecyclerView.ViewHolder {
         TextView timeText;
         TextView personText;
+        TextView measureOfTimeText; //TODO delete if it is not necessary
+        TextView stepsInPreviewTv;
 
         public InfoViewHolder(View view) {
             super(view);
+
             timeText = (TextView) view.findViewById(R.id.timeText);
             personText = (TextView) view.findViewById(R.id.personsText);
-            timeText.setText(timeForCooking);
+            measureOfTimeText = (TextView) view.findViewById(R.id.measure_of_time_preview);
+            stepsInPreviewTv = (TextView) view.findViewById(R.id.steps_in_preview_tv);
+
+            timeText.setText(timeForCooking + " " + measureOfTime.toLowerCase().charAt(0) );
+         //   measureOfTimeText.setText(measureOfTime);
             personText.setText(numberOfPersonsForRecipe+"");
+            stepsInPreviewTv.setText(numberOfSteps + "");
         }
     }
 

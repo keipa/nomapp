@@ -36,7 +36,6 @@ import java.util.ArrayList;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private static final int NUM_OF_ITEMS = 4;
-    private static final int NUM_OF_ITEMS_FEW = 4;
 
     protected int getActionBarSize() {
         TypedValue typedValue = new TypedValue();
@@ -47,21 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         a.recycle();
         return actionBarSize;
     }
-
-
-    protected int getScreenHeight() {
-        return findViewById(android.R.id.content).getHeight();
-    }
-
-
-    public static ArrayList<String> getDummyData(int num) {
-        ArrayList<String> items = new ArrayList<>();
-        for (int i = 1; i <= num; i++) {
-            items.add("Item " + i);
-        }
-        return items;
-    }
-
 
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, int headerHeight) {
@@ -87,7 +71,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
         Intent data = getIntent();
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, NUM_OF_ITEMS, headerView, data.getIntExtra("numberOfRecipe", 0), itemTouchListener));
+        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, NUM_OF_ITEMS, headerView,
+                data.getIntExtra("numberOfRecipe", 0), itemTouchListener));
     }
 
 }
