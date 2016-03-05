@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,12 +19,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
-import com.nomapp.nomapp_beta.AllRecipes.AllRecipesActivity;
+import com.nomapp.nomapp_beta.Alarms.AlarmReceiver;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
-import com.nomapp.nomapp_beta.Notification.TimeNotification;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.Calendar;
@@ -40,6 +40,9 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     StartFragment startFragment;
     EmptyImgStartFragment imgFragment;
     FragmentTransaction fTransaction;
+
+    AlarmManager alarmManager;
+    private PendingIntent alarmIntent;
 
 
 
@@ -176,17 +179,23 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     }
 
     private void restartNotify() {
-        AlarmManager am;
-        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, TimeNotification.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
-                intent, PendingIntent.FLAG_CANCEL_CURRENT);
-// На случай, если мы ранее запускали активити, а потом поменяли время,
-// откажемся от уведомления
-        am.cancel(pendingIntent);
-// Устанавливаем разовое напоминание
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(StartActivity.this, AlarmReceiver.class);
+        alarmIntent = PendingIntent.getBroadcast(StartActivity.this,
+                (int)System.currentTimeMillis(), intent, 0);
 
         Calendar calendar = Calendar.getInstance();
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 10000, pendingIntent);
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 46);
+        long timeToStart = calendar.getTimeInMillis();
+        Log.d("Time", timeToStart+"");
+        Log.d("Time", System.currentTimeMillis()+"");
+        if(System.currentTimeMillis() > timeToStart){
+            timeToStart += 24 * 60 * 60 * 1000; // one day
+        }
+        //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, tmeToStart, AlarmManager.INTERVAL_DAY, alarmIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
     }
 }
