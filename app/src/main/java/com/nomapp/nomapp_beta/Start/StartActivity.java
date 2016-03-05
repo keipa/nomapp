@@ -187,11 +187,11 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 15);
-        calendar.set(Calendar.MINUTE, 46);
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 04);
         long timeToStart = calendar.getTimeInMillis();
-        Log.d("Time", timeToStart+"");
-        Log.d("Time", System.currentTimeMillis()+"");
+        Log.d("Time", "Time to start: " + timeToStart);
+        Log.d("Time", "Current time: " + System.currentTimeMillis());
         if(System.currentTimeMillis() > timeToStart){
             timeToStart += 24 * 60 * 60 * 1000; // one day
         }
