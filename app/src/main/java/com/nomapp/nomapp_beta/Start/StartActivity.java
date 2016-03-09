@@ -188,14 +188,15 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 21);
-        calendar.set(Calendar.MINUTE, 04);
+        calendar.set(Calendar.MINUTE, 29);
         long timeToStart = calendar.getTimeInMillis();
-        Log.d("Time", "Time to start: " + timeToStart);
-        Log.d("Time", "Current time: " + System.currentTimeMillis());
-        if(System.currentTimeMillis() > timeToStart){
-            timeToStart += 24 * 60 * 60 * 1000; // one day
-        }
+       // Log.d("Time", "Time to start: " + timeToStart);
+        //Log.d("Time", "Current time: " + System.currentTimeMillis());
+      // if(System.currentTimeMillis() > timeToStart){
+       //     timeToStart += 24 * 60 * 60 * 1000; // one day
+        //}
         //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, tmeToStart, AlarmManager.INTERVAL_DAY, alarmIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeToStart, AlarmManager.INTERVAL_DAY, alarmIntent);
     }
 }

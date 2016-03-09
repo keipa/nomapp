@@ -758,4 +758,233 @@
 	соль - по вкусу\n
 </string>
 
+<string name="number_of_ingredients_for_suhariki_iz_batona">
+	Батон\n
+	Подсолнченое масло - по вкусу\n
+	Чеснок - по вкусу\n
+	Порошковый суп - по вкусу.\n
+</string>
+
+<string name="number_of_ingredients_for_suhariki_iz_hleba">
+	Хлеб\n
+	Подсолнечное масло - по вкусу\n
+	Чеснок - по вкусу\n
+	Порошковый суп - по вкусу.\n
+</string>
+
+<string name="number_of_ingredients_for_kuritsa_s_yablokami">
+	Курица - 1/2\n
+	Яблоко - 6 шт.\n
+	Сахар - 2 ст.л.\n
+	1 пакет для запекания\n
+	Приправа для курицы - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_salat_iz_kuritsi_s_chesnokon">
+	Курица - 300г.\n
+	Помидоры - 4шт.\n
+	Сыр твердый - 80г.\n
+	Сайонез - 3 ст.л.\n
+	Чеснок - 2 зубчика\n
+	Растительное масло - 1 ст.л.\n
+	Соль - 1/4 ч.л.\n
+	Перец черный молотый - 1 щепотка.\n
+</string>
+
+<string name="number_of_ingredients_for_krimskie_chebureki_s_myaom_i_lukom">
+	Фарш свиной - 500г\n
+	Мука - 4 стакана\n
+	Вода - 1.5 стакана\n
+	Яйца куриные - 1шт.\n
+	Лук репчатый - 2 головки\n
+	масло растительное - 2 ст.л.\n
+	водка - 1 ст.л.\n
+	сахар - 1/2 ч.л.\n
+	зелень\n
+	соль\n
+</string>
+
+<string name="number_of_ingredients_for_burger_s_kuritsoy">
+	Курица - 130г.\n
+	Огурец - 40г\n
+	Помироды - 40г.\n
+	Сыр - 40г.\n
+	Майонез - 25г.\n
+	Яйцо - 1шт.\n
+</string>
+
+<string name="number_of_ingredients_for_kartofelynie_palochki_s_sirom">
+	Картофель - 5 шт.\n
+	Яйцо - 2шт.\n
+	Панировочный сухари - 100г.\n
+	Сыр твердый - 100г.\n
+	Мука - 2-3 ст.л.\n
+	Масло растительное - по вкусу\n
+	Перец, соль - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_blini_iz_butilki">
+	Бутылка любая - 1 шт.\n
+	Яйца - 2 шт.\n
+	Мука - 10 ст.л. с горсткой\n
+	Сахар - 3 ст.л.\n
+	Масло растительное - 3 ст.л.\n
+	Молоко - 600 гр.\n
+	Соль - пол чайной ложки.\n
+</string>
+
+<string name="number_of_ingredients_for_hvorost">
+	Яйца куриные - 2шт.\n
+	Сметана - 2 ст.л.\n
+	Водка - 50г.\n
+	Мука - по ситуации\n
+	Сахарная пудра - по вкусу\n
+	Соль - по вкусу\n
+	Ваналин - по вкусу\n
+	Масло растительное - 0.5 литра.\n
+</string>
+
+<string name="number_of_ingredients_for_blinchiki_zavarnie">
+	Кефир - 2 ст.л.\n
+	Мука - 2 ст.л.\n
+	Яйца - 2 ст.л.\n
+	Сода - 1/2 ч.л.\n
+	Масло растительное - 2-3 ст.л.\n
+	Соль, сахар - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_kartoshka_s_sirom">
+	Картофель крупный - 3-4шт.\n
+	Батон - 1шт.\n
+	Сыр - 100г.\n
+	Яйцо - 1шт.\n
+	Масло растительное - 1-2 ст.л.\n
+</string>
+
+<string name="number_of_ingredients_for_biskvit_klassicheskiy">
+	Сахар - 1 стакан\n
+	Мука - 1 стакан\n
+	Яйца - 4шт.\n
+	Ванилин - по вкусу (на кончике ножа)\n
+</string>
+
+<string name="number_of_ingredients_for_medovi_biskvit">
+	Яйца- 6шт.\n
+	Сахар - 160гр.\n
+	Мед - 2 ст.л.\n
+	Мука - 190гр\n
+</string>
+
+<string name="number_of_ingredients_for_kurinaya_grudka_pod_smetanno_chesnochnim_sousom">
+	Куриные грудки - 2шт.\n
+	Сметана - 300г.\n
+	Чеснок - 3-4 зубчика\n
+	Сыр - 150гр.\n
+	Соль\n
+	Перец\n
+</string>
+
+<string name="number_of_ingredients_for_yaytsa_po_shatlandski">
+	Яйцо куриное - 7шт.\n
+	Свинина - 300г.\n
+	Говядина - 300г.\n
+	Соль - 1.ч.л.\n
+	Базилик сушенный - 1ч.л.\n
+	Мускатный орех тертый - 1/2 ч.л.\n
+	Масло для фритюра (растительное) - 800мл.\n
+</string>
+
+<string name="number_of_ingredients_for_yaytso_v_korzinke_iz_bekona">
+	Яйцо - 4шт.\n
+	Бекон (или любая ветчина) - 8 кусков\n
+	Сыр сливочный - 4 ст.л.\n
+	Грибы - 1/2 стакана\n
+	Масло сливочное - 1 ч.л.\n
+	Салями - 8 кусков\n
+	Соль и перец - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_omlet_s_gribami_i_zeleny">
+	Яйца - 4шт.\n
+	Белки яичные - 6шт.\n
+	Грибы (желательно шампиньоны) - 500г.\n
+	Зелень (жел. петрушка) - 3ч.л.\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_zapechenniy">
+	Картофель - сколько влезет :)\n
+	Яйца - 2шт.\n
+	Молоко - 200мл.\n
+	Сыр - по вкусу (больше - лучше)\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_s_vetchinoy">
+	Картофель крупный - 6шт.\n
+	Ветчина - 50гр.\n
+	Сметана - 1,5 ст.\n
+	Яйцо - 3шт.\n
+	Сыр тертый - 4 ст.л.\n
+	Масло - 1.ч.л.\n
+	Мука - 1/4 ст.л.\n
+	Соль - 1.ч.л.\n
+</string>
+
+<string name="number_of_ingredients_for_hachapuri">
+	Для теста:\n
+	Кефир - 0.5л.\n
+	Яйцо - 1шт.\n
+	Соль - 1ч.л.\n
+	Сахар - 1 ч.л.\n
+	Разрыхлитель - 1 ч.л.\n
+	Растительное масло - 2 ст.л.\n
+	Мука - 4.5 ст.л.\n
+	  \n
+	Для начинки:\n
+	Сыр - 500г.\n
+	Яйца - 2.\n
+</string>
+
+<string name="number_of_ingredients_for_tartaletki_iz_kartofelya_s_kur_file_pod_chesnochno_sirnim_sousom">
+	Филе курицы - 700г.\n
+	Майонез - 200г.\n
+	Чеснок - 3 зубчика\n
+	Картофель - 6-8 шт. (большие)\n
+	Сыр - 100-200г.\n
+	Зеленый лук - по вкусу\n
+	Соль - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_kartofelnie_shariki">
+	Картофель - 800г.\n
+	Масло сливочное - 50г.\n
+	Яйца - 2шт.\n
+	Преничная мука или панировачные сухари (мелкие) - 40г.\n
+	Перец, соль - по вкусу\n
+	Масло растительное - по вкусу.\n
+</string>
+
+<string name="number_of_ingredients_for_tort_v_krujke">
+	Мука - 4 ст.л.\n
+	Сахар - 3 ст.л.\n
+	Яйца - 1 шт.\n
+	Масло сливочное - 3 ст.л.\n
+	Молоко - 3 ст.л.\n
+	Масло растительное - 3 ст.л.\n
+</string>
+
+<string name="number_of_ingredients_for_kurinie_paluchki_s_sirom">
+	Куриное филе - 250г.\n
+	Яйца - 2шт.\n
+	Сыр твердый - 150г.\n
+	Мука - по вкусу\n
+</string>
+
+<string name="number_of_ingredients_for_kuriniye_otbivmiye_v_sirnom_klyare">
+	Куриное филе - 700г.\n
+	Яйца - 3 шт.\n
+	Сыр  - 150г.\n
+	Мука, соль, перец - по вкусу\n
+	Сок половины лимона (необязательно, но желательно)\n
+</string>
+
 </resources>
