@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="9"
-        android:id="@+id/text_steps"
+        android:id="@+id/steps_tv"
         android:textSize="50dp"
         android:fontFamily="sans-serif-thin"
         android:textColor="#434343"
@@ -27,5 +27,5 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
-        android:id="@+id/steps_tv" />
+        android:id="@+id/steps_text" />
 </RelativeLayout>

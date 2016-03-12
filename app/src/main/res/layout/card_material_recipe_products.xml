@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="14"
-        android:id="@+id/text_products"
+        android:id="@+id/number_of_products_tv"
         android:textSize="50dp"
         android:fontFamily="sans-serif-thin"
         android:textColor="#434343"

@@ -780,7 +780,7 @@
 	Приправа для курицы - по вкусу\n
 </string>
 
-<string name="number_of_ingredients_salat_iz_kuritsi_s_chesnokon">
+<string name="number_of_ingredients_for_salat_iz_kuritsi_s_chesnokon">
 	Курица - 300г.\n
 	Помидоры - 4шт.\n
 	Сыр твердый - 80г.\n
@@ -874,6 +874,7 @@
 	Мед - 2 ст.л.\n
 	Мука - 190гр\n
 </string>
+
 
 <string name="number_of_ingredients_for_kurinaya_grudka_pod_smetanno_chesnochnim_sousom">
 	Куриные грудки - 2шт.\n
@@ -985,6 +986,66 @@
 	Сыр  - 150г.\n
 	Мука, соль, перец - по вкусу\n
 	Сок половины лимона (необязательно, но желательно)\n
+</string>
+
+<string name="number_of_ingredients_for_kolbasa_jarenaya_s_kapustoy">
+	Колбаса\n
+	Капуста\n
+</string>
+
+<string name="number_of_ingredients_for_soup_bones">
+	500 г мясных костей\n
+	1 морковь\n
+	Головка лука\n
+</string>
+
+<string name="number_of_ingredients_for_soup_mash">
+	50 г. сухих грибов\n
+</string>
+
+<string name="number_of_ingredients_for_soup_cubbage">
+	2 головки цветной капусты среднего размера\n
+	1 пучок моркови\n
+	1 стебель сельдерея\n
+</string>
+
+<string name="number_of_ingredients_for_bozbash">
+	500 г баранины\n
+	1 стакан лущеного гороха\n
+	500 г картофеля\n
+	2 яблока\n
+	2 головки лука\n
+</string>
+
+<string name="number_of_ingredients_for_Shurpa">
+	500 г. говядины\n
+	750 г. картофеля\n
+	2 головки лука\n
+	2 шт. моркови\n
+</string>
+
+<string name="number_of_ingredients_for_soup_iz_fasoli_s_lapshoi">
+	1/2 стакана фасоли \n
+	1 головку лука\n
+	100 г лапши\n
+</string>
+
+<string name="number_of_ingredients_for_soup_iz_fasoli_s_krtofilem">
+	1 стакан фасоли\n
+	5–6 шт. картофеля\n
+	1 шт. моркови\n
+	1 головка лука\n
+</string>
+
+<string name="number_of_ingredients_for_soup_s_bruselsoy_kapustoy">
+	600 г брюссельской капусты\n
+	3–4 шт. картофеля\n
+</string>
+
+<string name="number_of_ingredients_for_soup_kartofelni_s_gribami">
+	500 г грибов\n
+	800 г картофеля\n
+	200 г. лука\n
 </string>
 
 </resources>

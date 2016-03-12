@@ -79,13 +79,13 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.avlRcpNameTV);
-            time = (TextView) itemView.findViewById(R.id.text_time);
-            numberOfSteps = (TextView) itemView.findViewById(R.id.text_steps);
-            numberOfIngredients = (TextView) itemView.findViewById(R.id.text_products);
+            time = (TextView) itemView.findViewById(R.id.time_tv);
+            numberOfSteps = (TextView) itemView.findViewById(R.id.steps_tv);
+            numberOfIngredients = (TextView) itemView.findViewById(R.id.number_of_products_tv);
 
             textSteps = (TextView) itemView.findViewById(R.id.steps_tv);
             textNumberOfProducts = (TextView) itemView.findViewById(R.id.text_ings);
-            textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_for_time_tv);
+            textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_of_time_tv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

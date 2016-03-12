@@ -2,7 +2,6 @@ package com.nomapp.nomapp_beta.AllRecipes;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -127,13 +124,13 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.avlRcpNameTV);
-            time = (TextView) itemView.findViewById(R.id.text_time);
-            numberOfSteps = (TextView) itemView.findViewById(R.id.text_steps);
-            numberOfIngredients = (TextView) itemView.findViewById(R.id.text_products);
+            time = (TextView) itemView.findViewById(R.id.time_tv);
+            numberOfSteps = (TextView) itemView.findViewById(R.id.steps_tv);
+            numberOfIngredients = (TextView) itemView.findViewById(R.id.number_of_products_tv);
 
             textSteps = (TextView) itemView.findViewById(R.id.steps_tv);
             textNumberOfProducts = (TextView) itemView.findViewById(R.id.text_ings);
-            textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_for_time_tv);
+            textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_of_time_tv);
 
 
             image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);

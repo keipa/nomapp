@@ -25,13 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.nomapp.nomapp_beta.CategoriesOfRecipes.FindedRecipesRecyclerAdapter;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_HEADER = 0;
@@ -44,25 +39,26 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     private View mHeaderView;
 
     private int numberOfRecipe;
-    private int numberOfItems;
+    private int numberOfCards;
 
     private String timeForCooking;
     private String ingredientsForRecipe;
     private String measureOfTime;
-    private int numberOfPersonsForRecipe;
+    private int numberOfPortionsForRecipe;
     private int numberOfSteps;
+    private int numberOfIngredients;
 
     private OnItemTouchListener onItemTouchListener;
 
 
     private Context ctx;
 
-    public SimpleHeaderRecyclerAdapter(Context context, int numberOfItems, View headerView, int numberOfRecipe,
+    public SimpleHeaderRecyclerAdapter(Context context, int numberOfCards, View headerView, int numberOfRecipe,
                                        OnItemTouchListener onItemTouchListener) {
         mInflater = LayoutInflater.from(context);
         mHeaderView = headerView;
 
-        this.numberOfItems = numberOfItems;
+        this.numberOfCards = numberOfCards;
         this.numberOfRecipe = numberOfRecipe;
         this.ctx = context;
         this.onItemTouchListener = onItemTouchListener;
@@ -75,7 +71,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 new String[]
                         {Database.getRecipesName(), Database.getRecipesTimeForCooking(),
                                 Database.getRecipesNumberOfEveryIng(), Database.getRecipesNumberOfPersons(),
-                                Database.getRecipesMeasureForTime(), Database.getRecipesNumberOfSteps()},
+                                Database.getRecipesMeasureForTime(), Database.getRecipesNumberOfSteps(),
+                                Database.getRecipesNumberOfIngredients()},
                 null, null, null, null
                 , null);
 
@@ -84,17 +81,18 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
         timeForCooking = cursor.getString(1);
         ingredientsForRecipe = cursor.getString(2);
-        numberOfPersonsForRecipe = cursor.getInt(3);
+        numberOfPortionsForRecipe = cursor.getInt(3);
         measureOfTime = cursor.getString(4);
         numberOfSteps = cursor.getInt(5);
+        numberOfIngredients = cursor.getInt(6);
     }
 
     @Override
     public int getItemCount() {
         if (mHeaderView == null) {
-            return numberOfItems;
+            return numberOfCards;
         } else {
-            return numberOfItems + 1;
+            return numberOfCards + 1;
         }
     }
 
@@ -112,7 +110,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
                 return new HeaderViewHolder(mHeaderView);
 
             case VIEW_TYPE_INFO:
-                return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note, parent, false));
+                return new InfoViewHolder(mInflater.inflate(R.layout.card_view_note_refactor, parent, false));
 
             case VIEW_TYPE_DESCRIPTION:
                 return new DescriptionViewHolder(mInflater.inflate(R.layout.card_view_desc, parent, false));
@@ -134,7 +132,7 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
             if (viewType == VIEW_TYPE_INFO)
             {
-                ((InfoViewHolder)viewHolder).personText.setText(numberOfPersonsForRecipe+"");
+                ((InfoViewHolder)viewHolder).portions.setText(numberOfPortionsForRecipe + "");
                 ((InfoViewHolder)viewHolder).timeText.setText(timeForCooking);
             }
         }
@@ -147,24 +145,57 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     class InfoViewHolder extends RecyclerView.ViewHolder {
+        TextView time;
+        TextView portions;
+        TextView products;
+        TextView steps;
+
+        TextView stepsText;
+        TextView productsText;
+        TextView portionsText;
         TextView timeText;
-        TextView personText;
-        TextView measureOfTimeText; //TODO delete if it is not necessary
-        TextView stepsInPreviewTv;
 
         public InfoViewHolder(View view) {
             super(view);
 
-            timeText = (TextView) view.findViewById(R.id.timeText);
-            personText = (TextView) view.findViewById(R.id.personsText);
-            measureOfTimeText = (TextView) view.findViewById(R.id.measure_of_time_preview);
-            stepsInPreviewTv = (TextView) view.findViewById(R.id.steps_in_preview_tv);
+            time = (TextView) view.findViewById(R.id.time_tv);
+            portions = (TextView) view.findViewById(R.id.portions_tv);
+            steps = (TextView) view.findViewById(R.id.steps_tv);
+            products = (TextView) view.findViewById(R.id.number_of_products_tv);
 
-            timeText.setText(timeForCooking + " " + measureOfTime.toLowerCase().charAt(0) );
-         //   measureOfTimeText.setText(measureOfTime);
-            personText.setText(numberOfPersonsForRecipe+"");
-            stepsInPreviewTv.setText(numberOfSteps + "");
+            stepsText = (TextView) view.findViewById(R.id.steps_text);
+            productsText = (TextView) view.findViewById(R.id.text_ings);
+            portionsText = (TextView) view.findViewById(R.id.portions_text);
+            timeText = (TextView) view.findViewById(R.id.measure_of_time_tv);
+
+            time.setText(timeForCooking + ""/* + " " + measureOfTime.toLowerCase().charAt(0) */);
+            portions.setText(numberOfPortionsForRecipe + "");
+            steps.setText(numberOfSteps + "");
+            products.setText(numberOfIngredients + "");
+
+            stepsText.setText(getStepsWithEnding(numberOfSteps));
+            //productsText.setText();
+
         }
+
+        private String getStepsWithEnding(int count) //TODO �������, ����� ��� �������� ������������, ��� ���������� � ������ ������������
+        {
+            String toReturn = "";
+            int modNumberOAR =count  % 10;
+            if (modNumberOAR >=2 && modNumberOAR <=4){
+                toReturn = ctx.getResources().getString(R.string.two_or_four_steps);
+
+            }
+            if (modNumberOAR >=5 || modNumberOAR == 0){
+                toReturn = ctx.getResources().getString(R.string.more_steps);
+            }
+            if (modNumberOAR == 1){
+                toReturn = ctx.getResources().getString(R.string.one_step);
+            }
+            return toReturn;
+        }
+
+
     }
 
     static class IngredientsViewHolder extends RecyclerView.ViewHolder {
@@ -173,8 +204,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
         public IngredientsViewHolder(View view ,String path, Context ctx) {
             super(view);
             ingredientsTextView= (TextView) view.findViewById(R.id.numberOfIngridientsTextView);
-            int id = ctx.getResources().getIdentifier(path, "string", ctx.getPackageName());
-            ingredientsTextView.setText(ctx.getResources().getText(id));
+            int idOfStringWithIngs = ctx.getResources().getIdentifier(path, "string", ctx.getPackageName());
+            ingredientsTextView.setText(ctx.getResources().getText(idOfStringWithIngs));
         }
     }
 

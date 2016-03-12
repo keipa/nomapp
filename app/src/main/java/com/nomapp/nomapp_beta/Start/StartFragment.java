@@ -235,7 +235,8 @@ public class StartFragment extends Fragment {
         //Checking for availability all potential recipes.
         for (int currentRecipe: IDsOfPotentialRecipes) {
             recipesCursor.moveToPosition(currentRecipe - 1);
-            ingredientsForCurrentRecipe = convertIngridientsToArrayList(recipesCursor.getString(0));
+            String test = recipesCursor.getString(0);
+            ingredientsForCurrentRecipe = convertIngridientsToArrayList(recipesCursor.getString(0)); // bad solution. need to go "where id bla bla"
 
             isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
             if (isAvailable){
