@@ -28,7 +28,7 @@ import android.widget.TextView;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 
-public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecipePreviewRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_HEADER = 0;
     private static final int VIEW_TYPE_INFO = 1;
     private static final int VIEW_TYPE_DESCRIPTION = 2;
@@ -53,8 +53,8 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
     private Context ctx;
 
-    public SimpleHeaderRecyclerAdapter(Context context, int numberOfCards, View headerView, int numberOfRecipe,
-                                       OnItemTouchListener onItemTouchListener) {
+    public RecipePreviewRecyclerAdapter(Context context, int numberOfCards, View headerView, int numberOfRecipe,
+                                        OnItemTouchListener onItemTouchListener) {
         mInflater = LayoutInflater.from(context);
         mHeaderView = headerView;
 
@@ -174,11 +174,14 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             products.setText(numberOfIngredients + "");
 
             stepsText.setText(getStepsWithEnding(numberOfSteps));
+            portionsText.setText(getPortionsWithEnding(numberOfPortionsForRecipe));
+            productsText.setText(getProductsWithEnding(numberOfIngredients));
+            timeText.setText(measureOfTime);
             //productsText.setText();
 
         }
 
-        private String getStepsWithEnding(int count) //TODO �������, ����� ��� �������� ������������, ��� ���������� � ������ ������������
+        private String getStepsWithEnding(int count)
         {
             int modNumberOAR =count  % 10;
             if (modNumberOAR >=2 && modNumberOAR <=4){
@@ -194,7 +197,37 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
             return null;
         }
 
+        private String getPortionsWithEnding(int count)
+        {
+            int modNumberOAR = count  % 10;
+            if (modNumberOAR >=2 && modNumberOAR <=4){
+                return ctx.getResources().getString(R.string.two_or_four_portions);
 
+            }
+            if (modNumberOAR >=5 || modNumberOAR == 0){
+                return ctx.getResources().getString(R.string.more_portions);
+            }
+            if (modNumberOAR == 1){
+                return ctx.getResources().getString(R.string.one_portion);
+            }
+            return null;
+        }
+
+        private String getProductsWithEnding(int count)
+        {
+            int modNumberOAR = count  % 10;
+            if (modNumberOAR >=2 && modNumberOAR <=4){
+                return ctx.getResources().getString(R.string.two_or_four_products).toUpperCase();
+
+            }
+            if (modNumberOAR >=5 || modNumberOAR == 0){
+                return ctx.getResources().getString(R.string.more_products).toUpperCase();
+            }
+            if (modNumberOAR == 1){
+                return ctx.getResources().getString(R.string.one_product).toUpperCase();
+            }
+            return null;
+        }
     }
 
     static class IngredientsViewHolder extends RecyclerView.ViewHolder {

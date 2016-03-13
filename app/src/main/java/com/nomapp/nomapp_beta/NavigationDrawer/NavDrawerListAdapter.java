@@ -63,32 +63,40 @@ public class NavDrawerListAdapter extends BaseAdapter {
         // используем созданные, но не используемые view
         View view = convertView;
       //  TextView text = (TextView)convertView.findViewById(R.id.navdrawer_name_of_item);
-        if (view == null) {
-            if (position < 2) { //Main items
-                if (position == 1){
-                    view = lInflater.inflate(R.layout.navdrawer_item_with_separator, parent, false);
-                    ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
-                    ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
-                            setImageResource(images[position]);
+        if (view == null){
 
-                } else {
-                    view = lInflater.inflate(R.layout.navdrawer_item, parent, false);
+
+            switch (position){
+                case 0:
+                     view = lInflater.inflate(R.layout.navdrawer_item, parent, false);
                     ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
                     ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
                             setImageResource(images[position]);
-                }
-            } else {
-                view = lInflater.inflate(R.layout.navdrawer_additional_item, parent, false);
-                ((TextView) view.findViewById(R.id.navdrawer_name_of_additional_item)).setText(items[position]);
+                    break;
+                case 1:
+                     view = lInflater.inflate(R.layout.navdrawer_item_with_separator, parent, false);
+                    ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setText(items[position]);
+                    ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                            setImageResource(images[position]);
+                    break;
+                default:
+                     view = lInflater.inflate(R.layout.navdrawer_additional_item, parent, false);
+                    ((TextView) view.findViewById(R.id.navdrawer_name_of_additional_item)).setText(items[position]);
+                    break;
             }
-
             if (position == currentPosition) {
-                ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
-                        setImageResource(selImages[currentPosition]);
-                ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setTextColor(ctx.getResources().getColor(R.color.chosenElement));
-                view.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
-            }
+                try {
+                    ((ImageView) view.findViewById(R.id.navdrawer_item_icon)).
+                            setImageResource(selImages[currentPosition]);
+                    ((TextView) view.findViewById(R.id.navdrawer_name_of_item)).setTextColor(ctx.getResources().getColor(R.color.chosenElement));
+                     view.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
+                } catch (Throwable t) {
+                    ((TextView) view.findViewById(R.id.navdrawer_name_of_additional_item)).
+                            setTextColor(ctx.getResources().getColor(R.color.chosenElement));
+                    view.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
 
+                }
+            }
         }
 
         return view;

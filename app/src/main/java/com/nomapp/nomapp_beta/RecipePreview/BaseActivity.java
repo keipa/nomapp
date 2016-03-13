@@ -23,16 +23,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ListView;
 
-import com.nomapp.nomapp_beta.AllRecipes.AllRecipesRecyclerAdapter;
-import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Steps.TabsActivity;
-
-import java.util.ArrayList;
 
 public abstract class BaseActivity extends AppCompatActivity {
     private static final int NUM_OF_ITEMS = 4;
@@ -59,7 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setDummyDataWithHeader(RecyclerView recyclerView, View headerView) {
 
-        SimpleHeaderRecyclerAdapter.OnItemTouchListener itemTouchListener = new SimpleHeaderRecyclerAdapter.OnItemTouchListener() {
+        RecipePreviewRecyclerAdapter.OnItemTouchListener itemTouchListener = new RecipePreviewRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
                 Intent data = getIntent();
@@ -71,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
         Intent data = getIntent();
-        recyclerView.setAdapter(new SimpleHeaderRecyclerAdapter(this, NUM_OF_ITEMS, headerView,
+        recyclerView.setAdapter(new RecipePreviewRecyclerAdapter(this, NUM_OF_ITEMS, headerView,
                 data.getIntExtra("numberOfRecipe", 0), itemTouchListener));
     }
 

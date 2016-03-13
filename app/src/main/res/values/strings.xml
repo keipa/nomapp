@@ -26,6 +26,10 @@
     <string name="two_or_four_steps">ШАГА</string>
     <string name="more_steps">ШАГОВ</string>
 
+    <string name="one_portion">ПОРЦИЯ</string>
+    <string name="two_or_four_portions">ПОРЦИИ</string>
+    <string name="more_portions">ПОРЦИЙ</string>
+
 
     <string name="localization_en">Localization</string>
     <string name="localization_ru">Локализация</string>
@@ -55,13 +59,9 @@
 
     //--------------------------------------
 
-    <string name="bk_s1">На хлеб намажем масла</string>
-    <string name="bk_s2">Ама хасла</string>
-    <string name="bk_s3">Ама ама хасла. (еще колбасу сверху)</string>
-
-    <string name="bs_s1">Возьмите хлеб </string>
-    <string name="bs_s2">Положите сыр </string>
     <string name="go_cook_text">НАЧАТЬ ГОТОВИТЬ!</string>
-    <string name="u_can_dont_use_products">Помните, что многие продукты можно заменить или не использовать. Приятного аппетита!</string>
+
+    <string name="u_can_dont_use_products">Помните, что многие продукты можно заменить или не использовать.
+        Количество порций указано примерное. Приятного аппетита!</string>
 
 </resources>

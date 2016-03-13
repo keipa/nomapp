@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
+import com.nomapp.nomapp_beta.About.AboutActivity;
 import com.nomapp.nomapp_beta.Alarms.AlarmReceiver;
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
@@ -165,14 +166,17 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
 
     //
     private void navDrawerSelectItem(int position){
+        mDrawerLayout.closeDrawers();
         switch (position){
             case 0:
-                mDrawerLayout.closeDrawers();
                 break;
             case 1:
-                mDrawerLayout.closeDrawers();
                 Intent toAllRecipes = new Intent(StartActivity.this, CategoriesOfRecipesActivity.class);
                 startActivity(toAllRecipes);
+                break;
+            case 3:
+                Intent toAbout = new Intent(StartActivity.this, AboutActivity.class);
+                startActivity(toAbout);
                 break;
             default: break;
         }

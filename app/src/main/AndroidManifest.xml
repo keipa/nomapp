@@ -55,6 +55,10 @@
             android:label="Выберите категорию"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".About.AboutActivity"
+            android:label="Об авторах"
+            android:screenOrientation="portrait">
+        </activity>
 
 
     </application>

@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
+import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
@@ -84,13 +86,17 @@ public class AllRecipesActivity extends AppCompatActivity {
 
     //
     private void navDrawerSelectItem(int position){
+        mDrawerLayout.closeDrawers();
+
         switch (position){
             case 0:
-                mDrawerLayout.closeDrawers();
                 Intent toStartActivity = new Intent(AllRecipesActivity.this, StartActivity.class);
                 startActivity(toStartActivity);
                 break;
-            case 1: break;
+            case 1:
+                Intent toAllRecipes = new Intent(AllRecipesActivity.this, CategoriesOfRecipesActivity.class);
+                startActivity(toAllRecipes);
+                break;
             default: break;
         }
     }

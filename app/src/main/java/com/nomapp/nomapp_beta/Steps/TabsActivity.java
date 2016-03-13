@@ -27,6 +27,8 @@ import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.Start.StartActivity;
 
+import java.util.Random;
+
 public class TabsActivity extends AppCompatActivity {
 
     private MaterialViewPager mViewPager;
@@ -116,38 +118,21 @@ public class TabsActivity extends AppCompatActivity {
             }
         });
 
+        final Integer[] imageArray = {
+                        R.drawable.image_for_steps1,
+                        R.drawable.image_for_steps2,
+                        R.drawable.image_for_steps3,
+                        R.drawable.image_for_steps4,
+                        R.drawable.image_for_steps5
+                };
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
             public HeaderDesign getHeaderDesign(int page) {
+                Random random = new Random();
+                int numberOfImage = random.nextInt(imageArray.length - 1);
+                return HeaderDesign.fromColorAndDrawable(getResources().getColor(R.color.colorMain),
+                        getResources().getDrawable(imageArray[numberOfImage]));
 
-                switch (page % 5) {
-                    case 0:
-                        return HeaderDesign.fromColorAndDrawable(
-                                getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.image_for_steps1));
-                    case 1:
-                        return HeaderDesign.fromColorAndDrawable(
-                                getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.image_for_steps2));
-                    case 2:
-                        return HeaderDesign.fromColorAndDrawable(
-                                getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.image_for_steps3));
-                    case 3:
-                        return HeaderDesign.fromColorAndDrawable(
-                                getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.image_for_steps4));
-                    case 4:
-                        return HeaderDesign.fromColorAndDrawable(
-                                getResources().getColor(R.color.colorMain),
-                                getResources().getDrawable(R.drawable.image_for_steps5));
-
-
-                }
-
-
-                //execute others actions if needed (ex : modify your header logo)
-                return null;
             }
         });
 
