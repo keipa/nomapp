@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nomapp.nomapp_beta.R;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  */
 
 
-public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReciepesRecyclerViewAdapter.ViewHolder> {
+public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecipesRecyclerAdapter.ViewHolder> {
     private ArrayList<String> names;
     private ArrayList<Integer> cookingTimes;
     private ArrayList<Integer> numbersOfSteps;
@@ -28,11 +27,11 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
 
     private Context ctx;
 
-    public AvlReciepesRecyclerViewAdapter(Context ctx, ArrayList<String> names,
-                                          ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps,
-                                          ArrayList<Integer> numbersOfIngs,
-                                          ArrayList<String> measuresForTime,
-                                          OnItemTouchListener onItemTouchListener) {
+    public RecipesRecyclerAdapter(Context ctx, ArrayList<String> names,
+                                  ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps,
+                                  ArrayList<Integer> numbersOfIngs,
+                                  ArrayList<String> measuresForTime,
+                                  OnItemTouchListener onItemTouchListener) {
         this.names = names;
         this.cookingTimes = cookingTimes;
         this.numbersOfSteps = numbersOfSteps;
@@ -73,7 +72,6 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
         private TextView textNumberOfProducts;
         private TextView textMeasureForTime;
 
-        private ImageView image;
 
         public ViewHolder(View itemView, int position) {
             super(itemView);
@@ -83,7 +81,7 @@ public class AvlReciepesRecyclerViewAdapter extends RecyclerView.Adapter<AvlReci
             numberOfSteps = (TextView) itemView.findViewById(R.id.steps_tv);
             numberOfIngredients = (TextView) itemView.findViewById(R.id.number_of_products_tv);
 
-            textSteps = (TextView) itemView.findViewById(R.id.steps_tv);
+            textSteps = (TextView) itemView.findViewById(R.id.steps_text);
             textNumberOfProducts = (TextView) itemView.findViewById(R.id.text_ings);
             textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_of_time_tv);
 

@@ -180,19 +180,18 @@ public class SimpleHeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerVi
 
         private String getStepsWithEnding(int count) //TODO �������, ����� ��� �������� ������������, ��� ���������� � ������ ������������
         {
-            String toReturn = "";
             int modNumberOAR =count  % 10;
             if (modNumberOAR >=2 && modNumberOAR <=4){
-                toReturn = ctx.getResources().getString(R.string.two_or_four_steps);
+                return ctx.getResources().getString(R.string.two_or_four_steps);
 
             }
             if (modNumberOAR >=5 || modNumberOAR == 0){
-                toReturn = ctx.getResources().getString(R.string.more_steps);
+                return ctx.getResources().getString(R.string.more_steps);
             }
             if (modNumberOAR == 1){
-                toReturn = ctx.getResources().getString(R.string.one_step);
+                return ctx.getResources().getString(R.string.one_step);
             }
-            return toReturn;
+            return null;
         }
 
 

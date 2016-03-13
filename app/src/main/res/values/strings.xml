@@ -62,5 +62,6 @@
     <string name="bs_s1">Возьмите хлеб </string>
     <string name="bs_s2">Положите сыр </string>
     <string name="go_cook_text">НАЧАТЬ ГОТОВИТЬ!</string>
+    <string name="u_can_dont_use_products">Помните, что многие продукты можно заменить или не использовать. Приятного аппетита!</string>
 
 </resources>

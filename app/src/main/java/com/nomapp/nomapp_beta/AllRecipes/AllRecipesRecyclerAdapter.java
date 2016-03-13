@@ -118,8 +118,6 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
         private TextView textNumberOfProducts;
         private TextView textMeasureForTime;
 
-        private ImageView image;
-
         public ViewHolder(View itemView, int position) {
             super(itemView);
 
@@ -128,12 +126,9 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
             numberOfSteps = (TextView) itemView.findViewById(R.id.steps_tv);
             numberOfIngredients = (TextView) itemView.findViewById(R.id.number_of_products_tv);
 
-            textSteps = (TextView) itemView.findViewById(R.id.steps_tv);
+            textSteps = (TextView) itemView.findViewById(R.id.steps_text);
             textNumberOfProducts = (TextView) itemView.findViewById(R.id.text_ings);
             textMeasureForTime = (TextView) itemView.findViewById(R.id.measure_of_time_tv);
-
-
-            image = (ImageView) itemView.findViewById(R.id.avlRcpImageView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,36 +142,34 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
 
     private String getStepsEnding(int count)
     {
-        String toReturn = "";
         int modNumberOAR =count  % 10;
         if (modNumberOAR >=2 && modNumberOAR <=4){
-            toReturn = ctx.getResources().getString(R.string.two_or_four_steps);
+            return ctx.getResources().getString(R.string.two_or_four_steps);
 
         }
         if (modNumberOAR >=5 || modNumberOAR == 0){
-            toReturn = ctx.getResources().getString(R.string.more_steps);
+            return ctx.getResources().getString(R.string.more_steps);
         }
         if (modNumberOAR == 1){
-            toReturn = ctx.getResources().getString(R.string.one_step);
+            return ctx.getResources().getString(R.string.one_step);
         }
-        return toReturn;
+        return null;
     }
 
     private String getProductsEnding(int count)
     {
-        String toReturn = "";
         int modNumberOAR =count  % 10;
         if (modNumberOAR >=2 && modNumberOAR <=4){
-            toReturn = ctx.getResources().getString(R.string.two_or_four_products);
+            return ctx.getResources().getString(R.string.two_or_four_products).toUpperCase();
 
         }
         if (modNumberOAR >=5 || modNumberOAR == 0){
-            toReturn = ctx.getResources().getString(R.string.more_products);
+            return ctx.getResources().getString(R.string.more_products).toUpperCase();
         }
         if (modNumberOAR == 1){
-            toReturn = ctx.getResources().getString(R.string.one_product);
+            return ctx.getResources().getString(R.string.one_product).toUpperCase();
         }
-        return toReturn.toUpperCase();
+        return null;
     }
 
 

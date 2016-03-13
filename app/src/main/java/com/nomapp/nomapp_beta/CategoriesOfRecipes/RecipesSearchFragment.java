@@ -6,13 +6,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.nomapp.nomapp_beta.CategoriesOfIngredients.FindedIngredientsRecyclerAdapter;
+import com.nomapp.nomapp_beta.AvailableRecipes.RecipesRecyclerAdapter;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.RecipePreview.RecipePreviewActivity;
@@ -32,7 +30,7 @@ public class RecipesSearchFragment extends Fragment {
     ArrayList<Integer> numberOfIngs;
     ArrayList<String> measuresForTime;
 
-    FindedRecipesRecyclerAdapter mAdapter;
+    RecipesRecyclerAdapter mAdapter;
     Cursor cursor;
 
 
@@ -104,7 +102,7 @@ public class RecipesSearchFragment extends Fragment {
    * interface in Adapter.
     */
     void setUpRecyclerView() {
-        FindedRecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new FindedRecipesRecyclerAdapter.OnItemTouchListener() {
+        RecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new RecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
                 if (cursor.isClosed())
@@ -131,7 +129,7 @@ public class RecipesSearchFragment extends Fragment {
             }
         };
 
-            mAdapter = new FindedRecipesRecyclerAdapter(getActivity(), findedRecipesArray, timeForCooking,
+            mAdapter = new RecipesRecyclerAdapter(getActivity(), findedRecipesArray, timeForCooking,
                     numberOfSteps, numberOfIngs, measuresForTime, itemTouchListener);  // setting adapter.
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Книга о вкусной и здоровой пище. СССР 1952 - 1964г."
+            android:text="@string/u_can_dont_use_products"
             android:id="@+id/textView"
             android:paddingLeft="12dp"
             android:paddingTop="20dp"

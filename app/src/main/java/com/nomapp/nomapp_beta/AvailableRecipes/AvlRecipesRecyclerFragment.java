@@ -1,6 +1,5 @@
 package com.nomapp.nomapp_beta.AvailableRecipes;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
  */
 public class AvlRecipesRecyclerFragment extends Fragment {
     RecyclerView avlRecipesRecycler;
-    AvlReciepesRecyclerViewAdapter mAdapter;
+    RecipesRecyclerAdapter mAdapter;
 
     ArrayList<String> availableRecipesArrayList;
     ArrayList<Integer> timeForCooking;
@@ -53,7 +52,7 @@ public class AvlRecipesRecyclerFragment extends Fragment {
 
     private void setUpRecyclerView(){
 
-        AvlReciepesRecyclerViewAdapter.OnItemTouchListener itemTouchListener = new AvlReciepesRecyclerViewAdapter.OnItemTouchListener() {
+        RecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new RecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
                 cursor.moveToPosition(IDs.get(position) - 1);
@@ -65,7 +64,7 @@ public class AvlRecipesRecyclerFragment extends Fragment {
             }
         };
 
-        mAdapter = new AvlReciepesRecyclerViewAdapter(getActivity() ,availableRecipesArrayList,
+        mAdapter = new RecipesRecyclerAdapter(getActivity() ,availableRecipesArrayList,
                 timeForCooking, numberOfSteps, numberOfIngs, measureForTime, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager

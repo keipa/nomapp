@@ -103,19 +103,20 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
 
     private String getEnding(int number)
     {
-        String toReturn = "";
-        int modNumberOAR =number % 10;
-        if (modNumberOAR >=2 && modNumberOAR <=4){
-            toReturn = mContext.getResources().getString(R.string.twofourrec);
-
+        int modNumberOAR = number % 10;
+        if (modNumberOAR >= 2 && modNumberOAR <= 4){
+            return mContext.getResources().getString(R.string.twofourrec);
         }
         if (modNumberOAR >=5 || modNumberOAR == 0){
-            toReturn = mContext.getResources().getString(R.string.morerec);
+           return mContext.getResources().getString(R.string.morerec);
         }
         if (modNumberOAR == 1){
-            toReturn = mContext.getResources().getString(R.string.onerec);
+            if (number % 100 == 11){
+                return mContext.getResources().getString(R.string.morerec);
+            }
+            return mContext.getResources().getString(R.string.onerec);
         }
-        return toReturn;
+        return null;
     }
 
     public interface OnItemTouchListener {
