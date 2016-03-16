@@ -123,7 +123,15 @@ public class TabsActivity extends AppCompatActivity {
                         R.drawable.image_for_steps2,
                         R.drawable.image_for_steps3,
                         R.drawable.image_for_steps4,
-                        R.drawable.image_for_steps5
+                        R.drawable.image_for_steps5,
+                        R.drawable.image_for_steps6,
+                        R.drawable.image_for_steps7,
+                        R.drawable.image_for_steps8,
+                        R.drawable.image_for_steps9,
+                        R.drawable.image_for_steps10,
+                        R.drawable.image_for_steps11,
+                        R.drawable.image_for_steps12,
+                        R.drawable.image_for_steps13
                 };
         mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override

@@ -18,8 +18,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
     LayoutInflater lInflater;
    // ArrayList<Product> objects;
     //Data for out NavDrawer
-    String[] items = {"Холодильник", "Все рецепты",  "Оставить отзыв",
-    "Справка"};
+    String[] items = {"Холодильник", "Все рецепты"/*,  "Оставить отзыв",
+    "Справка"*/};
 
     int currentPosition;
 
