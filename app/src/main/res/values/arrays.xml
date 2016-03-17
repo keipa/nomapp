@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+    <resources>
 
 
     <string-array name="variants_of_language">
@@ -12,20 +12,5 @@
         <item>2</item>
     </string-array>
 
-    <string-array name="images_for_categories">
-        <item>@drawable/category_meat</item>
-        <item>@drawable/category_bird</item>
-        <item>@drawable/category_fish</item>
-        <item>@drawable/category_seaproducts</item>
-        <item>@drawable/category_vegetables</item>
-        <item>@drawable/category_fruits</item>
-        <item>@drawable/category_bakalei</item>
-        <item>@drawable/category_crups</item>
-        <item>@drawable/category_milk</item>
-        <item>@drawable/category_mashrooms</item>
-        <item>@drawable/category_zelen</item>
-        <item>@drawable/category_nuts</item>
-        <item>@drawable/category_readyproducts</item>
-    </string-array>
 
 </resources>
