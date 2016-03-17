@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta.Database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 /**
  * Created by antonid on 10.07.2015.
@@ -22,7 +24,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
     public SQLiteDatabase database;
     public final Context context;
 
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 10;
 
     public SQLiteDatabase getDatabase() {
         return database;
@@ -43,23 +45,46 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
     public void initDatabase() throws SQLException {
         String path = DB_PATH + DB_NAME;
 
-         if (isDatabaseActual()){
-            Log.i("database", "Database is actual. Didn't updated");
-         } else {
+        if (isDatabaseActual()){
+            database = SQLiteDatabase.openDatabase(path, null,
+                           SQLiteDatabase.OPEN_READWRITE);
+        } else {
               this.getReadableDatabase();
-
-              try {
-                  copyDataBase();
-              } catch (IOException e) {
-                  Log.e(this.getClass().toString(), "Copying error");
-                  throw new Error("Error copying database!");
-              }
+              updateDatabase(path);
         }
+    }
 
+    private void updateDatabase(String path){
+        database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
+
+        Cursor ingredientStates = database.query(Database.getIngredientsTableName(), new String[]{
+                Database.getIngredientIsChecked() }, null, null, null, null, null);
+        ArrayList<Integer> states = new ArrayList<>();
+
+        ingredientStates.moveToFirst();
+        while (!ingredientStates.isAfterLast()){
+            states.add(ingredientStates.getInt(0));
+            ingredientStates.moveToNext();
+        }
+        ingredientStates.close();
+
+
+        try {
+            copyDataBase();
+        } catch (IOException e) {
+            Log.e(this.getClass().toString(), "Copying error");
+            throw new Error("Error copying database!");
+        }
         database = SQLiteDatabase.openDatabase(path, null,
                 SQLiteDatabase.OPEN_READWRITE);
-        database.setVersion(DB_VERSION);
 
+        int numberOfIngredients = states.size();
+        for (int position = 0; position < numberOfIngredients; position++) {
+            database.execSQL("UPDATE " + Database.getIngredientsTableName()
+                 + " SET checked=" + states.get(position) + " WHERE _id=" + (position + 1) + ";");
+        }
+
+        database.setVersion(DB_VERSION);
     }
 
     private boolean isDatabaseActual() {
