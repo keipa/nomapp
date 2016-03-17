@@ -2,6 +2,7 @@ package com.nomapp.nomapp_beta.AllRecipes;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nomapp.nomapp_beta.AvailableRecipes.ListOfAvailableRecipesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
@@ -43,6 +45,7 @@ public class AllRecipesActivity extends AppCompatActivity {
         Window window = getWindow();
    //     window.setStatusBarColor(getResources().getColor(R.color.notification));
         setUpNavigationDrawer();
+        showHelp();
     }
 
     void setUpNavigationDrawer() {
@@ -101,4 +104,12 @@ public class AllRecipesActivity extends AppCompatActivity {
         }
     }
 
+
+    private void showHelp(){
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        if (prefs.getBoolean("isFirstRun", true)){
+            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
+            prefs.edit().putBoolean("isFirstRun", false).apply();
+        }
+    }
 }

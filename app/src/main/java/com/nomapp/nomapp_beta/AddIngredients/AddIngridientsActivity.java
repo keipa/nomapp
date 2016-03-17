@@ -3,6 +3,7 @@ package com.nomapp.nomapp_beta.AddIngredients;
 import android.annotation.TargetApi;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -26,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -84,8 +86,19 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
         image = (ImageView)findViewById(R.id.bigImageOfCategory);
 
         fillIngridients();
+        showHelp();
 
-        mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
+        setUpFlexibleSpace();
+   //     Window window = getWindow();
+//        window.setStatusBarColor(getResources().getColor(R.color.notification));
+        fab = (FloatingActionButton) findViewById(R.id.fabtohome);  //floating action button init
+        setUpFAB();
+        setUpNavigationDraver();
+
+    }
+
+    private void setUpFlexibleSpace() {
+         mFlexibleSpaceImageHeight = getResources().getDimensionPixelSize(R.dimen.flexible_space_image_height);
         mActionBarSize = getActionBarSize();
 
         recyclerView = (ObservableRecyclerView) findViewById(R.id.recycler);
@@ -131,12 +144,6 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
             }
         });
 
-
-   //     Window window = getWindow();
-//        window.setStatusBarColor(getResources().getColor(R.color.notification));
-        fab = (FloatingActionButton) findViewById(R.id.fabtohome);  //floating action button init
-        setUpFAB();
-        setUpNavigationDraver();
 
     }
 
@@ -391,6 +398,14 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
                 startActivity(toAllRecipes);
                 break;
             default: break;
+        }
+    }
+
+    private void showHelp(){
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        if (prefs.getBoolean("isFirstRun", true)){
+            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
+            prefs.edit().putBoolean("isFirstRun", false).apply();
         }
     }
 }

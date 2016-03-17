@@ -3,6 +3,7 @@ package com.nomapp.nomapp_beta.CategoriesOfIngredients;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nomapp.nomapp_beta.AddIngredients.AddIngridientsActivity;
 import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
@@ -69,6 +71,8 @@ public class CategoriesActivity extends AppCompatActivity {
         setUpGridViewFragment();
         setUpBackButton();
         setUpNavigationDraver();
+
+        showHelp();
     }
 
     @Override
@@ -229,6 +233,14 @@ public class CategoriesActivity extends AppCompatActivity {
                 startActivity(toAllRecipes);
                 break;
             default: break;
+        }
+    }
+
+    private void showHelp(){
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        if (prefs.getBoolean("isFirstRun", true)){
+            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
+            prefs.edit().putBoolean("isFirstRun", false).apply();
         }
     }
 }

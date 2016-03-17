@@ -17,6 +17,7 @@
 package com.nomapp.nomapp_beta.RecipePreview;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -33,6 +34,7 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -110,6 +112,8 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         });
 
         setUpNavigationDraver();
+
+       showHelp();
     }
 
     void setUpNavigationDraver() {
@@ -276,6 +280,14 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         mGapIsChanging = (height != to);
         if (!mGapIsChanging) {
             mGapHidden = (height == heightOnGapHidden);
+        }
+    }
+
+    private void showHelp(){
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        if (prefs.getBoolean("isFirstRun", true)){
+            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
+            prefs.edit().putBoolean("isFirstRun", false).apply();
         }
     }
 }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecipesRecyclerAdapter.ViewHolder> {
     private ArrayList<String> names;
-    private ArrayList<Integer> cookingTimes;
+    private ArrayList<String> cookingTimes;
     private ArrayList<Integer> numbersOfSteps;
     private ArrayList<Integer> numbersOfIngs;
     private ArrayList<String> measuresForTime;
@@ -28,7 +28,7 @@ public class RecipesRecyclerAdapter extends RecyclerView.Adapter<RecipesRecycler
     private Context ctx;
 
     public RecipesRecyclerAdapter(Context ctx, ArrayList<String> names,
-                                  ArrayList<Integer> cookingTimes, ArrayList<Integer> numbersOfSteps,
+                                  ArrayList<String> cookingTimes, ArrayList<Integer> numbersOfSteps,
                                   ArrayList<Integer> numbersOfIngs,
                                   ArrayList<String> measuresForTime,
                                   OnItemTouchListener onItemTouchListener) {

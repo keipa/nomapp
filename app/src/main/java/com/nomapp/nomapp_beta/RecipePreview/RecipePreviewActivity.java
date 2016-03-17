@@ -16,7 +16,9 @@
 
 package com.nomapp.nomapp_beta.RecipePreview;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.Toast;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -50,6 +52,7 @@ public class RecipePreviewActivity extends FillGap2BaseActivity<ObservableRecycl
         // Translate list background
         ViewHelper.setTranslationY(mListBackgroundView, ViewHelper.getTranslationY(mHeader));
     }
+
 
 
 }

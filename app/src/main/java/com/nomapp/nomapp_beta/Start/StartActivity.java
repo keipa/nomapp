@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.About.AboutActivity;
@@ -28,6 +30,7 @@ import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
 
 import java.util.Calendar;
+import java.util.prefs.Preferences;
 
 
 public class StartActivity extends android.support.v7.app.AppCompatActivity implements StartFragment.StartFragmentEventsListener {
@@ -45,6 +48,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     AlarmManager alarmManager;
     private PendingIntent alarmIntent;
 
+    SharedPreferences prefs = null;
 
 
     @Override
@@ -65,6 +69,12 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
 
         setUpNavigationDraver();        //navigation drawer initiation
 
+        prefs = getPreferences(MODE_PRIVATE);
+
+        if (prefs.getBoolean("isFirstRun", true)){
+            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
+            prefs.edit().putBoolean("isFirstRun", false).apply();
+        }
     }
 
     @Override

@@ -24,7 +24,7 @@ public class RecipesSearchFragment extends Fragment {
     RecyclerView findedRecipesRecycler;
 
     ArrayList<String> findedRecipesArray;
-    ArrayList<Integer> timeForCooking;
+    ArrayList<String> timeForCooking;
     ArrayList<Integer> numberOfSteps;
     ArrayList<Integer> IDs;
     ArrayList<Integer> numberOfIngs;
@@ -86,7 +86,7 @@ public class RecipesSearchFragment extends Fragment {
                 if (name.toLowerCase().contains(enteredText) || name.contains(enteredText)) {
                     findedRecipesArray.add(cursor.getString(1));
                     IDs.add(cursor.getInt(0));
-                    timeForCooking.add(cursor.getInt(4));
+                    timeForCooking.add(cursor.getString(4));
                     numberOfSteps.add(cursor.getInt(3));
                     numberOfIngs.add(cursor.getInt(5));
                     measuresForTime.add(cursor.getString(6));
