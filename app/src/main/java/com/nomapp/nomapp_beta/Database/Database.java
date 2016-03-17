@@ -63,7 +63,7 @@ public class Database {
 
     private Database(Context context) {
         ExternalDbOpenHelper dbOpenHelper = new ExternalDbOpenHelper(context, DATABASE_NAME);
-        generalDb = dbOpenHelper.openDataBase();
+        generalDb = dbOpenHelper.getDatabase();
     }
 
     public SQLiteDatabase getGeneralDb() {
