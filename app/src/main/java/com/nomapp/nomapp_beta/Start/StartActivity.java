@@ -1,6 +1,7 @@
 package com.nomapp.nomapp_beta.Start;
 
 import android.app.AlarmManager;
+import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -28,6 +29,7 @@ import com.nomapp.nomapp_beta.CategoriesOfIngredients.CategoriesActivity;
 import com.nomapp.nomapp_beta.CategoriesOfRecipes.CategoriesOfRecipesActivity;
 import com.nomapp.nomapp_beta.NavigationDrawer.NavDrawerListAdapter;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.UserGuide.HelpDialog;
 
 import java.util.Calendar;
 import java.util.prefs.Preferences;
@@ -48,8 +50,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     AlarmManager alarmManager;
     private PendingIntent alarmIntent;
 
-    SharedPreferences prefs = null;
-
+   DialogFragment helpDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +67,9 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
 
         fab = (FloatingActionButton) findViewById(R.id.fab);  //floating action button init
 
-
         setUpNavigationDraver();        //navigation drawer initiation
 
-        prefs = getPreferences(MODE_PRIVATE);
-
-        if (prefs.getBoolean("isFirstRun", true)){
-            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
-            prefs.edit().putBoolean("isFirstRun", false).apply();
-        }
+        showHelp();
     }
 
     @Override
@@ -101,8 +96,6 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     }
 
 
-
-
     View.OnClickListener onCircleButtonCliclListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -125,7 +118,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setHomeButtonEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-            setTitle("Холодильник");
+            setTitle(getResources().getString(R.string.main_activity_title));
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -213,5 +206,16 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         }
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeToStart, AlarmManager.INTERVAL_DAY, alarmIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
+    }
+
+    public void showHelp(){
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+
+        if (prefs.getBoolean("isFirstRun", true)){
+           // helpDialog = new HelpDialog();
+          //  helpDialog.show(getFragmentManager(), "helpDialog");
+
+            prefs.edit().putBoolean("isFirstRun", false).apply();
+        }
     }
 }

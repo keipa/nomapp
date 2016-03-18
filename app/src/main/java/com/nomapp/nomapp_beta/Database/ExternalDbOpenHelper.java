@@ -24,7 +24,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
     public SQLiteDatabase database;
     public final Context context;
 
-    private static final int DB_VERSION = 10;
+    private static final int DB_VERSION = 13;
 
     public SQLiteDatabase getDatabase() {
         return database;
@@ -37,6 +37,8 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
 
         String packageName = context.getPackageName();
         DB_PATH = String.format("//data//data//%s//databases//", packageName);
+       // DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
+
         DB_NAME = databaseName;
 
         initDatabase();
@@ -55,18 +57,22 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
     }
 
     private void updateDatabase(String path){
-        database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
-
-        Cursor ingredientStates = database.query(Database.getIngredientsTableName(), new String[]{
-                Database.getIngredientIsChecked() }, null, null, null, null, null);
         ArrayList<Integer> states = new ArrayList<>();
+        try {
+            database = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
 
-        ingredientStates.moveToFirst();
-        while (!ingredientStates.isAfterLast()){
-            states.add(ingredientStates.getInt(0));
-            ingredientStates.moveToNext();
+            Cursor ingredientStates = database.query(Database.getIngredientsTableName(), new String[]{
+                    Database.getIngredientIsChecked()}, null, null, null, null, null);
+
+            ingredientStates.moveToFirst();
+            while (!ingredientStates.isAfterLast()) {
+                states.add(ingredientStates.getInt(0));
+                ingredientStates.moveToNext();
+            }
+            ingredientStates.close();
+        } catch (SQLException e ){
+            Log.e("SQLite", "SQLite database does not exist. Cant copy values.");
         }
-        ingredientStates.close();
 
 
         try {
@@ -75,6 +81,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
             Log.e(this.getClass().toString(), "Copying error");
             throw new Error("Error copying database!");
         }
+
         database = SQLiteDatabase.openDatabase(path, null,
                 SQLiteDatabase.OPEN_READWRITE);
 
@@ -106,6 +113,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
         if (checkDb != null) {
             checkDb.close();
         }
+
 
         return checkDb != null && isVersionCorrect;
     }

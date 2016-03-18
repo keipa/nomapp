@@ -3,6 +3,7 @@ package com.nomapp.nomapp_beta.Start;
 import android.app.Activity;
 import android.app.Fragment;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -140,6 +141,7 @@ public class StartFragment extends Fragment {
         int number = 0;
         forSelectedIngridients = new ArrayList<>();
         IDsOfSelectedIngs = new ArrayList<>();
+        SQLiteDatabase kek = Database.getDatabase().getGeneralDb();
         Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),   //connection to the base
                 new String[]
                         {Database.getIngredientId(), Database.getIngredientName(),

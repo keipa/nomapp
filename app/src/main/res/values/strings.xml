@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Nom-Nom</string>
 
+    <string name="main_activity_title">Холодильник</string>
+
 
     <string name="font_fontFamily_medium">sans-serif</string>
     <string name="hello_world">Hello world!</string>
