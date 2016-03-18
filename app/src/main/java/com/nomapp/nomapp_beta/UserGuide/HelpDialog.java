@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 
+import com.nomapp.nomapp_beta.R;
+
 /**
  * Created by Илья on 18.03.2016.
  */
@@ -21,8 +23,8 @@ public class HelpDialog extends DialogFragment implements OnClickListener {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
-        adb.setTitle("HELP").setPositiveButton("OK", this)
-                .setMessage("It is Help");
+        adb.setTitle(getActivity().getResources().getString(R.string.main_activity_msg_title)).setPositiveButton("OK", this)
+                .setMessage(getActivity().getResources().getString(R.string.main_activity_help_msg));
         return adb.create();
     }
 }

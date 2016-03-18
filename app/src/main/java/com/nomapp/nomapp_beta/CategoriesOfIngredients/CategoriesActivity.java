@@ -71,8 +71,6 @@ public class CategoriesActivity extends AppCompatActivity {
         setUpGridViewFragment();
         setUpBackButton();
         setUpNavigationDraver();
-
-        showHelp();
     }
 
     @Override
@@ -233,14 +231,6 @@ public class CategoriesActivity extends AppCompatActivity {
                 startActivity(toAllRecipes);
                 break;
             default: break;
-        }
-    }
-
-    private void showHelp(){
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        if (prefs.getBoolean("isFirstRun", true)){
-            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
-            prefs.edit().putBoolean("isFirstRun", false).apply();
         }
     }
 }

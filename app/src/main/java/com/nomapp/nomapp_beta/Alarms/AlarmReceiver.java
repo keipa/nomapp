@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
 import android.widget.Toast;
 
@@ -27,8 +28,8 @@ public class AlarmReceiver extends BroadcastReceiver
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.icon));
         builder.setContentTitle("Что сегодня на ужин?");
         builder.setContentText("Нажмите, чтобы посмотреть.");
-        builder.setPriority(Notification.PRIORITY_MAX);
-        builder.setDefaults(Notification.DEFAULT_SOUND);
+        builder.setPriority(Notification.PRIORITY_HIGH);
+        builder.setSound(Uri.EMPTY);
        // builder.setLights(0x0000FF,3000,2000);
         builder.setContentIntent(pendingIntent);
         notificationManager.notify(56, builder.build());

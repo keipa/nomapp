@@ -54,7 +54,6 @@ public class TabsActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.notification));
         }
 
-        showHelp();
         setTitle("");
 
         mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
@@ -188,11 +187,4 @@ public class TabsActivity extends AppCompatActivity {
         }
     }
 
-    private void showHelp(){
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        if (prefs.getBoolean("isFirstRun", true)){
-            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
-            prefs.edit().putBoolean("isFirstRun", false).apply();
-        }
-    }
 }

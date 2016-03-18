@@ -189,13 +189,12 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(StartActivity.this, AlarmReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(StartActivity.this,
-                (int)System.currentTimeMillis(), intent, 0);
+        alarmIntent = PendingIntent.getBroadcast(StartActivity.this, 1, intent, 0);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 22);
-        calendar.set(Calendar.MINUTE, 18);
+        calendar.set(Calendar.HOUR_OF_DAY, 00);
+        calendar.set(Calendar.MINUTE, 24);
         long timeToStart = calendar.getTimeInMillis();
 
         alarmManager.cancel(alarmIntent);
@@ -204,7 +203,8 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         if(System.currentTimeMillis() > timeToStart){
             timeToStart += 24 * 60 * 60 * 1000; // one day
         }
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeToStart, AlarmManager.INTERVAL_DAY, alarmIntent);
+
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeToStart, AlarmManager.INTERVAL_DAY * 2 , alarmIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
     }
 
@@ -212,8 +212,8 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
         if (prefs.getBoolean("isFirstRun", true)){
-           // helpDialog = new HelpDialog();
-          //  helpDialog.show(getFragmentManager(), "helpDialog");
+            helpDialog = new HelpDialog();
+            helpDialog.show(getFragmentManager(), "helpDialog");
 
             prefs.edit().putBoolean("isFirstRun", false).apply();
         }

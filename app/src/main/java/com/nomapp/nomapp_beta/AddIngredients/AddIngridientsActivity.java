@@ -86,7 +86,6 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
         image = (ImageView)findViewById(R.id.bigImageOfCategory);
 
         fillIngridients();
-        showHelp();
 
         setUpFlexibleSpace();
    //     Window window = getWindow();
@@ -398,14 +397,6 @@ public class AddIngridientsActivity extends android.support.v7.app.AppCompatActi
                 startActivity(toAllRecipes);
                 break;
             default: break;
-        }
-    }
-
-    private void showHelp(){
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        if (prefs.getBoolean("isFirstRun", true)){
-            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
-            prefs.edit().putBoolean("isFirstRun", false).apply();
         }
     }
 }

@@ -112,8 +112,6 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         });
 
         setUpNavigationDraver();
-
-       showHelp();
     }
 
     void setUpNavigationDraver() {
@@ -280,14 +278,6 @@ public abstract class FillGapBaseActivity<S extends Scrollable> extends BaseActi
         mGapIsChanging = (height != to);
         if (!mGapIsChanging) {
             mGapHidden = (height == heightOnGapHidden);
-        }
-    }
-
-    private void showHelp(){
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        if (prefs.getBoolean("isFirstRun", true)){
-            Toast.makeText(this, "kek", Toast.LENGTH_LONG).show();
-            prefs.edit().putBoolean("isFirstRun", false).apply();
         }
     }
 }

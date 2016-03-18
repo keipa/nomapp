@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_activity_help_msg">Для корректной работы программы советуем один раз потратить немного времени
+        и добавить все продукты,
+        которые у вас есть, начиная от соли, заканчивая заморожеными овощами.</string>
+    <string name="main_activity_msg_title">Караул!</string>
+</resources>
