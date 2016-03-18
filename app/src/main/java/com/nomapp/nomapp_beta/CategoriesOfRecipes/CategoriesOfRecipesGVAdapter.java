@@ -41,7 +41,7 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return 9;
+        return 8;
     }
 
     public Object getItem(int position) {
@@ -136,7 +136,7 @@ private Integer[] imagesArray = {
         R.drawable.fishrec,
         R.drawable.meatrec,
         R.drawable.vegemash,
-        R.drawable.flower,
+//        R.drawable.flower,
         R.drawable.pastry,
         R.drawable.sugar,
         R.drawable.diff,

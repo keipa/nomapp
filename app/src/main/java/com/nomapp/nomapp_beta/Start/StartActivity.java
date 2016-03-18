@@ -193,8 +193,8 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 00);
-        calendar.set(Calendar.MINUTE, 24);
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 00);
         long timeToStart = calendar.getTimeInMillis();
 
         alarmManager.cancel(alarmIntent);
