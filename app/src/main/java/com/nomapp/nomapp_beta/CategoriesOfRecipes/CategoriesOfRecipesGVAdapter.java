@@ -41,7 +41,7 @@ public class CategoriesOfRecipesGVAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return 9;
+        return 8;
     }
 
     public Object getItem(int position) {
