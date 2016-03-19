@@ -91,8 +91,6 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         }
 
         setUpFAB();             // this function sets up floating action button
-
-
     }
 
 
