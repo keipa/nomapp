@@ -10,7 +10,8 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey">
 
         <ImageView
             android:id="@+id/bigImageOfCategory"
@@ -27,7 +28,7 @@
             android:id="@+id/list_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white" />
+            android:background="@color/grey" />
 
         <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
             android:id="@+id/recycler"
