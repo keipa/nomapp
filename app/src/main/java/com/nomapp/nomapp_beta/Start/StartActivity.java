@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -79,14 +78,13 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
 
             restartNotify();
         // setUpUserSettings();     //this function initiate settings
 
-        startFragment.numberOfSelectedIngredients = startFragment.fillSelectedIngridients();
-        if (startFragment.numberOfSelectedIngredients != 0) {
+        if (startFragment.isAnyIngredientSelected()) {
             fTransaction = getSupportFragmentManager().beginTransaction();
             fTransaction.replace(R.id.startFragmentContainer, startFragment);
             fTransaction.commit();

@@ -23,7 +23,7 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
     private Cursor cursor;
 
     private ArrayList<String> names;
-    private ArrayList<Integer> cookingTimes;
+    private ArrayList<String> cookingTimes;
     private ArrayList<String> measuresForTime;
     private ArrayList<Integer> numbersOfSteps;
     private ArrayList<Integer> numbersOfIngs;
@@ -77,7 +77,7 @@ public class AllRecipesRecyclerAdapter extends RecyclerView.Adapter<AllRecipesRe
         for (int counter = 0; counter < size; counter++) {
             cursor.moveToPosition(IDsOfRecipesInCategory.get(counter) - 1);
             names.add(cursor.getString(1));
-            cookingTimes.add(cursor.getInt(4));
+            cookingTimes.add(cursor.getString(4));
             numbersOfSteps.add(cursor.getInt(3));
             numbersOfIngs.add(cursor.getInt(5));
             measuresForTime.add(cursor.getString(6));

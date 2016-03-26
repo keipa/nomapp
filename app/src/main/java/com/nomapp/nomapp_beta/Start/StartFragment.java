@@ -139,15 +139,34 @@ public class StartFragment extends Fragment {
         countingIngredientsThread = new CountingIngredientsThread();
         countingIngredientsThread.start();
 
+        fillSelectedIngridients();
         setUpRecyclerView();
         setSwipeTouchListener();
     }
 
-    int fillSelectedIngridients() { // fill ArrayList for RecyclerView
-        int number = 0;
+    boolean isAnyIngredientSelected(){
+        Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),   //connection to the base
+                new String[]
+                        {Database.getIngredientIsChecked()},
+                null, null, null, null
+                , null);
+
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()) {            // loop is going throw the all ingridients and shows marked ones (marked has "1" isChecked option)
+            do {
+                if (cursor.getInt(0) != 0) {
+                    cursor.close();
+                    return true;
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return false;
+    }
+
+    void fillSelectedIngridients() { // fill ArrayList for RecyclerView
         forSelectedIngridients = new ArrayList<>();
         IDsOfSelectedIngs = new ArrayList<>();
-        SQLiteDatabase kek = Database.getDatabase().getGeneralDb();
         Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),   //connection to the base
                 new String[]
                         {Database.getIngredientId(), Database.getIngredientName(),
@@ -161,13 +180,11 @@ public class StartFragment extends Fragment {
                 if (cursor.getInt(2) != 0) {
                     forSelectedIngridients.add(cursor.getString(1));
                     IDsOfSelectedIngs.add(cursor.getInt(0));
-                    number++;
-                    Log.w("TAG", number + "");
                 }
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return number;
+        //mAdapter.notifyDataSetChanged();
     }
 
 
@@ -243,7 +260,6 @@ public class StartFragment extends Fragment {
         //Checking for availability all potential recipes.
         for (int currentRecipe : IDsOfPotentialRecipes) {
             recipesCursor.moveToPosition(currentRecipe - 1);
-            String test = recipesCursor.getString(0);
             ingredientsForCurrentRecipe = convertIngridientsToArrayList(recipesCursor.getString(0)); // bad solution. need to go "where id bla bla"
 
             isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
