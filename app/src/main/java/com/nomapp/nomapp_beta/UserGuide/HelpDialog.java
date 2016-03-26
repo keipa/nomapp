@@ -23,8 +23,11 @@ public class HelpDialog extends DialogFragment implements DialogInterface.OnClic
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
+
+        Bundle arguments = getArguments();
+        int messageId = arguments.getInt("message");
         adb.setTitle(getActivity().getResources().getString(R.string.main_activity_msg_title)).setPositiveButton("OK", this)
-                .setMessage(getActivity().getResources().getString(R.string.main_activity_help_msg));
+                .setMessage(getActivity().getResources().getString(messageId));
         return adb.create();
     }
 }

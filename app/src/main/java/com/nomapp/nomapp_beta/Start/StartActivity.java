@@ -1,13 +1,14 @@
 package com.nomapp.nomapp_beta.Start;
 
 import android.app.AlarmManager;
-import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -66,7 +67,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         startFragment = new StartFragment();
         imgFragment = new EmptyImgStartFragment();
 
-        fTransaction = getFragmentManager().beginTransaction();
+        fTransaction = getSupportFragmentManager().beginTransaction();
         fTransaction.add(R.id.startFragmentContainer, imgFragment);
         fTransaction.commit();
 
@@ -86,11 +87,11 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
 
         startFragment.numberOfSelectedIngredients = startFragment.fillSelectedIngridients();
         if (startFragment.numberOfSelectedIngredients != 0) {
-            fTransaction = getFragmentManager().beginTransaction();
+            fTransaction = getSupportFragmentManager().beginTransaction();
             fTransaction.replace(R.id.startFragmentContainer, startFragment);
             fTransaction.commit();
         } else {
-            fTransaction = getFragmentManager().beginTransaction();
+            fTransaction = getSupportFragmentManager().beginTransaction();
             fTransaction.replace(R.id.startFragmentContainer, imgFragment);
             fTransaction.commit();
         }
@@ -158,7 +159,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
 
     @Override
     public void onFridgeEmpty() {
-        fTransaction = getFragmentManager().beginTransaction();
+        fTransaction = getSupportFragmentManager().beginTransaction();
         fTransaction.replace(R.id.startFragmentContainer, imgFragment);
         fTransaction.commit();
     }
@@ -215,7 +216,11 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
         if (prefs.getBoolean("isFirstRun", true)){
+            Bundle bundle = new Bundle();
+            bundle.putInt("message", R.string.main_activity_help_msg);
+
             helpDialog = new HelpDialog();
+            helpDialog.setArguments(bundle);
             helpDialog.show(getSupportFragmentManager(), "helpDialog");
 
             prefs.edit().putBoolean("isFirstRun", false).apply();

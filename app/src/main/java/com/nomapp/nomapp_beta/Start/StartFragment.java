@@ -1,12 +1,14 @@
 package com.nomapp.nomapp_beta.Start;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,9 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.github.brnunes.swipeablerecyclerview.SwipeableRecyclerViewTouchListener;
 import com.nomapp.nomapp_beta.Database.Database;
 import com.nomapp.nomapp_beta.R;
+import com.nomapp.nomapp_beta.UserGuide.HelpDialog;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Stack;
@@ -37,7 +42,6 @@ public class StartFragment extends Fragment {
     TextView numOfRecipesTV;
     TextView recTextView;
     TextView availTextView;
-
 
 
     CardViewAdapter mAdapter;
@@ -67,8 +71,8 @@ public class StartFragment extends Fragment {
 
         selectedIngredients = (RecyclerView) v.findViewById(R.id.start_recycler);
         numOfRecipesTV = (TextView) v.findViewById(R.id.numOfRecipesTV);
-        recTextView = (TextView)v.findViewById(R.id.textView5);
-        availTextView = (TextView)v.findViewById(R.id.textView8);
+        recTextView = (TextView) v.findViewById(R.id.textView5);
+        availTextView = (TextView) v.findViewById(R.id.textView8);
         toRecipesBtn = (ImageButton) v.findViewById(R.id.imageButton);
         toRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,12 +92,14 @@ public class StartFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement inteface");
         }
+
+        showHelpDialog();
     }
 
     public void onStart() {
         super.onStart();
         //ArrayList of selected recipes already filled in StartActivity's method.
-     //   numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+        //   numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
 
 
         handler = new Handler() {
@@ -111,7 +117,7 @@ public class StartFragment extends Fragment {
                 if (text == "enable")
                     toRecipesBtn.setEnabled(true);
                 if (text == "disable")
-                toRecipesBtn.setEnabled(false);
+                    toRecipesBtn.setEnabled(false);
             }
         };
 
@@ -231,17 +237,17 @@ public class StartFragment extends Fragment {
         ArrayList<Integer> ingredientsForCurrentRecipe; //Parsed from database ingredients for current recipe;
 
         //Cursor for working with recipes from the database (setting up is it available, etc.)
-        Cursor recipesCursor =  Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
-                new String[] {Database.getRecipesIngredients()}, null, null, null, null, null );
+        Cursor recipesCursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
+                new String[]{Database.getRecipesIngredients()}, null, null, null, null, null);
 
         //Checking for availability all potential recipes.
-        for (int currentRecipe: IDsOfPotentialRecipes) {
+        for (int currentRecipe : IDsOfPotentialRecipes) {
             recipesCursor.moveToPosition(currentRecipe - 1);
             String test = recipesCursor.getString(0);
             ingredientsForCurrentRecipe = convertIngridientsToArrayList(recipesCursor.getString(0)); // bad solution. need to go "where id bla bla"
 
             isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
-            if (isAvailable){
+            if (isAvailable) {
                 /* If it is available we note it in the database,add its id to the ArrayList,
                 * add ingredients for recipe to the ArrayList
                 * and increment numberOfAvailableIngredients.
@@ -264,7 +270,7 @@ public class StartFragment extends Fragment {
 
     //Check only recipes which IDs is in the ArrayList.
     //Perform after every swipe.
-    private int calculateNumberOfAvlRcpsAfterSwipe(){
+    private int calculateNumberOfAvlRcpsAfterSwipe() {
         boolean isAvailable;
 
         ArrayList<Integer> ingredientsForCurrentRecipe;
@@ -281,7 +287,7 @@ public class StartFragment extends Fragment {
 
         //We check only "numberOfAvailableRecipes" (which already calculated) recipes.
         //Their IDs is in IDsOfAvailableRecipes. (Yeah, it is that ArrayList).
-        for (int counter = 0; counter < IDsOfAvailableRecipes.size(); counter++){
+        for (int counter = 0; counter < IDsOfAvailableRecipes.size(); counter++) {
             //Move to, for example, first ID, or second, etc.
             cursor.moveToPosition(IDsOfAvailableRecipes.get(counter) - 1);
 
@@ -291,15 +297,15 @@ public class StartFragment extends Fragment {
 
             //Check is current recipe available.
             isAvailable = checkIsRecipeAvailable(ingredientsForCurrentRecipe);
-            if (isAvailable){
+            if (isAvailable) {
                 //If it is available we note it in the database and increment numberOfAvlRecipes.
                 Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
                         + " SET isAvailable=1 WHERE _id=" + (cursor.getPosition() + 1) + ";");
-            } else{
+            } else {
                 //If it is not we also note it in the database and remove it's id from the
                 //ArrayList of IDs.
                 Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getRecipesTableName()
-                         + " SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
+                        + " SET isAvailable=0 WHERE _id=" + (cursor.getPosition() + 1) + ";");
                 IDsOfAvailableRecipes.remove(counter);
                 ingredientsForAvailableRecipes.remove(counter);
             }
@@ -315,40 +321,41 @@ public class StartFragment extends Fragment {
     }
 
 
-    String setEndingInRecipe(int rec){
+    String setEndingInRecipe(int rec) {
         String toReturn = "";
-        int modNumberOAR =rec % 10;
-        if (modNumberOAR >=2 && modNumberOAR <=4){
+        int modNumberOAR = rec % 10;
+        if (modNumberOAR >= 2 && modNumberOAR <= 4) {
             toReturn = getResources().getString(R.string.twofourrec);
 
         }
-        if (modNumberOAR >=5 || modNumberOAR == 0){
+        if (modNumberOAR >= 5 || modNumberOAR == 0) {
             toReturn = getResources().getString(R.string.morerec);
         }
-        if (modNumberOAR == 1){
+        if (modNumberOAR == 1) {
             toReturn = getResources().getString(R.string.onerec);
         }
         return toReturn;
     }
 
-    String setEndingInAvailable(int rec){
+    String setEndingInAvailable(int rec) {
         String toReturn = "";
-        int modNumberOAR =rec % 10;
-        if (modNumberOAR >= 2 && modNumberOAR <=4){
+        int modNumberOAR = rec % 10;
+        if (modNumberOAR >= 2 && modNumberOAR <= 4) {
             toReturn = getResources().getString(R.string.twoavail);
 
         }
-        if (modNumberOAR >= 5 || modNumberOAR == 0){
+        if (modNumberOAR >= 5 || modNumberOAR == 0) {
             toReturn = getResources().getString(R.string.moreavail);
 
         }
-        if (modNumberOAR == 1){
+        if (modNumberOAR == 1) {
             toReturn = getResources().getString(R.string.oneavail);
         }
         return toReturn;
     }
+
     //Check is recipe available. Argument - ingredients which required for recipe.
-    private boolean checkIsRecipeAvailable(ArrayList<Integer> ingredientsForCurrentRecipe){
+    private boolean checkIsRecipeAvailable(ArrayList<Integer> ingredientsForCurrentRecipe) {
 
         Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),
                 new String[]
@@ -362,10 +369,10 @@ public class StartFragment extends Fragment {
         int numberOfIngredients = ingredientsForCurrentRecipe.size();
 
         //Check every ingredient in the list of ingredients for current recipe.
-        for (int counter = 0; counter < numberOfIngredients; counter++){
+        for (int counter = 0; counter < numberOfIngredients; counter++) {
             cursor.moveToPosition(ingredientsForCurrentRecipe.get(counter) - 1);
 
-            if (cursor.getInt(2) != 1){
+            if (cursor.getInt(2) != 1) {
                 //If current ingredient is not selected we go out of cycle and return that
                 //current recipe is not available.
                 return false;
@@ -402,7 +409,7 @@ public class StartFragment extends Fragment {
                 temporaryStack.push(toConvert.charAt(counter) - '0');
                 counter++;
             }
-            while (!temporaryStack.empty()){
+            while (!temporaryStack.empty()) {
                 currentIngridient += temporaryStack.pop() * factor;
                 factor *= 10;
             }
@@ -425,7 +432,7 @@ public class StartFragment extends Fragment {
                 temporaryStack.push(toConvert.charAt(counter) - '0');
                 counter++;
             }
-            while (!temporaryStack.empty()){
+            while (!temporaryStack.empty()) {
                 currentIngredient += temporaryStack.pop() * factor;
                 factor *= 10;
             }
@@ -435,7 +442,6 @@ public class StartFragment extends Fragment {
         }
         return converted;
     }
-
 
 
 //----------------------------------------------------------------------------------------End of main algorithm's functions block--------------------------------------------------------------------------------------//
@@ -476,7 +482,7 @@ public class StartFragment extends Fragment {
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {   //swipe to the right
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
-                                             + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
+                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
                                     forSelectedIngridients.remove(position);
                                     IDsOfSelectedIngs.remove(position);
                                     numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
@@ -503,13 +509,13 @@ public class StartFragment extends Fragment {
         @Override
         public void run() {
             super.run();
-           // Log.w("THREAD_TAG", "hello");
+            // Log.w("THREAD_TAG", "hello");
             //ArrayList of selected recipes already filled in StartActivity's method.
             numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
             String recCase = setEndingInRecipe(numberOfAvailableRecipes); //for cases of 2 views with text
             String availCase = setEndingInAvailable(numberOfAvailableRecipes);
 
-            Message textOfRecCase =  new Message(); //Messages for .setText in main thread
+            Message textOfRecCase = new Message(); //Messages for .setText in main thread
             textOfRecCase.obj = recCase;
             setterRecCaseText.sendMessage(textOfRecCase);
 
@@ -534,8 +540,24 @@ public class StartFragment extends Fragment {
 
 
     public interface StartFragmentEventsListener {
-        public void onImgBtnClick();
+        void onImgBtnClick();
 
-        public void onFridgeEmpty();
+        void onFridgeEmpty();
+    }
+
+    private void showHelpDialog() {
+        SharedPreferences prefs = getActivity().getPreferences(getActivity().MODE_PRIVATE);
+        HelpDialog helpDialog;
+
+        if (prefs.getBoolean("isFirstSelectProducts", true)) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("message", R.string.u_can_swipe_ings_help_msg);
+
+            helpDialog = new HelpDialog();
+            helpDialog.setArguments(bundle);
+            helpDialog.show(getFragmentManager(), "helpDialog");
+
+            prefs.edit().putBoolean("isFirstSelectProducts", false).apply();
+        }
     }
 }
