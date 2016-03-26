@@ -8,7 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-
     tools:context="ListOfAvailableRecipesActivity">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +15,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/grey">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -31,7 +31,8 @@
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:id="@+id/avl_recipes_recycler_cont"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/grey">
 
 
         <fragment
