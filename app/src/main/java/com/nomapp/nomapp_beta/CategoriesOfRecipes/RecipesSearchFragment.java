@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,14 +57,18 @@ public class RecipesSearchFragment extends Fragment {
     * items in database
     * by current query
     */
-    void search(String enteredText){
+    void search(String enteredText) {
+        try {
+            findedRecipesArray.clear();
+            IDs.clear();
+            timeForCooking.clear();
+            numberOfSteps.clear();
+            numberOfIngs.clear();
+            measuresForTime.clear();
+        } catch (NullPointerException e) {
+            Log.e("Error!", e.getMessage());
+        }
 
-        findedRecipesArray.clear();
-        IDs.clear();
-        timeForCooking.clear();
-        numberOfSteps.clear();
-        numberOfIngs.clear();
-        measuresForTime.clear();
 
         if (enteredText.equals("")) {
             setUpRecyclerView();
@@ -105,8 +110,7 @@ public class RecipesSearchFragment extends Fragment {
         RecipesRecyclerAdapter.OnItemTouchListener itemTouchListener = new RecipesRecyclerAdapter.OnItemTouchListener() {
             @Override
             public void onCardViewTap(View view, int position) {
-                if (cursor.isClosed())
-                {
+                if (cursor.isClosed()) {
                     cursor = Database.getDatabase().getGeneralDb().query(Database.getRecipesTableName(),
                             new String[]
                                     {Database.getRecipesId(), Database.getRecipesName(),
@@ -129,13 +133,13 @@ public class RecipesSearchFragment extends Fragment {
             }
         };
 
-            mAdapter = new RecipesRecyclerAdapter(getActivity(), findedRecipesArray, timeForCooking,
-                    numberOfSteps, numberOfIngs, measuresForTime, itemTouchListener);  // setting adapter.
+        mAdapter = new RecipesRecyclerAdapter(getActivity(), findedRecipesArray, timeForCooking,
+                numberOfSteps, numberOfIngs, measuresForTime, itemTouchListener);  // setting adapter.
 
-            LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
-            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-            findedRecipesRecycler.setLayoutManager(layoutManager);
-            findedRecipesRecycler.setAdapter(mAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        findedRecipesRecycler.setLayoutManager(layoutManager);
+        findedRecipesRecycler.setAdapter(mAdapter);
 
     }
 

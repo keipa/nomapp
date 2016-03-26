@@ -1,18 +1,18 @@
 package com.nomapp.nomapp_beta.UserGuide;
 
-import android.app.AlertDialog;
+
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 
 import com.nomapp.nomapp_beta.R;
 
 /**
  * Created by Илья on 18.03.2016.
  */
-public class HelpDialog extends DialogFragment implements OnClickListener {
+public class HelpDialog extends DialogFragment implements DialogInterface.OnClickListener {
 
 
     @Override

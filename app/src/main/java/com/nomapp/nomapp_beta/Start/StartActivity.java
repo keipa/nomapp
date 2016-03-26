@@ -1,25 +1,23 @@
 package com.nomapp.nomapp_beta.Start;
 
 import android.app.AlarmManager;
-import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 import com.nomapp.nomapp_beta.About.AboutActivity;
@@ -32,10 +30,9 @@ import com.nomapp.nomapp_beta.R;
 import com.nomapp.nomapp_beta.UserGuide.HelpDialog;
 
 import java.util.Calendar;
-import java.util.prefs.Preferences;
 
 
-public class StartActivity extends android.support.v7.app.AppCompatActivity implements StartFragment.StartFragmentEventsListener {
+public class StartActivity extends AppCompatActivity implements StartFragment.StartFragmentEventsListener {
 
     ActionBarDrawerToggle mDrawerToggle;
     ListView mDrawerList;
@@ -51,6 +48,14 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
     private PendingIntent alarmIntent;
 
    DialogFragment helpDialog;
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        super.onBackPressed();
+        //finish();
+       // System.exit(0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,7 +197,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 00);
+//        calendar.set(Calendar.MINUTE, 00);
         long timeToStart = calendar.getTimeInMillis();
 
         alarmManager.cancel(alarmIntent);
@@ -211,7 +216,7 @@ public class StartActivity extends android.support.v7.app.AppCompatActivity impl
 
         if (prefs.getBoolean("isFirstRun", true)){
             helpDialog = new HelpDialog();
-            helpDialog.show(getFragmentManager(), "helpDialog");
+            helpDialog.show(getSupportFragmentManager(), "helpDialog");
 
             prefs.edit().putBoolean("isFirstRun", false).apply();
         }
