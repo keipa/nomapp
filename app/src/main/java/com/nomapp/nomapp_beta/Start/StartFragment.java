@@ -60,7 +60,6 @@ public class StartFragment extends Fragment {
     ArrayList<Integer> IDsOfPotentialRecipes;
 
     int numberOfAvailableRecipes;
-    int numberOfSelectedIngredients;
 
     StartFragmentEventsListener eventsListener;
 
@@ -486,8 +485,8 @@ public class StartFragment extends Fragment {
                                     else
                                         toRecipesBtn.setEnabled(true);
                                     mAdapter.notifyItemRemoved(position);
-                                    numberOfSelectedIngredients--;
-                                    if (numberOfSelectedIngredients == 0) {
+
+                                    if (IDsOfSelectedIngs.isEmpty()) {
                                         eventsListener.onFridgeEmpty();
                                     }
                                 }
@@ -508,8 +507,8 @@ public class StartFragment extends Fragment {
                                     else
                                         toRecipesBtn.setEnabled(true);
                                     mAdapter.notifyItemRemoved(position);
-                                    numberOfSelectedIngredients--;
-                                    if (numberOfSelectedIngredients == 0) {
+
+                                    if (IDsOfSelectedIngs.isEmpty()) {
                                         eventsListener.onFridgeEmpty();
                                     }
                                 }
