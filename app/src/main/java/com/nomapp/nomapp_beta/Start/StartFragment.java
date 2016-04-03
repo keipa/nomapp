@@ -47,7 +47,7 @@ public class StartFragment extends Fragment {
     CardViewAdapter mAdapter;
     SwipeableRecyclerViewTouchListener swipeTouchListener;
 
-    ArrayList<String> forSelectedIngridients;
+    ArrayList<String> namesOfSelectedIngredients;
 
     /*
         It needs to do not parse ings for recipes after every swipe.
@@ -55,11 +55,10 @@ public class StartFragment extends Fragment {
      */
     ArrayList<ArrayList<Integer>> ingredientsForAvailableRecipes;
 
-    ArrayList<Integer> IDsOfSelectedIngs;
+    ArrayList<Integer> IDsOfSelectedIngredients;
     ArrayList<Integer> IDsOfAvailableRecipes;
     ArrayList<Integer> IDsOfPotentialRecipes;
 
-    int numberOfAvailableRecipes;
 
     StartFragmentEventsListener eventsListener;
 
@@ -164,8 +163,8 @@ public class StartFragment extends Fragment {
     }
 
     void fillSelectedIngridients() { // fill ArrayList for RecyclerView
-        forSelectedIngridients = new ArrayList<>();
-        IDsOfSelectedIngs = new ArrayList<>();
+        namesOfSelectedIngredients = new ArrayList<>();
+        IDsOfSelectedIngredients = new ArrayList<>();
         Cursor cursor = Database.getDatabase().getGeneralDb().query(Database.getIngredientsTableName(),   //connection to the base
                 new String[]
                         {Database.getIngredientId(), Database.getIngredientName(),
@@ -177,8 +176,8 @@ public class StartFragment extends Fragment {
         if (!cursor.isAfterLast()) {            // loop is going throw the all ingridients and shows marked ones (marked has "1" isChecked option)
             do {
                 if (cursor.getInt(2) != 0) {
-                    forSelectedIngridients.add(cursor.getString(1));
-                    IDsOfSelectedIngs.add(cursor.getInt(0));
+                    namesOfSelectedIngredients.add(cursor.getString(1));
+                    IDsOfSelectedIngredients.add(cursor.getInt(0));
                 }
             } while (cursor.moveToNext());
         }
@@ -196,7 +195,7 @@ public class StartFragment extends Fragment {
             }
         };
 
-        mAdapter = new CardViewAdapter(forSelectedIngridients, itemTouchListener);  // setting adapter.
+        mAdapter = new CardViewAdapter(namesOfSelectedIngredients, itemTouchListener);  // setting adapter.
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext()); //setting layout manager
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -285,7 +284,7 @@ public class StartFragment extends Fragment {
 
     //Check only recipes which IDs is in the ArrayList.
     //Perform after every swipe.
-    private int calculateNumberOfAvlRcpsAfterSwipe() {
+    private void calculateNumberOfAvlRcpsAfterSwipe() {
         boolean isAvailable;
 
         ArrayList<Integer> ingredientsForCurrentRecipe;
@@ -327,12 +326,11 @@ public class StartFragment extends Fragment {
         }
         cursor.close();
 
-        int numberOfAvlRecipes = IDsOfAvailableRecipes.size();
+        int numberOfAvailableRecipes = IDsOfAvailableRecipes.size();
 
-        numOfRecipesTV.setText(numberOfAvlRecipes + "");
-        recTextView.setText(setEndingInRecipe(numberOfAvlRecipes));
-        availTextView.setText(setEndingInAvailable(numberOfAvlRecipes));
-        return numberOfAvlRecipes;
+        numOfRecipesTV.setText(numberOfAvailableRecipes + "");
+        recTextView.setText(setEndingInRecipe(numberOfAvailableRecipes));
+        availTextView.setText(setEndingInAvailable(numberOfAvailableRecipes));
     }
 
 
@@ -474,19 +472,20 @@ public class StartFragment extends Fragment {
                             public void onDismissedBySwipeLeft(RecyclerView recyclerView, int[] reverseSortedPositions) {  //swipe to the left
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
-                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
-                                    forSelectedIngridients.remove(position);
-                                    IDsOfSelectedIngs.remove(position);
-                                    numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
+                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngredients.get(position) + ";");
+                                    namesOfSelectedIngredients.remove(position);
+                                    IDsOfSelectedIngredients.remove(position);
+
+                                    calculateNumberOfAvlRcpsAfterSwipe();
 
                                     //make unavailable imageButton when we havent available recipes
-                                    if (numberOfAvailableRecipes == 0)
+                                    if (IDsOfAvailableRecipes.isEmpty())
                                         toRecipesBtn.setEnabled(false);
                                     else
                                         toRecipesBtn.setEnabled(true);
                                     mAdapter.notifyItemRemoved(position);
 
-                                    if (IDsOfSelectedIngs.isEmpty()) {
+                                    if (IDsOfSelectedIngredients.isEmpty()) {
                                         eventsListener.onFridgeEmpty();
                                     }
                                 }
@@ -497,18 +496,20 @@ public class StartFragment extends Fragment {
                             public void onDismissedBySwipeRight(RecyclerView recyclerView, int[] reverseSortedPositions) {   //swipe to the right
                                 for (int position : reverseSortedPositions) {
                                     Database.getDatabase().getGeneralDb().execSQL("UPDATE " + Database.getIngredientsTableName()
-                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngs.get(position) + ";");
-                                    forSelectedIngridients.remove(position);
-                                    IDsOfSelectedIngs.remove(position);
-                                    numberOfAvailableRecipes = calculateNumberOfAvlRcpsAfterSwipe();
+                                            + " SET checked=0 WHERE _id=" + IDsOfSelectedIngredients.get(position) + ";");
+                                    namesOfSelectedIngredients.remove(position);
+                                    IDsOfSelectedIngredients.remove(position);
+
+                                    calculateNumberOfAvlRcpsAfterSwipe();
+
                                     //make unavailable imageButton when we havent available recipes
-                                    if (numberOfAvailableRecipes == 0)
+                                    if (IDsOfAvailableRecipes.isEmpty())
                                         toRecipesBtn.setEnabled(false);
                                     else
                                         toRecipesBtn.setEnabled(true);
                                     mAdapter.notifyItemRemoved(position);
 
-                                    if (IDsOfSelectedIngs.isEmpty()) {
+                                    if (IDsOfSelectedIngredients.isEmpty()) {
                                         eventsListener.onFridgeEmpty();
                                     }
                                 }
@@ -526,7 +527,10 @@ public class StartFragment extends Fragment {
             super.run();
             // Log.w("THREAD_TAG", "hello");
             //ArrayList of selected recipes already filled in StartActivity's method.
-            numberOfAvailableRecipes = calculateNumberOfAvailableRecipes();
+            calculateNumberOfAvailableRecipes();
+
+            int numberOfAvailableRecipes = IDsOfAvailableRecipes.size();
+
             String recCase = setEndingInRecipe(numberOfAvailableRecipes); //for cases of 2 views with text
             String availCase = setEndingInAvailable(numberOfAvailableRecipes);
 
