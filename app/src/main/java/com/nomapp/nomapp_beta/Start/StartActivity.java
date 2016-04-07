@@ -196,7 +196,7 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 19);
-//        calendar.set(Calendar.MINUTE, 00);
+        //calendar.set(Calendar.MINUTE, 59);
         long timeToStart = calendar.getTimeInMillis();
 
         alarmManager.cancel(alarmIntent);
@@ -207,7 +207,8 @@ public class StartActivity extends AppCompatActivity implements StartFragment.St
         }
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeToStart, AlarmManager.INTERVAL_DAY * 2 , alarmIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
+        //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeToStart, AlarmManager.INTERVAL_DAY * 2, alarmIntent);
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, timeToStart, alarmIntent);
     }
 
     public void showHelp(){
