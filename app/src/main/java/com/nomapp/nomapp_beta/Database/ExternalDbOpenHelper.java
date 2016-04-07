@@ -24,7 +24,7 @@ public class ExternalDbOpenHelper extends SQLiteOpenHelper {
     public SQLiteDatabase database;
     public final Context context;
 
-    private static final int DB_VERSION = 16;
+    private static final int DB_VERSION = 21;
 
     public SQLiteDatabase getDatabase() {
         return database;

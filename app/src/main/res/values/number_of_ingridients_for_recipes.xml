@@ -1750,4 +1750,184 @@
 	Все, что угодно ;)\n
 </string>
 
+<string name="number_of_ingredients_for_sosiski_na_paru">
+	200г сосисок\n
+</string>
+
+<string name="number_of_ingredients_for_sosiski_s_pomidorami">
+	Помидоры\n
+	Сосиски\n
+</string>
+
+<string name="number_of_ingredients_for_sosiski_jarenie">
+	Сосиски\n
+</string>
+
+<string name="number_of_ingredients_for_sirniki">
+	250 гр творога\n
+	1 яйцо\n
+	4 ст. ложки муки\n
+	сливочное масло\n
+	 ч. ложки сахара\n
+	1/3 ч. ложки соли\n
+	ванилин\n
+</string>
+
+<string name="number_of_ingredients_for_kortofelnoe_pure">
+	1 кг картофеля\n
+	1 стакан молока\n
+	70 г. сливочного масла\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_s_salom_micro">
+	3 картофелины\n
+	50-100 гр. сала\n
+</string>
+
+<string name="number_of_ingredients_for_grechka_po_mexican">
+	200 гр. гречки\n
+	растительное масло\n
+</string>
+
+<string name="number_of_ingredients_for_gogol_mogol">
+	1 сырое яйцо\n
+	1 ломтик черного хлеба\n
+</string>
+
+<string name="number_of_ingredients_for_risovie_kotleti">
+	1 стакан риса\n
+	3 ст. ложки муки\n
+	2-3 ст. ложки растительного масла\n
+</string>
+
+<string name="number_of_ingredients_for_otbivni">
+	кусок 150-200 гр. говядины\n
+</string>
+
+<string name="number_of_ingredients_for_kartofeline_kotleti">
+	1 кг. картофеля\n
+	3 яйца\n
+	100 гр. муки\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_jareni">
+	Картофель\n
+</string>
+
+<string name="number_of_ingredients_for_podjareni_vareni_kartofel">
+	Картофель\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_molodoy_v_smetane">
+	1 кг. картофеля\n
+	100 гр. сметаны\n
+	1 ст. ложка масла\n
+</string>
+
+<string name="number_of_ingredients_for_razvarnoy_kartofel">
+	Картофель\n
+</string>
+
+<string name="number_of_ingredients_for_varenoe_yaytso">
+	Яйцо куриное\n
+</string>
+
+<string name="number_of_ingredients_for_mannaya_kasha">
+	3/4 стакана молока\n
+	3/4 стакана молока\n
+	3 ч. ложки манной крупы\n
+	1/2 ч. ложки сахара\n
+	1 ч. ложку масла\n
+</string>
+
+<string name="number_of_ingredients_for_grechnevaya_kasha">
+	1 стакан гречки\n
+	1,5 стакана кипятка\n
+	0,5 ч. ложки соли\n
+	0,5 ч. ложки масла\n
+</string>
+
+<string name="number_of_ingredients_for_sosiski_varenie">
+	Сосиски\n
+</string>
+
+<string name="number_of_ingredients_for_kotleti_myasnie">
+	500 гр. мяса без пленок и костей\n
+	100 гр. черствого белого хлеба\n
+	1 яйцо\n
+	1 большую луковицу\n
+	50 гр. масла\n
+</string>
+
+<string name="number_of_ingredients_for_omlet">
+	3 яйца\n
+	1 ст. ложка молока\n
+	сливочное масло\n
+</string>
+
+<string name="number_of_ingredients_for_yaichnitsa">
+	Яйца куриные\n
+</string>
+
+<string name="number_of_ingredients_for_yaichnitsa_boltunia">
+	Яйца куриные\n
+</string>
+
+<string name="number_of_ingredients_for_yaichnitsa_s_kolbaso">
+	Яйцо\n
+	Колбаса\n
+</string>
+
+<string name="number_of_ingredients_for_yaichnitsa_s_pomidorami">
+	Яйцо\n
+	Помидор\n
+</string>
+
+<string name="number_of_ingredients_for_yachnitsa_glas">
+	Сливочное масло\n
+	Яйцо куриное\n
+</string>
+
+<string name="number_of_ingredients_for_mannik">
+	3 яйца\n
+	200 гр. манки\n
+	200 гр. сметаны (15-20%)\n
+	200 гр. муки\n
+	200 гр. сахара\n
+</string>
+
+<string name="number_of_ingredients_for_morkov_na_paru">
+	6-8 морковок\n
+	1 ч. ложка размягченного сливочного масла\n
+	1 ч. ложка лимонного сока\n
+	0,25 пучка петрушки\n
+</string>
+
+<string name="number_of_ingredients_for_ris_v_micro">
+	200 гр. риса\n
+</string>
+
+<string name="number_of_ingredients_for_makaroni">
+	Макароны\n
+	Соль\n
+</string>
+
+<string name="number_of_ingredients_for_kartofel_v_micro_s_lukom">
+	500 гр. картофеля\n
+	3-4 луковицы\n
+	50-60 гр. сливочного масла\n
+	80 гр. сметаны\n
+</string>
+
+	<string name="number_of_ingredients_for_tort_iz_kiselya">
+		Кисель сухой — 200 Грамм \n
+		Мука — 3 Ст. ложки\n
+		Яйца — 3 Штуки\n
+		Сода — 1 Чайная ложка (без верха)\n
+		Уксус — 0,5 Чайных ложки\n
+		Сметана — 200 Грамм\n
+		Сахар — 3/4 Стакана\n
+		Шоколад и кокосовая стружка — 3-4 Щепоток (для украшения)\n
+	</string>
+
 </resources>
